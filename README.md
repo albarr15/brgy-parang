@@ -3,3 +3,8 @@ The specific objectives of the software are as follows:
 To provide a platform for Barangay Captain and secretary to manage information of civil/criminal trials and blotter requests of residents;
 To provide convenience to the employees when processing the document; and
 To provide a platform for them to streamline the process of generating and issuing of the barangay certification.
+
+Node Packages to be installed:
+- handlebars
+- express
+- nodemon (as dev dependencies)
