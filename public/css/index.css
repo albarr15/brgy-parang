@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root {
+    color: white;
+    font-size: 100%;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+
+    --blue: #779FE5;
+    --tangerine: #F07507;
+    --minty: #AFE1D7;
+    --orange: #F3BE72;
+    --dgreen: #004112;
+    --lgreen: #1C8A3B;
+    --gray: #D9D9D9;
+    --lblue: #EAF3F7;
+}
+
+html { 
+    background: url(../images/bg-light.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  body{
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 { /* 36px font size */
+    font-weight: bold;
+    font-size: 2.25rem; 
+    margin: 0;
+  }
+  
+  h2 { /* 32px font size */
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  h3 { /* 20px font size */
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  h4 { /* 18px font size */
+    font-weight: bold;
+    font-size: 1.125rem;
+    margin: 0;
+  }
+
+  h5 { /* 16px font size */
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .main-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-flow: row wrap;
+  }
+
+  .header {
+    background-color: var(--dgreen);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row;
+
+    box-shadow: 0px 2px 30px 2px rgba(0, 0, 0, 0.25);
+    color: white;
+    height: 5rem;
+    width: 100%;
+    margin-bottom: 3.5%;
+    padding-left: 7.2%;
+    padding-right: 7.2%;
+  }
+
+  .header-logo {
+    height: 100%;
+  }
+
+  .header-logo-link {
+    height: 80%;
+    border: white;
+  }
+
+  .header-home {
+    padding-left: 5%;
+    text-decoration: none;
+    color: white;
+  }
+
+  .header-home:hover {
+    color: lightgreen;
+    text-shadow: 0px 0px 5px black;
+  }
+
+  .header-text {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    min-width: 13rem;
+  }
+
+    /* header for login page */
+  .login-header-left {
+    margin-left: 20%;
+    display: flex;
+    flex-direction: flex-start;
+    align-items: center;
+
+    width: 50%;
+    height: 100%;
+  }
+
+  .login-header-right {
+    margin-right: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+
+    width: 50%;
+    height: 50px;
+  }
+
+  .header-left {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+
+    width: 30%;
+    height: 100%;
+  }
+
+  .header-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    width: 40%;
+    height: 50px;
+  }
+
+  .header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    height: 50px;
+    width: 30%;
+  }
+
+  .header-user-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 50px;
+
+    margin-right: 5%;
+  }
+
+  .header-user-profile-logo {
+    height: 100%;
+  }
+
+  .header-user-profile-text {
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+
+  .header-logout-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 6.25rem;
+    height: 2.5rem;
+    left: 1.25rem;
+    top: 1.25rem;
+
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 65, 18, 0);
+    
+    border: 1px solid #FCFCFC;
+    border-radius: 0.25rem;
+  }
+
+  .header-logout-btn:hover {
+    background: #5FD78D;
+    background: var(--logout-hover-bg);
+    color: white;
+    border: 0px;
+    font-weight: bolder;
+  }
+
+  .login-panel {
+    width: 70%;
+    height: 100%;
+
+    border-radius: 1rem;
+
+    border-style: solid;
+    border-width: 0.5rem;
+    border-color: #0A421E; 
+    background-color: white;
+    box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+
+    font-family: 'Josefin Sans';
+    min-width: 48rem;
+    min-height: 40rem;
+  }
+
+  .login-panel-left {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: black;
+
+    padding: 4rem;
+  }
+
+  .login-panel-right {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background: linear-gradient(180deg, #0A421E 0%, #19A84C 100%);
+    border-radius: 0rem 0.3rem 0.3rem 0rem;
+  }
+
+  .login-panel-logo {
+    width: 85%;
+    max-width: 40rem;
+  }
+
+  .portal-buttons {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+
+    margin-top: 5rem;
+    width: 100%;
+  }
+
+  .portal-btn-employee {
+    margin: 1rem;
+
+    font-size: 2.25rem;
+    height: 5rem;
+    width: 18rem;
+    background-color: var(--blue);
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    font-weight: bold;
+    font-size: 2.25rem;
+    font-family: 'Josefin Sans';
+    color: white;
+    border: 0;
+    padding: 1rem;
+  }
+
+  .portal-btn-admin {
+    margin: 1rem;
+
+    font-size: 2.25rem;
+    height: 5rem;
+    width: 18rem;
+    background-color: var(--tangerine);
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    font-weight: bold;
+    font-size: 2.25rem;
+    font-family: 'Josefin Sans';
+    color: white;
+    border: 0;
+    padding: 1rem;  
+  }
+
+  button:hover{
+    box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+
+  @media only screen and (max-width: 1048px) {
+    .header-user-profile {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 650px) {
+    .header-text, .header-title {
+      display: none;
+    }
+    .login-header-right {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .header-logout-btn {
+      display: none;
+    }
+    .header-right {
+      display: none;
+    }
+  }
