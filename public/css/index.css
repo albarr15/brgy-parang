@@ -197,14 +197,16 @@ html {
     font-size: 1rem;
     font-weight: bold;
     color: white;
-    background-color: var(--dgreen);
+    background-color: rgba(0, 65, 18, 0);
+    
     border: 1px solid #FCFCFC;
     border-radius: 0.25rem;
   }
 
   .header-logout-btn:hover {
     background: #5FD78D;
-    color: #2D9956;
+    background: var(--logout-hover-bg);
+    color: white;
     border: 0px;
     font-weight: bolder;
   }

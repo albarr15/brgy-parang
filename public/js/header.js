@@ -1,4 +1,27 @@
 document.addEventListener("DOMContentLoaded", function() {
+    function toggleDarkPage() {
+        document.documentElement.style.background = "url(../public/images/bg-dark.png) no-repeat center center fixed";
+        document.documentElement.style.backgroundSize = "cover";
+        document.documentElement.style.WebkitBackgroundSize = "cover"; // For older WebKit-based browsers
+        document.documentElement.style.MozBackgroundSize = "cover"; // For older Mozilla-based browsers
+        document.documentElement.style.OBackgroundSize = "cover"; // For older Opera browsers
+        document.getElementById("header").style.background = "#1C8A3B";
+        document.getElementById("logout-btn").style.setProperty("--logout-hover-bg", "#004112");
+    }
+
+    function toggleLightPage() {
+        document.documentElement.style.background = "url(../public/images/bg-light.png) no-repeat center center fixed";
+        document.documentElement.style.backgroundSize = "cover";
+        document.documentElement.style.WebkitBackgroundSize = "cover"; // For older WebKit-based browsers
+        document.documentElement.style.MozBackgroundSize = "cover"; // For older Mozilla-based browsers
+        document.documentElement.style.OBackgroundSize = "cover"; // For older Opera browsers
+        document.getElementById("header").style.background = "#004112";
+        document.getElementById("logout-btn").style.setProperty("--logout-hover-bg", "#1C8A3B");
+    }
+
+    // pages are in light mode by default
+    toggleLightPage();
+
     var user_role = document.getElementById("profile-text").innerHTML;
     var user_profile = document.getElementById("profile-img");
     var home_link1 = document.getElementById("home-link1");
@@ -26,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 user_profile.src = "../public/images/employee-profile.png";
                 home_link1.href = "employee-homepage.html";
                 home_link2.href = "employee-homepage.html";
+                toggleDarkPage();
                 break;
 
             case "Admin":
@@ -33,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 user_profile.src = "../public/images/admin-profile.png";
                 home_link1.href = "admin-homepage.html";
                 home_link2.href = "admin-homepage.html";
+                toggleDarkPage();
                 break;
             default:
                 document.getElementById("profile-text").style.color="#FFFFFF";
