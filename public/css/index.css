@@ -360,7 +360,42 @@ html {
   .checkbox.clicked img {
     display: block;
   }
-  
+
+  .status.resolved {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 14px;
+    justify-content: center;
+    gap: 10px;
+
+    width: 120px;
+    height: 32px;
+
+    background: #BBF9AC;
+    color: #1C8A3B;
+    border-radius: 20px;
+    border: none;
+  }
+
+  .status.ongoing {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 14px;
+    justify-content: center;
+    gap: 10px;
+
+    width: 120px;
+    height: 32px;
+
+    background: #FFD1CA;
+    color: #F3533B;
+    border-radius: 20px;
+    border: none;
+  }
+
+
   @media only screen and (max-width: 1048px) {
     .header-user-profile {
       display: none;
