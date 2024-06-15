@@ -499,7 +499,19 @@ html {
     box-shadow: none;
   }
 
-  
+  .form-action-btn {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+  }
+
+  .form-action-btn:hover {
+      box-shadow: none;
+  }
 
   @media only screen and (max-width: 1048px) {
     .header-user-profile {
