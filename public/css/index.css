@@ -308,7 +308,7 @@ html {
   }
 
   button:hover{
-    box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.1);
     cursor: pointer;
   }
 
@@ -392,6 +392,30 @@ html {
     background: #FFD1CA;
     color: #F3533B;
     border-radius: 20px;
+    border: none;
+  }
+
+  .sort.descending {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+    background: none;
+    border: none;
+  }
+
+  .sort.ascending {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+    background: none;
     border: none;
   }
 

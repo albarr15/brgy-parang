@@ -28,4 +28,23 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+
+    var sort_btns = document.getElementsByClassName("sort");
+
+    Array.from(sort_btns).forEach(function(sort_btns) {
+        sort_btns.addEventListener("click", function() {
+            var currentState = this.classList[1];
+            var img = this.querySelector('img');
+
+            if (currentState == "descending") {
+                this.classList.remove('descending');
+                this.classList.add('ascending');
+                img.src="../public/images/sort-ascending.png"
+            } else {
+                this.classList.remove('ascending');
+                this.classList.add('descending');
+                img.src="../public/images/sort-descending.png"
+            }
+        });
+    });
 });
