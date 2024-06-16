@@ -361,7 +361,7 @@ html {
     display: block;
   }
 
-  .status.resolved {
+  .status {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -371,28 +371,18 @@ html {
 
     width: 120px;
     height: 32px;
-
-    background: #BBF9AC;
-    color: #1C8A3B;
     border-radius: 20px;
     border: none;
   }
 
+  .status.resolved {
+    background: #BBF9AC;
+    color: #1C8A3B;
+  }
+
   .status.ongoing {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 4px 14px;
-    justify-content: center;
-    gap: 10px;
-
-    width: 120px;
-    height: 32px;
-
     background: #FFD1CA;
     color: #F3533B;
-    border-radius: 20px;
-    border: none;
   }
 
   .sort.descending {
@@ -548,7 +538,7 @@ html {
 
     width: 220px;
     height: 44px;
-    border-radius: 20px;
+    border-radius: 48px;
     border: none;
 
     font-size: 1.2rem;
@@ -566,6 +556,47 @@ html {
   .download-btn-lrg.dark {
     background: #ACE6F9;
     color: #1E48A3;
+  }
+
+  .form-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 14px;
+    justify-content: flex-start;
+    gap: 10px;
+
+    height: 34px;
+
+    border-radius: 20px;
+    border: none;
+    width: fit-content;
+  } 
+
+  .form-btn img {
+    max-height: 90%;
+  }
+
+  .form-btn.resolved {
+    color: #50AF12;
+  }
+
+  .form-btn.save {
+    color: #50AF12;
+  }
+
+  .form-btn.delete {
+    color: #B51D14;
+  }
+
+  .form-btn.discard {
+    color: #B51D14;
+  }
+
+  .form-btn.create {
+    border: 1px solid white;
+    color: white;
+    background-color: var(--dgreen);
   }
 
 
