@@ -499,61 +499,42 @@ html {
     border: none;
   }
 
-  .download-btn-reg {
+  .form-action-btn:hover {
+    box-shadow: none;
+  }
+
+  .download-btn {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 4px 14px;
     justify-content: center;
     gap: 10px;
-
-    width: 120px;
-    height: 32px;
-
-    border-radius: 20px;
     border: none;
   }
 
-  .download-btn-reg img {
-    max-width: 25%;
+  .download-btn.reg {
+    width: 120px;
+    height: 32px;
+    border-radius: 20px;
   }
 
-  .download-btn-reg.light {
-    background: #DFF5FB;
-    color: #7BA7D7;
-  }
-
-  .download-btn-reg.dark {
-    background: #ACE6F9;
-    color: #1E48A3;
-  }
-
-  .download-btn-lrg {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 4px 14px;
-    justify-content: center;
-    gap: 10px;
-
+  .download-btn.lrg {
     width: 220px;
     height: 44px;
     border-radius: 48px;
-    border: none;
-
-    font-size: 1.2rem;
   }
 
-  .download-btn-lrg img {
-    max-height: 85%;
+  .download-btn img {
+    max-height: 80%;
   }
 
-  .download-btn-lrg.light {
+  .download-btn.light {
     background: #DFF5FB;
     color: #7BA7D7;
   }
 
-  .download-btn-lrg.dark {
+  .download-btn.dark {
     background: #ACE6F9;
     color: #1E48A3;
   }
@@ -600,9 +581,89 @@ html {
   }
 
 
+  .text-field {
+    width: fit-content;
+    height: 22px;
+    padding: 4px 14px;
 
-  .form-action-btn:hover {
-      box-shadow: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    background: #F4F4F4;
+    color: black;
+    border-radius: 6px;
+    border: 1px solid #5E5E5E;
+  }
+
+  
+  .cancel-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 14px;
+    justify-content: center;
+    gap: 10px;
+
+    width: 220px;
+    height: 44px;
+    border-radius: 48px;
+    border: none;
+
+    font-size: 1rem;
+  }
+
+  .cancel-btn img {
+    max-height: 80%;
+  }
+
+  .cancel-btn.light {
+    background: #DFF5FB;
+    color: #7BA7D7;
+  }
+
+  .cancel-btn.dark {
+    background: #ACE6F9;
+    color: #1E48A3;
+  }
+
+  .print-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 14px;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+  }
+
+  .print-btn.dark {
+    background: #ACE6F9;
+    color: #1E48A3;
+  }
+
+  .print-btn.light {
+    background: #DFF5FB;
+    color: #7BA7D7;
+  }
+
+  .print-btn.reg {
+    width: 120px;
+    height: 32px;
+    border-radius: 20px;
+  }
+
+  .print-btn img {
+    max-height: 80%;
+  }
+
+  .print-btn.lrg {
+    width: 220px;
+    height: 44px;
+
+    border-radius: 48px;
+    font-size: 1.2rem;
   }
 
   @media only screen and (max-width: 1048px) {
