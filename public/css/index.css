@@ -689,3 +689,98 @@ html {
       display: none;
     }
   }
+
+  
+/* [Added: Miko] Employee & Admin Homepages CSS styles*/
+.box {
+  border: 1px solid black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 800px;
+  min-width: 300px;
+  box-sizing: border-box;
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 100px;
+  height: auto;
+}
+
+.backbutton-container{
+  display: block;
+  width: 100%;
+}
+.back-button {
+  text-decoration: none;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  opacity: 0.5; 
+}
+
+.back-button svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.action-prompt{
+  display: block;
+  color:black;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  font-size: 1.75em;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.option {
+  width: 45%;
+  margin: 10px 0;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.15em;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.option img {
+  height: 30px;
+  margin-right: 5px;
+}
+
+
+#check-clearance, #luponcase-button {
+  background-color: #552C00;
+  color: #ECB476;
+}
+
+#generate-certification, #tanodcase-button {
+  background-color: #236759;
+  color: #AFE1D7;
+}
