@@ -509,6 +509,67 @@ html {
     border: none;
   }
 
+  .download-btn-reg {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 14px;
+    justify-content: center;
+    gap: 10px;
+
+    width: 120px;
+    height: 32px;
+
+    border-radius: 20px;
+    border: none;
+  }
+
+  .download-btn-reg img {
+    max-width: 25%;
+  }
+
+  .download-btn-reg.light {
+    background: #DFF5FB;
+    color: #7BA7D7;
+  }
+
+  .download-btn-reg.dark {
+    background: #ACE6F9;
+    color: #1E48A3;
+  }
+
+  .download-btn-lrg {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 14px;
+    justify-content: center;
+    gap: 10px;
+
+    width: 220px;
+    height: 44px;
+    border-radius: 20px;
+    border: none;
+
+    font-size: 1.2rem;
+  }
+
+  .download-btn-lrg img {
+    max-height: 85%;
+  }
+
+  .download-btn-lrg.light {
+    background: #DFF5FB;
+    color: #7BA7D7;
+  }
+
+  .download-btn-lrg.dark {
+    background: #ACE6F9;
+    color: #1E48A3;
+  }
+
+
+
   .form-action-btn:hover {
       box-shadow: none;
   }
