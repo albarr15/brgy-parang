@@ -736,6 +736,7 @@ html {
 }
 
 .action-prompt{
+  margin-top: 20px;
   display: block;
   color:black;
   font-weight: bold;
