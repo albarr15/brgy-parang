@@ -19,14 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("logout-btn").style.setProperty("--logout-hover-bg", "#1C8A3B");
     }
 
-    function initializePage() {
-        if (document.querySelector(".search-page")) {
-            toggleLightPage();
-        } else {
-            toggleDarkPage();
-        }
-    }
-
     // pages are in light mode by default
     toggleLightPage();
 
@@ -74,6 +66,5 @@ document.addEventListener("DOMContentLoaded", function() {
                 home_link2.href = "../index.html";
         }
     }
-    initializePage();
 });
     
