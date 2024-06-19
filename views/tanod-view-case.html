@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Barangay Parang - Admin Login Page
+        </title>
+        <link rel = "stylesheet" type = "text/css" href = "../public/css/form.css">
+        <script src = "" type="text/javascript"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class = "main-container">
+            <div class= "header">
+                <div class = "login-header-left">
+                    <a href="../index.html" class="header-logo-link"><img src="../public/images/logo.png" class="header-logo"></a>
+                    <a href="../index.html" class="header-home"><h3>Home</h3></a>
+                </div>
+                <div class = "login-header-right">
+                    <div class = "header-text">
+                        <h3>Sangguniang Barangay ng Parang</h3>
+                        <h5 id = "MarikinaCity">Marikina City</h5>
+                    </div>
+                </div>
+            </div>
+            <div
+            <div class = "page-content-container">
+                <h1 id = "tanod-case-title">Tanod Case Details</h1>
+                <div class = "form-encasing-container">
+                    <div class = "form-actual-container">
+                        <form id="case-form">
+                            <div class = "form-section" id = "basic-info">
+                                <div class = "column-section">
+                                    <label for="entry-number-input" class ="bold-label">Entry Number</label>
+                                    <input class = "entry-number-input" type = "text" placeholder= "Entry Number">
+                                </div>
+                                <div class = "column-section">
+                                    <label for="date" class ="bold-label">Date</label>
+                                    <input type = "date" id = "date">
+                                </div>
+                                <div class = "column-section">
+                                    <label for="case-form" class ="bold-label">Status</label>
+                                    <select name="case-form" id="status-dropdown" selected = "1">
+                                        <option value="" selected disabled hidden>Select Status</option>
+                                        <option value="1">Resolved</option>
+                                        <option value="0">Ongoing</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <h5 class = "section-name">Reportee Information</h5>
+                            <div class = "form-section" id = "reportee-info">
+                                <div class = "input-pair">
+                                    <label for="last-name-input">Last Name</label>
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name">
+                                </div>
+                                <div class = "input-pair">
+                                    <label for="middle-initial-input">Middle Initial</label>
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1">
+                                </div>
+                                <div class = "input-pair">
+                                    <label for="first-name-input">First Name</label>
+                                    <input class = "first-name-input" type = "text" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="form-section" id = "reportee-additional-info">
+                                <div class = "input-pair">
+                                    <label for="">Reportee Address</label>
+                                    <input class = "address-input" type = "text" placeholder="Reportee Address">
+                                </div>
+                            </div>
+                            <h5 class="section-name">Nature of Blotter</h5>
+                            <div class = "form-section">
+                                <div class = "input-pair">
+                                    <input class = "nature-of-blotter-input" type = "text" placeholder="Nature of Blotter">
+                                </div>
+                            </div>
+                            <h5 class = "section-name">Respondent Information</h5>
+                            <div class = "form-section" id = "respondent-info">
+                                <div class = "input-pair">
+                                    <label for="last-name-input">Last Name</label>
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name">
+                                </div>
+                                <div class = "input-pair">
+                                    <label for="middle-initial-input">Middle Initial</label>
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1">
+                                </div>
+                                <div>
+                                    <label for="first-name-input">First Name</label>
+                                    <input class = "first-name-input" type = "text" placeholder="First Name">
+                                </div>
+                                
+                            </div>
+                            <h5 class = "section-name">Desk Officer Information</h5>
+
+                            <div class = "form-section" id = "desk-officer-information">
+                                <div class = "input-pair">
+                                    <label for="last-name-input">Last Name</label>
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name">
+                                </div>
+                                <div class = "input-pair">
+                                    <label for="middle-initial-input">Middle Initial</label>
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1">
+                                </div>
+                                <div class = "input-pair">
+                                    <label for="first-name-input">First Name</label>
+                                    <input class = "first-name-input" type = "text" placeholder="First Name">
+                                </div>
+                            </div>
+                            <h5 class = "section-name">Witness Information</h5>
+                            <div class = "form-section" id = "witness-information">
+                                <div class = "input-pair">
+                                    <label for="last-name-input">Last Name</label>
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name">
+                                </div>
+                                <div class = "input-pair">
+                                    <label for="middle-initial-input">Middle Initial</label>
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1">
+                                </div>
+                                <div class = "input-pair">
+                                    <label for="first-name-input">First Name</label>
+                                    <input class = "first-name-input" type = "text" placeholder="First Name">
+                                </div>
+                            </div>
+                            <h5 class ="section-name">Location</h5>
+                            <div class = "form-section" id="location">
+                                <div class = "input-pair">
+                                    <input class = "location-input" type = "text" placeholder="Location">
+                                </div>
+                            </div>
+                        </form>
+                    </div>  
+                </div>
+            </div>
+            <div class = "buttons-container">
+                <button class = "form-button" id="resolved-button">
+                    Mark as Resolved
+                </button>
+                <button class ="form-button" id="edit-button">
+                    Edit Data
+                </button>
+                <button class = "form-button" id="delete-button">
+                    Delete Case
+                </button>
+            </div>
+        </div>
+    </body>
+</html>
