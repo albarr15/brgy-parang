@@ -24,18 +24,18 @@
             </div>
             <div
             <div class = "page-content-container">
-                <h1 id = "tanod-case-title">Tanod Case Details</h1>
+                <h1 id = "lupon-case-title">Lupon Case Details</h1>
                 <div class = "form-encasing-container">
                     <div class = "form-actual-container">
                         <form id="case-form">
                             <div class = "form-section" id = "basic-info">
                                 <div class = "column-section">
-                                    <label for="entry-number-input" class ="bold-label">Entry Number</label>
-                                    <input class = "entry-number-input" type = "text" placeholder= "Entry Number">
+                                    <label for="case-title" class ="bold-label">Case Title</label>
+                                    <input class = "entry-number-input" id="case-title" type = "text" placeholder= "Case Title">
                                 </div>
                                 <div class = "column-section">
-                                    <label for="date" class ="bold-label">Date</label>
-                                    <input type = "date" id = "date">
+                                    <label for="case-type" class ="bold-label">Case Type</label>
+                                    <input type = "text" id = "case-type" placeholder="Case Type">
                                 </div>
                                 <div class = "column-section">
                                     <label for="case-form" class ="bold-label">Status</label>
@@ -46,84 +46,85 @@
                                     </select>
                                 </div>
                             </div>
-                            <h5 class = "section-name">Reportee Information</h5>
-                            <div class = "form-section" id = "reportee-info">
-                                <div class = "input-pair">
-                                    <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" type ="text" placeholder="Last Name">
-                                </div>
-                                <div class = "input-pair">
-                                    <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1">
-                                </div>
-                                <div class = "input-pair">
-                                    <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" type = "text" placeholder="First Name">
-                                </div>
-                            </div>
-                            <div class="form-section" id = "reportee-additional-info">
-                                <div class = "input-pair">
-                                    <label for="">Reportee Address</label>
-                                    <input class = "address-input" type = "text" placeholder="Reportee Address">
-                                </div>
-                            </div>
-                            <h5 class="section-name">Nature of Blotter</h5>
-                            <div class = "form-section">
-                                <div class = "input-pair">
-                                    <input class = "nature-of-blotter-input" type = "text" placeholder="Nature of Blotter">
-                                </div>
-                            </div>
                             <h5 class = "section-name">Respondent Information</h5>
                             <div class = "form-section" id = "respondent-info">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" type ="text" placeholder="Last Name">
+                                    <input class = "last-name-input" id="respondent-last-name" type ="text" placeholder="Last Name">
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1">
+                                    <input class = "middle-name-input" id="respondent-middle-name" type = "text" placeholder="M.I." maxlength="1">
+                                </div>
+                                <div class = "input-pair">
+                                    <label for="first-name-input">First Name</label>
+                                    <input class = "first-name-input" id="respondent-first-name" type = "text" placeholder="First Name">
+                                </div>
+                            </div>
+                            <h5 class = "section-name">Complainer Information</h5>
+                            <div class = "form-section" id = "complainer-info">
+                                <div class = "input-pair">
+                                    <label for="last-name-input">Last Name</label>
+                                    <input class = "last-name-input" id="complainer-last-name" type ="text" placeholder="Last Name">
+                                </div>
+                                <div class = "input-pair">
+                                    <label for="middle-initial-input">Middle Initial</label>
+                                    <input class = "middle-name-input" id="complainer-middle-name" type = "text" placeholder="M.I." maxlength="1">
                                 </div>
                                 <div>
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" type = "text" placeholder="First Name">
+                                    <input class = "first-name-input" id="complainer-first-name" type = "text" placeholder="First Name">
                                 </div>
-                                
                             </div>
-                            <h5 class = "section-name">Desk Officer Information</h5>
-
-                            <div class = "form-section" id = "desk-officer-information">
+                            <h5 class = "section-name">Mediation Information</h5>
+                            <div class = "form-section" id = "mediation-info">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" type ="text" placeholder="Last Name">
+                                    <input class = "last-name-input" id="mediation-last-name" type ="text" placeholder="Last Name">
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1">
+                                    <input class = "middle-name-input" id="mediation-middle-name"type = "text" placeholder="M.I." maxlength="1">
+                                </div>
+                                <div>
+                                    <label for="first-name-input">First Name</label>
+                                    <input class = "first-name-input" id="mediation-first-name" type = "text" placeholder="First Name">
+                                </div>
+                            </div>
+                            <h5 class = "section-name">Consilation Information</h5>
+                            <div class = "form-section" id = "consilation-information">
+                                <div class = "input-pair">
+                                    <label for="last-name-input">Last Name</label>
+                                    <input class = "last-name-input" id="consilation-last-name" type="text" placeholder="Last Name">
+                                </div>
+                                <div class = "input-pair">
+                                    <label for="middle-initial-input">Middle Initial</label>
+                                    <input class = "middle-name-input" id="consilation-middle-name" type="text" placeholder="M.I." maxlength="1">
                                 </div>
                                 <div class = "input-pair">
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" type = "text" placeholder="First Name">
+                                    <input class = "first-name-input" id="consilation-first-name" type="text" placeholder="First Name">
                                 </div>
                             </div>
                             <h5 class = "section-name">Witness Information</h5>
                             <div class = "form-section" id = "witness-information">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" type ="text" placeholder="Last Name">
+                                    <input class = "last-name-input" id="witness-last-name" type ="text" placeholder="Last Name">
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1">
+                                    <input class = "middle-name-input" id="witness-middle-name" type = "text" placeholder="M.I." maxlength="1">
                                 </div>
                                 <div class = "input-pair">
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" type = "text" placeholder="First Name">
+                                    <input class = "first-name-input" id="witness-first-name" type = "text" placeholder="First Name">
                                 </div>
                             </div>
-                            <h5 class ="section-name">Location</h5>
+                            <h5 class ="section-name">Case</h5>
                             <div class = "form-section" id="location">
                                 <div class = "input-pair">
-                                    <input class = "location-input" type = "text" placeholder="Location">
+                                    <input class = "location-input" id="case-description" type = "text" placeholder="Case Details">
                                 </div>
                             </div>
                         </form>

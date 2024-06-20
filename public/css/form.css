@@ -66,12 +66,43 @@ html {
     color: black;
   }
 
+  /*Labels are used per input*/
+  label {
+    font-size: 0.750rem;
+  }
+
+  /*Makes inputs and selects (for status) gray*/
+  input, select {
+    background-color: var(--gray);
+    border-style: hidden;
+  }
+
+  /*Makes all the buttons round*/
+  button {
+    height: 2.750rem;
+    width: 13.250rem;
+    margin: 1rem;
+    font-size: 1rem;
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-radius: 2.875rem;
+  }
+
+  button:hover{
+    box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
   .main-container {
     width: 100%;
     height: 100%;
-
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: flex;
     justify-content: center;
     flex-flow: row wrap;
   }
@@ -121,7 +152,9 @@ html {
     min-width: 13rem;
   }
 
-    /* header for login page */
+    /* header for login page 
+    Should be changed for the actual header
+    */
   .login-header-left {
     margin-left: 20%;
     display: flex;
@@ -194,16 +227,6 @@ html {
     color: var(--gray);
   }
 
-  button:hover{
-    box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.25);
-    cursor: pointer;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-
   @media only screen and (max-width: 1048px) {
     .header-user-profile {
       display: none;
@@ -227,8 +250,12 @@ html {
       display: none;
     }
   }
+  /*END OF HEADER CSS*/
 
-  .last-name-input, .entry-number-input, .middle-name-input, .nature-of-blotter-input, .address-input, .first-name-input, .location-input, #status-dropdown, #date{
+  /**form CSS**/
+
+  /*For all inputs, selects, and dates to be a standardized height*/
+  input, #status-dropdown, #date{
     height: 2.188rem;
   }
 
@@ -249,16 +276,17 @@ html {
     width: 49.563rem;
   }
 
-
+/*Form sections are the divs created for each major part of the form*/
   .form-section {
     display: flex;
     padding-left: 3.125rem;
     padding-right: 3.125rem;
   }
 
+  /*Column sections are for the unique inputs at the tops of the 
+  forms that do not belong to a form section*/
   .column-section {
     padding-right: 3.125rem;
-    padding-top: 1rem
   }
 
   .section-name {
@@ -267,21 +295,27 @@ html {
     font-weight: bold;
   }
 
+  /*Used for the labels above the non-section inputs (entry number, date, etc.)*/
   .bold-label {
     font-size: 1rem;
     font-weight: bold;
   }
 
+  /*Allows for a space between last name and middle initial*/
   .last-name-input {
     margin-right: 3.125rem;
   }
 
-  #tanod-case-title {
+  #tanod-case-title, #lupon-case-title {
     color:black;
     text-align: center;
   }
 
+  /*The white box around (behind) the form*/
   .form-encasing-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 40rem;
     width: 56.125rem;
     background-color: #FFFFFF;
@@ -290,27 +324,15 @@ html {
     border-color: black;
   }
 
-  label {
-    font-size: 0.750rem;
-  }
+  .page
 
-  input, select {
-    background-color: var(--gray);
-    border-style: hidden;
-  }
-
-  button {
-    height: 2.750rem;
-    width: 13.250rem;
-    margin: 1rem;
-    font-size: 1rem;
-    background-color: #FFFFFF;
-    border-style: solid;
-    border-radius: 2.875rem;
+  /*The actual div for the form*/
+  .form-actual-container {
+    display: flex;
   }
 
   #resolved-button {
-    color: #1C8A3B;
+    color: var(--lgreen);
   }
 
   #edit-button {
@@ -319,4 +341,18 @@ html {
 
   #delete-button {
     color: var(--red)
+  }
+
+  /*Aligns button text with the icons*/
+  span, #form-check-icon, #form-edit-icon, #form-delete-icon{
+    display: inline;
+    vertical-align:middle;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .buttons-container {
+    display:flex;
+    align-items: center;
+    justify-content: center;
   }
