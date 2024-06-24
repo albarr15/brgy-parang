@@ -27,6 +27,7 @@ function cancelForm() {
 }
 
 function validateForm() {
+    const imageUpload = document.getElementById('imageUpload').files[0];
     const name = document.getElementById('name').value.trim();
     const address = document.getElementById('address').value.trim();
     const day = document.getElementById('day').value.trim();
@@ -38,6 +39,10 @@ function validateForm() {
     let valid = true;
     let errorMessage = '';
 
+    if (!imageUpload) {
+        valid = false;
+        errorMessage += 'Profile image is required.\n';
+    }
     if (!name) {
         valid = false;
         errorMessage += 'Name is required.\n';
