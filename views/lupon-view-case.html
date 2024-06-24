@@ -4,8 +4,9 @@
         <title>
             Barangay Parang - Lupon View Case Page
         </title>
+        <link rel="stylesheet" type="text/css" href="../public/css/index.css">
         <link rel = "stylesheet" type = "text/css" href = "../public/css/form.css">
-        <script src = "" type="text/javascript"></script>
+        <script src="../public/js/header.js" type="text/javascript"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -34,110 +35,111 @@
                 <h1 id = "lupon-case-title">Lupon Case Details</h1>
                 <div class = "form-encasing-container">
                     <div class = "form-actual-container">
-                        <form id="case-form">
+                        <form id="case-form" class="case-form">
                             <div class = "form-section" id = "basic-info">
                                 <div class = "column-section">
                                     <label for="case-title" class ="bold-label">Case Title</label>
-                                    <input class = "entry-number-input" id="case-title" type = "text" placeholder= "Case Title">
+                                    <input class = "case-title-input" id="case-title" type = "text" placeholder= "Case Title" value="Stabbing Incident near Matalino St." readonly>
                                 </div>
                                 <div class = "column-section">
                                     <label for="case-type" class ="bold-label">Case Type</label>
-                                    <input type = "text" id = "case-type" placeholder="Case Type">
+                                    <input class="case-type-input" type = "text" id = "case-type" placeholder="Case Type" value="Criminal Case" readonly>
                                 </div>
-                                <div class = "column-section">
+                                <div class = "column-section1">
                                     <label for="case-form" class ="bold-label">Status</label>
                                     <select name="case-form" id="status-dropdown" selected = "1">
                                         <option value="" selected disabled hidden>Select Status</option>
-                                        <option value="1">Resolved</option>
-                                        <option value="0">Ongoing</option>
+                                        <option value="1" selected>Resolved</option>
+                                        <option value="0" disabled>Ongoing</option>
                                     </select>
                                 </div>
                             </div>
-                            <h5 class = "section-name">Respondent Information</h5>
+                            <span class = "section-name">Respondent Information</span>
                             <div class = "form-section" id = "respondent-info">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" id="respondent-last-name" type ="text" placeholder="Last Name">
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" readonly>
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" id="respondent-middle-name" type = "text" placeholder="M.I." maxlength="1">
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" readonly>
                                 </div>
                                 <div class = "input-pair">
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" id="respondent-first-name" type = "text" placeholder="First Name">
+                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" readonly>
                                 </div>
                             </div>
-                            <h5 class = "section-name">Complainer Information</h5>
+                            <span class = "section-name">Complainer Information</span>
                             <div class = "form-section" id = "complainer-info">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" id="complainer-last-name" type ="text" placeholder="Last Name">
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" readonly>
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" id="complainer-middle-name" type = "text" placeholder="M.I." maxlength="1">
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" readonly>
                                 </div>
-                                <div>
+                                <div class = "input-pair">
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" id="complainer-first-name" type = "text" placeholder="First Name">
+                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" readonly>
                                 </div>
                             </div>
-                            <h5 class = "section-name">Mediation Information</h5>
+                            <span class = "section-name">Mediation Information</span>
                             <div class = "form-section" id = "mediation-info">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" id="mediation-last-name" type ="text" placeholder="Last Name">
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" readonly>
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" id="mediation-middle-name"type = "text" placeholder="M.I." maxlength="1">
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" readonly>
                                 </div>
-                                <div>
+                                <div class = "input-pair">
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" id="mediation-first-name" type = "text" placeholder="First Name">
+                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" readonly>
                                 </div>
                             </div>
-                            <h5 class = "section-name">Consilation Information</h5>
+                            <span class = "section-name">Consilation Information</span>
                             <div class = "form-section" id = "consilation-information">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" id="consilation-last-name" type="text" placeholder="Last Name">
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" readonly>
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" id="consilation-middle-name" type="text" placeholder="M.I." maxlength="1">
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" readonly>
                                 </div>
                                 <div class = "input-pair">
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" id="consilation-first-name" type="text" placeholder="First Name">
+                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" readonly>
                                 </div>
                             </div>
-                            <h5 class = "section-name">Witness Information</h5>
+                            <span class = "section-name">Witness Information</span>
                             <div class = "form-section" id = "witness-information">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" id="witness-last-name" type ="text" placeholder="Last Name">
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" readonly>
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" id="witness-middle-name" type = "text" placeholder="M.I." maxlength="1">
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" readonly>
                                 </div>
                                 <div class = "input-pair">
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" id="witness-first-name" type = "text" placeholder="First Name">
+                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" readonly>
                                 </div>
                             </div>
-                            <h5 class ="section-name">Case</h5>
+                            <span class ="section-name">Case</span>
                             <div class = "form-section" id="location">
                                 <div class = "input-pair">
-                                    <input class = "location-input" id="case-description" type = "text" placeholder="Case Details">
+                                    <input class = "location-input" id="case-description" type = "text" placeholder="Case Details" value="Stabbing Incident" readonly>
                                 </div>
                             </div>
                         </form>
                     </div>  
                 </div>
-                <div class = "buttons-container">
+                <!-- TO BE UPDATED WITH component-ref.html after merging with main
+                    <div class = "buttons-container">
                     <button type="button" class="form-button" id="resolved-button" >
                         <img src="../public/images/form-check.png" id="form-check-icon">
                         <span id="">Mark as Resolved</span>
@@ -150,7 +152,8 @@
                         <img src="../public/images/action-delete.png" id="form-delete-icon">
                         <span id="">Delete Case</span>
                     </button>
-                </div>
+                    </div>
+                -->
             </div>
         </div>
     </body>
