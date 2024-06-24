@@ -62,19 +62,25 @@ html {
     margin: 0;
   }
 
-  label {
-    color: black;
+  h5:not(.section-name) { /* 16px font size */
+    font-size: 1rem;
+    font-weight: 400;
+    color: white;
+    margin: 0;
   }
 
   /*Labels are used per input*/
   label {
     font-size: 0.750rem;
+    color: black;
+    font-weight: 300;
   }
 
   /*Makes inputs and selects (for status) gray*/
   input, select {
     background-color: var(--gray);
     border-style: hidden;
+    padding-left: 5px;
   }
 
   /*Makes all the buttons round*/
@@ -152,29 +158,6 @@ html {
     min-width: 13rem;
   }
 
-    /* header for login page 
-    Should be changed for the actual header
-    */
-  .login-header-left {
-    margin-left: 20%;
-    display: flex;
-    flex-direction: flex-start;
-    align-items: center;
-
-    width: 50%;
-    height: 100%;
-  }
-
-  .login-header-right {
-    margin-right: 20%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: row;
-
-    width: 50%;
-    height: 50px;
-  }
 
   .header-left {
     display: flex;
@@ -208,13 +191,14 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
     height: 50px;
+
     margin-right: 5%;
   }
 
-  .header-user-profile {
+  .header-user-profile-logo {
     height: 100%;
-    margin-left: 2.0rem;
   }
 
   .header-user-profile-text {
@@ -276,6 +260,10 @@ html {
     height: 2.188rem;
   }
 
+  #status-dropdown {
+    width: 9.65rem;
+  }
+
   #date {
     width: 16rem;
   }
@@ -304,13 +292,22 @@ html {
     padding-right: 3.125rem;
   }
 
+  .case-form > *{
+    margin-bottom: 0.5rem;
+  }
+
   /*Column sections are for the unique inputs at the tops of the 
   forms that do not belong to a form section*/
   .column-section {
     padding-right: 3.125rem;
   }
 
+  .column-section1 {
+    padding-right: 0rem;
+  }
+
   .section-name {
+    color: black;
     margin-top: 0.50rem;
     padding-left: 3.125rem;
     font-weight: bold;
@@ -328,7 +325,7 @@ html {
   }
 
   #tanod-case-title, #lupon-case-title {
-    color:black;
+    color:var(--dgreen);
     text-align: center;
   }
 
@@ -337,12 +334,15 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 38.813rem;
+    height: 40rem;
     width: 56.125rem;
     background-color: #FFFFFF;
     border-radius: 0.25rem;
     border-style: solid;
     border-color: black;
+
+    margin-top: 2rem;
+    margin-bottom: 5rem;
   }
 
   /*The actual div for the form*/
@@ -360,14 +360,6 @@ html {
 
   #delete-button {
     color: var(--red)
-  }
-
-  /*Aligns button text with the icons*/
-  span, #form-check-icon, #form-edit-icon, #form-delete-icon{
-    display: inline;
-    vertical-align:middle;
-    height: 1.5rem;
-    width: 1.5rem;
   }
 
   .buttons-container {
