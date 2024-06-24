@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>
-            Barangay Parang - Admin Login Page
+            Barangay Parang - Lupon View Case Page
         </title>
         <link rel = "stylesheet" type = "text/css" href = "../public/css/form.css">
         <script src = "" type="text/javascript"></script>
@@ -10,19 +10,26 @@
     </head>
     <body>
         <div class = "main-container">
-            <div class= "header">
-                <div class = "login-header-left">
-                    <a href="../index.html" class="header-logo-link"><img src="../public/images/logo.png" class="header-logo"></a>
-                    <a href="../index.html" class="header-home"><h3>Home</h3></a>
+            <div class= "header" id="header">
+                <div class = "header-left">
+                    <a href="../index.html" class="header-logo-link" id="home-link1"><img src="../public/images/logo.png" class="header-logo"></a>
+                    <a href="../index.html" class="header-home" id="home-link2"><h3>Home</h3></a>
                 </div>
-                <div class = "login-header-right">
+                
+                <div class = "header-title">
                     <div class = "header-text">
                         <h3>Sangguniang Barangay ng Parang</h3>
-                        <h5 id = "MarikinaCity">Marikina City</h5>
+                        <h5 id="MarikinaCity">Marikina City</h5>
                     </div>
                 </div>
+                <div class="header-right">
+                    <div class="header-user-profile">
+                        <span class="header-user-profile-text" id="lupon-profile-text">Lupon</span>
+                        <img src="../public/images/lupon-profile.png" class="header-user-profile" id="profile-img">
+                    </div>
+                    <a href="../index.html"><button type="button" class="header-logout-btn" id="logout-btn">Logout</button></a>
+                </div>
             </div>
-            <div
             <div class = "page-content-container">
                 <h1 id = "lupon-case-title">Lupon Case Details</h1>
                 <div class = "form-encasing-container">

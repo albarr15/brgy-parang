@@ -33,7 +33,7 @@ html {
 
   h1 { /* 36px font size */
     font-weight: bold;
-    font-size: 2.25rem; 
+    font-size: 2.00rem; 
     margin: 0;
   }
   
@@ -119,7 +119,7 @@ html {
     color: white;
     height: 5rem;
     width: 100%;
-    margin-bottom: 3.5%;
+    margin-bottom: 2.5%;
     padding-left: 7.2%;
     padding-right: 7.2%;
   }
@@ -208,14 +208,13 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
     height: 50px;
-
     margin-right: 5%;
   }
 
-  .header-user-profile-logo {
+  .header-user-profile {
     height: 100%;
+    margin-left: 2.0rem;
   }
 
   .header-user-profile-text {
@@ -223,9 +222,19 @@ html {
     font-size: 1.25rem;
   }
 
+  #tanod-profile-text {
+    color: var(--minty);
+  }
+
+  #lupon-profile-text {
+    color: var(--orange)
+  }
+
   #MarikinaCity {
     color: var(--gray);
   }
+
+ 
 
   @media only screen and (max-width: 1048px) {
     .header-user-profile {
@@ -250,13 +259,25 @@ html {
       display: none;
     }
   }
+
+  #logout-btn {
+    background-color: var(--dgreen);
+    color: #FFFFFF;
+    width: 6.375rem;
+    height: 2.750rem;
+    border-radius: 0.25rem;
+  }
+
   /*END OF HEADER CSS*/
 
-  /**form CSS**/
-
+  /**START OF FORM CSS**/
   /*For all inputs, selects, and dates to be a standardized height*/
   input, #status-dropdown, #date{
     height: 2.188rem;
+  }
+
+  #date {
+    width: 16rem;
   }
 
   .last-name-input, .entry-number-input{
@@ -316,15 +337,13 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40rem;
+    height: 38.813rem;
     width: 56.125rem;
     background-color: #FFFFFF;
     border-radius: 0.25rem;
     border-style: solid;
     border-color: black;
   }
-
-  .page
 
   /*The actual div for the form*/
   .form-actual-container {
