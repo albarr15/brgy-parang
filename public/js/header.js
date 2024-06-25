@@ -20,15 +20,16 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function initializePage() {
-        if (document.querySelector(".search-page")) {
+        if (document.querySelector(".search-page") || document.querySelector("#view-case-page")) {
             toggleLightPage();
+            console.log("toggled light");
         } else {
             toggleDarkPage();
         }
     }
 
     // pages are in light mode by default
-    toggleLightPage();
+    // toggleLightPage();
 
     var user_role = document.getElementById("profile-text").innerHTML;
     var user_profile = document.getElementById("profile-img");
