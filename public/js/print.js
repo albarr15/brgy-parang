@@ -20,7 +20,7 @@ function previewProfileImage(event) {
 function cancelForm() {
     document.getElementById('name').value = '';
     document.getElementById('address').value = '';
-    document.querySelectorAll('.date-fields input').forEach(input => input.value = '');
+    document.getElementById('date-issued').value = '';
     document.getElementById('cedula').value = '';
     document.getElementById('location').value = '';
     document.getElementById('deets-profile-img').src = '../public/images/customer.png';
@@ -30,9 +30,7 @@ function validateForm() {
     const imageUpload = document.getElementById('imageUpload').files[0];
     const name = document.getElementById('name').value.trim();
     const address = document.getElementById('address').value.trim();
-    const day = document.getElementById('day').value.trim();
-    const month = document.getElementById('month').value.trim();
-    const year = document.getElementById('year').value.trim();
+    const date = document.getElementById('date-issued').value.trim();
     const cedula = document.getElementById('cedula').value.trim();
     const location = document.getElementById('location').value.trim();
 
@@ -51,12 +49,15 @@ function validateForm() {
         valid = false;
         errorMessage += 'Address is required.\n';
     }
-    if (!day || !month || !year) {
+    if (!date) {
         valid = false;
         errorMessage += 'Complete date is required.\n'; 
-    } else if (!isValidDate(day, month, year)) {
-        valid = false;
-        errorMessage += 'Invalid date provided.\n';
+    } else {
+        const [month, day, year] = date.split('/');
+        if (!isValidDate(day, month, year)) {
+            valid = false;
+            errorMessage += 'Invalid date provided.\n';
+        }
     }
     
     if (!cedula) {
