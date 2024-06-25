@@ -78,7 +78,7 @@ html {
 
   /*Makes inputs and selects (for status) gray*/
   input, select {
-    background-color: var(--gray);
+    background-color: #EAF3F7;
     border-style: hidden;
     padding-left: 5px;
   }
@@ -248,11 +248,16 @@ html {
 
   /**START OF FORM CSS**/
   /*For all inputs, selects, and dates to be a standardized height*/
-  input, #status-dropdown, #date{
+  input, #status-dropdown, #status-dropdown-view, #date{
     height: 2.188rem;
+    background-color: #EAF3F7;
   }
 
-  #status-dropdown {
+  input[readonly], #status-dropdown-view{
+    background-color: var(--gray) !important;
+  }
+
+  #status-dropdown, #status-dropdown-view {
     width: 9.65rem;
   }
 
@@ -366,4 +371,28 @@ html {
     display:flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .upper-container {
+    margin-top: -20px;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0.5;
+    margin-left: 7.5%;
+  }
+  
+  #back-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none; 
+    color: black; 
+    margin-right: 10px; 
+  }
+  .size-4 {
+    width: 16px; 
+    height: 16px;
+    margin-right: 5px; 
   }
