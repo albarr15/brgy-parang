@@ -53,8 +53,12 @@ function validateForm() {
     }
     if (!day || !month || !year) {
         valid = false;
-        errorMessage += 'Complete date is required.\n';
-    } 
+        errorMessage += 'Complete date is required.\n'; 
+    } else if (!isValidDate(day, month, year)) {
+        valid = false;
+        errorMessage += 'Invalid date provided.\n';
+    }
+    
     if (!cedula) {
         valid = false;
         errorMessage += 'Cedula Number is required.\n';
@@ -69,6 +73,32 @@ function validateForm() {
     }
 
     return valid;
+}
+
+function isValidDate(day, month, year) {
+    const dayInt = parseInt(day);
+    const monthInt = parseInt(month);
+    const yearInt = parseInt(year);
+    const currentYear = new Date().getFullYear();
+
+    if (yearInt < 1900 || yearInt > currentYear) {
+        return false;
+    }
+
+    if (monthInt < 1 || monthInt > 12) {
+        return false;
+    }
+
+    const daysInMonth = [31, isLeapYear(yearInt) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (dayInt < 1 || dayInt > daysInMonth[monthInt - 1]) {
+        return false;
+    }
+
+    return true;
+}
+
+function isLeapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 }
 
 function showModal(message) {
@@ -105,7 +135,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
     print_form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent default form submission
-
-        // TODO: form validation here
     });
 });

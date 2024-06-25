@@ -1,34 +1,29 @@
+.back-btn-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%; 
+  padding-left: 7.2%;
+  margin-top: -3%;
+}
+
 .sub-container {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
 
     justify-content: center;
     align-items: center;
 }
 
-.back-btn-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%; 
-    padding-left: 7.2%;
-    margin-top: -3%;
-}
-
-.text-container {
-  justify-content: center;
-  align-items: center;
-}
-
-.action-text{
-    margin-top: 13rem;
+.action-text {
     display: block;
     color: #004112;
     font-weight: bold;
-    width: 100%;
-    text-align: center;
     font-size: 1rem;
-  }
+
+    margin-top: 30%;
+}
 
 button[value="back"] {
     border: none;
@@ -43,7 +38,7 @@ button[value="back"] {
   border: 2px solid #004112;
   background-color: white;
   
-  margin-top: 1rem;
+  margin-top: 1%;
   border-radius: 5px;
   box-shadow: black;
 
@@ -196,6 +191,10 @@ input[id='location'] {
   background-color: #CCCCCC;
   border: 1px solid #5E5E5E;
   border-radius: 5px;
+}
+
+input {
+  text-transform: uppercase;
 }
 
 .cancel-btn {
