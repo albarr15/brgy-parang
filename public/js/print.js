@@ -59,10 +59,13 @@ function validateForm() {
             errorMessage += 'Invalid date provided.\n';
         }
     }
-    
     if (!cedula) {
         valid = false;
         errorMessage += 'Cedula Number is required.\n';
+    }
+    if (cedula.length > 8 || cedula.length < 8) {
+        valid = false;
+        errorMessage += 'Invalid Cedula Number.\n';
     }
     if (!location) {
         valid = false;
