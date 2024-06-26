@@ -143,7 +143,7 @@ html {
 
   /**START OF FORM CSS**/
   /*For all inputs, and dates to be a standardized height*/
-  input, #date{
+  input, #dateInput{
     height: 2.188rem;
     background-color: #EAF3F7;
   }
@@ -157,7 +157,7 @@ html {
     width: 9.65rem;
   }
 
-  #date {
+  #dateInput {
     width: 16rem;
   }
 
