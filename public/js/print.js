@@ -63,7 +63,7 @@ function validateForm() {
         valid = false;
         errorMessage += 'Cedula Number is required.\n';
     }
-    if (cedula.length > 8 || cedula.length < 8) {
+    else if (cedula.length !== 8) {
         valid = false;
         errorMessage += 'Invalid Cedula Number.\n';
     }
@@ -84,6 +84,8 @@ function isValidDate(day, month, year) {
     const monthInt = parseInt(month);
     const yearInt = parseInt(year);
     const currentYear = new Date().getFullYear();
+    const currentDate = new Date();
+    const inputDate = new Date(`${year}-${month}-${day}`);
 
     if (yearInt < 1900 || yearInt > currentYear) {
         return false;
@@ -95,6 +97,10 @@ function isValidDate(day, month, year) {
 
     const daysInMonth = [31, isLeapYear(yearInt) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     if (dayInt < 1 || dayInt > daysInMonth[monthInt - 1]) {
+        return false;
+    }
+
+    if (inputDate > currentDate) {
         return false;
     }
 
