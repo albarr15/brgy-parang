@@ -8,3 +8,7 @@ https://dbdiagram.io/d/BRNGY-PARANG-DB-6669ad22a179551be6b55426?fbclid=IwAR2Yy22
 ## Version 1
 - June 17, 2024 at 8:20
 - Created the tables that will be used for the database
+
+## Version 2
+- June 27, 2024 at 11:18 PM
+- Added relationships to the `tanods` and `lupons` tables. 
