@@ -11,24 +11,36 @@ document.addEventListener("DOMContentLoaded", function() {
 
         console.log(selectedView);
 
-        switch (selectedView) {
+        const user_email = document.getElementById("email").value;
+        const user_pw = document.getElementById("pw").value;
+
+        if(user_email && user_pw) {
+            switch (selectedView) {
             case "Employee Log-in:":
                 redirectUrl = "employee-homepage.html";
+                login("Employee");
                 break;
             case "Administrator Log-in:":
                 redirectUrl = "admin-homepage.html";
+                login("Admin");
                 break;
             case "Tanod Log-in:":
                 redirectUrl = "tanod-homepage.html";
+                login("Tanod");
                 break;
             case "Lupon Log-in:":
                 redirectUrl = "lupon-homepage.html";
+                login("Lupon");
                 break;
             default:
                 redirectUrl = "employee-homepage.html";
-        }
+                login("Employee");
+            }
 
-        window.location.href = redirectUrl;
+            window.location.href = redirectUrl;
+        } else {
+            document.querySelectorAll("input").style.background = "#000000";
+        }
     });
 });
     
@@ -61,5 +73,6 @@ function employeeView() {
     }
 }
 
-
-
+function login(userRole) {
+    localStorage.setItem('userRole', userRole);
+}
