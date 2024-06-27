@@ -11,10 +11,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         console.log(selectedView);
 
-        const user_email = document.getElementById("email").value;
-        const user_pw = document.getElementById("pw").value;
+        const user_email = document.getElementById("email");
+        const user_pw = document.getElementById("pw");
 
-        if(user_email && user_pw) {
+        user_email.classList.remove("input-error");
+        user_pw.classList.remove("input-error");
+
+        if(user_email.value && user_pw.value) {
             switch (selectedView) {
             case "Employee Log-in:":
                 redirectUrl = "employee-homepage.html";
@@ -39,7 +42,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             window.location.href = redirectUrl;
         } else {
-            document.querySelectorAll("input").style.background = "#000000";
+            if (!user_email.value) {
+                user_email.classList.add("input-error");
+            }
+            if (!user_pw.value) {
+                user_pw.classList.add("input-error");
+            }
+            alert("Please fill in all fields correctly.");
         }
     });
 });

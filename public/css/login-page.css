@@ -144,3 +144,8 @@
     font-size: 1em;
     font-weight: bold;
   }
+
+  .input-error {
+    border: 2px solid #F3533B;
+    background: lightgray;
+  }
