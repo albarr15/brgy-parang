@@ -17,19 +17,30 @@ document.addEventListener("DOMContentLoaded", function() {
         user_email.classList.remove("input-error");
         user_pw.classList.remove("input-error");
 
-        isEmailValid = false;
-        isPWValid = false;
+        let valid = true;
+        let errorMessage = "";
 
         // for now, just set minimum length of password to be 8
-        if (user_pw.value.length >= 8) {
-            isPWValid = true;
+        
+        if (!user_pw.value) {
+            isPWValid = false;
+            errorMessage += "Password is required.\n"
+        }
+        else if (user_pw.value.length < 8) {
+            isPWValid = false;
+            errorMessage += "Incorrect password.\n"
         }
 
-        if (user_email.value.includes("@")) {
-            isEmailValid = true;
+        if (!user_email.value) {
+            isEmailValid = false;
+            errorMessage += "Email is required.\n"
+        }
+        else if (!user_email.value.includes("@")) {
+            isEmailValid = false;
+            errorMessage += "Invalid email.\n"
         }
 
-        if(isEmailValid && isPWValid) {
+        if(valid) {
             switch (selectedView) {
             case "Employee Log-in:":
                 redirectUrl = "employee-homepage.html";
@@ -54,17 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             window.location.href = redirectUrl;
         } else {
-            if (!isEmailValid) {
-                user_email.classList.add("input-error");
-            } else {
-                user_email.classList.remove("input-error");
-            }
-            if (!isPWValid) {
-                user_pw.classList.add("input-error");
-            } else {
-                user_pw.classList.remove("input-error");
-            }
-            alert("Please fill in all fields correctly.");
+            showModal(errorMessage);
         }
     });
 });
