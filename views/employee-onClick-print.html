@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Barangay Parang
+        </title>
+        <link rel="stylesheet" type="text/css" href="../public/css/index.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/onClick.css">
+        <script src = "../public/js/components.js" type="text/javascript"></script>
+        <script src="../public/js/header.js" type="text/javascript"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="header" id="header">
+                <div class="header-left">
+                    <a href="../index.html" class="header-logo-link" id="home-link1"><img src="../public/images/logo.png" class="header-logo"></a>
+                    <a href="../index.html" class="header-home" id="home-link2"><h3>Home</h3></a>
+                </div>
+                
+                <div class="header-title">
+                    <div class="header-text">
+                        <h3>Sangguniang Barangay ng Parang</h3>
+                        <h5>Marikina City</h5>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="header-user-profile">
+                        <span class="header-user-profile-text" id="profile-text">Employee</span>
+                        <img src="../public/images/tanod-profile.png" class="header-user-profile" id="profile-img">
+                    </div>
+                    <a href="../index.html"><button type="button" class="header-logout-btn" id="logout-btn">Logout</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="search-page">
+            <div class="upper-container">
+                <a href="./employee-homepage.html" id="back-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="black" class="size-4">
+                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm10.25.75a.75.75 0 0 0 0-1.5H6.56l1.22-1.22a.75.75 0 0 0-1.06-1.06l-2.5 2.5a.75.75 0 0 0 0 1.06l2.5 2.5a.75.75 0 1 0 1.06-1.06L6.56 8.75h4.69Z" clip-rule="evenodd"/>
+                    </svg>
+                    Back
+                </a>
+            </div>
+            <div class="user-indicator">
+                <div class="user-name-column">
+                    <div id="user-header-name" class="user-header">
+                        <h5> Name </h5>
+                    </div>
+                    <div id="user-data-name" class="user-data">
+                        <p> Juan A. Dela Cruz </p>
+                    </div>
+                </div>
+
+                <div id="tanod-column" class="user-tanod-column">
+                    <div class="user-header">
+                        <h5> Tanod Case Status </h5>
+                    </div>
+                    <div class="user-data">
+                        <button type="button" class="status resolved"><img src="../public/images/resolved-circle.png"><span>Resolved</span></button>
+                    </div>
+                    
+                </div>
+
+                <div class="user-lupon-column">
+                    <div class="user-header">
+                        <h5> Lupon Case Status </h5>
+                    </div>
+                    <div class="user-data">
+                        <button type="button" class="status resolved"><img src="../public/images/resolved-circle.png"><span>Resolved</span></button>
+                    </div>
+                    
+                </div>
+
+                <div class="user-action-column">
+                    <div class="user-header">
+                        <h5> Action </h5>
+                    </div>
+                    <div class="user-data">
+                     <!--   <button type="button" class="print-btn reg light"><img src="../public/images/print-light.png"><span>Print</span></button> -->
+                          <button type="button" class="print-btn reg dark"><img src="../public/images/print-dark.png"><span>Print</span></button> 
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="user-print">
+                    <div class="header-alert">
+                        <div class="name-display">
+                            <h2> Juan A. Dela Cruz </h2>
+                        </div>
+                        <div class="clearance-alert">
+                            <!-- <p id="ongoing"> Ongoing Case Found </p> -->
+                            <p id="cleared"> Cleared for Certification Printing </p>
+                        </div>
+                    </div>
+                   <div class="alert-mssg">
+                       <!--  <h3 id="alert-ongoing"> An ongoing case is found, would you like to continue downloading the certificate? </h3> -->
+                        <h3 id="alert-cleared"> No ongoing case is found, would you like to continue printing the certificate? </h3>
+                   </div>
+                   <div class="print-buttons">
+                    <!--  <button type="button" class="print-btn lrg light"><img src="../public/images/print-light.png"><span>Print</span></button> -->
+                    <button type="button" class="print-btn lrg dark"><img src="../public/images/print-dark.png"><span>Print</span></button>
+                    <button type="button" class="cancel-btn light"><img src="../public/images/cancel-light.png"><span>Cancel</span></button>
+                   <!--   <button type="button" class="cancel-btn dark"><img src="../public/images/cancel-dark.png"><span>Cancel</span></button>  -->
+                   </div>
+
+
+            </div>
+
+        </div>
+    </body>
+</html>
