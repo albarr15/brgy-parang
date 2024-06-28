@@ -23,21 +23,31 @@ document.addEventListener("DOMContentLoaded", function() {
         // for now, just set minimum length of password to be 8
         
         if (!user_pw.value) {
-            isPWValid = false;
+            valid = false;
+            user_pw.classList.add("input-error");
             errorMessage += "Password is required.\n"
         }
         else if (user_pw.value.length < 8) {
-            isPWValid = false;
+            valid = false;
+            user_pw.classList.add("input-error");
             errorMessage += "Incorrect password.\n"
+        }
+        else {
+            user_pw.classList.remove("input-error");
         }
 
         if (!user_email.value) {
-            isEmailValid = false;
+            valid = false;
+            user_email.classList.add("input-error");
             errorMessage += "Email is required.\n"
         }
         else if (!user_email.value.includes("@")) {
-            isEmailValid = false;
+            valid = false;
+            user_email.classList.add("input-error");
             errorMessage += "Invalid email.\n"
+        }
+        else {
+            user_email.classList.remove("input-error");
         }
 
         if(valid) {
@@ -69,6 +79,26 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+function showModal(message) {
+    const modal = document.getElementById('validationModal');
+    const modalMessage = document.getElementById('modalMessage');
+    const closeBtn = document.getElementsByClassName('close')[0];
+    
+    modalMessage.textContent = message;
+    modalMessage.innerHTML = message.replace(/\n/g, '<br>');
+    modal.style.display = 'block';
+
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+}
     
 function tanodView() {
     document.getElementById("emp-panel").style.background = "#AFE1D7";
