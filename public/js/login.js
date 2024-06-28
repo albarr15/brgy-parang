@@ -17,7 +17,19 @@ document.addEventListener("DOMContentLoaded", function() {
         user_email.classList.remove("input-error");
         user_pw.classList.remove("input-error");
 
-        if(user_email.value && user_pw.value) {
+        isEmailValid = false;
+        isPWValid = false;
+
+        // for now, just set minimum length of password to be 8
+        if (user_pw.value.length >= 8) {
+            isPWValid = true;
+        }
+
+        if (user_email.value.includes("@")) {
+            isEmailValid = true;
+        }
+
+        if(isEmailValid && isPWValid) {
             switch (selectedView) {
             case "Employee Log-in:":
                 redirectUrl = "employee-homepage.html";
@@ -42,11 +54,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
             window.location.href = redirectUrl;
         } else {
-            if (!user_email.value) {
+            if (!isEmailValid) {
                 user_email.classList.add("input-error");
+            } else {
+                user_email.classList.remove("input-error");
             }
-            if (!user_pw.value) {
+            if (!isPWValid) {
                 user_pw.classList.add("input-error");
+            } else {
+                user_pw.classList.remove("input-error");
             }
             alert("Please fill in all fields correctly.");
         }
