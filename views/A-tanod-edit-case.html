@@ -2,12 +2,12 @@
 <html>
     <head>
         <title>
-            Barangay Parang - Tanod View Case Page
+            Barangay Parang - Admin - Tanod Edit Case Page
         </title>
         <link rel="stylesheet" type="text/css" href="../public/css/index.css">
         <link rel = "stylesheet" type = "text/css" href = "../public/css/form.css">
         <script src="../public/js/header.js" type="text/javascript"></script>
-        <script src="../public/js/header.js" type="text/javascript"></script>
+        <script src="../public/js/case-form.js" type="text/javascript"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -26,22 +26,23 @@
                 </div>
                 <div class="header-right">
                     <div class="header-user-profile">
-                        <span class="header-user-profile-text" id="profile-text">Tanod</span>
+                        <span class="header-user-profile-text" id="profile-text">Admin</span>
                         <img src="../public/images/tanod-profile.png" class="header-user-profile" id="profile-img">
                     </div>
                     <a href="../index.html"><button type="button" class="header-logout-btn" id="logout-btn">Logout</button></a>
                 </div>
             </div>
-            <div class="upper-container-black">
-                <a href="" id="back-button-black">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="black" class="size-4">
+            <div class="upper-container-white">
+                <!-- Back button should be changed to admin lupon view page (database) -->
+                <a href="./admin-homepage.html" id="back-button-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="white" class="size-4">
                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm10.25.75a.75.75 0 0 0 0-1.5H6.56l1.22-1.22a.75.75 0 0 0-1.06-1.06l-2.5 2.5a.75.75 0 0 0 0 1.06l2.5 2.5a.75.75 0 1 0 1.06-1.06L6.56 8.75h4.69Z" clip-rule="evenodd"></path>
                     </svg>
                     Back
                 </a>
             </div>
-            <div class = "page-content-container" id="view-case-page">
-                <h1 id = "tanod-case-title">Tanod Case Details</h1>
+            <div class = "page-content-container"  id="edit-case-page">
+                <h1 id = "tanod-case-title">Editing Tanod Case Details</h1>
                 <div class = "form-encasing-container">
                     <div class = "form-actual-container">
                         <form class="case-form">
@@ -52,14 +53,14 @@
                                 </div>
                                 <div class = "column-section">
                                     <label for="date" class ="bold-label">Date</label>
-                                    <input type = "date" id = "dateInput" value="2024-06-24" readonly>
+                                    <input type = "date" id = "dateInput" value="2024-06-24">
                                 </div>
                                 <div class = "column-section1">
                                     <label for="case-form" class ="bold-label">Status</label>
-                                    <select name="case-form" class="status-dropdown-view" selected = "1">
+                                    <select name="case-form" class="status-dropdown" selected = "1">
                                         <option value="" disabled hidden>Select Status</option>
-                                        <option value="1" selected>Resolved</option>
-                                        <option value="0" disabled>Ongoing</option>
+                                        <option value="1">Resolved</option>
+                                        <option value="0">Ongoing</option>
                                     </select>
                                 </div>
                             </div>
@@ -67,42 +68,42 @@
                             <div class = "form-section" id = "reportee-info">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" readonly>
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" >
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" readonly>
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" >
                                 </div>
                                 <div class = "input-pair">
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" readonly>
+                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" >
                                 </div>
                             </div>
                             <div class="form-section" id = "reportee-additional-info">
                                 <div class = "input-pair">
                                     <label for="">Reportee Address</label>
-                                    <input class = "address-input" type = "text" placeholder="Reportee Address" value="2401 Taft Ave, Malate, Manila, 1004 Metro Manila" readonly> 
+                                    <input class = "address-input" type = "text" placeholder="Reportee Address" value="2401 Taft Ave, Malate, Manila, 1004 Metro Manila" > 
                                 </div>
                             </div>
                             <span class="section-name">Nature of Blotter</span>
                             <div class = "form-section">
                                 <div class = "input-pair">
-                                    <input class = "nature-of-blotter-input" type = "text" placeholder="Nature of Blotter" value="Physical Injury" readonly>
+                                    <input class = "nature-of-blotter-input" type = "text" placeholder="Nature of Blotter" value="Physical Injury" >
                                 </div>
                             </div>
                             <span class = "section-name">Respondent Information</span>
                             <div class = "form-section" id = "respondent-info">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" readonly>
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" >
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" readonly>
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" >
                                 </div>
                                 <div class = "input-pair">
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" readonly>
+                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" >
                                 </div>
                             </div>
                             <span class = "section-name">Desk Officer Information</span>
@@ -110,36 +111,36 @@
                             <div class = "form-section" id = "desk-officer-information">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" readonly>
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" >
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" readonly>
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" >
                                 </div>
                                 <div class = "input-pair">
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" readonly>
+                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" >
                                 </div>
                             </div>
                             <span class = "section-name">Witness Information</span>
                             <div class = "form-section" id = "witness-information">
                                 <div class = "input-pair">
                                     <label for="last-name-input">Last Name</label>
-                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" readonly>
+                                    <input class = "last-name-input" type ="text" placeholder="Last Name" value="Dela Cruz" >
                                 </div>
                                 <div class = "input-pair">
                                     <label for="middle-initial-input">Middle Initial</label>
-                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" readonly>
+                                    <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" value="A" >
                                 </div>
                                 <div class = "input-pair">
                                     <label for="first-name-input">First Name</label>
-                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" readonly>
+                                    <input class = "first-name-input" type = "text" placeholder="First Name" value="Juan" >
                                 </div>
                             </div>
                             <span class ="section-name">Location</h5>
                             <div class = "form-section" id="location">
                                 <div class = "input-pair">
-                                    <input class = "location-input" type = "text" placeholder="Location" value="2401 Taft Ave, Malate, Manila, 1004 Metro Manila" readonly>
+                                    <input class = "location-input" type = "text" placeholder="Location" value="2401 Taft Ave, Malate, Manila, 1004 Metro Manila" >
                                 </div>
                             </div>
                         </form>
