@@ -16,4 +16,26 @@ document.addEventListener("DOMContentLoaded", function() {
             this.value = this.value.toUpperCase();
         });
     });
+
+    // capitalizes first character of first and last names after each space
+    document.querySelectorAll('.first-name-input').forEach(function(first_name) {
+        first_name.addEventListener('input', function() {
+            this.value = capitalizeName(this.value);
+        });
+    });
+
+    document.querySelectorAll('.last-name-input').forEach(function(last_name) {
+        last_name.addEventListener('input', function() {
+            this.value = capitalizeName(this.value);
+        });
+    });
 });
+
+function capitalizeName(name) {
+    var name_split = name.toLowerCase().split(' ');
+
+    for (var i = 0; i < name_split.length; i++) {
+        name_split[i] = name_split[i].charAt(0).toUpperCase() + name_split[i].substring(1);     
+    }
+    return name_split.join(' '); 
+}
