@@ -33,48 +33,78 @@
             </div>
             
             <div class = "back-btn-container">
-                <img src="../public/images/back-arrow.png" id="back-arrow-img">
+                <a href="employee-homepage.html">
+                    <img src="../public/images/back-arrow.png" id="back-arrow-img" alt="Back">
+                </a>
                 <a href="employee-homepage.html"><button type="button" value="back" id="back-btn">Back</button></a>
             </div>
 
             <div class="sub-container">
+
                 <div class = "text-container">
                     <div class="action-text">Please input your details below to proceed with certification printing.</div>
                 </div>
 
                 <form action="" class = "print-form">
                     <div class = "print-panel">
-                        <div class="photo-deets1-panel">
-                            <div class="photo-container">
-                                <img src="../public/images/customer.png" class="details-profile" id="deets-profile-img">
-                                <label for="imageUpload" class="image-upload-button">Import Picture</label>
-                                <input type="file" id="imageUpload" accept="image/*" style="display: none" onchange="previewProfileImage(event)">
-                            </div>
+                        <!-- for Photo-->
+                        <div class="photo-container">
+                            <img src="../public/images/customer.png" class="details-profile" id="deets-profile-img">
+                            <label for="imageUpload" class="image-upload-button">Import Picture</label>
+                            <input type="file" id="imageUpload" accept="image/*" style="display: none" onchange="previewProfileImage(event)">
+                        </div>
 
-                            <div class="deets1-container">
+                        <!-- for Name and Birthday-->
+                        <div class="deets1-container">
+                            <div class="name-container">
                                 <div class="deets-text">Name</div>
                                 <input type="text" id="name" name="name" placeholder="Juan C. Dela Cruz">
+                            </div>
 
+                            <div class="date-container">
+                                <div class="deets-text">Birthday</div>
+                                <input type="text" id="Birthday" class="date" name="bday-date" placeholder="MM/DD/YYYY">                             
+                            </div>
+                        </div>
+
+                        <!-- for Address -->
+                        <div class="deets2-container">
+                            <div class="address-container">
                                 <div class="deets-text">Address</div>
                                 <input type="text" id="address" name="address" placeholder="">
                             </div>
                         </div>
 
-                        <div class="deets2-container">
+                        <!-- for CTC Issuance Date and Location -->
+                        <div class="deets3-container">
                             <div class="date-container">
-                                <div class="deets-text">Date Issued</div>
-                                <input type="text" id="date-issued" class="date" name="date" placeholder="MM/DD/YYYY">                             
-                            </div>
-
-                            <div class="cedula-container">
-                                <div class="deets-text">Cedula Number</div>
-                                <input type="text" id="cedula" name="cedula" placeholder="12345678">
+                                <div class="deets-text">CTC Issuance Date</div>
+                                <input type="text" id="ctc-date-issued" class="date" name="ctc-date" placeholder="MM/DD/YYYY">                             
                             </div>
 
                             <div class="location-container">
-                                <div class="deets-text">Location of Issue <span>(City, Mun., Prov.)</span></div>
+                                <div class="deets-text">Place of CTC Issuance<span> (City)</span></div>
                                 <input type="text" id="location" name="location" placeholder="Marikina City">
                             </div>
+                        </div>
+
+                        <!-- for Cedula Number and Place of Issuance -->
+                        <div class="deets4-container">
+                            <div class="cedula-container">
+                                <div class="deets-text">CTC Number</div>
+                                <input type="text" id="cedula" name="cedula" placeholder="12345678">
+                            </div>
+
+                            <div class="date-container">
+                                <div class="deets-text">Certificate Issuance Date</div>
+                                <input type="text" id="cert-date-issued" class="date" name="cert-date" placeholder="MM/DD/YYYY">                             
+                            </div>
+                        </div>
+
+                        <!-- for Reason For Certificate -->
+                        <div class="deets5-container"> 
+                            <div class="deets-text">Reason For Certificate</div>
+                            <input type="text" id="reason" name="reason" placeholder="">
                         </div>
 
                         <div class="action-container">

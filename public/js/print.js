@@ -20,9 +20,12 @@ function previewProfileImage(event) {
 function cancelForm() {
     document.getElementById('name').value = '';
     document.getElementById('address').value = '';
-    document.getElementById('date-issued').value = '';
+    document.getElementById('ctc-date-issued').value = '';
+    document.getElementById('Birthday').value = '';
+    document.getElementById('cert-date-issued').value = '';
     document.getElementById('cedula').value = '';
     document.getElementById('location').value = '';
+    document.getElementById('reason').value = '';
     document.getElementById('deets-profile-img').src = '../public/images/customer.png';
 }
 
@@ -30,9 +33,12 @@ function validateForm() {
     const imageUpload = document.getElementById('imageUpload').files[0];
     const name = document.getElementById('name').value.trim();
     const address = document.getElementById('address').value.trim();
-    const date = document.getElementById('date-issued').value.trim();
+    const ctc_date = document.getElementById('ctc-date-issued').value.trim();
+    const cert_date = document.getElementById('cert-date-issued').value.trim();
+    const birthday = document.getElementById('Birthday').value.trim();
     const cedula = document.getElementById('cedula').value.trim();
     const location = document.getElementById('location').value.trim();
+    const reason = document.getElementById('reason').value.trim();
 
     let valid = true;
     let errorMessage = '';
@@ -49,14 +55,34 @@ function validateForm() {
         valid = false;
         errorMessage += 'Address is required.\n';
     }
-    if (!date) {
+    if (!ctc_date) {
         valid = false;
-        errorMessage += 'Complete date is required.\n'; 
+        errorMessage += 'Complete CTC issuance date is required.\n'; 
     } else {
-        const [month, day, year] = date.split('/');
+        const [month, day, year] = ctc_date.split('/');
+        if (!isValidDate(day, month, year)) {
+            valid = false;
+            errorMessage += 'Invalid CTC date provided.\n';
+        }
+    }
+    if (!cert_date) {
+        valid = false;
+        errorMessage += 'Complete certificate issuance date is required.\n'; 
+    } else {
+        const [month, day, year] = cert_date.split('/');
         if (!isValidDate(day, month, year)) {
             valid = false;
             errorMessage += 'Invalid date provided.\n';
+        }
+    }
+    if (!birthday) {
+        valid = false;
+        errorMessage += 'Complete birth date is required.\n'; 
+    } else {
+        const [month, day, year] = birthday.split('/');
+        if (!isValidDate(day, month, year)) {
+            valid = false;
+            errorMessage += 'Invalid birth date provided.\n';
         }
     }
     if (!cedula) {
@@ -71,7 +97,10 @@ function validateForm() {
         valid = false;
         errorMessage += 'Location of Issue is required.\n';
     }
-
+    if (!reason) {
+        valid = false;
+        errorMessage += 'Reason of Certificate is required.\n';
+    }
     if (!valid) {
         showModal(errorMessage);
     }
@@ -86,6 +115,10 @@ function isValidDate(day, month, year) {
     const currentYear = new Date().getFullYear();
     const currentDate = new Date();
     const inputDate = new Date(`${year}-${month}-${day}`);
+
+    if (isNaN(dayInt) || isNaN(monthInt) || isNaN(yearInt)) {
+        return false;
+    }
 
     if (yearInt < 1900 || yearInt > currentYear) {
         return false;
@@ -115,10 +148,11 @@ function showModal(message) {
     const modal = document.getElementById('validationModal');
     const modalMessage = document.getElementById('modalMessage');
     const closeBtn = document.getElementsByClassName('close')[0];
+    const formattedMessage = message
+        .replace(/required/g, '<span style="color: red;">required</span>')
+        .replace(/Invalid/g, '<span style="color: red;">Invalid</span>');
 
-    
-    modalMessage.textContent = message;
-    modalMessage.innerHTML = message.replace(/\n/g, '<br>');
+    modalMessage.innerHTML = formattedMessage.replace(/\n/g, '<br>');
     modal.style.display = 'block';
 
     closeBtn.onclick = function() {

@@ -31,8 +31,8 @@ button[value="back"] {
 }
 
 .print-panel {
-  width: 900px;
-  height: 400px;
+  width: 620px;
+  height: 736px;
   border: 2px solid #004112;
   background-color: white;
   
@@ -43,15 +43,7 @@ button[value="back"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-}
-
-.photo-deets1-panel {
-  display: flex;
-  flex-direction: row;
-
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .photo-container {
@@ -63,6 +55,9 @@ button[value="back"] {
   align-items: center;
   position: relative;
   overflow: hidden;
+
+  margin-left: 8%;
+  margin-bottom: 2%;
 }
 
 .photo-container img {
@@ -92,26 +87,18 @@ button[value="back"] {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-
-.deets1-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.deets2-container {
+.deets1-container, .deets3-container, .deets4-container {
   display: flex;
   flex-direction: row;
+
+  margin-bottom: 2%;
 }
 
-.date-container, .cedula-container, .location-container {
+.deets2-container{
   display: flex;
   flex-direction: column;
 
-  margin-top: 25px;
-}
-
-.date-container .deets-text {
-  margin-left: 8px;
+  margin-bottom: 2%;
 }
 
 .action-container {
@@ -119,6 +106,7 @@ button[value="back"] {
   flex-direction: row;
 
   margin-top: 25px;
+  margin-left: 12%;
 }
 
 .deets-text {
@@ -127,8 +115,33 @@ button[value="back"] {
   font-weight: bold;
   width: 100%;
   font-size: 1rem;
-  margin-left: 24px;
-  margin-bottom: 0.5rem;
+  
+  margin-bottom: 0.5%;
+  margin-left: 10%;
+}
+
+.name-container .deets-text {
+  margin-left: 15%;
+}
+
+.deets1-container .date-container .deets-text {
+  margin-left: 65%;
+}
+
+.deets3-container .date-container .deets-text {
+  margin-left: 35%;
+}
+
+.deets3-container .location-container .deets-text {
+  margin-left: 75%;
+}
+
+.deets4-container .cedula-container .deets-text {
+  margin-left: 28%;
+}
+
+.deets4-container .date-container .deets-text {
+  margin-left: 72%;
 }
 
 .deets-text span {
@@ -138,57 +151,93 @@ button[value="back"] {
 input[id='name'] {
   width: 321px;
   height: 29px;
-  margin-left: 24px;
+  
   padding-left: 10px;
   margin-bottom: 0.5rem;
   
   background-color: #CCCCCC;
   border: 1px solid #5E5E5E;
   border-radius: 5px;
+
+  margin-left: 15%;
 }
 
 input[id='address'] {
   width: 494px;
   height: 29px;
-  margin-left: 24px;
+  
   margin-bottom: 0.5rem;
   padding-left: 10px;
   background-color: #CCCCCC;
   border: 1px solid #5E5E5E;
   border-radius: 5px;
+
+  margin-left: 10%;
 }
 
 input[class='date'] {
   width: 120px;
   height: 29px;
-  margin-left: 8px;
+  
   margin-bottom: 0.5rem;
   padding-left: 10px;
   background-color: #CCCCCC;
   border: 1px solid #5E5E5E;
   border-radius: 5px;
+}
+
+input[id='Birthday'] {
+  margin-left: 65%;
+}
+
+input[id='ctc-date-issued'] {
+  margin-left: 35%;
+}
+
+input[id='cert-date-issued'] {
+  margin-left: 72%;
 }
 
 input[id='cedula'] {
   width: 166px;
   height: 29px;
-  margin-left: 24px;
+  
   margin-bottom: 0.5rem;
   padding-left: 10px;
   background-color: #CCCCCC;
   border: 1px solid #5E5E5E;
   border-radius: 5px;
+
+  margin-left: 28%;
 }
 
 input[id='location'] {
-  width: 372px;
+  width: 220px;
   height: 29px;
-  margin-left: 24px;
+  
   margin-bottom: 0.5rem;
   padding-left: 10px;
   background-color: #CCCCCC;
   border: 1px solid #5E5E5E;
   border-radius: 5px;
+
+  margin-left: 75%;
+}
+
+input[id='reason'] {
+  width: 494px;
+  height: 29px;
+  
+  margin-bottom: 0.5rem;
+  padding-left: 10px;
+  background-color: #CCCCCC;
+  border: 1px solid #5E5E5E;
+  border-radius: 5px;
+
+  margin-left: 10%;
+
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 input {
