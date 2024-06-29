@@ -742,7 +742,7 @@ html {
 }
 
 .status.margin2{
-  margin-left: 700px;
+  margin-left: 60px;
   font-size: 10px;
   max-width: 80px;
 }
@@ -751,7 +751,6 @@ html {
   margin-left: 0px;
   margin-right: 50px;
   font-size: 10px;
-
 }
 
 .checkbox.margin{
@@ -760,6 +759,7 @@ html {
 
 .form-action-btn.margin{
   margin-left: 15px;
+  padding-right: 50px;
 }
 
 .content-container-tanod-home{
@@ -768,7 +768,6 @@ html {
   align-items: center;
   margin-top: 20px;
   height: auto;
-  min-width: fit-content;
 }
 
 .box-content-top{
@@ -911,15 +910,15 @@ html {
 }
 
 .content-text-main.date{
-  margin-left: 90px;
+  margin-left: 30px;
 }
 
 .content-text-main.reportee{
-  margin-left: 130px;
+  margin-left: 50px;
 }
 
 .content-text-main.respondent{
-  margin-left: 275px;
+  margin-left: 160px;
 }
 
 
@@ -930,8 +929,8 @@ html {
 }
 
 .underline-lupon-tanod{
-  margin-left: 610px;
-  margin-right: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
   text-decoration: underline;
 
 }
