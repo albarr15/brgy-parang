@@ -82,7 +82,7 @@ function validateForm() {
 
     if (!location) {
         valid = false;
-        errorMessage += 'Location of Issue is required.\n';
+        errorMessage += 'Place of CTC Issuance is required.\n';
     }
     
     if (!cedula) {
@@ -109,7 +109,7 @@ function validateForm() {
         valid = false;
         errorMessage += 'Reason of Certificate is required.\n';
     }
-    
+
     if (!valid) {
         showModal(errorMessage);
     }
