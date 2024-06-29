@@ -4,8 +4,9 @@
         <title>
             Barangay Parang - Lupon Homepage
         </title>
-        <link rel = "stylesheet" type = "text/css" href = "../public/css/index.css">
-        <script src = "../public/js/header.js" type="text/javascript"></script>
+        <link rel = "stylesheet" type = "text/css" href = "../public/css/homepage.css">
+        <script src = "../public/js/components.js" type="text/javascript"></script>
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -31,5 +32,93 @@
                 </div>
             </div>
         </div>
+        <!--New addition-->
+        <div class="content-container-tanod-home">
+            <div class="box-content-top">
+                <button type="button" class="form-btn create size"><img src="../public/images/form-create.png"><span>Create New Record</span></button>
+                <button type="button" class="form-btn resolved margin size"><img src="../public/images/form-check.png"><span>Mark as Resolved</span></button>
+                <button type="button" class="form-btn delete margin size"><img src="../public/images/form-trash.png"><span>Delete Selection</span></button>
+                <div class="search-name-reg margin">
+                    <form action="">
+                        <button type="submit"><img src="../public/images/search-reg.png"></button>
+                        <input type="text" placeholder="Search Name" name="search_name">
+                    </form>
+                  </div>
+            </div>
+            <div class="box-content">
+                <div class="box-content-header lupon-tanod">
+                    <div class="content-text-group left">
+                        <div class="content-text-group title">
+                            <div class="content-text">Case Title</div>
+                        </div>
+                        <div  class="content-text-group type">
+                            <div class="content-text">Case Type</div>
+                        </div>
+                        <div class="content-text lupon-margin">Respondent</div>
+                    </div>
+                    <div class="content-text-group right">
+                        <div class="content-text">Complainer</div>
+                        <div class="content-text">Case Status</div>
+                    </div>
+                </div>
+                <div class="box-content-main">
+                    <button type="button" class="checkbox margin"><img src="../public/images/Done.png">
+                    <a href="#" class="content-text-main underline-lupon-tanod">View</a>
+                    <div class="content-text-main tanod-lupon">12345678</div>
+                    <div class="content-text-main date">Civil</div>
+                    <div class="content-text-main reportee">Juan Dela Cruz</div>
+                    <div class="content-text-main respondent">Juan Dela Cruz</div>
+                    <button type="button" class="status resolved margin2"><img src="../public/images/resolved-circle.png"><span>Resolved</span></button>
+                    <button type="button" class="form-action-btn margin" title="Edit Case Details"><img src="../public/images/action-edit.png"></button>
+                </div>
+                <div class="box-content-main">
+                    <button type="button" class="checkbox margin"><img src="../public/images/Done.png">
+                    <a href="#" class="content-text-main underline-lupon-tanod">View</a>
+                    <div class="content-text-main tanod-lupon">12345678</div>
+                    <div class="content-text-main date">Civil</div>
+                    <div class="content-text-main reportee">Juan Dela Cruz</div>
+                    <div class="content-text-main respondent">Juan Dela Cruz</div>
+                    <button type="button" class="status resolved margin2"><img src="../public/images/resolved-circle.png"><span>Resolved</span></button>
+                    <button type="button" class="form-action-btn margin" title="Edit Case Details"><img src="../public/images/action-edit.png"></button>
+                </div>
+                <div class="box-content-main">
+                    <button type="button" class="checkbox margin"><img src="../public/images/Done.png">
+                    <a href="#" class="content-text-main underline-lupon-tanod">View</a>
+                    <div class="content-text-main tanod-lupon">12345678</div>
+                    <div class="content-text-main date">Civil</div>
+                    <div class="content-text-main reportee">Juan Dela Cruz</div>
+                    <div class="content-text-main respondent">Juan Dela Cruz</div>
+                    <button type="button" class="status resolved margin2"><img src="../public/images/resolved-circle.png"><span>Resolved</span></button>
+                    <button type="button" class="form-action-btn margin" title="Edit Case Details"><img src="../public/images/action-edit.png"></button>
+                </div>
+                <div class="box-content-main">
+                    <button type="button" class="checkbox margin"><img src="../public/images/Done.png">
+                    <a href="#" class="content-text-main underline-lupon-tanod">View</a>
+                    <div class="content-text-main tanod-lupon">12345678</div>
+                    <div class="content-text-main date">Civil</div>
+                    <div class="content-text-main reportee">Juan Dela Cruz</div>
+                    <div class="content-text-main respondent">Juan Dela Cruz</div>
+                    <button type="button" class="status ongoing margin2"><img src="../public/images/ongoing-circle.png"><span>Ongoing</span></button>
+                    <button type="button" class="form-action-btn margin" title="Edit Case Details"><img src="../public/images/action-edit.png"></button>
+                </div>
+                <div class="box-content-main">
+                    <button type="button" class="checkbox margin"><img src="../public/images/Done.png">
+                    <a href="#" class="content-text-main underline-lupon-tanod">View</a>
+                    <div class="content-text-main tanod-lupon">12345678</div>
+                    <div class="content-text-main date">Civil</div>
+                    <div class="content-text-main reportee">Juan Dela Cruz</div>
+                    <div class="content-text-main respondent">Juan Dela Cruz</div>
+                    <button type="button" class="status resolved margin2"><img src="../public/images/resolved-circle.png"><span>Resolved</span></button>
+                    <button type="button" class="form-action-btn margin" title="Edit Case Details"><img src="../public/images/action-edit.png"></button>
+                </div>
+            </div>
+            <div class="box-content-page">
+                <button class="page-btn" id="count-down">  &lt</button>
+                <div class="page-count" id="page-num">1</div>
+                <button class="page-btn" id="count-up">  &gt </button> 
+                <div class="page-number">Page 1 of 10</div>
+            </div>
+        </div>
+        
     </body>
 </html>
