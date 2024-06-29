@@ -47,60 +47,69 @@ function validateForm() {
         valid = false;
         errorMessage += 'Profile image is required.\n';
     }
+
     if (!name) {
         valid = false;
         errorMessage += 'Name is required.\n';
     }
-    if (!address) {
-        valid = false;
-        errorMessage += 'Address is required.\n';
-    }
-    if (!ctc_date) {
-        valid = false;
-        errorMessage += 'Complete CTC issuance date is required.\n'; 
-    } else {
-        const [month, day, year] = ctc_date.split('/');
-        if (!isValidDate(day, month, year)) {
-            valid = false;
-            errorMessage += 'Invalid CTC date provided.\n';
-        }
-    }
-    if (!cert_date) {
-        valid = false;
-        errorMessage += 'Complete certificate issuance date is required.\n'; 
-    } else {
-        const [month, day, year] = cert_date.split('/');
-        if (!isValidDate(day, month, year)) {
-            valid = false;
-            errorMessage += 'Invalid date provided.\n';
-        }
-    }
+
     if (!birthday) {
         valid = false;
-        errorMessage += 'Complete birth date is required.\n'; 
+        errorMessage += 'Complete Birth Date is required.\n'; 
     } else {
         const [month, day, year] = birthday.split('/');
         if (!isValidDate(day, month, year)) {
             valid = false;
-            errorMessage += 'Invalid birth date provided.\n';
+            errorMessage += 'Invalid Birth Date.\n';
         }
     }
-    if (!cedula) {
+
+    if (!address) {
         valid = false;
-        errorMessage += 'Cedula Number is required.\n';
+        errorMessage += 'Address is required.\n';
     }
-    else if (cedula.length !== 8) {
+
+    if (!ctc_date) {
         valid = false;
-        errorMessage += 'Invalid Cedula Number.\n';
+        errorMessage += 'Complete CTC Issuance Date is required.\n'; 
+    } else {
+        const [month, day, year] = ctc_date.split('/');
+        if (!isValidDate(day, month, year)) {
+            valid = false;
+            errorMessage += 'Invalid CTC Issuance Date.\n';
+        }
     }
+
     if (!location) {
         valid = false;
         errorMessage += 'Location of Issue is required.\n';
     }
+    
+    if (!cedula) {
+        valid = false;
+        errorMessage += 'CTC Number is required.\n';
+    }
+    else if (cedula.length !== 8) {
+        valid = false;
+        errorMessage += 'Invalid CTC Number.\n';
+    }
+
+    if (!cert_date) {
+        valid = false;
+        errorMessage += 'Complete Certificate Issuance Date is required.\n'; 
+    } else {
+        const [month, day, year] = cert_date.split('/');
+        if (!isValidDate(day, month, year)) {
+            valid = false;
+            errorMessage += 'Invalid Certificate Issuance Date.\n';
+        }
+    }
+
     if (!reason) {
         valid = false;
         errorMessage += 'Reason of Certificate is required.\n';
     }
+    
     if (!valid) {
         showModal(errorMessage);
     }
