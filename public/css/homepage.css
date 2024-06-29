@@ -736,7 +736,7 @@ html {
 }
 
 .status.margin{
-  margin-left: 355px;
+  margin-left: 80px;
   font-size: 10px;
 
 }
@@ -768,6 +768,7 @@ html {
   align-items: center;
   margin-top: 20px;
   height: auto;
+  min-width: fit-content;
 }
 
 .box-content-top{
@@ -899,7 +900,7 @@ html {
     flex-wrap: wrap;
     color: black;
     font-size: 12px;
-    margin-left: 165px;
+    margin-left: 75px;
     width: 100%;
     max-width: none; 
     white-space: nowrap; 
@@ -925,7 +926,7 @@ html {
 
 .underline{
     text-decoration: underline;
-    margin-left: 60px;
+    margin-left: 70px;
 }
 
 .underline-lupon-tanod{

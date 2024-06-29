@@ -349,7 +349,7 @@ html {
 
   .checkbox img {
     max-width: 0.8rem;
-    display: none;
+    display: block;
   }
 
   .checkbox.clicked {
