@@ -11,11 +11,13 @@
     margin-top: -20px;
     height: 10%;
     width: 100%;
+    max-width: 1500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     opacity: 0.5;
-    margin-left: 7.5%;
+    margin-left: -5px;
+    
   }
   
   #back-button {
