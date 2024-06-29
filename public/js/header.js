@@ -20,8 +20,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function initializePage() {
-        if (document.querySelector(".search-page")) {
+        if (document.querySelector(".search-page") || document.querySelector("#view-case-page")) {
             toggleLightPage();
+            console.log("toggled light");
         } else {
             toggleDarkPage();
         }
