@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // pages are in light mode by default
-    toggleLightPage();
+    // toggleLightPage();
 
     var user_role = document.getElementById("profile-text").innerHTML;
     var user_profile = document.getElementById("profile-img");
