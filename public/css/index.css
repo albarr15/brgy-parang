@@ -544,14 +544,14 @@ html {
     flex-direction: row;
     align-items: center;
     padding: 4px 14px;
-    justify-content: flex-start;
+    justify-content: center ;
     gap: 10px;
 
     height: 34px;
 
     border-radius: 20px;
     border: none;
-    width: fit-content;
+    width: 190px;
   } 
 
   .form-btn img {
@@ -560,6 +560,10 @@ html {
 
   .form-btn.resolved {
     color: #50AF12;
+  }
+
+  .form-btn.edit {
+    color: #1486B5;
   }
 
   .form-btn.save {
