@@ -704,7 +704,7 @@ html {
   align-items: center;
   width: 80%;
   max-width: 800px;
-  min-width: 300px;
+  min-width: 680px;
   box-sizing: border-box;
   position: relative;
   background-color: #fff;
@@ -779,6 +779,28 @@ html {
   margin-right: 5px;
 }
 
+.option-btn {
+  display: flex;
+  align-items: center;
+  padding: 0px 35px;
+  justify-content: center;
+  gap: 10px;
+
+  width: 280px;
+  height: 44px;
+  border-radius: 5px;
+  border: none;
+
+  font-size: 1.15em;
+}
+
+.option-btn img {
+  max-height: 80%;
+}
+
+.option-link {
+  width: 100%;
+}
 
 #check-clearance, #luponcase-button {
   background-color: #552C00;
