@@ -1,0 +1,37 @@
+<div class = "main-container">
+    <div class= "header" id="header">
+        <div class = "header-left">
+            <a href="/index" class="header-logo-link" id="home-link1"><img src="/images/logo.png" class="header-logo"></a>
+            <a href="/index" class="header-home" id="home-link2"><h3>Home</h3></a>
+        </div>
+        
+        <div class = "header-title">
+            <div class = "header-text">
+                <h3>Sangguniang Barangay ng Parang</h3>
+                <h5>Marikina City</h5>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="header-user-profile">
+                <span class="header-user-profile-text">Admin</span>
+                <img src="/images/tanod-profile.png" class="header-user-profile">
+            </div>
+            <a href="/index"><button type="button" class="header-logout-btn" id="logout-btn" onclick="logout()">Logout</button></a>
+        </div>
+    </div>
+</div>
+<div class="content-container">
+    <div class="box">
+        <div class="action-prompt">Which database would you like to view?</div>
+        <div class="options">
+            <div class="option" id="luponcase-button">
+                <img src="/images/lupon-profile.png" class="header-user-profile" id="profile-img">
+                <a href= "/admin-lupon-db-view" id="check-clearance">Lupon Cases</a>
+            </div>
+            <div class="option" id="tanodcase-button">
+                <img src="/images/tanod-profile.png" class="header-user-profile" id="profile-img">
+                <a href="/admin-tanod-db-view" id="generate-certification">Tanod Cases</a>
+            </div>
+        </div>
+    </div>
+</div>
