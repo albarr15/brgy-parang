@@ -27,6 +27,9 @@ function cancelForm() {
     document.getElementById('location').value = '';
     document.getElementById('reason').value = '';
     document.getElementById('deets-profile-img').src = '../public/images/customer.png';
+
+    document.querySelector('label[for="imageUpload"]').style.display = 'inline-block';
+    document.getElementById('imageUpload').value = '';
 }
 
 function validateForm() {
