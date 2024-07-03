@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const admin_loginRoutes = require('./routes/admin-loginRoutes');
+const admin_tanodRoutes = require('./routes/admin-tanodRoutes');
+const { registerHelpers } = require('./helpers/handlebarHelpers');
 
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -11,8 +13,6 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
-
-
 
 const handlebars = require('express-handlebars');
 app.set('view engine', 'hbs');
@@ -42,9 +42,15 @@ app.get('/index', function(req, res){
     });
 });
 
+//helpers
+registerHelpers();
 
 //login route
 app.use(admin_loginRoutes);
+
+//admin tanod routes
+app.use(admin_tanodRoutes);
+
 
 // Start the server
 const port = process.env.PORT || 3000;

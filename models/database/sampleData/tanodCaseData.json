@@ -1,0 +1,31 @@
+[
+    {
+        "_id": "1",
+        "EntryNo": 12345,
+        "Date": "07/03/2024",
+        "Status": "Ongoing",
+        "ReporteeInfo": {
+            "FirstName": "Juan",
+            "MiddleInitial": "D",
+            "LastName": "Dela Cruz",
+            "Address": "1234 Mabuhay St., Barangay Parang, Marikina City"
+        },
+        "natureOfBlotter": "Theft",
+        "RespondentInfo": {
+            "FirstName": "Pedro",
+            "MiddleInitial": "A",
+            "LastName": "Santos"
+        },
+        "DeskOfficerInfo": {
+            "FirstName": "Maria",
+            "MiddleInitial": "C",
+            "LastName": "Reyes"
+        },
+        "WitnessInfo": {
+            "FirstName": "Jose",
+            "MiddleInitial": "B",
+            "LastName": "Gonzales"
+        },
+        "Location": "Barangay Hall, Barangay Parang, Marikina City"
+    }
+]

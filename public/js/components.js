@@ -18,12 +18,12 @@ document.addEventListener("DOMContentLoaded", function() {
             if (currentState == "resolved") {
                 this.classList.remove('resolved');
                 this.classList.add('ongoing');
-                img.src="../public/images/ongoing-circle.png"
+                img.src="/images/ongoing-circle.png"
                 text.textContent = "Ongoing";
             } else {
                 this.classList.remove('ongoing');
                 this.classList.add('resolved');
-                img.src="../public/images/resolved-circle.png"
+                img.src="/images/resolved-circle.png"
                 text.textContent = "Resolved";
             }
         });

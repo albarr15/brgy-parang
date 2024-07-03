@@ -310,3 +310,7 @@ html {
     color: white; 
     margin-right: 10px; 
   }
+
+  .status-dropdown-view[readonly] {
+    pointer-events: none;
+}
