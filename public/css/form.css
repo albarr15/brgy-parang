@@ -285,6 +285,7 @@ html {
     text-decoration: none; 
     color: black; 
     margin-right: 10px; 
+    cursor: pointer;
   }
   .size-4 {
     width: 16px; 
@@ -309,4 +310,5 @@ html {
     text-decoration: none; 
     color: white; 
     margin-right: 10px; 
+    cursor: pointer;
   }
