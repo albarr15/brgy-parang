@@ -314,3 +314,9 @@ html {
   .status-dropdown-view[readonly] {
     pointer-events: none;
 }
+
+.status-dropdown-view-edit {
+  background-color: var(--lblue);
+  height: 2.188rem;
+  width: 9.65rem;
+}

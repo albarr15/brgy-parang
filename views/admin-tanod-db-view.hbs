@@ -60,13 +60,14 @@
 
                     <div class="nameCol-Content">{{fullName RespondentInfo.FirstName RespondentInfo.MiddleInitial RespondentInfo.LastName}}</div>
 
+                    {{!-- implement UPDATE --}}
                     {{#checkStatus Status}}
                         <div class="statusCol-Content">
-                            <button type="button" class="status resolved"><img src="/images/resolved-circle.png"><span>Resolved</span></button>
+                            <a href="/update-Status/{{this._id}}/{{this.Status}}"><button type="button" class="status resolved" ><img src="/images/resolved-circle.png"><span>Resolved</span></button></a>
                         </div>
                     {{else}}
                         <div class="statusCol-Content">
-                            <button type="button" class="status ongoing"><img src="/images/ongoing-circle.png"><span>Ongoing</span></button>
+                            <a href="/update-Status/{{this._id}}/{{this.Status}}"><button type="button" class="status ongoing"><img src="/images/ongoing-circle.png"><span>Ongoing</span></button></a>
                         </div>
                     {{/checkStatus}}
 

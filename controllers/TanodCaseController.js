@@ -76,9 +76,117 @@ const viewTanodCase = async (req, res) => {
     }
 }
 
+const editTanodCase = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+        const specificCase = await TanodCaseModel.findOne({ _id : caseId }).lean();
+
+        res.render('A-tanod-edit-case',{
+            layout: 'layout',
+            title: 'Barangay Parang - Admin - Tanod Edit Case Page',
+            cssFile1: 'index',
+            cssFile2: 'form',
+            javascriptFile1: 'header-hbs',
+            javascriptFile2: 'case-form',
+            cases: specificCase
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const submitEditTanodCase = async (req, res) => {
+    try {
+        const {
+            _id,
+            EntryNo,
+            Date,
+            Status,
+            reporteeLastName,
+            reporteeMiddleInitial,
+            reporteeFirstName,
+            reporteeAddress,
+            natureOfBlotter,
+            respondentLastName,
+            respondentMiddleInitial,
+            respondentFirstName,
+            deskOfficerLastName,
+            deskOfficerMiddleInitial,
+            deskOfficerFirstName,
+            witnessLastName,
+            witnessMiddleInitial,
+            witnessFirstName,
+            location
+        } = req.body;
+
+        await TanodCaseModel.findOneAndUpdate(
+            { _id: _id },
+            {
+                $set: {
+                    EntryNo: EntryNo,
+                    Date: Date,
+                    Status: Status,
+                    ReporteeInfo: {
+                        FirstName: reporteeFirstName,
+                        MiddleInitial: reporteeMiddleInitial,
+                        LastName: reporteeLastName,
+                        Address: reporteeAddress
+                    },
+                    natureOfBlotter: natureOfBlotter,
+                    RespondentInfo: {
+                        FirstName: respondentFirstName,
+                        MiddleInitial: respondentMiddleInitial,
+                        LastName: respondentLastName
+                    },
+                    DeskOfficerInfo: {
+                        FirstName: deskOfficerFirstName,
+                        MiddleInitial: deskOfficerMiddleInitial,
+                        LastName: deskOfficerLastName
+                    },
+                    WitnessInfo: {
+                        FirstName: witnessFirstName,
+                        MiddleInitial: witnessMiddleInitial,
+                        LastName: witnessLastName
+                    },
+                    Location: location
+                }
+            },
+            { new: true }
+        );
+
+        res.redirect("/admin-tanod-db-view");
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const updateStatus = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+        const currentStatus = req.params.status; 
+
+        const newStatus = currentStatus === 'Resolved' ? 'Ongoing' : 'Resolved';
+
+        await TanodCaseModel.findOneAndUpdate(
+            { _id : caseId},
+            { Status : newStatus},
+            { new: true }
+        );
+
+    } catch (error) {
+        console.error('Error updating status:', error);
+        return res.status(500).json({ error: 'Failed to update status' });
+    }
+}
+
 module.exports = {
     viewTanodDB,
     viewTanodCase,
-    markResolved
+    markResolved,
+    editTanodCase,
+    submitEditTanodCase,
+    updateStatus
 }
 
