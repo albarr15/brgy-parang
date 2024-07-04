@@ -181,12 +181,26 @@ const updateStatus = async (req, res) => {
     }
 }
 
+const deleteTanodCase = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+
+        await TanodCaseModel.findByIdAndDelete(caseId);
+
+        res.redirect("/admin-tanod-db-view");
+    } catch (error) {
+        console.error('Error updating status:', error);
+        return res.status(500).json({ error: 'Failed to update status' });
+    }
+}
+
 module.exports = {
     viewTanodDB,
     viewTanodCase,
     markResolved,
     editTanodCase,
     submitEditTanodCase,
-    updateStatus
+    updateStatus,
+    deleteTanodCase
 }
 

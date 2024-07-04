@@ -14,4 +14,6 @@ router.post('/submit-edit-tanod-case', tanodCaseController.submitEditTanodCase);
 
 router.get('/update-Status/:id/:status', tanodCaseController.updateStatus);
 
+router.get('/delete-case/:id', tanodCaseController.deleteTanodCase);
+
 module.exports = router;
