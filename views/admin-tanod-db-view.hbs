@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <div class = "main-container">
     <div class= "header" id="header">
         <div class = "header-left">
@@ -32,18 +34,19 @@
 <div class="content-container-tanod-home">
     <div class="box-content-top">
         <!-- missing: functions -->
-        <button type="button" class="form-btn create size"><img src="/images/form-create.png"><span>Create New Record</span></button>
-        <button type="button" class="form-btn resolved margin size"><img src="/images/form-check.png"><span>Mark as Resolved</span></button>
-        <button type="button" class="form-btn delete margin size"><img src="/images/form-trash.png"><span>Delete Selection</span></button>
+        <button type="button" class="form-btn create size">                                 <img src="/images/form-create.png"> <span>Create New Record</span>  </button>
+        <button type="button" class="form-btn resolved margin size" id="resolvedButton">    <img src="/images/form-check.png">  <span>Mark as Resolved</span>   </button>
+        <button type="button" class="form-btn delete margin size"   id="deleteButton">      <img src="/images/form-trash.png">  <span>Delete Selection</span>   </button>
         <div class="search-name-reg margin">
 
             <!-- implement search function -->
-            <form action="">
+            <form id="searchForm">
                 <button type="submit"><img src="/images/search-reg.png"></button>
                 <input type="text" placeholder="Search Name" name="search_name">
             </form>
         </div>
     </div>
+
     <div class="db-main-box">
         <div class="db-main-box-header">
             <div class="checkboxCol"></div>
@@ -52,13 +55,15 @@
             <div class="viewCol"></div>
             <div class="actionCol">Actions</div>
         </div>
-        {{#each cases}}
-            <div class="db-main-box-content">
+
+        <form id="checkboxForm" action="/checkbox-action" method="POST">
+            {{#each cases}}
+                <div class="db-main-box-content">
                     <div class="checkboxCol-Content">
-                        <button type="button" class="checkbox margin"><img src="/images/Done.png">
+                        <input type="checkbox" name="caseIds" value="{{this._id}}" class="checkbox margin">
                     </div>
 
-                    <div class="nameCol-Content">{{fullName RespondentInfo.FirstName RespondentInfo.MiddleInitial RespondentInfo.LastName}}</div>
+                    <div class="nameCol-Content">{{fullName ReporteeInfo.FirstName ReporteeInfo.MiddleInitial ReporteeInfo.LastName}}</div>
 
                     {{!-- implement UPDATE --}}
                     {{#checkStatus Status}}
@@ -79,8 +84,11 @@
                         <a href="admin_T-onClick-print.html"><button type="button" class="print-btn reg dark margin"><img src="/images/print-dark.png"><span>Print</span></button></a>
                     </div>
                 </div>
-        {{/each}}
+            {{/each}}
+        </form>
+
     </div>
+
     <!-- to be fixed -->
     <div class="box-content-page">
         <button class="page-btn" id="count-down">  &lt</button>

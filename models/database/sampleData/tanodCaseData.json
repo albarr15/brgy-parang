@@ -27,5 +27,121 @@
             "LastName": "Gonzales"
         },
         "Location": "Barangay Hall, Barangay Parang, Marikina City"
+    },
+    {
+        "_id": "2",
+        "EntryNo": 12346,
+        "Date": "07/04/2024",
+        "Status": "Ongoing",
+        "ReporteeInfo": {
+            "FirstName": "Anna",
+            "MiddleInitial": "E",
+            "LastName": "Luna",
+            "Address": "5678 Bayanihan St., Barangay Sto. Niño, Marikina City"
+        },
+        "natureOfBlotter": "Assault",
+        "RespondentInfo": {
+            "FirstName": "Carlos",
+            "MiddleInitial": "B",
+            "LastName": "Mendoza"
+        },
+        "DeskOfficerInfo": {
+            "FirstName": "Luisa",
+            "MiddleInitial": "G",
+            "LastName": "Santos"
+        },
+        "WitnessInfo": {
+            "FirstName": "Ricardo",
+            "MiddleInitial": "H",
+            "LastName": "Domingo"
+        },
+        "Location": "Barangay Hall, Barangay Sto. Niño, Marikina City"
+    },
+    {
+        "_id": "3",
+        "EntryNo": 12347,
+        "Date": "07/05/2024",
+        "Status": "Resolved",
+        "ReporteeInfo": {
+            "FirstName": "Jose",
+            "MiddleInitial": "F",
+            "LastName": "Rizal",
+            "Address": "9101 Kalayaan St., Barangay Concepcion, Marikina City"
+        },
+        "natureOfBlotter": "Robbery",
+        "RespondentInfo": {
+            "FirstName": "Miguel",
+            "MiddleInitial": "D",
+            "LastName": "Lorenzo"
+        },
+        "DeskOfficerInfo": {
+            "FirstName": "Rafael",
+            "MiddleInitial": "I",
+            "LastName": "Santiago"
+        },
+        "WitnessInfo": {
+            "FirstName": "Elena",
+            "MiddleInitial": "J",
+            "LastName": "Fernandez"
+        },
+        "Location": "Barangay Hall, Barangay Concepcion, Marikina City"
+    },
+    {
+        "_id": "4",
+        "EntryNo": 12348,
+        "Date": "07/06/2024",
+        "Status": "Ongoing",
+        "ReporteeInfo": {
+            "FirstName": "Gloria",
+            "MiddleInitial": "K",
+            "LastName": "Arroyo",
+            "Address": "1213 Pag-asa St., Barangay Marikina Heights, Marikina City"
+        },
+        "natureOfBlotter": "Vandalism",
+        "RespondentInfo": {
+            "FirstName": "Nestor",
+            "MiddleInitial": "L",
+            "LastName": "Castro"
+        },
+        "DeskOfficerInfo": {
+            "FirstName": "Samuel",
+            "MiddleInitial": "M",
+            "LastName": "Luna"
+        },
+        "WitnessInfo": {
+            "FirstName": "Carmen",
+            "MiddleInitial": "N",
+            "LastName": "Ortiz"
+        },
+        "Location": "Barangay Hall, Barangay Marikina Heights, Marikina City"
+    },
+    {
+        "_id": "5",
+        "EntryNo": 12349,
+        "Date": "07/07/2024",
+        "Status": "Ongoing",
+        "ReporteeInfo": {
+            "FirstName": "Fernando",
+            "MiddleInitial": "O",
+            "LastName": "Poe",
+            "Address": "1415 Katipunan St., Barangay Tumana, Marikina City"
+        },
+        "natureOfBlotter": "Domestic Violence",
+        "RespondentInfo": {
+            "FirstName": "Esteban",
+            "MiddleInitial": "P",
+            "LastName": "Cruz"
+        },
+        "DeskOfficerInfo": {
+            "FirstName": "Julian",
+            "MiddleInitial": "Q",
+            "LastName": "Rodriguez"
+        },
+        "WitnessInfo": {
+            "FirstName": "Margarita",
+            "MiddleInitial": "R",
+            "LastName": "Martinez"
+        },
+        "Location": "Barangay Hall, Barangay Tumana, Marikina City"
     }
 ]

@@ -19,7 +19,7 @@ const registerHelpers = () => {
     });
     
     handlebars.registerHelper('fullName', function(firstName, middleInitial, lastName) {
-        return `${firstName} ${middleInitial} ${lastName}`;
+        return `${firstName} ${middleInitial}. ${lastName}`;
     });
 };
 

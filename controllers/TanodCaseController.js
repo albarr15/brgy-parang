@@ -194,6 +194,59 @@ const deleteTanodCase = async (req, res) => {
     }
 }
 
+const deleteMultipleTanodCase = async (req, res) => {
+    const selectedCaseIds = req.body.caseIds;
+    try {
+        await TanodCaseModel.deleteMany({ _id : { $in: selectedCaseIds } });
+
+        res.json({ success: true, message: 'Cases deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error deleting cases', error });
+    }
+};
+
+const markMultipleTCaseResolved = async (req, res) => {
+    const selectedCaseIds = req.body.caseIds;
+    
+    try {
+        const updateResult = await TanodCaseModel.updateMany(
+            { _id: { $in: selectedCaseIds } },
+            { $set: { Status: "Resolved" } }
+        );
+        
+        res.json({ success: true, message: 'Cases resolved successfully' });
+        
+    } catch (error) {
+        console.error("Error updating cases:", error);
+        res.status(500).json({ success: false, message: 'Error updating cases', error });
+    }
+};
+
+const searchTanodCase = async (req, res) => {
+    const searchName = req.params.search_name;
+    console.log(searchName); //Returns Juan Dela Cruz
+    const searchWords = searchName.split(' ').filter(word => word.trim() !== '');
+
+    try {
+        
+        const orConditions = searchWords.map(word => ({
+            $or: [
+                { 'ReporteeInfo.FirstName': { $regex: new RegExp(word, 'i') } },
+                { 'ReporteeInfo.LastName': { $regex: new RegExp(word, 'i') } }
+            ]
+        }));
+
+        // Find documents matching any of the $or conditions
+        const searchResults = await TanodCaseModel.find({ $or: orConditions }).lean().exec();
+
+        res.json({ success: true, results: searchResults });
+
+    } catch (error) {
+        console.error('Error searching cases:', error);
+        res.status(500).json({ success: false, message: 'Error searching cases', error });
+    }
+}
+
 module.exports = {
     viewTanodDB,
     viewTanodCase,
@@ -201,6 +254,9 @@ module.exports = {
     editTanodCase,
     submitEditTanodCase,
     updateStatus,
-    deleteTanodCase
+    deleteTanodCase,
+    deleteMultipleTanodCase,
+    markMultipleTCaseResolved,
+    searchTanodCase
 }
 
