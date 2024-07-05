@@ -31,23 +31,38 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     const saveButton = document.getElementById('saveButton');
-    saveButton.addEventListener('click', function () {
+    if (saveButton) {
+        saveButton.addEventListener('click', function () {
 
-        console.log("checking saveButton")
+            console.log("checking saveButton")
 
-        checkChanges();
-        const form = document.querySelector('.case-form');
-        form.submit();
-    });
+            checkChanges();
+            const form = document.querySelector('.case-form');
+            form.submit();
+        });
+    }
 
     const discardButton = document.getElementById('discardButton');
-    discardButton.addEventListener('click', function () {
+    if(discardButton) {
+        discardButton.addEventListener('click', function () {
 
-        console.log("checking discardButton")
+            console.log("checking discardButton")
 
-        discardChanges();
-        window.location.href = '/admin-tanod-db-view';
-    });
+            discardChanges();
+            window.location.href = '/admin-tanod-db-view';
+        });
+    }
+    
+    const createSumbitBtn = document.getElementById('create-submit-btn');
+    if(createSumbitBtn) {
+        createSumbitBtn.addEventListener('click', function () {
+
+            console.log("checking createSumbitBtn")
+
+            const form = document.querySelector('.case-form');
+            form.submit();
+        });
+    }
 });
 
 function capitalizeName(name) {

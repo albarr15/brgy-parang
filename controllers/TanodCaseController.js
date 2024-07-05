@@ -245,7 +245,91 @@ const searchTanodCase = async (req, res) => {
         console.error('Error searching cases:', error);
         res.status(500).json({ success: false, message: 'Error searching cases', error });
     }
-}
+};
+
+const viewCreateTanodCase = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+        const specificCase = await TanodCaseModel.findOne({ _id : caseId }).lean();
+
+        res.render('A-tanod-create-case',{
+            layout: 'layout',
+            title: 'Barangay Parang - Admin - Tanod Edit Case Page',
+            cssFile1: 'index',
+            cssFile2: 'form',
+            javascriptFile1: 'header-hbs',
+            javascriptFile2: 'case-form',
+            cases: specificCase
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+};
+
+const createTanodCase = async (req, res) => {
+    try {
+        const {
+            EntryNo,
+            Date,
+            Status,
+            reporteeLastName,
+            reporteeMiddleInitial,
+            reporteeFirstName,
+            reporteeAddress,
+            natureOfBlotter,
+            respondentLastName,
+            respondentMiddleInitial,
+            respondentFirstName,
+            deskOfficerLastName,
+            deskOfficerMiddleInitial,
+            deskOfficerFirstName,
+            witnessLastName,
+            witnessMiddleInitial,
+            witnessFirstName,
+            location
+        } = req.body;
+
+        // _id
+        const count = await TanodCaseModel.countDocuments();
+        const newReviewId = `${count + 1}`;
+
+        await TanodCaseModel.create({
+            _id: newReviewId,
+            EntryNo: EntryNo,
+            Date: Date,
+            Status: Status,
+            ReporteeInfo: {
+                FirstName: reporteeFirstName,
+                MiddleInitial: reporteeMiddleInitial,
+                LastName: reporteeLastName,
+                Address: reporteeAddress
+            },
+            natureOfBlotter: natureOfBlotter,
+            RespondentInfo: {
+                FirstName: respondentFirstName,
+                MiddleInitial: respondentMiddleInitial,
+                LastName: respondentLastName
+            },
+            DeskOfficerInfo: {
+                FirstName: deskOfficerFirstName,
+                MiddleInitial: deskOfficerMiddleInitial,
+                LastName: deskOfficerLastName
+            },
+            WitnessInfo: {
+                FirstName: witnessFirstName,
+                MiddleInitial: witnessMiddleInitial,
+                LastName: witnessLastName
+            },
+            Location: location
+        });
+
+        res.redirect("/admin-tanod-db-view");
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+};
 
 module.exports = {
     viewTanodDB,
@@ -257,6 +341,8 @@ module.exports = {
     deleteTanodCase,
     deleteMultipleTanodCase,
     markMultipleTCaseResolved,
-    searchTanodCase
+    searchTanodCase,
+    viewCreateTanodCase,
+    createTanodCase
 }
 
