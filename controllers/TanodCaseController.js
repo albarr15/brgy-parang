@@ -175,6 +175,8 @@ const updateStatus = async (req, res) => {
             { new: true }
         );
 
+        res.redirect('/admin-tanod-db-view');
+
     } catch (error) {
         console.error('Error updating status:', error);
         return res.status(500).json({ error: 'Failed to update status' });
@@ -254,7 +256,7 @@ const viewCreateTanodCase = async (req, res) => {
 
         res.render('A-tanod-create-case',{
             layout: 'layout',
-            title: 'Barangay Parang - Admin - Tanod Edit Case Page',
+            title: 'Barangay Parang - Admin - Tanod Create Case Page',
             cssFile1: 'index',
             cssFile2: 'form',
             javascriptFile1: 'header-hbs',

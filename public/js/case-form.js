@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    //TANOD
     const saveButton = document.getElementById('saveButton');
     if (saveButton) {
         saveButton.addEventListener('click', function () {
@@ -58,6 +59,41 @@ document.addEventListener("DOMContentLoaded", function() {
         createSumbitBtn.addEventListener('click', function () {
 
             console.log("checking createSumbitBtn")
+
+            const form = document.querySelector('.case-form');
+            form.submit();
+        });
+    }
+
+    //LUPON
+    const saveButtonLupon = document.getElementById('saveButtonLupon');
+    if (saveButtonLupon) {
+        saveButtonLupon.addEventListener('click', function () {
+
+            console.log("checking saveButton")
+
+            checkChanges();
+            const form = document.querySelector('.case-form');
+            form.submit();
+        });
+    }
+
+    const discardButtonLupon = document.getElementById('discardButtonLupon');
+    if(discardButtonLupon) {
+        discardButtonLupon.addEventListener('click', function () {
+
+            console.log("checking discardButton")
+
+            discardChanges();
+            window.location.href = '/admin-lupon-db-view';
+        });
+    }
+
+    const createSumbitBtnLupon = document.getElementById('create-submit-btn-lupon');
+    if(createSumbitBtnLupon) {
+        createSumbitBtnLupon.addEventListener('click', function () {
+
+            console.log("checking createSumbitBtnLupon")
 
             const form = document.querySelector('.case-form');
             form.submit();

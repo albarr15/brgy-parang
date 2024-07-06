@@ -1,0 +1,138 @@
+[
+    {
+      "_id": "1",
+      "CaseTitle": "Land Dispute",
+      "CaseType": "Civil",
+      "Status": "Pending",
+      "RespondentInfo": {
+        "FirstName": "John",
+        "MiddleInitial": "A",
+        "LastName": "Doe"
+      },
+      "ComplainerInfo": {
+        "FirstName": "Jane",
+        "MiddleInitial": "B",
+        "LastName": "Smith"
+      },
+      "MediationInfo": {
+        "FirstName": "Alice",
+        "MiddleInitial": "C",
+        "LastName": "Johnson"
+      },
+      "ConciliationInfo": {
+        "FirstName": "Robert",
+        "MiddleInitial": "D",
+        "LastName": "Brown"
+      },
+      "Case": "Dispute over property boundaries"
+    },
+    {
+      "_id": "2",
+      "CaseTitle": "Breach of Contract",
+      "CaseType": "Civil",
+      "Status": "Resolved",
+      "RespondentInfo": {
+        "FirstName": "Michael",
+        "MiddleInitial": "E",
+        "LastName": "Jones"
+      },
+      "ComplainerInfo": {
+        "FirstName": "Emily",
+        "MiddleInitial": "F",
+        "LastName": "Davis"
+      },
+      "MediationInfo": {
+        "FirstName": "Patricia",
+        "MiddleInitial": "G",
+        "LastName": "Miller"
+      },
+      "ConciliationInfo": {
+        "FirstName": "William",
+        "MiddleInitial": "H",
+        "LastName": "Wilson"
+      },
+      "Case": "Failure to deliver goods as per contract"
+    },
+    {
+      "_id": "3",
+      "CaseTitle": "Assault",
+      "CaseType": "Criminal",
+      "Status": "Ongoing",
+      "RespondentInfo": {
+        "FirstName": "David",
+        "MiddleInitial": "I",
+        "LastName": "Garcia"
+      },
+      "ComplainerInfo": {
+        "FirstName": "Sophia",
+        "MiddleInitial": "J",
+        "LastName": "Martinez"
+      },
+      "MediationInfo": {
+        "FirstName": "Nancy",
+        "MiddleInitial": "K",
+        "LastName": "Anderson"
+      },
+      "ConciliationInfo": {
+        "FirstName": "James",
+        "MiddleInitial": "L",
+        "LastName": "Taylor"
+      },
+      "Case": "Physical altercation resulting in injury"
+    },
+    {
+      "_id": "4",
+      "CaseTitle": "Defamation",
+      "CaseType": "Civil",
+      "Status": "Pending",
+      "RespondentInfo": {
+        "FirstName": "Anthony",
+        "MiddleInitial": "M",
+        "LastName": "Thomas"
+      },
+      "ComplainerInfo": {
+        "FirstName": "Olivia",
+        "MiddleInitial": "N",
+        "LastName": "Hernandez"
+      },
+      "MediationInfo": {
+        "FirstName": "Sandra",
+        "MiddleInitial": "O",
+        "LastName": "Moore"
+      },
+      "ConciliationInfo": {
+        "FirstName": "Charles",
+        "MiddleInitial": "P",
+        "LastName": "Martin"
+      },
+      "Case": "False statements causing harm to reputation"
+    },
+    {
+      "_id": "5",
+      "CaseTitle": "Domestic Violence",
+      "CaseType": "Criminal",
+      "Status": "Ongoing",
+      "RespondentInfo": {
+        "FirstName": "Joseph",
+        "MiddleInitial": "Q",
+        "LastName": "Jackson"
+      },
+      "ComplainerInfo": {
+        "FirstName": "Isabella",
+        "MiddleInitial": "R",
+        "LastName": "White"
+      },
+      "MediationInfo": {
+        "FirstName": "Donna",
+        "MiddleInitial": "S",
+        "LastName": "Lee"
+      },
+      "ConciliationInfo": {
+        "FirstName": "George",
+        "MiddleInitial": "T",
+        "LastName": "Perez"
+      },
+      "Case": "Repeated instances of physical abuse"
+    }
+  ]
+  

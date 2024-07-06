@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const admin_loginRoutes = require('./routes/admin-loginRoutes');
 const admin_tanodRoutes = require('./routes/admin-tanodRoutes');
+const admin_luponRoutes = require('./routes/admin-luponRoutes');
 const { registerHelpers } = require('./helpers/handlebarHelpers');
 
 const path = require('path');
@@ -50,6 +51,9 @@ app.use(admin_loginRoutes);
 
 //admin tanod routes
 app.use(admin_tanodRoutes);
+
+//admin lupon routes
+app.use(admin_luponRoutes);
 
 
 // Start the server
