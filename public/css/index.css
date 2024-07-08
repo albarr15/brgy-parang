@@ -760,7 +760,7 @@ html {
 }
 
 .option {
-  width: 45%;
+  width: 100%;
   margin: 10px 0;
   padding: 10px 0;
   display: flex;
@@ -811,3 +811,14 @@ html {
   background-color: #236759;
   color: #AFE1D7;
 }
+
+#brgy-certs-btn {
+  background-color: #725D12;
+  color: #E4C761;
+}
+
+#accounts-btn {
+  background-color: #0D3919;
+  color: #7BBD4E;
+}
+
