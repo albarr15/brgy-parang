@@ -1,0 +1,100 @@
+table {
+    color: #717171;
+    margin: 0;
+    padding: 0;
+    width: 65%;
+    border-collapse: collapse;
+    font-size: 14px;
+
+    max-width: 1000px;
+    margin-top: 50px;
+    min-width: 820px;
+    font-size: 12px;
+}
+
+table thead {
+    width: 100%;
+    color: white;
+    border-bottom: #717171;
+    background-color: #004112;
+    font-size: 14px;
+    display: table-header-group;
+}
+
+table th, td {
+    padding: 1em;
+    padding-left: 40px;
+    text-align: start;
+}
+
+table tbody {
+    padding: 15px;
+}
+
+table td {
+    background-color: white;
+    width: fit-content;
+    text-align: start;
+    border-bottom: 1px solid #717171;
+}
+
+table td.align-right{
+    width: 45px;
+    padding-right: 0px;
+    text-align: end;
+}
+
+table td.align-right-padded{
+    width: 45px;
+    text-align: end;
+}
+
+table td.align-left {
+    padding-left: 0px;
+    text-align: start;
+}
+
+th:first-of-type {
+    border-top-left-radius: 10px;
+}
+th:last-of-type {
+    border-top-right-radius: 10px;
+}
+tr:last-of-type td:first-of-type {
+    border-bottom-left-radius: 10px;
+}
+tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: 10px;
+}
+
+tr:last-child td{
+    border-bottom: none;
+}
+
+
+.role-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 30px;
+  }
+
+
+.view-cell > a {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: black;
+    font-size: 12px;
+    margin-left: 30px;
+    width: 100%;
+    max-width: none; 
+    white-space: nowrap; 
+    text-decoration: underline;
+    color: #4C73FC;
+}
+
+.margin-20px-right {
+    margin-right: 20px;
+}
