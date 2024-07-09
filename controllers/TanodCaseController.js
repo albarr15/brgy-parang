@@ -2,22 +2,34 @@ const TanodCaseModel = require("../models/database/mongoose").TanodCaseModel;
 
 const viewTanodDB = async (req, res) => {
     try {
-        const cases = await TanodCaseModel.find({}).lean();
-        // console.log(cases);
-        res.render('admin-tanod-db-view',{
+        const page = parseInt(req.query.page) || 1; // Get the current page from query params, default to 1
+        const casesPerPage = 10; // Number of cases to show per page
+
+        const totalCases = await TanodCaseModel.countDocuments(); // Get total number of cases
+        const totalPages = Math.ceil(totalCases / casesPerPage); // Calculate total pages
+
+        // Fetch the cases for the current page
+        const cases = await TanodCaseModel.find({})
+            .skip((page - 1) * casesPerPage)
+            .limit(casesPerPage)
+            .lean();
+
+        res.render('admin-tanod-db-view', {
             layout: 'layout',
             title: 'Admin: Tanod DB viewing',
             cssFile1: 'homepage',
             cssFile2: 'db-view',
             javascriptFile1: 'components',
             javascriptFile2: null,
-            cases: cases
+            cases: cases,
+            currentPage: page, // Pass current page to the template
+            totalPages: totalPages // Pass total pages to the template
         });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Server error" });
     }
-}
+};
 
 const markResolved = async (req, res) => {
     try {
@@ -39,16 +51,7 @@ const markResolved = async (req, res) => {
         );
 
         // Render the updated view
-        const cases = await TanodCaseModel.find({}).lean();
-        res.render('admin-tanod-db-view', {
-            layout: 'layout',
-            title: 'Admin: Tanod DB viewing',
-            cssFile1: 'homepage',
-            cssFile2: 'db-view',
-            javascriptFile1: 'components',
-            javascriptFile2: null,
-            cases: cases
-        });
+        res.redirect("/admin-tanod-db-view");
 
     } catch (err) {
         console.error(err);

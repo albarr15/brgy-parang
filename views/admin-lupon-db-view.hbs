@@ -86,11 +86,31 @@
         </form>
 
     </div>
-    <!-- to be fixed -->
+
     <div class="box-content-page">
-        <button class="page-btn" id="count-down">  &lt</button>
-        <div class="page-count" id="page-num">1</div>
-        <button class="page-btn" id="count-up">  &gt </button> 
-        <div class="page-number">Page 1 of 10</div>
+        <button class="page-btn" id="count-down">&lt;</button>
+        <div class="page-count" id="page-num">{{currentPage}}</div>
+        <button class="page-btn" id="count-up">&gt;</button>
+        <div class="page-number">Page {{currentPage}} of {{totalPages}}</div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            const currentPage = {{currentPage}};
+            const totalPages = {{totalPages}};
+            const baseUrl = '/admin-lupon-db-view?page=';
+
+            $('#count-down').click(function() {
+                if (currentPage > 1) {
+                    window.location.href = baseUrl + (currentPage - 1);
+                }
+            });
+
+            $('#count-up').click(function() {
+                if (currentPage < totalPages) {
+                    window.location.href = baseUrl + (currentPage + 1);
+                }
+            });
+        });
+    </script>
 </div>
