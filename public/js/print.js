@@ -28,8 +28,10 @@ function cancelForm() {
     document.getElementById('reason').value = '';
     document.getElementById('deets-profile-img').src = '../public/images/customer.png';
 
-    document.querySelector('label[for="imageUpload"]').style.display = 'inline-block';
-    document.getElementById('imageUpload').value = '';
+    // document.querySelector('label[for="imageUpload"]').style.display = 'inline-block';
+    // document.getElementById('imageUpload').value = '';
+
+    $('#accesscamera').show();
 }
 
 function validateForm() {
@@ -264,29 +266,62 @@ $(document).ready(function() {
             timer: 2000
         });
     });
+
+    $('#uploadphoto').on('click', function() {
+        const data_uri = $('#photoStore').val();
+        if (data_uri) {
+            // Update the profile image container
+            $('#deets-profile-img').attr('src', 'data:image/jpeg;base64,' + data_uri);
+    
+            // Hide the capture button
+            $('#accesscamera').hide();
+        }
+    
+        // Close the modal and reset the webcam
+        $('#photoModal').modal('hide');
+        Webcam.reset();
+    
+        // Reset the UI for taking a new photo
+        $('#my_camera').addClass('d-block').removeClass('d-none');
+        $('#results').addClass('d-none');
+        $('#takephoto').addClass('d-block').removeClass('d-none');
+        $('#retakephoto').addClass('d-none').removeClass('d-block');
+        $('#uploadphoto').addClass('d-none').removeClass('d-block');
+    
+        swal({
+            title: 'Success',
+            text: 'Photo uploaded successfully',
+            icon: 'success',
+            buttons: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+            timer: 2000
+        });
+    });
+    
 });
 
 function take_snapshot() {
-    //take snapshot and get image 
     Webcam.snap(function(data_uri) {
-        //display result image
+        // Display the result image
         $('#results').html('<img src="' + data_uri + '" class="d-block mx-auto rounded"/>');
 
+        // Update the profile image container
+        $('#deets-profile-img').attr('src', data_uri);
+
+        // Hide the upload image option
+        $('label[for="imageUpload"]').hide();
+
+        // Store the raw image data in the hidden input
         var raw_image_data = data_uri.replace(/^data\:image\/\w+\;base64\,/, '');
         $('#photoStore').val(raw_image_data);
     });
 
-    $('#my_camera').removeClass('d-block');
-    $('#my_camera').addClass('d-none');
-
+    // Update visibility of elements
+    $('#my_camera').removeClass('d-block').addClass('d-none');
     $('#results').removeClass('d-none');
-
-    $('#takephoto').removeClass('d-block');
-    $('#takephoto').addClass('d-none');
-
-    $('#retakephoto').removeClass('d-none');
-    $('#retakephoto').addClass('d-block');
-
-    $('#uploadphoto').removeClass('d-none');
-    $('#uploadphoto').addClass('d-block');
+    $('#takephoto').removeClass('d-block').addClass('d-none');
+    $('#retakephoto').removeClass('d-none').addClass('d-block');
+    $('#uploadphoto').removeClass('d-none').addClass('d-block');
 }
+
