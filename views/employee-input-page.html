@@ -1,165 +1,160 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Barangay Parang - Employee View - Input Cert. Details
-        </title>
-        <link rel = "stylesheet" type = "text/css" href = "../public/css/index.css">
+<head>
+    <title>Barangay Parang - Employee View - Input Cert. Details</title>
+    <link rel = "stylesheet" type = "text/css" href = "../public/css/index.css">
         <link rel = "stylesheet" type = "text/css" href = "../public/css/input-details-page.css">
         <link rel = "stylesheet" type = "text/css" href = "../public/css/index.css">
-        <script src = "../public/js/header.js" type="text/javascript"></script>
-        <script src = "../public/js/print.js" type="text/javascript"></script>
-        <script src = "../public/js/sweetalert.min.js"></script>
-        <script src="../public/js/webcam.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div class = "main-container">
-            <div class= "header" id="header">
-                <div class = "header-left">
-                    <a href="../index.html" class="header-logo-link" id="home-link1"><img src="../public/images/logo.png" class="header-logo"></a>
-                    <a href="../index.html" class="header-home" id="home-link2"><h3>Home</h3></a>
-                </div>
-                
-                <div class = "header-title">
-                    <div class = "header-text">
-                        <h3>Sangguniang Barangay ng Parang</h3>
-                        <h5>Marikina City</h5>
-                    </div>
-                </div>
-                <div class="header-right">
-                    <div class="header-user-profile">
-                        <span class="header-user-profile-text" id="profile-text">Employee</span>
-                        <img src="../public/images/employee-profile.png" class="header-user-profile" id="profile-img">
-                    </div>
-                    <a href="../index.html"><button type="button" class="header-logout-btn" id="logout-btn">Logout</button></a>
-                </div>
+       
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="main-container">
+        <div class="header" id="header">
+            <div class="header-left">
+                <a href="../index.html" class="header-logo-link" id="home-link1"><img src="../public/images/logo.png" class="header-logo"></a>
+                <a href="../index.html" class="header-home" id="home-link2"><h3>Home</h3></a>
             </div>
             
-            <div class = "back-btn-container">
-                <a href="employee-homepage.html">
-                    <img src="../public/images/back-arrow.png" id="back-arrow-img" alt="Back">
-                </a>
-                <a href="employee-homepage.html"><button type="button" value="back" id="back-btn">Back</button></a>
+            <div class="header-title">
+                <div class="header-text">
+                    <h3>Sangguniang Barangay ng Parang</h3>
+                    <h5>Marikina City</h5>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="header-user-profile">
+                    <span class="header-user-profile-text" id="profile-text">Employee</span>
+                    <img src="../public/images/employee-profile.png" class="header-user-profile" id="profile-img">
+                </div>
+                <a href="../index.html"><button type="button" class="header-logout-btn" id="logout-btn">Logout</button></a>
+            </div>
+        </div>
+        
+        <div class="back-btn-container">
+            <a href="employee-homepage.html">
+                <img src="../public/images/back-arrow.png" id="back-arrow-img" alt="Back">
+            </a>
+            <a href="employee-homepage.html"><button type="button" value="back" id="back-btn">Back</button></a>
+        </div>
+
+        <div class="sub-container">
+            <div class="text-container">
+                <div class="action-text">Please input your details below to proceed with certification printing.</div>
             </div>
 
-            <div class="sub-container">
+            <form action="" class="print-form">
+                <div class="print-panel">
+                    <!-- for Photo-->
+                    <div class="photo-container">
+                        <img src="../public/images/customer.png" class="details-profile" id="deets-profile-img">
+                        <label for="imageUpload" class="image-upload-button">Import Picture</label>
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none" onchange="previewProfileImage(event)">
+                    </div>
+                    <button type="button" class="btn btn-warning text-white" id="accesscamera" data-toggle="modal" data-target="#photoModal">Capture Photo</button>
 
-                <div class = "text-container">
-                    <div class="action-text">Please input your details below to proceed with certification printing.</div>
-                </div>
-
-                <form action="" class = "print-form">
-                    <div class = "print-panel">
-                        <!-- for Photo-->
-                        <div class="photo-container">
-                            <img src="../public/images/customer.png" class="details-profile" id="deets-profile-img">
-                            <label for="imageUpload" class="image-upload-button">Import Picture</label>
-                            <input type="file" id="imageUpload" accept="image/*" style="display: none" onchange="previewProfileImage(event)">
-                            
-                            <!-- Add buttons for webcam capture -->
-                            <button type="button" class="btn btn-warning text-white" id="accesscamera" data-toggle="modal" data-target="#photoModal">Capture Photo</button>
-                        </div>
-    
-                        <!-- Modal for Webcam -->
-                        <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Capture Photo</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                    <!-- Modal for Webcam -->
+                    <div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Capture Photo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div>
+                                        <div id="my_camera" class="d-block mx-auto rounded overflow-hidden"></div>
                                     </div>
-                                    <div class="modal-body">
-                                        <div>
-                                            <div id="my_camera" class="d-block mx-auto rounded overflow-hidden"></div>
-                                        </div>
-                                        <div id="results" class="d-none"></div>
-                                        <form method="post" id="photoForm">
-                                            <input type="hidden" id="photoStore" name="photoStore" value="">
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning mx-auto text-white" id="takephoto">Capture Photo</button>
-                                        <button type="button" class="btn btn-warning mx-auto text-white d-none" id="retakephoto">Retake</button>
-                                        <button type="submit" class="btn btn-warning mx-auto text-white d-none" id="uploadphoto" form="photoForm">Upload</button>
-                                    </div>
+                                    <div id="results" class="d-none"></div>
+                                    <form method="post" id="photoForm">
+                                        <input type="hidden" id="photoStore" name="photoStore" value="">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-warning mx-auto text-white" id="takephoto">Capture Photo</button>
+                                    <button type="button" class="btn btn-warning mx-auto text-white d-none" id="retakephoto">Retake</button>
+                                    <button type="submit" class="btn btn-warning mx-auto text-white d-none" id="uploadphoto" form="photoForm">Upload</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- for Name and Birthday-->
-                        <div class="deets1-container">
-                            <div class="name-container">
-                                <div class="deets-text">Name</div>
-                                <input type="text" id="name" name="name" placeholder="Juan C. Dela Cruz">
-                            </div>
-
-                            <div class="date-container">
-                                <div class="deets-text">Birthday</div>
-                                <input type="text" id="Birthday" class="date" name="bday-date" placeholder="MM/DD/YYYY">                             
-                            </div>
+                    <!-- for Name and Birthday-->
+                    <div class="deets1-container">
+                        <div class="name-container">
+                            <div class="deets-text">Name</div>
+                            <input type="text" id="name" name="name" placeholder="Juan C. Dela Cruz">
                         </div>
 
-                        <!-- for Address -->
-                        <div class="deets2-container">
-                            <div class="address-container">
-                                <div class="deets-text">Address</div>
-                                <input type="text" id="address" name="address" placeholder="">
-                            </div>
-                        </div>
-
-                        <!-- for CTC Issuance Date and Location -->
-                        <div class="deets3-container">
-                            <div class="date-container">
-                                <div class="deets-text">CTC Issuance Date</div>
-                                <input type="text" id="ctc-date-issued" class="date" name="ctc-date" placeholder="MM/DD/YYYY">                             
-                            </div>
-
-                            <div class="location-container">
-                                <div class="deets-text">Place of CTC Issuance<span> (City)</span></div>
-                                <input type="text" id="location" name="location" placeholder="Marikina City">
-                            </div>
-                        </div>
-
-                        <!-- for Cedula Number and Place of Issuance -->
-                        <div class="deets4-container">
-                            <div class="cedula-container">
-                                <div class="deets-text">CTC Number</div>
-                                <input type="text" id="cedula" name="cedula" placeholder="12345678">
-                            </div>
-
-                            <div class="date-container">
-                                <div class="deets-text">Certificate Issuance Date</div>
-                                <input type="text" id="cert-date-issued" class="date" name="cert-date" placeholder="MM/DD/YYYY">                             
-                            </div>
-                        </div>
-
-                        <!-- for Reason For Certificate -->
-                        <div class="deets5-container"> 
-                            <div class="deets-text">Reason For Certificate</div>
-                            <input type="text" id="reason" name="reason" placeholder="">
-                        </div>
-
-                        <div class="action-container">
-                            <button type="button" class="download-btn lrg dark" onclick="downloadFile()"><img src="../public/images/download-dark.png"><span>Download</span></button>
-                            <button type="button" class="cancel-btn light" onclick="cancelForm()"><img src="../public/images/cancel-light.png"><span>Cancel</span></button>
+                        <div class="date-container">
+                            <div class="deets-text">Birthday</div>
+                            <input type="text" id="Birthday" class="date" name="bday-date" placeholder="MM/DD/YYYY">                             
                         </div>
                     </div>
-                </form>
-            </div>
 
-        </div>
+                    <!-- for Address -->
+                    <div class="deets2-container">
+                        <div class="address-container">
+                            <div class="deets-text">Address</div>
+                            <input type="text" id="address" name="address" placeholder="">
+                        </div>
+                    </div>
 
-        <div id="validationModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p id="modalMessage"></p>
-            </div>
+                    <!-- for CTC Issuance Date and Location -->
+                    <div class="deets3-container">
+                        <div class="date-container">
+                            <div class="deets-text">CTC Issuance Date</div>
+                            <input type="text" id="ctc-date-issued" class="date" name="ctc-date" placeholder="MM/DD/YYYY">                             
+                        </div>
+
+                        <div class="location-container">
+                            <div class="deets-text">Place of CTC Issuance<span> (City)</span></div>
+                            <input type="text" id="location" name="location" placeholder="Marikina City">
+                        </div>
+                    </div>
+
+                    <!-- for Cedula Number and Place of Issuance -->
+                    <div class="deets4-container">
+                        <div class="cedula-container">
+                            <div class="deets-text">CTC Number</div>
+                            <input type="text" id="cedula" name="cedula" placeholder="12345678">
+                        </div>
+
+                        <div class="date-container">
+                            <div class="deets-text">Certificate Issuance Date</div>
+                            <input type="text" id="cert-date-issued" class="date" name="cert-date" placeholder="MM/DD/YYYY">                             
+                        </div>
+                    </div>
+
+                    <!-- for Reason For Certificate -->
+                    <div class="deets5-container"> 
+                        <div class="deets-text">Reason For Certificate</div>
+                        <input type="text" id="reason" name="reason" placeholder="">
+                    </div>
+
+                    <div class="action-container">
+                        <button type="button" class="download-btn lrg dark" onclick="downloadFile()"><img src="../public/images/download-dark.png"><span>Download</span></button>
+                        <button type="button" class="cancel-btn light" onclick="cancelForm()"><img src="../public/images/cancel-light.png"><span>Cancel</span></button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </body>
+    </div>
+
+    <div id="validationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="../public/js/sweetalert.min.js"></script>
+    <script src="../public/js/webcam.min.js"></script>
+    <script src="../public/js/print.js"></script>
+</body>
 </html>
