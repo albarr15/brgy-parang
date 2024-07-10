@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>
-            Admin: Admin Account View Page
+            Admin: Admin Account Edit Page
         </title>
         <link rel = "stylesheet" type = "text/css" href = "../public/css/homepage.css">
         <link rel = "stylesheet" type = "text/css" href = "../public/css/homepage-table.css">
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="upper-container">
-            <a href="./admin-accounts-db-view.html" id="back-button">
+            <a href="./admin-view-acct-admin.html" id="back-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="black" class="size-4">
                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm10.25.75a.75.75 0 0 0 0-1.5H6.56l1.22-1.22a.75.75 0 0 0-1.06-1.06l-2.5 2.5a.75.75 0 0 0 0 1.06l2.5 2.5a.75.75 0 1 0 1.06-1.06L6.56 8.75h4.69Z" clip-rule="evenodd"/>
                 </svg>
@@ -64,27 +64,39 @@
                                         <img src="../public/images/admin-profile.png" class="role-icon-main">
                                         <span class="role-name admin">Admin</span>
                                     </div>
+                                </div>
+
+                                <form action="" class = "acc-info-form">
+                                    <div class = "field">
+                                        <label for="acct-email-info" class ="bold-label-left">Email</label>
+                                        <div class="input-container">
+                                            <input class = "acct-email" type = "text" placeholder= "Email" id="admin-email" value="admin_acc@gmail.com">  
+                                        </div>
+                                    </div>
+                                    <div class = "field">
+                                        <label for="acct-pw-info" class ="bold-label-left">Password</label>
+                                        <div class="input-container">
+                                            <input class = "acct-pw" type = "password" placeholder= "Password" id = "admin-pw" value="admin1234">
+                                            <button type="button" class="form-action-btn" title="View Password" onclick="hidePW('admin-pw')" id="eye-admin-pw">
+                                                <img src="../public/images/action-view.png">
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class = "field">
+                                        <label for="acct-pw-info" class ="bold-label-left">Confirm Password</label>
+                                        <div class="input-container">
+                                            <input class = "acct-pw" type = "password" placeholder= "Password" id="admin-pw1" value="admin1234">
+                                            <button type="button" class="form-action-btn" title="View Password" onclick="hidePW('admin-pw1')" id="eye-admin-pw1">
+                                                <img src="../public/images/action-view.png">
+                                            </button>
+                                        </div>
+                                    </div>
                                     <div class="edit-btn-container">
-                                        <button type="button" class="form-btn edit" onclick="location.href='./admin-edit-acct-admin.html'"><img src="../public/images/form-edit.png">
-                                            <span>Edit Data</span>
+                                        <button type="submit" class="form-btn save">
+                                            <img src="../public/images/form-check.png"><span>Save Changes</span>
                                         </button>
                                     </div>
-                                </div>
-                                <div class = "field">
-                                    <label for="acct-email-info" class ="bold-label-left">Email</label>
-                                    <div class="input-container">
-                                        <input class = "acct-email" type = "text" placeholder= "Email" readonly id="admin-email" value="admin_acc@gmail.com">  
-                                    </div>
-                                </div>
-                                <div class = "field">
-                                    <label for="acct-pw-info" class ="bold-label-left">Password</label>
-                                    <div class="input-container">
-                                        <input class = "acct-pw" type = "password" placeholder= "Password" readonly id="admin-pw" value="admin1234">
-                                        <button type="button" class="form-action-btn" title="View Password" onclick="hidePW('admin-pw')" id="eye-admin-pw">
-                                            <img src="../public/images/action-view.png">
-                                        </button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </td>
                     </tr>
@@ -112,6 +124,12 @@
                     </tr>
                 </tbody>
             </table>
+            <div id="validationModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p id="modalMessage"></p>
+                </div>
+            </div>
         </div>
     </body>
 </html>
