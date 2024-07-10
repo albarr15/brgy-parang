@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // NOTE: does not update email or password yet
         var redirectUrl;
-        var user_role = localStorage.getItem("userRole").toLowerCase();
+        var role_name = document.getElementById("role-name").innerHTML;
+        var user_role = role_name.toLowerCase();
 
         var email_id = user_role + "-email";
         var pw_id = user_role + "-pw";
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // for now, just set minimum length of password to be 8
         
-        if (!user_pw.value) {
+        if (!user_pw.value || !confirm_user_pw.value) {
             valid = false;
             user_pw.classList.add("input-error");
             errorMessage += "Password is required.\n"
