@@ -178,10 +178,46 @@ function showModal(message) {
     }
 }
 
-function downloadFile() {
-    if (!validateForm()) {
-        return;
+function formatBirthday(birthday) {
+    // Split the birthday string into parts
+    const parts = birthday.split('/');
+
+    // Extract month, day, and year
+    const month = parts[0];
+    const day = parts[1];
+    const year = parts[2];
+
+    // Create an array of month names for formatting
+    const monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+    ];
+
+    // Get the month name based on the month number (adjust for zero-index)
+    const monthName = monthNames[parseInt(month, 10) - 1];
+
+    // Format day with suffix (st, nd, rd, th)
+    let daySuffix;
+    if (day == 1 || day == 21 || day == 31) {
+        daySuffix = "st";
+    } else if (day == 2 || day == 22) {
+        daySuffix = "nd";
+    } else if (day == 3 || day == 23) {
+        daySuffix = "rd";
+    } else {
+        daySuffix = "th";
     }
+
+    // Construct the formatted string
+    const formattedBirthday = `${day}${daySuffix} of ${monthName}, ${year}`;
+
+    return formattedBirthday;
+}
+
+function downloadFile() {
+    
 
     // not yet done
 }

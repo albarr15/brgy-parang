@@ -7,6 +7,7 @@
         <link rel = "stylesheet" type = "text/css" href = "../public/css/index.css">
         <link rel = "stylesheet" type = "text/css" href = "../public/css/input-details-page.css">
         <script src = "../public/js/print.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -58,7 +59,7 @@
                         <div class="deets1-container">
                             <div class="name-container">
                                 <div class="deets-text">Name</div>
-                                <input type="text" id="name" name="name" placeholder="Juan C. Dela Cruz">
+                                <input type="text" id="name" name="name" placeholder="Juan C. Dela Cruz" class="bold-input">
                             </div>
 
                             <div class="date-container">
@@ -71,7 +72,7 @@
                         <div class="deets2-container">
                             <div class="address-container">
                                 <div class="deets-text">Address</div>
-                                <input type="text" id="address" name="address" placeholder="">
+                                <input type="text" id="address" name="address" placeholder="" class="bold-input">
                             </div>
                         </div>
 
@@ -84,7 +85,7 @@
 
                             <div class="location-container">
                                 <div class="deets-text">Place of CTC Issuance<span> (City)</span></div>
-                                <input type="text" id="location" name="location" placeholder="Marikina City">
+                                <input type="text" id="location" name="location" placeholder="Marikina City" class="bold-input">
                             </div>
                         </div>
 
@@ -92,7 +93,7 @@
                         <div class="deets4-container">
                             <div class="cedula-container">
                                 <div class="deets-text">CTC Number</div>
-                                <input type="text" id="cedula" name="cedula" placeholder="12345678">
+                                <input type="text" id="cedula" name="cedula" placeholder="12345678" class="bold-input">
                             </div>
 
                             <div class="date-container">
@@ -104,17 +105,16 @@
                         <!-- for Reason For Certificate -->
                         <div class="deets5-container"> 
                             <div class="deets-text">Reason For Certificate</div>
-                            <input type="text" id="reason" name="reason" placeholder="">
+                            <input type="text" id="reason" name="reason" placeholder="" class="bold-input">
                         </div>
 
                         <div class="action-container">
-                            <button type="button" class="download-btn lrg dark" onclick="downloadFile()"><img src="../public/images/download-dark.png"><span>Download</span></button>
+                            <button type="button" class="download-btn lrg dark" onclick="downloadFileLupon()"><img src="../public/images/download-dark.png"><span>Download</span></button>
                             <button type="button" class="cancel-btn light" onclick="cancelForm()"><img src="../public/images/cancel-light.png"><span>Cancel</span></button>
                         </div>
                     </div>
                 </form>
             </div>
-
         </div>
 
         <div id="validationModal" class="modal">
@@ -123,5 +123,141 @@
                 <p id="modalMessage"></p>
             </div>
         </div>
+        
+        <script>
+            const { jsPDF } = window.jspdf;
+
+            function downloadFileLupon() {
+                if (!validateForm()) {
+                    return;
+                }
+
+                const form = document.querySelector('.print-form');
+                const name = form.elements['name'].value;
+                const birthday = formatBirthday(form.elements['bday-date'].value);
+                const address = form.elements['address'].value;
+                const ctcDateIssued = formatBirthday(form.elements['ctc-date'].value);
+                const location = form.elements['location'].value;
+                const cedula = form.elements['cedula'].value;
+                const certDateIssued = formatBirthday(form.elements['cert-date'].value);
+                const reason = form.elements['reason'].value.toUpperCase();
+                const profileImg = document.getElementById('deets-profile-img').src;
+        
+                const doc = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: [215.9, 279.4]  // width, height
+
+
+                });
+
+                doc.setFont('Times', 'bold'); 
+        
+                // Title and Header
+                
+                const logoWidth = 100;
+                const logolength = 30;
+                doc.addImage('../public/images/logo-cert.png', 'PNG', 57, 10, logoWidth, logolength);
+
+                doc.setFontSize(12);
+                doc.text('Republic of the Philippines',     105, 45, null, null, 'center');
+                doc.text('City of Marikina',                105, 50, null, null, 'center');
+                doc.setFontSize(14);
+                doc.text('BARANGAY PARANG',                 105, 56, null, null, 'center');
+                doc.setFontSize(16);
+                doc.text('OFFICE OF THE PUNONG BARANGAY',   105, 66, null, null, 'center');
+                doc.setFontSize(20);
+
+                doc.text('C E R T I F I C A T I O N',       105, 76, null, null, 'center');
+                var textWidth = doc.getTextWidth('C E R T I F I C A T I O N');
+                doc.setLineWidth(0.5);
+                doc.line(105 - textWidth / 2, 77, 105 + textWidth / 2, 77);
+        
+                // Body Text
+
+                const imgWidth = 30;
+                const imgHeight = 30;
+                doc.addImage(profileImg, 'JPEG', 170, 85, imgWidth, imgHeight);
+
+                doc.addImage('../public/images/sign-box-cert.png', 'PNG', 168, 118, 35, 35);
+
+                doc.setFont("Times", "normal");
+                doc.setFontSize(14);
+                doc.text('To whom it may concern;',             20, 90);
+                doc.text(`This is to certify the fact that`,    20, 102);
+
+                // NAME BOLD
+                doc.setFont("Times", "bold");
+                doc.text(`${name}`,                             79, 102);
+                textWidth = doc.getTextWidth(`${name}`);
+                doc.setLineWidth(0.5);
+                doc.line(79, 103, 79 + textWidth, 103);
+                doc.setFont("Times", "normal");
+
+                doc.text(`born on the ${birthday} at (missing). whose picture`,                20, 108);
+                doc.text(`and signature appears, is a bonafide resident of Barangay Parang,`,  20, 114);
+                doc.text(`currently residing at`,                                              20, 120);
+
+                // ADDRESS BOLD
+                doc.setFont("Times", "bold");
+                doc.text(`${address}.`, 61, 120);
+                textWidth = doc.getTextWidth(`${address}`);
+                doc.setLineWidth(0.5);
+                doc.line(61, 121, 61 + textWidth, 121);
+                doc.setFont("Times", "normal");
+
+                doc.text(`and that he/she exhibited to me his/her Community Tax`,   20, 126);
+                doc.text(`Certificate No. `,                                        20, 132);
+
+                // CEDULA NO. BOLD
+                doc.setFont("Times", "bold");
+                doc.text(`${cedula}`, 50, 132);
+                textWidth = doc.getTextWidth(`${cedula}`);
+                doc.setLineWidth(0.5);
+                doc.line(50, 133, 50 + textWidth, 133);
+                doc.setFont("Times", "normal");
+
+                doc.text(`issued at`, 71, 132);
+
+                // CEDULA NO. BOLD
+                doc.setFont("Times", "bold");
+                doc.text(`${location}`, 89, 132);
+                textWidth = doc.getTextWidth(`${location}`);
+                doc.setLineWidth(0.5);
+                doc.line(89, 133, 89 + textWidth, 133);
+                doc.setFont("Times", "normal");
+
+                doc.text(`on the`, 120, 132);
+
+                //
+                doc.setFont("Times", "bold");
+                doc.text(`${ctcDateIssued}.`, 20, 138);
+                textWidth = doc.getTextWidth(`${ctcDateIssued}`);
+                doc.setLineWidth(0.5);
+                doc.line(20, 139, 20 + textWidth, 139);
+                doc.setFont("Times", "normal");
+
+
+                doc.text(`This certification is hereby issued to the above mentioned individual`, 20, 155);
+                doc.text(`for the fulfillment of `, 20, 161);
+
+                //
+                doc.setFont("Times", "bold");
+                doc.text(`${reason}.`, 63, 161);
+                textWidth = doc.getTextWidth(`${reason}`);
+                doc.setLineWidth(0.5);
+                doc.line(63, 162, 63 + textWidth, 162);
+                doc.setFont("Times", "normal");
+
+                doc.text(`This was issued on the ${certDateIssued} at Barangay`, 20, 170);
+                doc.text(`Parang, Marikina City.`, 20, 176);
+        
+                // Signature
+                doc.addImage('../public/images/footer-cert.png', 'PNG', 20, 200, 155, 75);
+        
+                // Open PDF in a new window
+                doc.output('dataurlnewwindow');
+            }
+        </script>
     </body>
 </html>
