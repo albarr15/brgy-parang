@@ -53,27 +53,27 @@ document.addEventListener("DOMContentLoaded", function() {
         if(valid) {
             switch (selectedView) {
             case "Employee Log-in:":
-                redirectUrl = "employee-homepage.html";
+                //redirectUrl = "employee-homepage.html";
                 login("Employee");
                 break;
             case "Administrator Log-in:":
-                redirectUrl = "admin-homepage.html";
+                //redirectUrl = "admin-homepage.html";
                 login("Admin");
                 break;
             case "Tanod Log-in:":
-                redirectUrl = "tanod-homepage.html";
+                //redirectUrl = "tanod-homepage.html";
                 login("Tanod");
                 break;
             case "Lupon Log-in:":
-                redirectUrl = "lupon-homepage.html";
+                //redirectUrl = "lupon-homepage.html";
                 login("Lupon");
                 break;
             default:
-                redirectUrl = "employee-homepage.html";
+                //redirectUrl = "employee-homepage.html";
                 login("Employee");
             }
 
-            window.location.href = redirectUrl;
+            //window.location.href = redirectUrl;
         } else {
             showModal(errorMessage);
         }

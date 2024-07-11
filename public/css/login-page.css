@@ -25,6 +25,16 @@
 
     padding: 1rem;
   }
+
+  .login-panel-employee.tanod{
+    color: black;
+    background: #AFE1D7;
+  }
+
+  .login-panel-employee.lupon{
+    color: black;
+    background: #F3BE72;
+  }
   
   .login-panel-title {
     font-weight: bold;
