@@ -3,6 +3,7 @@ const app = express();
 const admin_loginRoutes = require('./routes/admin-loginRoutes');
 const admin_tanodRoutes = require('./routes/admin-tanodRoutes');
 const admin_luponRoutes = require('./routes/admin-luponRoutes');
+const certificate_PrintingRoutes = require('./routes/certificate-printingRoutes');
 const { registerHelpers } = require('./helpers/handlebarHelpers');
 
 const path = require('path');
@@ -54,6 +55,21 @@ app.use(admin_tanodRoutes);
 
 //admin lupon routes
 app.use(admin_luponRoutes);
+
+app.use(certificate_PrintingRoutes);
+
+//for cert printing
+app.get('/employee-home', function(req, res){
+    res.render('employee-home',{
+        layout: 'layout',
+        title: 'Barangay Parang - Employee Homepage',
+        cssFile1: 'index',
+        cssFile2: null,
+        javascriptFile1: 'header',
+        javascriptFile2: null,
+    });
+});
+
 
 
 // Start the server
