@@ -28,12 +28,15 @@ function cancelForm() {
     document.getElementById('reason').value = '';
     document.getElementById('deets-profile-img').src = '../public/images/customer.png';
 
-    document.querySelector('label[for="imageUpload"]').style.display = 'inline-block';
-    document.getElementById('imageUpload').value = '';
+    // document.querySelector('label[for="imageUpload"]').style.display = 'inline-block';
+    // document.getElementById('imageUpload').value = '';
+
+    $('#accesscamera').show();
 }
 
 function validateForm() {
-    const imageUpload = document.getElementById('imageUpload').files[0];
+    // const imageUpload = document.getElementById('imageUpload').files[0];
+    const uploadedImage = document.getElementById('photoStore').value;
     const name = document.getElementById('name').value.trim();
     const address = document.getElementById('address').value.trim();
     const ctc_date = document.getElementById('ctc-date-issued').value.trim();
@@ -46,7 +49,7 @@ function validateForm() {
     let valid = true;
     let errorMessage = '';
 
-    if (!imageUpload) {
+    if (!uploadedImage) {
         valid = false;
         errorMessage += 'Profile image is required.\n';
     }
@@ -178,10 +181,46 @@ function showModal(message) {
     }
 }
 
-function downloadFile() {
-    if (!validateForm()) {
-        return;
+function formatBirthday(birthday) {
+    // Split the birthday string into parts
+    const parts = birthday.split('/');
+
+    // Extract month, day, and year
+    const month = parts[0];
+    const day = parts[1];
+    const year = parts[2];
+
+    // Create an array of month names for formatting
+    const monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+    ];
+
+    // Get the month name based on the month number (adjust for zero-index)
+    const monthName = monthNames[parseInt(month, 10) - 1];
+
+    // Format day with suffix (st, nd, rd, th)
+    let daySuffix;
+    if (day == 1 || day == 21 || day == 31) {
+        daySuffix = "st";
+    } else if (day == 2 || day == 22) {
+        daySuffix = "nd";
+    } else if (day == 3 || day == 23) {
+        daySuffix = "rd";
+    } else {
+        daySuffix = "th";
     }
+
+    // Construct the formatted string
+    const formattedBirthday = `${day}${daySuffix} of ${monthName}, ${year}`;
+
+    return formattedBirthday;
+}
+
+function downloadFile() {
+    
 
     // not yet done
 }
@@ -193,3 +232,133 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault(); // Prevent default form submission
     });
 });
+
+//for webcam
+$(document).ready(function() {
+    Webcam.set({
+        width: 320,
+        height: 240,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+
+    $('#accesscamera').on('click', function() {
+        Webcam.reset();
+        Webcam.on('error', function() {
+            $('#photoModal').modal('hide');
+            swal({
+                title: 'Warning',
+                text: 'Please give permission to access your webcam',
+                icon: 'warning'
+            });
+        });
+        Webcam.attach('#my_camera');
+    });
+
+    $('#takephoto').on('click', take_snapshot);
+
+    $('#retakephoto').on('click', function() {
+        $('#my_camera').addClass('d-block');
+        $('#my_camera').removeClass('d-none');
+
+        $('#results').addClass('d-none');
+
+        $('#takephoto').addClass('d-block');
+        $('#takephoto').removeClass('d-none');
+
+        $('#retakephoto').addClass('d-none');
+        $('#retakephoto').removeClass('d-block');
+
+        $('#uploadphoto').addClass('d-none');
+        $('#uploadphoto').removeClass('d-block');
+    });
+
+    $('#photoForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        Webcam.reset();
+
+        $('#my_camera').addClass('d-block');
+        $('#my_camera').removeClass('d-none');
+
+        $('#results').addClass('d-none');
+
+        $('#takephoto').addClass('d-block');
+        $('#takephoto').removeClass('d-none');
+
+        $('#retakephoto').addClass('d-none');
+        $('#retakephoto').removeClass('d-block');
+
+        $('#uploadphoto').addClass('d-none');
+        $('#uploadphoto').removeClass('d-block');
+
+        $('#photoModal').modal('hide');
+
+        swal({
+            title: 'Success',
+            text: 'Photo uploaded successfully',
+            icon: 'success',
+            buttons: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+            timer: 2000
+        });
+    });
+
+    $('#uploadphoto').on('click', function() {
+        const data_uri = $('#photoStore').val();
+        if (data_uri) {
+            // Update the profile image container
+            $('#deets-profile-img').attr('src', 'data:image/jpeg;base64,' + data_uri);
+    
+            // Hide the capture button
+            $('#accesscamera').hide();
+        }
+    
+        // Close the modal and reset the webcam
+        $('#photoModal').modal('hide');
+        Webcam.reset();
+    
+        // Reset the UI for taking a new photo
+        $('#my_camera').addClass('d-block').removeClass('d-none');
+        $('#results').addClass('d-none');
+        $('#takephoto').addClass('d-block').removeClass('d-none');
+        $('#retakephoto').addClass('d-none').removeClass('d-block');
+        $('#uploadphoto').addClass('d-none').removeClass('d-block');
+    
+        swal({
+            title: 'Success',
+            text: 'Photo uploaded successfully',
+            icon: 'success',
+            buttons: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+            timer: 2000
+        });
+    });
+    
+});
+
+function take_snapshot() {
+    Webcam.snap(function(data_uri) {
+        // Display the result image
+        $('#results').html('<img src="' + data_uri + '" class="d-block mx-auto rounded"/>');
+
+        // Update the profile image container
+        $('#deets-profile-img').attr('src', data_uri);
+
+        // Hide the upload image option
+        $('label[for="imageUpload"]').hide();
+
+        // Store the raw image data in the hidden input
+        var raw_image_data = data_uri.replace(/^data\:image\/\w+\;base64\,/, '');
+        $('#photoStore').val(raw_image_data);
+    });
+
+    // Update visibility of elements
+    $('#my_camera').removeClass('d-block').addClass('d-none');
+    $('#results').removeClass('d-none');
+    $('#takephoto').removeClass('d-block').addClass('d-none');
+    $('#retakephoto').removeClass('d-none').addClass('d-block');
+    $('#uploadphoto').removeClass('d-none').addClass('d-block');
+}

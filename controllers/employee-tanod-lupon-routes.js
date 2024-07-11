@@ -5,13 +5,13 @@ const session = require('express-session');
 function add(app){
     const mongoose = require('mongoose');
 
-    //Start
-    app.get('/', function(req, resp){
-        resp.render('index', {
-            layout: 'index-main',
-            title: 'Welcome to Barangay Parang Website'
-        });
-    });
+    // //Start
+    // app.get('/', function(req, resp){
+    //     resp.render('index', {
+    //         layout: 'index-main',
+    //         title: 'Welcome to Barangay Parang Website'
+    //     });
+    // });
 
 
     /************************************************************EMPLOYEE************************************************/
@@ -30,7 +30,9 @@ function add(app){
         //try to find user
         try{
             const curUser = await UserModel.findOne({email: email}); //finds if there is a match in users
-            console.log(curUser.role);
+            // console.log(curUser.role);
+            // console.log(curUser.password);
+            // console.log(curUser.email);
             if(!curUser || curUser.password != password || curUser.role == "lupon" || curUser.role == "tanod" || curUser.role == "admin"){  //checks if the user exist and the password is correct
                 resp.render('employee-login-page', {
                     layout: 'index-login',
@@ -62,12 +64,12 @@ function add(app){
     });
 
     //Employee-Check-Clearance
-    app.get('/employee-check-clearance', function(req, resp){
-        resp.render('employee-check-clear', {
-            layout: 'index-clearance',
-            title: 'Check Clearance'
-        });
-    });
+    // app.get('/employee-check-clearance', function(req, resp){
+    //     resp.render('employee-check-clear', {
+    //         layout: 'index-clearance',
+    //         title: 'Check Clearance'
+    //     });
+    // });
 
     app.get('/logout', function(req,resp){
         resp.redirect('/');
