@@ -296,8 +296,15 @@ const createTanodCase = async (req, res) => {
         } = req.body;
 
         // _id
-        const count = await TanodCaseModel.countDocuments();
-        const newReviewId = `${count + 1}`;
+        // Find all cases and convert _id to integers for sorting
+        const allCases = await TanodCaseModel.find().exec();
+        const caseIds = allCases.map(caseDoc => parseInt(caseDoc._id, 10)).filter(id => !isNaN(id));
+
+        // Get the highest _id
+        const latestIdNum = caseIds.length > 0 ? Math.max(...caseIds) : 0;
+        const newReviewId = (latestIdNum + 1).toString();
+        
+        console.log(newReviewId);
 
         await TanodCaseModel.create({
             _id: newReviewId,
@@ -332,7 +339,7 @@ const createTanodCase = async (req, res) => {
         res.redirect("/admin-tanod-db-view");
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ message: "Server error" });
+        return res.status(500).json({ message: "Server error Here" });
     }
 };
 

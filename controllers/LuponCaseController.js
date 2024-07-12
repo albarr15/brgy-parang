@@ -94,8 +94,13 @@ const createLuponCase = async (req, res) => {
         } = req.body;
 
         // _id
-        const count = await LuponCaseModel.countDocuments();
-        const newReviewId = `${count + 1}`;
+        // Find all cases and convert _id to integers for sorting
+        const allCases = await LuponCaseModel.find().exec();
+        const caseIds = allCases.map(caseDoc => parseInt(caseDoc._id, 10)).filter(id => !isNaN(id));
+
+        // Get the highest _id
+        const latestIdNum = caseIds.length > 0 ? Math.max(...caseIds) : 0;
+        const newReviewId = (latestIdNum + 1).toString();
 
         await LuponCaseModel.create({
             _id: newReviewId,

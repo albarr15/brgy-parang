@@ -24,6 +24,6 @@ router.get('/search-cases/:search_name',    tanodCaseController.searchTanodCase)
 
 router.get('/A-tanod-create-case',          tanodCaseController.viewCreateTanodCase);
 
-router.post('/submit-tanod-case',            tanodCaseController.createTanodCase);
+router.post('/submit-tanod-case',           tanodCaseController.createTanodCase);
 
 module.exports = router;

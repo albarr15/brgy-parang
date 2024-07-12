@@ -1,3 +1,49 @@
+<style>
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        color: green;
+        font-family: 'Inter';
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .bold-input {
+        font-weight: bold;
+    }
+</style>
+
 <div class = "main-container">
     <div class= "header" id="header">
         <div class = "header-left">
@@ -36,19 +82,19 @@
             <div class = "form-actual-container">
 
                 {{!-- FORM --}}
-                <form action="/submit-tanod-case" method="post" class="case-form">
+                <form action="/submit-tanod-case" method="post" id="case-form" class="case-form">
                     <div class = "form-section" id = "basic-info">
                         <div class = "column-section">
                             <label for="entry-number-input" class ="bold-label">Entry Number</label>
-                            <input class = "entry-number-input" type = "text" placeholder= "Entry Number" name="EntryNo">
+                            <input class = "entry-number-input" type = "text" placeholder= "Entry Number" name="EntryNo" required>
                         </div>
                         <div class = "column-section">
                             <label for="date" class ="bold-label">Date</label>
-                            <input type = "date" id = "dateInput" name="Date">
+                            <input type = "date" id = "dateInput" name="Date" required>
                         </div>
                         <div class = "column-section1">
                             <label for="case-form" class ="bold-label">Status</label>
-                            <select name="Status" class="status-dropdown" selected = "1">
+                            <select name="Status" class="status-dropdown" selected = "1" required>
                                 <option value="" selected hidden>Select Status</option>
                                 <option value="1">Resolved</option>
                                 <option value="0">Ongoing</option>
@@ -59,42 +105,42 @@
                     <div class = "form-section" id = "reportee-info">
                         <div class = "input-pair">
                             <label for="last-name-input">Last Name</label>
-                            <input class = "last-name-input" type ="text" placeholder="Last Name" name="reporteeLastName">
+                            <input class = "last-name-input" type ="text" placeholder="Last Name" name="reporteeLastName" required>
                         </div>
                         <div class = "input-pair">
                             <label for="middle-initial-input">Middle Initial</label>
-                            <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" name="reporteeMiddleInitial">
+                            <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" name="reporteeMiddleInitial" required> 
                         </div>
                         <div class = "input-pair">
                             <label for="first-name-input">First Name</label>
-                            <input class = "first-name-input" type = "text" placeholder="First Name" name="reporteeFirstName">
+                            <input class = "first-name-input" type = "text" placeholder="First Name" name="reporteeFirstName" required>
                         </div>
                     </div>
                     <div class="form-section" id = "reportee-additional-info">
                         <div class = "input-pair">
                             <label for="">Reportee Address</label>
-                            <input class = "address-input" type = "text" placeholder="Reportee Address" name="reporteeAddress"> 
+                            <input class = "address-input" type = "text" placeholder="Reportee Address" name="reporteeAddress" required> 
                         </div>
                     </div>
                     <span class="section-name">Nature of Blotter</span>
                     <div class = "form-section">
                         <div class = "input-pair">
-                            <input class = "nature-of-blotter-input" type = "text" placeholder="Nature of Blotter" name="natureOfBlotter">
+                            <input class = "nature-of-blotter-input" type = "text" placeholder="Nature of Blotter" name="natureOfBlotter" required>
                         </div>
                     </div>
                     <span class = "section-name">Respondent Information</span>
                     <div class = "form-section" id = "respondent-info">
                         <div class = "input-pair">
                             <label for="last-name-input">Last Name</label>
-                            <input class = "last-name-input" type ="text" placeholder="Last Name" name="respondentLastName">
+                            <input class = "last-name-input" type ="text" placeholder="Last Name" name="respondentLastName" required>
                         </div>
                         <div class = "input-pair">
                             <label for="middle-initial-input">Middle Initial</label>
-                            <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" name="respondentMiddleInitial">
+                            <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" name="respondentMiddleInitial" required>
                         </div>
                         <div class = "input-pair">
                             <label for="first-name-input">First Name</label>
-                            <input class = "first-name-input" type = "text" placeholder="First Name" name="respondentFirstName">
+                            <input class = "first-name-input" type = "text" placeholder="First Name" name="respondentFirstName" required>
                         </div>
                     </div>
                     <span class = "section-name">Desk Officer Information</span>
@@ -102,36 +148,36 @@
                     <div class = "form-section" id = "desk-officer-information">
                         <div class = "input-pair">
                             <label for="last-name-input">Last Name</label>
-                            <input class = "last-name-input" type ="text" placeholder="Last Name" name="deskOfficerLastName">
+                            <input class = "last-name-input" type ="text" placeholder="Last Name" name="deskOfficerLastName" required>
                         </div>
                         <div class = "input-pair">
                             <label for="middle-initial-input">Middle Initial</label>
-                            <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" name="deskOfficerMiddleInitial">
+                            <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" name="deskOfficerMiddleInitial" required>
                         </div>
                         <div class = "input-pair">
                             <label for="first-name-input">First Name</label>
-                            <input class = "first-name-input" type = "text" placeholder="First Name" name="deskOfficerFirstName">
+                            <input class = "first-name-input" type = "text" placeholder="First Name" name="deskOfficerFirstName" required>
                         </div>
                     </div>
                     <span class = "section-name">Witness Information</span>
                     <div class = "form-section" id = "witness-information">
                         <div class = "input-pair">
                             <label for="last-name-input">Last Name</label>
-                            <input class = "last-name-input" type ="text" placeholder="Last Name" name="witnessLastName">
+                            <input class = "last-name-input" type ="text" placeholder="Last Name" name="witnessLastName" required>
                         </div>
                         <div class = "input-pair">
                             <label for="middle-initial-input">Middle Initial</label>
-                            <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" name="witnessMiddleInitial">
+                            <input class = "middle-name-input" type = "text" placeholder="M.I." maxlength="1" name="witnessMiddleInitial" required>
                         </div>
                         <div class = "input-pair">
                             <label for="first-name-input">First Name</label>
-                            <input class = "first-name-input" type = "text" placeholder="First Name" name="witnessFirstName">
+                            <input class = "first-name-input" type = "text" placeholder="First Name" name="witnessFirstName" required>
                         </div>
                     </div>
                     <span class ="section-name">Location</h5>
                     <div class = "form-section" id="location">
                         <div class = "input-pair">
-                            <input class = "location-input" type = "text" placeholder="Location" name="location">
+                            <input class = "location-input" type = "text" placeholder="Location" name="location" required>
                         </div>
                     </div>
                 </form>
@@ -141,6 +187,13 @@
          <div class = "buttons-container">
             <button type="button" class="form-btn save"     id="create-submit-btn"> <img src="/images/form-check.png"><span>Save Changes</span></button>
             <button type="button" class="form-btn discard"  id="discardButton">     <img src="/images/form-trash.png"><span>Discard Changes</span></button>
+        </div>
+
+        <div id="validationModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
         </div>
     </div>
 </div>

@@ -57,11 +57,27 @@ document.addEventListener("DOMContentLoaded", function() {
     const createSumbitBtn = document.getElementById('create-submit-btn');
     if(createSumbitBtn) {
         createSumbitBtn.addEventListener('click', function () {
-
-            console.log("checking createSumbitBtn")
-
             const form = document.querySelector('.case-form');
-            form.submit();
+            if (form == null) {
+                const errorMessage = 'Form not found.';
+                showModal(errorMessage);
+            } else {
+                const inputs = form.querySelectorAll('input, textarea, select');
+                let formIsValid = true;
+
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        formIsValid = false;
+                    }
+                });
+
+                if (!formIsValid) {
+                    const errorMessage = 'All inputs are required.';
+                    showModal(errorMessage);
+                } else {
+                    form.submit();
+                }
+            }
         });
     }
 
@@ -92,11 +108,27 @@ document.addEventListener("DOMContentLoaded", function() {
     const createSumbitBtnLupon = document.getElementById('create-submit-btn-lupon');
     if(createSumbitBtnLupon) {
         createSumbitBtnLupon.addEventListener('click', function () {
-
-            console.log("checking createSumbitBtnLupon")
-
             const form = document.querySelector('.case-form');
-            form.submit();
+            if (form == null) {
+                const errorMessage = 'Form not found.';
+                showModal(errorMessage);
+            } else {
+                const inputs = form.querySelectorAll('input, textarea, select');
+                let formIsValid = true;
+
+                inputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        formIsValid = false;
+                    }
+                });
+
+                if (!formIsValid) {
+                    const errorMessage = 'All inputs are required.';
+                    showModal(errorMessage);
+                } else {
+                    form.submit();
+                }
+            }
         });
     }
 });
@@ -131,4 +163,26 @@ function discardChanges() {
     inputs.forEach(input => {
         input.value = input.placeholder;
     });
+}
+
+function showModal(message) {
+    const modal = document.getElementById('validationModal');
+    const modalMessage = document.getElementById('modalMessage');
+    const closeBtn = document.getElementsByClassName('close')[0];
+    const formattedMessage = message
+        .replace(/required/g, '<span style="color: red;">required</span>')
+        .replace(/Invalid/g, '<span style="color: red;">Invalid</span>');
+
+    modalMessage.innerHTML = formattedMessage.replace(/\n/g, '<br>');
+    modal.style.display = 'block';
+
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
 }
