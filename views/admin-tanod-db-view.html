@@ -5,8 +5,7 @@
             Admin: Tanod DB viewing
         </title>
         <link rel = "stylesheet" type = "text/css" href = "../public/css/homepage.css">
-        <link rel = "stylesheet" type = "text/css" href = "../public/css/index.css">
-        <script src = "../public/js/header.js" type="text/javascript"></script>
+        <link rel = "stylesheet" type = "text/css" href = "../public/css/db-view.css">
         <script src = "../public/js/components.js" type="text/javascript"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -54,21 +53,36 @@
                     </form>
                   </div>
             </div>
-            <div class="box-content">
-                <div class="box-content-header">
-                    <div class="content-text">Name</div>
-                    <div class="content-text">Tanod Case Status</div>
-                    <div class="content-text">Actions</div>
+            
+            <div class="db-main-box">
+                <div class="db-main-box-header">
+                    <div class="checkboxCol"></div>
+                    <div class="nameCol">Name</div>
+                    <div class="statusCol">Tanod Case Status</div>
+                    <div class="viewCol"></div>
+                    <div class="actionCol">Actions</div>
                 </div>
-                <div class="box-content-main">
-                    <button type="button" class="checkbox margin"><img src="../public/images/Done.png"></button>
-                    <div class="content-text-main">Juan Dela Cruz</div>
-                    <button type="button" class="status resolved margin"><img src="../public/images/resolved-circle.png"><span>Resolved</span></button>
-                    <a href="A-tanod-view-case.html" class="content-text-main underline">View Tanod Case</a>
-                    <a href="admin_T-onClick-print.html"><button type="button" class="print-btn reg dark margin"><img src="../public/images/print-dark.png"><span>Print</span></button></a>
+                <div class="db-main-box-content">
+                    <div class="checkboxCol-Content">
+                        <button type="button" class="checkbox margin"><img src="../public/images/Done.png">
+                    </div>
+
+                    <div class="nameCol-Content">Juan Dela Cruz</div>
+
+                    <div class="statusCol-Content">
+                        <button type="button" class="status resolved"><img src="../public/images/resolved-circle.png"><span>Resolved</span></button>
+                    </div>
+
+                    <div class="viewCol-Content">
+                        <a href="A-tanod-view-case.html">View Tanod Case</a>
+                    </div>
+                    
+                    <div class="actionCol-Content">
+                        <a href="admin_T-onClick-print.html"><button type="button" class="print-btn reg dark margin"><img src="../public/images/print-dark.png"><span>Print</span></button></a>
+                    </div>
                 </div>
-                <div class="box-content-main">
-                    <button type="button" class="checkbox margin"><img src="../public/images/Done.png"></button>
+                <!-- <div class="box-content-main">
+                    <button type="button" class="checkbox margin"><img src="../public/images/Done.png">
                     <div class="content-text-main">Juan Dela Cruz</div>
                     <button type="button" class="status ongoing margin"><img src="../public/images/ongoing-circle.png"><span>Resolved</span></button>
                     <a href="A-tanod-view-case.html" class="content-text-main underline">View Tanod Case</a>
@@ -92,10 +106,11 @@
                     <button type="button" class="checkbox margin"><img src="../public/images/Done.png"></button>
                     <div class="content-text-main">Juan Dela Cruz</div>
                     <button type="button" class="status resolved margin"><img src="../public/images/resolved-circle.png"><span>Resolved</span></button>
-                    <a href="A-tanod-view-case.html" class="content-text-main underline">View Tanod Case</a>
-                    <a href="admin_T-onClick-print.html"><button type="button" class="print-btn reg dark margin"><img src="../public/images/print-dark.png"><span>Print</span></button></a>
-                </div>
+                    <a href="#" class="content-text-main underline">View Tanod Case</a>
+                    <button type="button" class="print-btn reg dark margin"><img src="../public/images/print-dark.png"><span>Print</span></button>
+                </div> -->
             </div>
+
             <div class="box-content-page">
                 <button class="page-btn" id="count-down">  &lt</button>
                 <div class="page-count" id="page-num">1</div>

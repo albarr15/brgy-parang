@@ -19,18 +19,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let valid = true;
         let errorMessage = "";
-
-        // for now, just set minimum length of password to be 8
         
         if (!user_pw.value) {
             valid = false;
             user_pw.classList.add("input-error");
             errorMessage += "Password is required.\n"
-        }
-        else if (user_pw.value.length < 8) {
-            valid = false;
-            user_pw.classList.add("input-error");
-            errorMessage += "Incorrect password.\n"
         }
         else {
             user_pw.classList.remove("input-error");
@@ -50,32 +43,11 @@ document.addEventListener("DOMContentLoaded", function() {
             user_email.classList.remove("input-error");
         }
 
-        if(valid) {
-            switch (selectedView) {
-            case "Employee Log-in:":
-                redirectUrl = "employee-homepage.html";
-                login("Employee");
-                break;
-            case "Administrator Log-in:":
-                redirectUrl = "admin-homepage.html";
-                login("Admin");
-                break;
-            case "Tanod Log-in:":
-                redirectUrl = "tanod-homepage.html";
-                login("Tanod");
-                break;
-            case "Lupon Log-in:":
-                redirectUrl = "lupon-homepage.html";
-                login("Lupon");
-                break;
-            default:
-                redirectUrl = "employee-homepage.html";
-                login("Employee");
-            }
-
-            window.location.href = redirectUrl;
-        } else {
+        if(!valid) {
             showModal(errorMessage);
+        }
+        else {
+            login_form.submit(); // Submit the form if valid
         }
     });
 });

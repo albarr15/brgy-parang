@@ -29,6 +29,76 @@ document.addEventListener("DOMContentLoaded", function() {
             this.value = capitalizeName(this.value);
         });
     });
+
+    //TANOD
+    const saveButton = document.getElementById('saveButton');
+    if (saveButton) {
+        saveButton.addEventListener('click', function () {
+
+            console.log("checking saveButton")
+
+            checkChanges();
+            const form = document.querySelector('.case-form');
+            form.submit();
+        });
+    }
+
+    const discardButton = document.getElementById('discardButton');
+    if(discardButton) {
+        discardButton.addEventListener('click', function () {
+
+            console.log("checking discardButton")
+
+            discardChanges();
+            window.location.href = '/admin-tanod-db-view';
+        });
+    }
+    
+    const createSumbitBtn = document.getElementById('create-submit-btn');
+    if(createSumbitBtn) {
+        createSumbitBtn.addEventListener('click', function () {
+
+            console.log("checking createSumbitBtn")
+
+            const form = document.querySelector('.case-form');
+            form.submit();
+        });
+    }
+
+    //LUPON
+    const saveButtonLupon = document.getElementById('saveButtonLupon');
+    if (saveButtonLupon) {
+        saveButtonLupon.addEventListener('click', function () {
+
+            console.log("checking saveButton")
+
+            checkChanges();
+            const form = document.querySelector('.case-form');
+            form.submit();
+        });
+    }
+
+    const discardButtonLupon = document.getElementById('discardButtonLupon');
+    if(discardButtonLupon) {
+        discardButtonLupon.addEventListener('click', function () {
+
+            console.log("checking discardButton")
+
+            discardChanges();
+            window.location.href = '/admin-lupon-db-view';
+        });
+    }
+
+    const createSumbitBtnLupon = document.getElementById('create-submit-btn-lupon');
+    if(createSumbitBtnLupon) {
+        createSumbitBtnLupon.addEventListener('click', function () {
+
+            console.log("checking createSumbitBtnLupon")
+
+            const form = document.querySelector('.case-form');
+            form.submit();
+        });
+    }
 });
 
 function capitalizeName(name) {
@@ -38,4 +108,27 @@ function capitalizeName(name) {
         name_split[i] = name_split[i].charAt(0).toUpperCase() + name_split[i].substring(1);     
     }
     return name_split.join(' '); 
+}
+
+function checkChanges() {
+    // Get all input fields
+    let inputs = document.querySelectorAll('input[type="text"], textarea');
+
+    // Loop through each input field
+    inputs.forEach(input => {
+        // Check if the input field value is different from its placeholder
+        if (input.value === "") {
+            input.value = input.placeholder; // If value is empty, restore the placeholder
+        }
+    });
+}
+
+function discardChanges() {
+    // Get all input fields
+    let inputs = document.querySelectorAll('input[type="text"], textarea');
+
+    // Loop through each input field
+    inputs.forEach(input => {
+        input.value = input.placeholder;
+    });
 }
