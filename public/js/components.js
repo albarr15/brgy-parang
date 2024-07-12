@@ -260,14 +260,7 @@ function displayResults(results) {
                 <div class="viewCol-Content">
                     <a href="/A-tanod-view-case/${_id}" class="content-text-main underline">View Tanod Case</a>
                 </div>
-                <div class="actionCol-Content">
-                    <a href="admin_T-onClick-print.html">
-                        <button type="button" class="print-btn reg dark margin">
-                            <img src="/images/print-dark.png">
-                            <span>Print</span>
-                        </button>
-                    </a>
-                </div>
+                
             </div>
         `;
 
@@ -299,14 +292,6 @@ function displayResultsLupon(results) {
                 </div>
                 <div class="viewCol-Content">
                     <a href="/A-tanod-view-case/${_id}" class="content-text-main underline">View Tanod Case</a>
-                </div>
-                <div class="actionCol-Content">
-                    <a href="admin_T-onClick-print.html">
-                        <button type="button" class="print-btn reg dark margin">
-                            <img src="/images/print-dark.png">
-                            <span>Print</span>
-                        </button>
-                    </a>
                 </div>
             </div>
         `;
