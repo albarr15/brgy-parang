@@ -33,15 +33,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Codes for changing the header user dynamically depending on who is logged in
-    // improved previous hardcoded solution
-
-    function logout() {
-        localStorage.removeItem('userRole');
-    }
+    var logoutButton = document.getElementById('logout-btn');
+    logoutButton.addEventListener('click', function() {
+        logout();
+    });
 
     function updateUser(userRole) {
-        console.log("Updating user" + userRole);
+        console.log("Updating user " + userRole);
         const user_role = document.getElementById("profile-text");
 
         if (user_role) {
@@ -104,3 +102,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
     initializePage();
 });
+
+// Codes for changing the header user dynamically depending on who is logged in
+// improved previous hardcoded solution
+function logout() {
+    localStorage.removeItem('userRole');
+    window.location.href = '/index'; // Redirect to /index after logging out
+}

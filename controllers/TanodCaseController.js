@@ -20,7 +20,7 @@ const viewTanodDB = async (req, res) => {
             cssFile1: 'homepage',
             cssFile2: 'db-view',
             javascriptFile1: 'components',
-            javascriptFile2: null,
+            javascriptFile2: 'header',
             cases: cases,
             currentPage: page, // Pass current page to the template
             totalPages: totalPages // Pass total pages to the template

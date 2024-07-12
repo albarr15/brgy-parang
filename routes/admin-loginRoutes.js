@@ -21,7 +21,7 @@ router.get('/admin-homepage', (req, res) => {
         title: 'Barangay Parang - Admin Homepage',
         cssFile1: 'index',
         cssFile2: null,
-        javascriptFile1: null, //WEIRD SHIT
+        javascriptFile1: 'header',
         javascriptFile2: null,
     });
 })

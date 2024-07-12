@@ -15,9 +15,9 @@
         <div class="header-right">
             <div class="header-user-profile">
                 <span class="header-user-profile-text" id="profile-text">Admin</span>
-                <img src="/images/lupon-profile.png" class="header-user-profile" id="profile-img">
+                <img src="/images/admin-profile.png" class="header-user-profile" id="profile-img">
             </div>
-            <a href="/index"><button type="button" class="header-logout-btn" id="logout-btn">Logout</button></a>
+            <button type="button" class="header-logout-btn" id="logout-btn">Logout</button>
         </div>
     </div>
 
@@ -141,9 +141,13 @@
         </div>
         
         <div class = "buttons-container">
-            <a href="/admin-lupon-db-view/{{cases._id}}"><button type="button" class="form-btn resolved"><img src="/images/form-check.png"><span>Mark as Resolved</span></button></a>
-            <a href="/A-lupon-edit-case/{{cases._id}}"><button type="button" class="form-btn edit"><img src="/images/form-edit.png"><span>Edit Data</span></button></a>
-            <a href="/delete-case-lupon/{{cases._id}}"><button type="button" class="form-btn delete"><img src="/images/form-trash.png"><span>Delete this record</span></button></a>
+            {{#checkStatus cases.Status}}
+                <a href="/delete-case-lupon/{{cases._id}}"><button type="button" class="form-btn delete"><img src="/images/form-trash.png"><span>Delete this record</span></button></a>
+            {{else}}
+                <a href="/admin-lupon-db-view/{{cases._id}}"><button type="button" class="form-btn resolved"><img src="/images/form-check.png"><span>Mark as Resolved</span></button></a>
+                <a href="/A-lupon-edit-case/{{cases._id}}"><button type="button" class="form-btn edit"><img src="/images/form-edit.png"><span>Edit Data</span></button></a>
+                <a href="/delete-case-lupon/{{cases._id}}"><button type="button" class="form-btn delete"><img src="/images/form-trash.png"><span>Delete this record</span></button></a>
+            {{/checkStatus}}
         </div>
     </div>
 </div>

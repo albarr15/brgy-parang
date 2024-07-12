@@ -14,9 +14,9 @@
         <div class="header-right">
             <div class="header-user-profile">
                 <span class="header-user-profile-text" id="profile-text">Admin</span>
-                <img src="/images/tanod-profile.png" class="header-user-profile" id="profile-img">
+                <img src="/images/admin-profile.png" class="header-user-profile" id="profile-img">
             </div>
-            <a href="/index"><button type="button" class="header-logout-btn" id="logout-btn">Logout</button></a>
+            <button type="button" class="header-logout-btn" id="logout-btn">Logout</button>
         </div>
     </div>
 
@@ -42,11 +42,11 @@
                     <div class = "form-section" id = "basic-info">
                         <div class = "column-section">
                             <label for="entry-number-input" class ="bold-label">Entry Number</label>
-                            <input class = "entry-number-input" type = "text" placeholder="{{cases.EntryNo}}" name="EntryNo" >
+                            <input class = "entry-number-input" type = "text" placeholder="{{cases.EntryNo}}" name="{{cases.EntryNo}}" readonly>
                         </div>
                         <div class = "column-section">
                             <label for="date" class ="bold-label">Date</label>
-                            <input type = "date" id = "dateInput" placeholder="{{cases.Date}}" name="Date" >
+                            <input type = "date" id = "dateInput" value="{{cases.Date}}" name="Date" >
                         </div>
                         <div class = "column-section1">
                             <label for="case-form" class ="bold-label">Status</label>

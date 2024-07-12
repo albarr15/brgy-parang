@@ -26,7 +26,7 @@ function cancelForm() {
     document.getElementById('cedula').value = '';
     document.getElementById('location').value = '';
     document.getElementById('reason').value = '';
-    document.getElementById('deets-profile-img').src = '../public/images/customer.png';
+    document.getElementById('deets-profile-img').src = '/images/customer.png';
 
     // document.querySelector('label[for="imageUpload"]').style.display = 'inline-block';
     // document.getElementById('imageUpload').value = '';
