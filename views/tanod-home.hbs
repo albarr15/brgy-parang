@@ -1,0 +1,75 @@
+<div class = "main-container">
+            <div class= "header" id="header">
+                <div class = "header-left">
+                    <a href="/tanod-home" class="header-logo-link" id="home-link1"><img src="/images/logo.png" class="header-logo"></a>
+                    <a href="/tanod-home" class="header-home" id="home-link2"><h3>Home</h3></a>
+                </div>
+                
+                <div class = "header-title">
+                    <div class = "header-text">
+                        <h3>Sangguniang Barangay ng Parang</h3>
+                        <h5>Marikina City</h5>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="header-user-profile">
+                        <span class="header-user-profile-text tanod" id="profile-text">Tanod</span>
+                        <img src="/images/tanod-profile.png" class="header-user-profile" id="profile-img">
+                    </div>
+                    <a href="/logout"><button type="button" class="header-logout-btn" id="logout-btn" onclick="logout()">Logout</button></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-container-tanod-home">
+            <div class="box-content-top">
+                <a href="/tanod-create"><button type="button" class="form-btn create size"><img src="/images/form-create.png"><span>Create New Record</span></button></a>
+                <button type="button" id="resolve-btn-tanod" class="form-btn resolved margin size"><img src="/images/form-check.png"><span>Mark as Resolved</span></button>
+                <button type="button" id="delete-btn-tanod" class="form-btn delete margin size"><img src="/images/form-trash.png"><span>Delete Selection</span></button>
+                <div class="search-name-reg margin">
+                    <form action="">
+                        <button type="submit"><img src="/images/search-reg.png"></button>
+                        <input type="text" placeholder="Search Name" name="search_name">
+                    </form>
+                  </div>
+            </div>
+            <div class="box-content">
+                <div class="box-content-header lupon-tanod">
+                    <div class="content-text-group left">
+                        <div class="content-text-group pair">
+                            <button type ="button" class="sort descending pair"><img src="/images/sort-descending.png"></button>
+                            <div class="content-text">Entry #</div>
+                        </div>
+                        <div  class="content-text-group pair last-pair">
+                            <button type ="button" class="sort descending pair" ><img src="/images/sort-descending.png"></button>
+                            <div class="content-text">Date</div>
+                        </div>
+                        <div class="content-text">Reportee</div>
+                    </div>
+                    <div class="content-text-group right">
+                        <div class="content-text">Respondent</div>
+                        <div class="content-text">Case Status</div>
+                    </div>
+                    
+
+                </div>
+                {{#each cases}}
+                <div class="box-content-main">
+                    <button type="button" class="checkbox margin" data-case-id="{{this.entryNo}}"><img src="/images/Done.png"></button>
+                    <a href="/page-view-case/{{this.entryNo}}" class="content-text-main underline-lupon-tanod">View</a>
+                    <div class="content-text-main tanod-lupon">{{this.entryNo}}</div>
+                    <div class="content-text-main date">{{this.date}}</div>
+                    <div class="content-text-main reportee">{{this.reporteeFirstName}} {{this.reporteeLastName}}</div>
+                    <div class="content-text-main respondent">{{this.respondentFirstName}} {{this.respondentLastName}}</div>
+                    <button type="button" class="status {{this.stat_lc}} margin2"><img src="/images/{{this.stat_lc}}-circle.png"><span>{{this.status}}</span></button>
+                    <a href="/tanod-edit-case/{{this.entryNo}}"><button type="button" class="form-action-btn margin" title="Edit Case Details"><img src="/images/action-edit.png"></button></a>
+                </div>
+                {{/each}}
+            </div>
+            <div class="box-content-page">
+                <button class="page-btn" id="count-down">  &lt</button>
+                <div class="page-count" id="page-num">1</div>
+                <button class="page-btn" id="count-up">  &gt </button> 
+                <div class="page-number">Page 1 of 1</div>
+            </div>
+        </div>

@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+
+
     var status_btns = document.getElementsByClassName("status");
 
     Array.from(status_btns).forEach(function(status_btns) {

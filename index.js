@@ -3,6 +3,7 @@ const app = express();
 const admin_loginRoutes = require('./routes/admin-loginRoutes');
 const admin_tanodRoutes = require('./routes/admin-tanodRoutes');
 const admin_luponRoutes = require('./routes/admin-luponRoutes');
+const certificate_PrintingRoutes = require('./routes/certificate-printingRoutes');
 const { registerHelpers } = require('./helpers/handlebarHelpers');
 
 const path = require('path');
@@ -14,6 +15,7 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
+
 
 const handlebars = require('express-handlebars');
 app.set('view engine', 'hbs');
@@ -55,8 +57,15 @@ app.use(admin_tanodRoutes);
 //admin lupon routes
 app.use(admin_luponRoutes);
 
+//certofocate printing routes
+app.use(certificate_PrintingRoutes);
 
-// Start the server
+const controllers = ['employee-tanod-lupon-routes']; //ung mga get eme nasa controller
+for(var i=0; i<controllers.length; i++){
+  const model = require('./controllers/'+controllers[i]);
+  model.add(app);
+}
+
 const port = process.env.PORT || 3000;
 app.listen(port, function(){
     console.log('Listening at port '+ port);

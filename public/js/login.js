@@ -43,11 +43,32 @@ document.addEventListener("DOMContentLoaded", function() {
             user_email.classList.remove("input-error");
         }
 
-        if(!valid) {
+        if(valid) {
+            switch (selectedView) {
+                case "Employee Log-in:":
+                    //redirectUrl = "employee-homepage.html";
+                    login("Employee");
+                    break;
+                case "Administrator Log-in:":
+                    //redirectUrl = "admin-homepage.html";
+                    login("Admin");
+                    break;
+                case "Tanod Log-in:":
+                    //redirectUrl = "tanod-homepage.html";
+                    login("Tanod");
+                    break;
+                case "Lupon Log-in:":
+                    //redirectUrl = "lupon-homepage.html";
+                    login("Lupon");
+                    break;
+                default:
+                    //redirectUrl = "employee-homepage.html";
+                    login("Employee");
+                }
+                login_form.submit();
+            //window.location.href = redirectUrl;
+        } else {
             showModal(errorMessage);
-        }
-        else {
-            login_form.submit(); // Submit the form if valid
         }
     });
 });

@@ -162,3 +162,27 @@
     margin-bottom: 10px;
     margin-top: 1px;
 }
+
+.status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 14px;
+    justify-content: center;
+    gap: 10px;
+
+    width: 120px;
+    height: 32px;
+    border-radius: 20px;
+    border: none;
+  }
+
+  .status.resolved {
+    background: #BBF9AC;
+    color: #1C8A3B;
+  }
+
+  .status.ongoing {
+    background: #FFD1CA;
+    color: #F3533B;
+  }
