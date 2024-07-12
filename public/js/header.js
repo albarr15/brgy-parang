@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     function toggleDarkPage() {
-        document.documentElement.style.background = "url(../images/bg-dark.png) no-repeat center center fixed";
+        document.documentElement.style.background = "url(/images/bg-dark.png) no-repeat center center fixed";
         document.documentElement.style.backgroundSize = "cover";
         document.documentElement.style.WebkitBackgroundSize = "cover"; // For older WebKit-based browsers
         document.documentElement.style.MozBackgroundSize = "cover"; // For older Mozilla-based browsers
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function toggleLightPage() {
-        document.documentElement.style.background = "url(../images/bg-light.png) no-repeat center center fixed";
+        document.documentElement.style.background = "url(/images/bg-light.png) no-repeat center center fixed";
         document.documentElement.style.backgroundSize = "cover";
         document.documentElement.style.WebkitBackgroundSize = "cover"; // For older WebKit-based browsers
         document.documentElement.style.MozBackgroundSize = "cover"; // For older Mozilla-based browsers
@@ -55,22 +55,21 @@ document.addEventListener("DOMContentLoaded", function() {
             switch(userRole) {
                 case "Lupon":
                     document.getElementById("profile-text").style.color="#F3BE72";
-                    user_profile.src = "../images/lupon-profile.png";
-                    home_link1.href = "lupon-homepage.html";
-                    home_link2.href = "lupon-homepage.html";
-                    
+                    user_profile.src = "/images/lupon-profile.png";
+                    home_link1.href = "/lupon-home";
+                    home_link2.href = "/lupon-home";
                     break;
     
                 case "Tanod":
                     document.getElementById("profile-text").style.color="#AFE1D7";
-                    user_profile.src = "../images/tanod-profile.png";
-                    home_link1.href = "tanod-homepage.html";
-                    home_link2.href = "tanod-homepage.html";
+                    user_profile.src = "/images/tanod-profile.png";
+                    home_link1.href = "/tanod-home";
+                    home_link2.href = "/tanod-home";
                     break;
     
                 case "Employee":
                     document.getElementById("profile-text").style.color="#779FE5";
-                    user_profile.src = "../images/employee-profile.png";
+                    user_profile.src = "/images/employee-profile.png";
                     home_link1.href = "/employee-home";
                     home_link2.href = "/employee-home";
                     toggleDarkPage();
@@ -78,17 +77,16 @@ document.addEventListener("DOMContentLoaded", function() {
     
                 case "Admin":
                     document.getElementById("profile-text").style.color="#F07507";
-                    user_profile.src = "../images/admin-profile.png";
-                    home_link1.href = "admin-homepage.html";
-                    home_link2.href = "admin-homepage.html";
+                    user_profile.src = "/images/admin-profile.png";
+                    home_link1.href = "/admin-homepage";
+                    home_link2.href = "/admin-homepage";
                     toggleDarkPage();
                     break;
-
                 default:
                     document.getElementById("profile-text").style.color="#FFFFFF";
-                    user_profile.src = "../images/logo.png";
-                    home_link1.href = "../index.html";
-                    home_link2.href = "../index.html";
+                    user_profile.src = "/images/logo.png";
+                    home_link1.href = "/index";
+                    home_link2.href = "/index";
             }
         }
     }
