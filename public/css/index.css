@@ -811,3 +811,7 @@ html {
   background-color: #236759;
   color: #AFE1D7;
 }
+
+.hide {
+  display: none;
+}
