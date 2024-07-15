@@ -160,20 +160,20 @@ button[value="back"] {
   margin-left: 65%;
 }
 
-.deets3-container .date-container .deets-text {
-  margin-left: 35%;
+.deets3-container .birthplace-container .deets-text {
+  margin-left: 22%;
 }
 
 .deets3-container .location-container .deets-text {
-  margin-left: 75%;
+  margin-left: 38%;
 }
 
 .deets4-container .cedula-container .deets-text {
-  margin-left: 28%;
+  margin-left: 22%;
 }
 
 .deets4-container .date-container .deets-text {
-  margin-left: 72%;
+  margin-left: 39%;
 }
 
 .deets-text span {
@@ -223,15 +223,14 @@ input[id='Birthday'] {
 }
 
 input[id='ctc-date-issued'] {
-  margin-left: 35%;
+  margin-left: 39%;
+
+  width: 220px;
+  height: 29px;
 }
 
-input[id='cert-date-issued'] {
-  margin-left: 72%;
-}
-
-input[id='cedula'] {
-  width: 166px;
+input[id='birthplace'] {
+  width: 220px;
   height: 29px;
   
   margin-bottom: 0.5rem;
@@ -240,7 +239,20 @@ input[id='cedula'] {
   border: 1px solid #5E5E5E;
   border-radius: 5px;
 
-  margin-left: 28%;
+  margin-left: 22%;
+}
+
+input[id='cedula'] {
+  width: 220px;
+  height: 29px;
+  
+  margin-bottom: 0.5rem;
+  padding-left: 10px;
+  background-color: #CCCCCC;
+  border: 1px solid #5E5E5E;
+  border-radius: 5px;
+
+  margin-left: 22%;
 }
 
 input[id='location'] {
@@ -253,7 +265,7 @@ input[id='location'] {
   border: 1px solid #5E5E5E;
   border-radius: 5px;
 
-  margin-left: 75%;
+  margin-left: 38%;
 }
 
 input[id='reason'] {
@@ -271,6 +283,8 @@ input[id='reason'] {
   text-transform: uppercase;
   font-weight: bold;
 }
+
+
 
 input {
   text-transform: capitalize;

@@ -22,7 +22,7 @@ function cancelForm() {
     document.getElementById('address').value = '';
     document.getElementById('ctc-date-issued').value = '';
     document.getElementById('Birthday').value = '';
-    document.getElementById('cert-date-issued').value = '';
+    document.getElementById('birthplace').value = '';
     document.getElementById('cedula').value = '';
     document.getElementById('location').value = '';
     document.getElementById('reason').value = '';
@@ -40,7 +40,7 @@ function validateForm() {
     const name = document.getElementById('name').value.trim();
     const address = document.getElementById('address').value.trim();
     const ctc_date = document.getElementById('ctc-date-issued').value.trim();
-    const cert_date = document.getElementById('cert-date-issued').value.trim();
+    const birthplace = document.getElementById('birthplace').value.trim();
     const birthday = document.getElementById('Birthday').value.trim();
     const cedula = document.getElementById('cedula').value.trim();
     const location = document.getElementById('location').value.trim();
@@ -63,7 +63,7 @@ function validateForm() {
         valid = false;
         errorMessage += 'Complete Birth Date is required.\n'; 
     } else {
-        const [month, day, year] = birthday.split('/');
+        const [year, month, day] = birthday.split('-');
         if (!isValidDate(day, month, year)) {
             valid = false;
             errorMessage += 'Invalid Birth Date.\n';
@@ -79,7 +79,7 @@ function validateForm() {
         valid = false;
         errorMessage += 'Complete CTC Issuance Date is required.\n'; 
     } else {
-        const [month, day, year] = ctc_date.split('/');
+        const [year, month, day] = ctc_date.split('-');
         if (!isValidDate(day, month, year)) {
             valid = false;
             errorMessage += 'Invalid CTC Issuance Date.\n';
@@ -100,16 +100,10 @@ function validateForm() {
         errorMessage += 'Invalid CTC Number.\n';
     }
 
-    if (!cert_date) {
+    if (!birthplace) {
         valid = false;
-        errorMessage += 'Complete Certificate Issuance Date is required.\n'; 
-    } else {
-        const [month, day, year] = cert_date.split('/');
-        if (!isValidDate(day, month, year)) {
-            valid = false;
-            errorMessage += 'Invalid Certificate Issuance Date.\n';
-        }
-    }
+        errorMessage += 'Place of Birth is required.\n'; 
+    } 
 
     if (!reason) {
         valid = false;
@@ -183,12 +177,12 @@ function showModal(message) {
 
 function formatBirthday(birthday) {
     // Split the birthday string into parts
-    const parts = birthday.split('/');
+    const parts = birthday.split('-');
 
     // Extract month, day, and year
-    const month = parts[0];
+    const month = parts[2];
     const day = parts[1];
-    const year = parts[2];
+    const year = parts[0];
 
     // Create an array of month names for formatting
     const monthNames = [
@@ -219,17 +213,16 @@ function formatBirthday(birthday) {
     return formattedBirthday;
 }
 
-function downloadFile() {
-    
-
-    // not yet done
-}
-
 document.addEventListener("DOMContentLoaded", function() {
     var print_form = document.querySelector(".print-form");
 
     print_form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent default form submission
+    });
+
+    const dateInputs = document.querySelectorAll('.date');
+    dateInputs.forEach(input => {
+        input.placeholder = 'DD/MM/YYYY';
     });
 });
 

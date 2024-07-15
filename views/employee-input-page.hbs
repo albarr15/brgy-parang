@@ -89,7 +89,7 @@
 
                     <div class="date-container">
                         <div class="deets-text">Birthday</div>
-                        <input type="text" id="Birthday" class="date" name="bday-date" placeholder="MM/DD/YYYY">                             
+                        <input type="Date" id="Birthday" class="date" name="bday-date" placeholder="MM/DD/YYYY">                             
                     </div>
                 </div>
 
@@ -101,12 +101,13 @@
                     </div>
                 </div>
 
-                <!-- for CTC Issuance Date and Location -->
+                <!-- for CTC Issuance Date and Place of Issuance -->
                 <div class="deets3-container">
-                    <div class="date-container">
-                        <div class="deets-text">CTC Issuance Date</div>
-                        <input type="text" id="ctc-date-issued" class="date" name="ctc-date" placeholder="MM/DD/YYYY">                             
+                    <div class="birthplace-container">
+                        <div class="deets-text">Place of Birth<span> (City)</span></div>
+                        <input type="text" id="birthplace" name="birthplace" placeholder="Marikina City">                             
                     </div>
+                    
 
                     <div class="location-container">
                         <div class="deets-text">Place of CTC Issuance<span> (City)</span></div>
@@ -114,7 +115,7 @@
                     </div>
                 </div>
 
-                <!-- for Cedula Number and Place of Issuance -->
+                <!-- for Cedula Number and Place of Birth -->
                 <div class="deets4-container">
                     <div class="cedula-container">
                         <div class="deets-text">CTC Number</div>
@@ -122,8 +123,8 @@
                     </div>
 
                     <div class="date-container">
-                        <div class="deets-text">Certificate Issuance Date</div>
-                        <input type="text" id="cert-date-issued" class="date" name="cert-date" placeholder="MM/DD/YYYY">                             
+                        <div class="deets-text">CTC Issuance Date</div>
+                        <input type="Date" id="ctc-date-issued" class="date" name="ctc-date" placeholder="MM/DD/YYYY">                             
                     </div>
                 </div>
 
@@ -165,16 +166,22 @@
         const ctcDateIssued = formatBirthday(form.elements['ctc-date'].value);
         const location = form.elements['location'].value;
         const cedula = form.elements['cedula'].value;
-        const certDateIssued = formatBirthday(form.elements['cert-date'].value);
+        const birthPlace = form.elements['birthplace'].value;
         const reason = form.elements['reason'].value.toUpperCase();
         const profileImg = document.getElementById('deets-profile-img').src;
+
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        const dd = String(today.getDate()).padStart(2, '0');
+
+        const formattedDate = `${yyyy}-${mm}-${dd}`;
+        const certDateIssued = formatBirthday(formattedDate);
 
         const doc = new jsPDF({
             orientation: 'portrait',
             unit: 'mm',
             format: [215.9, 279.4]  // width, height
-
-
         });
 
         doc.setFont('Times', 'bold'); 
@@ -220,7 +227,7 @@
         doc.line(79, 103, 79 + textWidth, 103);
         doc.setFont("Times", "normal");
 
-        doc.text(`born on the ${birthday} at (missing). whose picture`,                20, 108);
+        doc.text(`born on the ${birthday} at ${birthPlace}. whose picture`,            20, 108);
         doc.text(`and signature appears, is a bonafide resident of Barangay Parang,`,  20, 114);
         doc.text(`currently residing at`,                                              20, 120);
 
