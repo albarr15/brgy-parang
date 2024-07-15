@@ -21,8 +21,14 @@ function cancelForm() {
     document.getElementById('name').value = '';
     document.getElementById('address').value = '';
     document.getElementById('ctc-date-issued').value = '';
+    document.getElementById('ctc-date-issued').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('Birthday').value = '';
+    document.getElementById('Birthday').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('birthplace').value = '';
+    document.getElementById('birthplace').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('cedula').value = '';
     document.getElementById('location').value = '';
     document.getElementById('reason').value = '';
@@ -63,6 +69,7 @@ function validateForm() {
         valid = false;
         errorMessage += 'Complete Birth Date is required.\n'; 
     } else {
+        console.log(birthday)
         const [year, month, day] = birthday.split('-');
         if (!isValidDate(day, month, year)) {
             valid = false;
@@ -180,9 +187,10 @@ function formatBirthday(birthday) {
     const parts = birthday.split('-');
 
     // Extract month, day, and year
-    const month = parts[2];
-    const day = parts[1];
     const year = parts[0];
+    const month = parts[1];
+    const day = parts[2];
+    
 
     // Create an array of month names for formatting
     const monthNames = [
@@ -220,9 +228,44 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault(); // Prevent default form submission
     });
 
-    const dateInputs = document.querySelectorAll('.date');
-    dateInputs.forEach(input => {
-        input.placeholder = 'DD/MM/YYYY';
+    // const dateInputs = document.querySelectorAll('.date');
+    // dateInputs.forEach(input => {
+    //     input.placeholder = 'DD/MM/YYYY';
+    // });
+
+    const dateInputs = document.querySelectorAll(".date");
+    dateInputs.forEach(dateInput => {
+        if (dateInput) {
+            // Sets date max to current date in the format YYYY-MM-DD
+            dateInput.max = new Date().toISOString().split('T')[0];
+            // Sets date minimum to January 1, 1970
+            dateInput.min = "1970-01-01";
+            dateInput.placeholder = 'DD/MM/YYYY';
+        }
+    });
+
+    document.getElementById('Birthday').addEventListener('change', function() {
+        if (this.value === '') {
+            this.style.backgroundColor = 'grey';
+        } else {
+            this.style.backgroundColor = '#EAF3F7'; // Reset to default
+        }
+    });
+
+    document.getElementById('ctc-date-issued').addEventListener('change', function() {
+        if (this.value === '') {
+            this.style.backgroundColor = 'grey';
+        } else {
+            this.style.backgroundColor = '#EAF3F7'; // Reset to default
+        }
+    });
+
+    document.getElementById('birthplace').addEventListener('change', function() {
+        if (this.value === '') {
+            this.style.backgroundColor = 'grey';
+        } else {
+            this.style.backgroundColor = '#EAF3F7'; // Reset to default
+        }
     });
 });
 

@@ -192,6 +192,8 @@ input[id='name'] {
   border-radius: 5px;
 
   margin-left: 15%;
+
+  text-transform: capitalize;
 }
 
 input[id='address'] {
@@ -205,6 +207,8 @@ input[id='address'] {
   border-radius: 5px;
 
   margin-left: 10%;
+
+  text-transform: capitalize;
 }
 
 input[class='date'] {
@@ -220,6 +224,8 @@ input[class='date'] {
 
 input[id='Birthday'] {
   margin-left: 65%;
+
+  color: gray;
 }
 
 input[id='ctc-date-issued'] {
@@ -227,6 +233,8 @@ input[id='ctc-date-issued'] {
 
   width: 220px;
   height: 29px;
+
+  color: gray;
 }
 
 input[id='birthplace'] {
@@ -240,6 +248,8 @@ input[id='birthplace'] {
   border-radius: 5px;
 
   margin-left: 22%;
+
+  text-transform: capitalize;
 }
 
 input[id='cedula'] {
@@ -266,6 +276,8 @@ input[id='location'] {
   border-radius: 5px;
 
   margin-left: 38%;
+
+  text-transform: capitalize;
 }
 
 input[id='reason'] {
@@ -282,12 +294,6 @@ input[id='reason'] {
 
   text-transform: uppercase;
   font-weight: bold;
-}
-
-
-
-input {
-  text-transform: capitalize;
 }
 
 .cancel-btn {

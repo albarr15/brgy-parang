@@ -42,7 +42,7 @@
                     <div class = "form-section" id = "basic-info">
                         <div class = "column-section">
                             <label for="entry-number-input" class ="bold-label">Entry Number</label>
-                            <input class = "entry-number-input" type = "text" placeholder="{{cases.EntryNo}}" name="{{cases.EntryNo}}" readonly>
+                            <input class = "entry-number-input" type = "text" value="{{cases.EntryNo}}" name="{{cases.EntryNo}}" readonly>
                         </div>
                         <div class = "column-section">
                             <label for="date" class ="bold-label">Date</label>
@@ -62,42 +62,42 @@
                     <div class = "form-section" id = "reportee-info">
                         <div class = "input-pair">
                             <label for="last-name-input">Last Name</label>
-                            <input class = "last-name-input" type ="text" placeholder="{{cases.ReporteeInfo.LastName}}" name="reporteeLastName">
+                            <input class = "last-name-input" type ="text" value="{{cases.ReporteeInfo.LastName}}" name="reporteeLastName">
                         </div>
                         <div class = "input-pair">
                             <label for="middle-initial-input">Middle Initial</label>
-                            <input class = "middle-name-input" type = "text" placeholder="{{cases.ReporteeInfo.MiddleInitial}}" maxlength="1" name="reporteeMiddleInitial">
+                            <input class = "middle-name-input" type = "text" value="{{cases.ReporteeInfo.MiddleInitial}}" maxlength="1" name="reporteeMiddleInitial">
                         </div>
                         <div class = "input-pair">
                             <label for="first-name-input">First Name</label>
-                            <input class = "first-name-input" type = "text" placeholder="{{cases.ReporteeInfo.FirstName}}" name="reporteeFirstName">
+                            <input class = "first-name-input" type = "text" value="{{cases.ReporteeInfo.FirstName}}" name="reporteeFirstName">
                         </div>
                     </div>
                     <div class="form-section" id = "reportee-additional-info">
                         <div class = "input-pair">
                             <label for="">Reportee Address</label>
-                            <input class = "address-input" type = "text" placeholder="{{cases.ReporteeInfo.Address}}" name="reporteeAddress"> 
+                            <input class = "address-input" type = "text" value="{{cases.ReporteeInfo.Address}}" name="reporteeAddress"> 
                         </div>
                     </div>
                     <span class="section-name">Nature of Blotter</span>
                     <div class = "form-section">
                         <div class = "input-pair">
-                            <input class = "nature-of-blotter-input" type = "text" placeholder="{{cases.natureOfBlotter}}" name="natureOfBlotter">
+                            <input class = "nature-of-blotter-input" type = "text" value="{{cases.natureOfBlotter}}" name="natureOfBlotter">
                         </div>
                     </div>
                     <span class = "section-name">Respondent Information</span>
                     <div class = "form-section" id = "respondent-info">
                         <div class = "input-pair">
                             <label for="last-name-input">Last Name</label>
-                            <input class = "last-name-input" type ="text" placeholder="{{cases.RespondentInfo.LastName}}" name="respondentLastName">
+                            <input class = "last-name-input" type ="text" value="{{cases.RespondentInfo.LastName}}" name="respondentLastName">
                         </div>
                         <div class = "input-pair">
                             <label for="middle-initial-input">Middle Initial</label>
-                            <input class = "middle-name-input" type = "text" placeholder="{{cases.RespondentInfo.MiddleInitial}}" maxlength="1" name="respondentMiddleInitial">
+                            <input class = "middle-name-input" type = "text" value="{{cases.RespondentInfo.MiddleInitial}}" maxlength="1" name="respondentMiddleInitial">
                         </div>
                         <div class = "input-pair">
                             <label for="first-name-input">First Name</label>
-                            <input class = "first-name-input" type = "text" placeholder="{{cases.RespondentInfo.FirstName}}" name="respondentFirstName">
+                            <input class = "first-name-input" type = "text" value="{{cases.RespondentInfo.FirstName}}" name="respondentFirstName">
                         </div>
                     </div>
                     <span class = "section-name">Desk Officer Information</span>
@@ -105,36 +105,36 @@
                     <div class = "form-section" id = "desk-officer-information">
                         <div class = "input-pair">
                             <label for="last-name-input">Last Name</label>
-                            <input class = "last-name-input" type ="text" placeholder="{{cases.DeskOfficerInfo.LastName}}"  name="deskOfficerLastName">
+                            <input class = "last-name-input" type ="text" value="{{cases.DeskOfficerInfo.LastName}}"  name="deskOfficerLastName">
                         </div>
                         <div class = "input-pair">
                             <label for="middle-initial-input">Middle Initial</label>
-                            <input class = "middle-name-input" type = "text" placeholder="{{cases.DeskOfficerInfo.MiddleInitial}}" maxlength="1"  name="deskOfficerMiddleInitial">
+                            <input class = "middle-name-input" type = "text" value="{{cases.DeskOfficerInfo.MiddleInitial}}" maxlength="1"  name="deskOfficerMiddleInitial">
                         </div>
                         <div class = "input-pair">
                             <label for="first-name-input">First Name</label>
-                            <input class = "first-name-input" type = "text" placeholder="{{cases.DeskOfficerInfo.FirstName}}"  name="deskOfficerFirstName">
+                            <input class = "first-name-input" type = "text" value="{{cases.DeskOfficerInfo.FirstName}}"  name="deskOfficerFirstName">
                         </div>
                     </div>
                     <span class = "section-name">Witness Information</span>
                     <div class = "form-section" id = "witness-information">
                         <div class = "input-pair">
                             <label for="last-name-input">Last Name</label>
-                            <input class = "last-name-input" type ="text" placeholder="{{cases.WitnessInfo.LastName}}"  name="witnessLastName">
+                            <input class = "last-name-input" type ="text" value="{{cases.WitnessInfo.LastName}}"  name="witnessLastName">
                         </div>
                         <div class = "input-pair">
                             <label for="middle-initial-input">Middle Initial</label>
-                            <input class = "middle-name-input" type = "text" placeholder="{{cases.WitnessInfo.MiddleInitial}}" maxlength="1"  name="witnessMiddleInitial">
+                            <input class = "middle-name-input" type = "text" value="{{cases.WitnessInfo.MiddleInitial}}" maxlength="1"  name="witnessMiddleInitial">
                         </div>
                         <div class = "input-pair">
                             <label for="first-name-input">First Name</label>
-                            <input class = "first-name-input" type = "text" placeholder="{{cases.WitnessInfo.FirstName}}"  name="witnessFirstName">
+                            <input class = "first-name-input" type = "text" value="{{cases.WitnessInfo.FirstName}}"  name="witnessFirstName">
                         </div>
                     </div>
                     <span class ="section-name">Location</h5>
                     <div class = "form-section" id="location">
                         <div class = "input-pair">
-                            <input class = "location-input" type = "text" placeholder="{{cases.Location}}"  name="location">
+                            <input class = "location-input" type = "text" value="{{cases.Location}}"  name="location">
                         </div>
                     </div>
                 </form>
