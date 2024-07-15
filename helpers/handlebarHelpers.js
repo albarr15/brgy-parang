@@ -30,7 +30,7 @@ const registerHelpers = () => {
         } else if (role === 'tanod') {
             return options.fn({ roleText: 'Tanod' });
         } else {
-            return options.fn({ roleText: 'Unknown Role' });
+            return options.fn({ roleText: 'Lupon' });
         }
     });
 };

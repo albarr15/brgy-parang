@@ -54,6 +54,7 @@ const viewAllAccounts = async (req, res) => {
     }
 }
 
+//ADMIN ------------------------------------------------
 const viewAdminAcc = async (req, res) => {
     try {
         const caseId = req.params.id;
@@ -124,10 +125,237 @@ const submitEditAdminAcc = async (req, res) => {
     }
 }
 
+//EMPLOYEE ----------------------------------------------
+const viewEmployeeAcc = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+        const specificAcc = await UserModel.findOne({ _id : caseId }).lean();
+
+        // console.log(caseId) 
+
+        res.render('admin-view-acct-employee', {
+            layout: 'layout',
+            title: 'Admin: Employee Account View Page',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+            accounts: specificAcc
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const editEmployeeAcc = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+        const specificAcc = await UserModel.findOne({ _id : caseId }).lean();
+
+        // console.log(caseId) 
+
+        res.render('admin-edit-acct-employee', {
+            layout: 'layout',
+            title: 'Admin: Employee Account Edit Page',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+            accounts: specificAcc
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const submitEditEmployeeAcc = async (req, res) => {
+    try {
+        const {
+            _id,
+            email,
+            password
+        } = req.body;
+
+        await UserModel.findOneAndUpdate(
+            { _id: _id },
+            {
+                $set: {
+                    email: email,
+                    password: password
+                }
+            },
+            { new: true }
+        );
+
+        res.redirect(`/admin-view-acct-employee/${_id}`);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+
+//LUPON -------------------------------------------------
+const viewLuponAcc = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+        const specificAcc = await UserModel.findOne({ _id : caseId }).lean();
+
+        // console.log(caseId) 
+
+        res.render('admin-view-acct-lupon', {
+            layout: 'layout',
+            title: 'Admin: Lupon Account View Page',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+            accounts: specificAcc
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const editLuponAcc = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+        const specificAcc = await UserModel.findOne({ _id : caseId }).lean();
+
+        // console.log(caseId) 
+
+        res.render('admin-edit-acct-lupon', {
+            layout: 'layout',
+            title: 'Admin: Lupon Account Edit Page',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+            accounts: specificAcc
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const submitEditLuponAcc = async (req, res) => {
+    try {
+        const {
+            _id,
+            email,
+            password
+        } = req.body;
+
+        await UserModel.findOneAndUpdate(
+            { _id: _id },
+            {
+                $set: {
+                    email: email,
+                    password: password
+                }
+            },
+            { new: true }
+        );
+
+        res.redirect(`/admin-view-acct-lupon/${_id}`);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+//TANOD -------------------------------------------------
+const viewTanodAcc = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+        const specificAcc = await UserModel.findOne({ _id : caseId }).lean();
+
+        // console.log(caseId) 
+
+        res.render('admin-view-acct-tanod', {
+            layout: 'layout',
+            title: 'Admin: Tanod Account View Page',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+            accounts: specificAcc
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const editTanodAcc = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+        const specificAcc = await UserModel.findOne({ _id : caseId }).lean();
+
+        // console.log(caseId) 
+
+        res.render('admin-edit-acct-tanod', {
+            layout: 'layout',
+            title: 'Admin: Tanod Account Edit Page',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+            accounts: specificAcc
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const submitEditTanodAcc = async (req, res) => {
+    try {
+        const {
+            _id,
+            email,
+            password
+        } = req.body;
+
+        await UserModel.findOneAndUpdate(
+            { _id: _id },
+            {
+                $set: {
+                    email: email,
+                    password: password
+                }
+            },
+            { new: true }
+        );
+
+        res.redirect(`/admin-view-acct-tanod/${_id}`);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
 module.exports = {
     isUser,
     viewAllAccounts,
+
     viewAdminAcc,
     editAdminAcc,
-    submitEditAdminAcc
+    submitEditAdminAcc,
+
+    editEmployeeAcc,
+    viewEmployeeAcc,
+    submitEditEmployeeAcc,
+
+    viewLuponAcc,
+    editLuponAcc,
+    submitEditLuponAcc,
+
+    viewTanodAcc,
+    editTanodAcc,
+    submitEditTanodAcc
 }

@@ -120,10 +120,57 @@ document.addEventListener("DOMContentLoaded", function() {
     //ADMIN
     const saveButton_A = document.getElementById('saveButtonAdmin');
     if (saveButton_A) {
-        console.log(saveButton_A)
         saveButton_A.addEventListener('click', function () {
 
             console.log("checking saveButtonAdmin")
+
+            const form = document.querySelector('.acc-info-form');
+
+            if(validateForm()) {
+                form.submit();
+            }
+        });
+    }
+
+    //EMPLOYEE
+    const saveButton_E = document.getElementById('saveButtonEmployee');
+    if (saveButton_E) {
+        
+        saveButton_E.addEventListener('click', function () {
+
+            console.log("checking saveButtonEmployee")
+
+            const form = document.querySelector('.acc-info-form');
+
+            if(validateForm()) {
+                form.submit();
+            }
+        });
+    }
+
+    //LUPON
+    const saveButton_L = document.getElementById('saveButtonLupon');
+    if (saveButton_L) {
+        
+        saveButton_L.addEventListener('click', function () {
+
+            console.log("checking saveButtonLupon")
+
+            const form = document.querySelector('.acc-info-form');
+
+            if(validateForm()) {
+                form.submit();
+            }
+        });
+    }
+
+    //LUPON
+    const saveButton_T = document.getElementById('saveButtonTanod');
+    if (saveButton_T) {
+        
+        saveButton_T.addEventListener('click', function () {
+
+            console.log("checking saveButtonTanod")
 
             const form = document.querySelector('.acc-info-form');
 

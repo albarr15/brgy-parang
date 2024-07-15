@@ -188,6 +188,18 @@ tr:last-child td{
     color: var(--tangerine);
 }
 
+.role-name.employee {
+    color: var(--blue);
+}
+
+.role-name.lupon {
+    color: var(--orange);
+}
+
+.role-name.tanod {
+    color: var(--minty);
+}
+
 .edit-btn-container {
     display: flex;
     justify-content: center;
