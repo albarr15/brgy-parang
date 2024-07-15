@@ -38,15 +38,21 @@
                 <h5> Name </h5>
             </div>
             <div id="user-data-name" class="user-data">
-                <p> {{cases.ReporteeInfo.FirstName}} {{cases.ReporteeInfo.MiddleInitial}}. {{cases.ReporteeInfo.LastName}}</p>
+                <p> {{cases.RespondentInfo.FirstName}} {{cases.RespondentInfo.MiddleInitial}}. {{cases.RespondentInfo.LastName}}</p>
             </div>
         </div>
 
         <div id="tanod-column" class="user-tanod-column">
             <div class="user-header">
                 <h5> Tanod Case Status </h5>
+            </div> 
+        </div>
+
+        <div class="user-lupon-column">
+            <div class="user-header">
+                <h5> Lupon Case Status </h5>
             </div>
-            <div class="user-data">
+             <div class="user-data">
                 {{#checkStatus cases.Status}}
                     <select name="case-form" class="status resolved" disabled>
                         <option value="" disabled hidden>Select Status</option>
@@ -61,17 +67,6 @@
                     </select>
                 {{/checkStatus}}
             </div>
-            
-        </div>
-
-        <div class="user-lupon-column">
-            <div class="user-header">
-                <h5> Lupon Case Status </h5>
-            </div>
-            <div class="user-data">
-                
-            </div>
-            
         </div>
 
         {{!-- <div class="user-action-column">
@@ -89,7 +84,7 @@
     <div class="user-print">
             <div class="header-alert">
                 <div class="name-display">
-                    <h2> {{cases.ReporteeInfo.FirstName}} {{cases.ReporteeInfo.MiddleInitial}}. {{cases.ReporteeInfo.LastName}} </h2>
+                    <h2> {{cases.RespondentInfo.FirstName}} {{cases.RespondentInfo.MiddleInitial}}. {{cases.RespondentInfo.LastName}} </h2>
                 </div>
                 <div class="clearance-alert">
                     {{#checkStatus cases.Status}}
