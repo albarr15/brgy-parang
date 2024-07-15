@@ -21,6 +21,18 @@ const registerHelpers = () => {
     handlebars.registerHelper('fullName', function(firstName, middleInitial, lastName) {
         return `${firstName} ${middleInitial}. ${lastName}`;
     });
+
+    handlebars.registerHelper('checkRole', function(role, options) {
+        if (role === 'admin') {
+            return options.fn({ roleText: 'Administrator' });
+        } else if (role === 'employee') {
+            return options.fn({ roleText: 'Employee' });
+        } else if (role === 'tanod') {
+            return options.fn({ roleText: 'Tanod' });
+        } else {
+            return options.fn({ roleText: 'Unknown Role' });
+        }
+    });
 };
 
 
