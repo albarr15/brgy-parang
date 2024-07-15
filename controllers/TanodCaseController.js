@@ -31,6 +31,49 @@ const viewTanodDB = async (req, res) => {
     }
 };
 
+const viewSearchTanodDB = async (req, res) => {
+    try {
+        console.log("checking if im here");
+        
+        const name = req.params.search_name;
+        const searchWords = name.split(' ').filter(word => word.trim() !== '');
+
+        const orConditions = searchWords.map(word => ({
+            $or: [
+                { 'ReporteeInfo.FirstName': { $regex: new RegExp(word, 'i') } },
+                { 'ReporteeInfo.LastName': { $regex: new RegExp(word, 'i') } }
+            ]
+        }));
+        
+        const page = parseInt(req.query.page) || 1; // Get the current page from query params, default to 1
+        const casesPerPage = 10; // Number of cases to show per page
+
+        // Fetch the cases for the current page
+        const cases = await TanodCaseModel.find({ $or: orConditions })
+            .skip((page - 1) * casesPerPage)
+            .limit(casesPerPage)
+            .lean();
+
+        const totalCount = await TanodCaseModel.countDocuments({ $or: orConditions });
+        const totalPages = Math.ceil(totalCount / casesPerPage); // Calculate total pages
+
+        res.render('admin-tanod-db-view', {
+            layout: 'layout',
+            title: 'Admin: Tanod DB viewing',
+            cssFile1: 'homepage',
+            cssFile2: 'db-view',
+            javascriptFile1: 'components',
+            javascriptFile2: 'header',
+            cases: cases,
+            currentPage: page, // Pass current page to the template
+            totalPages: totalPages // Pass total pages to the template
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+};
+
 const markResolved = async (req, res) => {
     try {
         const caseId = req.params.id;
@@ -243,6 +286,7 @@ const searchTanodCase = async (req, res) => {
 
         // Find documents matching any of the $or conditions
         const searchResults = await TanodCaseModel.find({ $or: orConditions }).lean().exec();
+        //count search Results
 
         res.json({ success: true, results: searchResults });
 
@@ -355,6 +399,8 @@ module.exports = {
     markMultipleTCaseResolved,
     searchTanodCase,
     viewCreateTanodCase,
-    createTanodCase
+    createTanodCase,
+
+    viewSearchTanodDB
 }
 

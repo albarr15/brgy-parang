@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const result = await response.json();
                     console.log(result); 
 
-                    displayResults(result.results);
+                    window.location.href = `/admin-tanod-db-view/${searchName}`;
                 } else {
                     window.location.href = '/admin-tanod-db-view';
                 }
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const result = await response.json();
                     console.log(result); 
 
-                    displayResultsLupon(result.results);
+                    window.location.href = `/admin-lupon-db-view/${searchName}`;
                 } else {
                     window.location.href = '/admin-lupon-db-view';
                 }
