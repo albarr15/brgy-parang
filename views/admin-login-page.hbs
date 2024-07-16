@@ -1,0 +1,49 @@
+<div class = "main-container">
+    <div class= "header" id="header">
+        <div class = "login-header-left">
+            <a href="/index" class="header-logo-link"><img src="/images/logo.png" class="header-logo"></a>
+            <a href="/index" class="header-home"><h3>Home</h3></a>
+        </div>
+        <div class = "login-header-right">
+            <div class = "header-text">
+                <h3>Sangguniang Barangay ng Parang</h3>
+                <h5>Marikina City</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class = "login-panel">
+        <div class = "login-panel-left">
+            <img src="/images/logo.png" class="login-panel-logo">
+            <h1>Barangay Certificate Verification Portal</h1>
+        </div>
+
+        <div class = "login-panel-admin">
+            <span class="login-panel-title" id="login-title">Administrator Log-in:</span>
+                
+                <form action="/admin-login-page" method="post" class = "login-form">
+                    <div class="login-field" id = "login-field">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="login-field" id = "login-field">
+                        <label for="password">Password</label>
+                        <input type="password" id="pw" name="password" placeholder="Password">
+                    </div>
+                    <div class="login-submit">
+                        <input type="submit" value="Submit" id="login-submit-btn">
+                    </div>
+                </form>
+                
+                <div class="login-return">
+                    <a href="/index"><button type="button" value="return" id="return-btn">Return</button></a>
+                </div>
+        </div>
+    </div>
+    <div id="validationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+</div>

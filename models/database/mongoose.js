@@ -242,10 +242,10 @@ const TanodCase = new mongoose.Schema ({
 });
 
 // MODELS //
-const CertificateModel  = mongoose.model("CertificateModel", CertificateSchema, "certificate");
-const UserModel         = mongoose.model("UserModel", UserSchema, "user");
-const LuponCaseModel    = mongoose.model("LuponCaseModel", LuponCase, "lupon_case");
-const TanodCaseModel    = mongoose.model("TanodCaseModel", TanodCase, "tanod_case");
+const CertificateModel  = mongoose.model("CertificateModel", CertificateSchema,     "certificate");
+const UserModel         = mongoose.model("UserModel",        UserSchema,            "user");
+const LuponCaseModel    = mongoose.model("LuponCaseModel",   LuponCase,             "lupon_case");
+const TanodCaseModel    = mongoose.model("TanodCaseModel",   TanodCase,             "tanod_case");
 
 
 // EXPORTS //

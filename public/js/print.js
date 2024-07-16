@@ -21,23 +21,32 @@ function cancelForm() {
     document.getElementById('name').value = '';
     document.getElementById('address').value = '';
     document.getElementById('ctc-date-issued').value = '';
+    document.getElementById('ctc-date-issued').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('Birthday').value = '';
-    document.getElementById('cert-date-issued').value = '';
+    document.getElementById('Birthday').style.backgroundColor = '#D9D9D9';
+
+    document.getElementById('birthplace').value = '';
+    document.getElementById('birthplace').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('cedula').value = '';
     document.getElementById('location').value = '';
     document.getElementById('reason').value = '';
-    document.getElementById('deets-profile-img').src = '../public/images/customer.png';
+    document.getElementById('deets-profile-img').src = '/images/customer.png';
 
-    document.querySelector('label[for="imageUpload"]').style.display = 'inline-block';
-    document.getElementById('imageUpload').value = '';
+    // document.querySelector('label[for="imageUpload"]').style.display = 'inline-block';
+    // document.getElementById('imageUpload').value = '';
+
+    $('#accesscamera').show();
 }
 
 function validateForm() {
-    const imageUpload = document.getElementById('imageUpload').files[0];
+    // const imageUpload = document.getElementById('imageUpload').files[0];
+    const uploadedImage = document.getElementById('photoStore').value;
     const name = document.getElementById('name').value.trim();
     const address = document.getElementById('address').value.trim();
     const ctc_date = document.getElementById('ctc-date-issued').value.trim();
-    const cert_date = document.getElementById('cert-date-issued').value.trim();
+    const birthplace = document.getElementById('birthplace').value.trim();
     const birthday = document.getElementById('Birthday').value.trim();
     const cedula = document.getElementById('cedula').value.trim();
     const location = document.getElementById('location').value.trim();
@@ -46,7 +55,7 @@ function validateForm() {
     let valid = true;
     let errorMessage = '';
 
-    if (!imageUpload) {
+    if (!uploadedImage) {
         valid = false;
         errorMessage += 'Profile image is required.\n';
     }
@@ -60,7 +69,8 @@ function validateForm() {
         valid = false;
         errorMessage += 'Complete Birth Date is required.\n'; 
     } else {
-        const [month, day, year] = birthday.split('/');
+        console.log(birthday)
+        const [year, month, day] = birthday.split('-');
         if (!isValidDate(day, month, year)) {
             valid = false;
             errorMessage += 'Invalid Birth Date.\n';
@@ -76,7 +86,7 @@ function validateForm() {
         valid = false;
         errorMessage += 'Complete CTC Issuance Date is required.\n'; 
     } else {
-        const [month, day, year] = ctc_date.split('/');
+        const [year, month, day] = ctc_date.split('-');
         if (!isValidDate(day, month, year)) {
             valid = false;
             errorMessage += 'Invalid CTC Issuance Date.\n';
@@ -97,16 +107,10 @@ function validateForm() {
         errorMessage += 'Invalid CTC Number.\n';
     }
 
-    if (!cert_date) {
+    if (!birthplace) {
         valid = false;
-        errorMessage += 'Complete Certificate Issuance Date is required.\n'; 
-    } else {
-        const [month, day, year] = cert_date.split('/');
-        if (!isValidDate(day, month, year)) {
-            valid = false;
-            errorMessage += 'Invalid Certificate Issuance Date.\n';
-        }
-    }
+        errorMessage += 'Place of Birth is required.\n'; 
+    } 
 
     if (!reason) {
         valid = false;
@@ -178,12 +182,43 @@ function showModal(message) {
     }
 }
 
-function downloadFile() {
-    if (!validateForm()) {
-        return;
+function formatBirthday(birthday) {
+    // Split the birthday string into parts
+    const parts = birthday.split('-');
+
+    // Extract month, day, and year
+    const year = parts[0];
+    const month = parts[1];
+    const day = parts[2];
+    
+
+    // Create an array of month names for formatting
+    const monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+    ];
+
+    // Get the month name based on the month number (adjust for zero-index)
+    const monthName = monthNames[parseInt(month, 10) - 1];
+
+    // Format day with suffix (st, nd, rd, th)
+    let daySuffix;
+    if (day == 1 || day == 21 || day == 31) {
+        daySuffix = "st";
+    } else if (day == 2 || day == 22) {
+        daySuffix = "nd";
+    } else if (day == 3 || day == 23) {
+        daySuffix = "rd";
+    } else {
+        daySuffix = "th";
     }
 
-    // not yet done
+    // Construct the formatted string
+    const formattedBirthday = `${day}${daySuffix} of ${monthName}, ${year}`;
+
+    return formattedBirthday;
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -192,4 +227,174 @@ document.addEventListener("DOMContentLoaded", function() {
     print_form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent default form submission
     });
+
+    // const dateInputs = document.querySelectorAll('.date');
+    // dateInputs.forEach(input => {
+    //     input.placeholder = 'DD/MM/YYYY';
+    // });
+
+    const dateInputs = document.querySelectorAll(".date");
+    dateInputs.forEach(dateInput => {
+        if (dateInput) {
+            // Sets date max to current date in the format YYYY-MM-DD
+            dateInput.max = new Date().toISOString().split('T')[0];
+            // Sets date minimum to January 1, 1970
+            dateInput.min = "1970-01-01";
+            dateInput.placeholder = 'DD/MM/YYYY';
+        }
+    });
+
+    document.getElementById('Birthday').addEventListener('change', function() {
+        if (this.value === '') {
+            this.style.backgroundColor = 'grey';
+        } else {
+            this.style.backgroundColor = '#EAF3F7'; // Reset to default
+        }
+    });
+
+    document.getElementById('ctc-date-issued').addEventListener('change', function() {
+        if (this.value === '') {
+            this.style.backgroundColor = 'grey';
+        } else {
+            this.style.backgroundColor = '#EAF3F7'; // Reset to default
+        }
+    });
+
+    document.getElementById('birthplace').addEventListener('change', function() {
+        if (this.value === '') {
+            this.style.backgroundColor = 'grey';
+        } else {
+            this.style.backgroundColor = '#EAF3F7'; // Reset to default
+        }
+    });
 });
+
+//for webcam
+$(document).ready(function() {
+    Webcam.set({
+        width: 320,
+        height: 240,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+
+    $('#accesscamera').on('click', function() {
+        Webcam.reset();
+        Webcam.on('error', function() {
+            $('#photoModal').modal('hide');
+            swal({
+                title: 'Warning',
+                text: 'Please give permission to access your webcam',
+                icon: 'warning'
+            });
+        });
+        Webcam.attach('#my_camera');
+    });
+
+    $('#takephoto').on('click', take_snapshot);
+
+    $('#retakephoto').on('click', function() {
+        $('#my_camera').addClass('d-block');
+        $('#my_camera').removeClass('d-none');
+
+        $('#results').addClass('d-none');
+
+        $('#takephoto').addClass('d-block');
+        $('#takephoto').removeClass('d-none');
+
+        $('#retakephoto').addClass('d-none');
+        $('#retakephoto').removeClass('d-block');
+
+        $('#uploadphoto').addClass('d-none');
+        $('#uploadphoto').removeClass('d-block');
+    });
+
+    $('#photoForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        Webcam.reset();
+
+        $('#my_camera').addClass('d-block');
+        $('#my_camera').removeClass('d-none');
+
+        $('#results').addClass('d-none');
+
+        $('#takephoto').addClass('d-block');
+        $('#takephoto').removeClass('d-none');
+
+        $('#retakephoto').addClass('d-none');
+        $('#retakephoto').removeClass('d-block');
+
+        $('#uploadphoto').addClass('d-none');
+        $('#uploadphoto').removeClass('d-block');
+
+        $('#photoModal').modal('hide');
+
+        swal({
+            title: 'Success',
+            text: 'Photo uploaded successfully',
+            icon: 'success',
+            buttons: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+            timer: 2000
+        });
+    });
+
+    $('#uploadphoto').on('click', function() {
+        const data_uri = $('#photoStore').val();
+        if (data_uri) {
+            // Update the profile image container
+            $('#deets-profile-img').attr('src', 'data:image/jpeg;base64,' + data_uri);
+    
+            // Hide the capture button
+            $('#accesscamera').hide();
+        }
+    
+        // Close the modal and reset the webcam
+        $('#photoModal').modal('hide');
+        Webcam.reset();
+    
+        // Reset the UI for taking a new photo
+        $('#my_camera').addClass('d-block').removeClass('d-none');
+        $('#results').addClass('d-none');
+        $('#takephoto').addClass('d-block').removeClass('d-none');
+        $('#retakephoto').addClass('d-none').removeClass('d-block');
+        $('#uploadphoto').addClass('d-none').removeClass('d-block');
+    
+        swal({
+            title: 'Success',
+            text: 'Photo uploaded successfully',
+            icon: 'success',
+            buttons: false,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+            timer: 2000
+        });
+    });
+    
+});
+
+function take_snapshot() {
+    Webcam.snap(function(data_uri) {
+        // Display the result image
+        $('#results').html('<img src="' + data_uri + '" class="d-block mx-auto rounded"/>');
+
+        // Update the profile image container
+        $('#deets-profile-img').attr('src', data_uri);
+
+        // Hide the upload image option
+        $('label[for="imageUpload"]').hide();
+
+        // Store the raw image data in the hidden input
+        var raw_image_data = data_uri.replace(/^data\:image\/\w+\;base64\,/, '');
+        $('#photoStore').val(raw_image_data);
+    });
+
+    // Update visibility of elements
+    $('#my_camera').removeClass('d-block').addClass('d-none');
+    $('#results').removeClass('d-none');
+    $('#takephoto').removeClass('d-block').addClass('d-none');
+    $('#retakephoto').removeClass('d-none').addClass('d-block');
+    $('#uploadphoto').removeClass('d-none').addClass('d-block');
+}
