@@ -81,7 +81,7 @@ html {
     color: white;
     height: 5rem;
     width: 100%;
-    margin-bottom: 3.5%;
+    margin-bottom: 3rem;
     padding-left: 7.2%;
     padding-right: 7.2%;
   }
@@ -730,13 +730,19 @@ html {
   padding: 5px 10px;
   border-radius: 5px;
   display: flex;
-  opacity: 0.5; 
+  opacity: 1.0; 
+  width: fit-content;
 }
 
 .back-button svg {
+  display: block;
   width: 20px;
   height: 20px;
   margin-right: 5px;
+}
+
+.back-button:hover {
+  text-decoration: underline;
 }
 
 .action-prompt{
@@ -760,7 +766,7 @@ html {
 }
 
 .option {
-  width: 45%;
+  width: 100%;
   margin: 10px 0;
   padding: 10px 0;
   display: flex;
@@ -811,7 +817,15 @@ html {
   background-color: #236759;
   color: #AFE1D7;
 }
-
 .hide {
   display: none;
+  
+#brgy-certs-btn {
+  background-color: #725D12;
+  color: #E4C761;
+}
+
+#accounts-btn {
+  background-color: #0D3919;
+  color: #7BBD4E;
 }

@@ -921,11 +921,29 @@ html {
   margin-left: 160px;
 }
 
+.content-text-main.indiv-roles{
+  width: fit-content;
+  text-align: start;
+  border-bottom: 1px  white;
+  margin-right: 80px;
+  color: white;
+  font-size: 16px;
+}
+
 
 
 .underline{
     text-decoration: underline;
     margin-left: 70px;
+}
+
+.opaque {
+  opacity: 80%;
+}
+
+.selected{
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .underline-lupon-tanod{
