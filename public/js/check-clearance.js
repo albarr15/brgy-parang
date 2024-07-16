@@ -57,7 +57,7 @@ function displayNoResult() {
     
     const listItem = document.createElement("li");
     listItem.className = "result-item";
-    listItem.textContent = "No results found";
+    listItem.textContent = "No results found.";
     
 
     // Create an anchor element for the link
@@ -65,10 +65,15 @@ function displayNoResult() {
     link.href = "/employee-input-page";
     link.textContent = "Continue to Certificate Generation?";
 
-    // Append the anchor element to the list item
-    listItem.appendChild(link);
+    // Create a div to wrap the elements and apply flexbox
+    const wrapper = document.createElement("div");
+    wrapper.className = "flex-container";
 
-    resultsContainer.appendChild(listItem);
+    // Append the text and link to the wrapper
+    wrapper.appendChild(listItem);
+    wrapper.appendChild(link);
+
+    resultsContainer.appendChild(wrapper);
 }
 
 function displayResults(results) {
@@ -89,6 +94,8 @@ function displayResults(results) {
             const linkElement = document.createElement("a");
             linkElement.href = `/employee-onClick-print/${_id}`; // Update this path as needed
             linkElement.textContent = `${ReporteeInfo.FirstName} ${ReporteeInfo.MiddleInitial ? `${ReporteeInfo.MiddleInitial}. ` : ''}${ReporteeInfo.LastName}`;
+            
+            linkElement.classList.add("result-link");
 
             // Add click event listener to the link element
             linkElement.addEventListener("click", function(event) {
@@ -131,6 +138,8 @@ function displayResultsLupon(results) {
             linkElement.href = `/employee-onClick-printLupon/${_id}`; // Update this path as needed
             linkElement.textContent = `${RespondentInfo.FirstName} ${RespondentInfo.MiddleInitial ? `${RespondentInfo.MiddleInitial}. ` : ''}${RespondentInfo.LastName}`;
 
+            linkElement.classList.add("result-link");
+
             // Add click event listener to the link element
             linkElement.addEventListener("click", function(event) {
                 event.preventDefault(); // Prevent default link behavior (navigating away)
@@ -152,7 +161,6 @@ function displayResultsLupon(results) {
         resultsContainer.appendChild(listItem);
     }
 }
-
 
 function clearResults() {
     const resultsContainer = document.getElementById('results-container');

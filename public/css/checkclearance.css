@@ -101,11 +101,12 @@
 .result-item {
     padding: 10px;
     cursor: pointer;
-    margin: 10px;
+    margin: 1%;
 
-    background-color: #f0f0f0;
-    color: black;
+    color: grey;
     font-weight: bold;
+
+    list-style-type: none;
 }
 
 /* .result-item:hover,
@@ -114,3 +115,31 @@
     color: black;
     font-weight: bold;
 } */
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  margin-top: 1%;
+}
+
+.flex-container a {
+  margin-left: auto;
+  margin-top: 2%;
+  margin-right: 2%;
+  color: #1C8A3B;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* Default style for the link with the class 'result-link' */
+.result-link {
+  color: grey; 
+  text-decoration: none; 
+  font-weight: bold;
+}
+
+.result-link:hover {
+  color: green; 
+  text-decoration: underline; 
+}
