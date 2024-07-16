@@ -817,7 +817,9 @@ html {
   background-color: #236759;
   color: #AFE1D7;
 }
-
+.hide {
+  display: none;
+  
 #brgy-certs-btn {
   background-color: #725D12;
   color: #E4C761;
