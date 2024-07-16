@@ -12,17 +12,41 @@ const isUser = async (req, res) => {
         // Find the user by email
         const user = await UserModel.findOne({ email: email });
         if (!user) {
-            return res.redirect('/admin-login-page?log_in=User-Not-Found');
+            return res.render('admin-login-page',{
+                layout: 'layout',
+                title: 'Barangay Parang - Admin Login Page',
+                cssFile1: 'index',
+                cssFile2: 'login-page',
+                javascriptFile1: 'login',
+                javascriptFile2: null,
+                error: "User Not Found"
+            });
         }
 
         // Compare the provided password with the stored plaintext password
         if (password !== user.password) {
-            return res.redirect('/admin-login-page?log_in=Incorrect-Password');
+            return res.render('admin-login-page',{
+                layout: 'layout',
+                title: 'Barangay Parang - Admin Login Page',
+                cssFile1: 'index',
+                cssFile2: 'login-page',
+                javascriptFile1: 'login',
+                javascriptFile2: null,
+                error: "Incorrect Password"
+            });
         }
 
         // Check if admin
         if ("admin" !== user.role) {
-            return res.redirect('/admin-login-page?log_in=Unathorized_Access');
+            return res.render('admin-login-page',{
+                layout: 'layout',
+                title: 'Barangay Parang - Admin Login Page',
+                cssFile1: 'index',
+                cssFile2: 'login-page',
+                javascriptFile1: 'login',
+                javascriptFile2: null,
+                error: "Unathorized Access"
+            });
         }
 
 

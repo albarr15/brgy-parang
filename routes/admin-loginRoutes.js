@@ -10,6 +10,7 @@ router.get('/admin-login-page', (req, res) => {
         cssFile2: 'login-page',
         javascriptFile1: 'login',
         javascriptFile2: null,
+        error: null
     });
 })
 
