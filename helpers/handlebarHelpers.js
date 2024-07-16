@@ -33,9 +33,28 @@ const registerHelpers = () => {
             return options.fn({ roleText: 'Lupon' });
         }
     });
+
+    handlebars.registerHelper('checkCase', function(cases, options) {
+        switch (cases) {
+            case 'tanod':
+                return options.fn({ caseType: 'tanod' });
+            case 'lupon':
+                return options.fn({ caseType: 'lupon' });
+            case 'both':
+                return options.fn({ caseType: 'both' });
+            default:
+                return options.inverse(this);
+        }
+    });
+
+    handlebars.registerHelper('eq', function(a, b) {
+        return a === b;
+    });
+
+    handlebars.registerHelper('getStatus', function(statusArray, index) {
+        return statusArray[index];
+    });
 };
-
-
 
 
 module.exports = {

@@ -59,9 +59,46 @@ const isClearedEmployeeLupon = async (req, res) => {
 
 const onClickView = async (req, res) => {
     try {
-        const caseId = req.params.id;
-        const specificCase = await TanodCaseModel.findOne({ _id : caseId }).lean();
-        // console.log(cases);
+        const ReporteeInfoFN = req.params.FN;
+        const ReporteeInfoMI = req.params.MI;
+        const ReporteeInfoLN = req.params.LN;
+
+        console.log(ReporteeInfoFN)
+        console.log(ReporteeInfoMI)
+        console.log(ReporteeInfoLN)
+
+        var typeCase = ""
+        var specificCase = ""
+        var statusT = ""
+        var statusL = ""
+
+        const specificCaseT = await TanodCaseModel.findOne({ 'ReporteeInfo.FirstName'       : ReporteeInfoFN, 
+                                                             'ReporteeInfo.MiddleInitial'   : ReporteeInfoMI,
+                                                             'ReporteeInfo.LastName'        : ReporteeInfoLN}).lean();
+
+        const specificCaseL = await LuponCaseModel.findOne({ 'RespondentInfo.FirstName'     : ReporteeInfoFN, 
+                                                             'RespondentInfo.MiddleInitial' : ReporteeInfoMI,
+                                                             'RespondentInfo.LastName'      : ReporteeInfoLN}).lean();
+
+
+        if(specificCaseT && specificCaseL) {
+            typeCase = "both"
+            specificCase = specificCaseT,
+            statusT = specificCaseT.Status
+            statusL = specificCaseL.Status
+        } else if (specificCaseT) {
+            typeCase = "tanod"
+            specificCase = specificCaseT
+            statusT = specificCaseT.Status
+            statusL = null
+        } else if (specificCaseL) {
+            typeCase = "lupon"
+            specificCase = specificCaseL
+            statusL = specificCaseL.Status
+            statusT = null
+        }
+
+
         res.render('employee-onClick-print',{
             layout: 'layout',
             title: 'Barangay Parang - Admin - Tanod View Case Page',
@@ -69,7 +106,10 @@ const onClickView = async (req, res) => {
             cssFile2: 'onClick',
             javascriptFile1: 'components',
             javascriptFile2: 'header',
-            cases: specificCase
+            cases: specificCase,
+            typeCase : typeCase,
+            StatusT : statusT,
+            StatusL : statusL
         });
     } catch (err) {
         console.error(err);
@@ -77,6 +117,7 @@ const onClickView = async (req, res) => {
     }
 };
 
+// wala na tong kwenta
 const onClickViewLupon = async (req, res) => {
     try {
         const caseId = req.params.id;
@@ -96,6 +137,7 @@ const onClickViewLupon = async (req, res) => {
         return res.status(500).json({ message: "Server error" });
     }
 };
+// wala na tong kwenta
 
 const printCertificate = async (req, res) => {
     try {

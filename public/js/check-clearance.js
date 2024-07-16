@@ -24,30 +24,31 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                     const result = await response.json();
                     const resultLupon = await responseLupon.json();
-
+                    
                     if (result.results.length > 0 && resultLupon.results.length > 0) {
                         // Display both sets of results
                         displayResults(result.results);
-                        displayResultsLupon(resultLupon.results);
+                        console.log("im here")
                     } else if (result.results.length > 0) {
-                        // Display only Employee results
+                        // Display only Tanod results
                         displayResults(result.results);
+                        console.log("RAWR")
                     } else if (resultLupon.results.length > 0) {
                         // Display only Lupon results
                         displayResultsLupon(resultLupon.results);
+                        console.log("HERE")
                     } else {
                         displayNoResult();
                     }
                 } else {
-                    clearResults(); // Clear results if searchName is empty
-                    searchBox.placeholder = "Search Name"; // Reset placeholder
+                    clearResults(); 
+                    searchBox.placeholder = "Search Name";
                 }
             } catch (error) {
                 console.error('There was a problem with the search operation:', error);
             }
         });
     }
-
     // Existing code for other functionalities (displayResults, clearResults, etc.) remains the same
 });
 
@@ -86,24 +87,24 @@ function displayResults(results) {
         listElement.className = "results-list";
 
         results.forEach(result => {
-            const { _id, ReporteeInfo } = result;
+            const { ReporteeInfo } = result;
 
             const listItem = document.createElement("li");
             listItem.className = "result-item";
 
             const linkElement = document.createElement("a");
-            linkElement.href = `/employee-onClick-print/${_id}`; // Update this path as needed
+            linkElement.href = `/employee-onClick-print/${ReporteeInfo.FirstName}/${ReporteeInfo.MiddleInitial}/${ReporteeInfo.LastName}`;
             linkElement.textContent = `${ReporteeInfo.FirstName} ${ReporteeInfo.MiddleInitial ? `${ReporteeInfo.MiddleInitial}. ` : ''}${ReporteeInfo.LastName}`;
             
             linkElement.classList.add("result-link");
 
             // Add click event listener to the link element
             linkElement.addEventListener("click", function(event) {
-                event.preventDefault(); // Prevent default link behavior (navigating away)
-                searchBox.value = linkElement.textContent; // Set search box value to clicked item
-                searchBox.placeholder = linkElement.textContent; // Update placeholder
-                clearResults(); // Clear search results
-                window.location.href = linkElement.href; // Navigate to the specified URL
+                event.preventDefault(); 
+                searchBox.value = linkElement.textContent; 
+                searchBox.placeholder = linkElement.textContent; 
+                clearResults(); 
+                window.location.href = linkElement.href; 
             });
 
             listItem.appendChild(linkElement);
@@ -135,18 +136,18 @@ function displayResultsLupon(results) {
             listItem.className = "result-item";
 
             const linkElement = document.createElement("a");
-            linkElement.href = `/employee-onClick-printLupon/${_id}`; // Update this path as needed
+            linkElement.href = `/employee-onClick-print/${RespondentInfo.FirstName}/${RespondentInfo.MiddleInitial}/${RespondentInfo.LastName}`;; // Update this path as needed
             linkElement.textContent = `${RespondentInfo.FirstName} ${RespondentInfo.MiddleInitial ? `${RespondentInfo.MiddleInitial}. ` : ''}${RespondentInfo.LastName}`;
 
             linkElement.classList.add("result-link");
 
             // Add click event listener to the link element
             linkElement.addEventListener("click", function(event) {
-                event.preventDefault(); // Prevent default link behavior (navigating away)
-                searchBox.value = linkElement.textContent; // Set search box value to clicked item
-                searchBox.placeholder = linkElement.textContent; // Update placeholder
-                clearResults(); // Clear search results
-                window.location.href = linkElement.href; // Navigate to the specified URL
+                event.preventDefault(); 
+                searchBox.value = linkElement.textContent;
+                searchBox.placeholder = linkElement.textContent; 
+                clearResults(); 
+                window.location.href = linkElement.href; 
             });
 
             listItem.appendChild(linkElement);
@@ -157,7 +158,7 @@ function displayResultsLupon(results) {
     } else {
         const listItem = document.createElement("li");
         listItem.className = "result-item";
-        listItem.textContent = "No results found."; //add href to /employee-input-page but the href is wrap in Continue generation 
+        listItem.textContent = "No results found."; 
         resultsContainer.appendChild(listItem);
     }
 }
