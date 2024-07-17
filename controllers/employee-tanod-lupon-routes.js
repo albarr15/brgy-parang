@@ -118,44 +118,64 @@ function add(app){
         try{
             const searchName = req.query.search_name || '';
             const searchRegex = new RegExp(searchName, 'i');
-            //get all cases
-            TanodCaseModel.find({
+
+            //pages
+            const page = parseInt(req.query.page) || 1;
+            const limit = 10;
+            const skip = (page - 1) * limit;
+
+            //get all cases with pagination
+            const cases = await TanodCaseModel.find({
                 $or:[
                     {'ReporteeInfo.FirstName': searchRegex},
                     {'ReporteeInfo.LastName': searchRegex},
                     {'RespondentInfo.FirstName' : searchRegex},
                     {'RespondentInfo.LastName': searchRegex}
                 ]
-            }).then(function(cases){
-                let allCases =[];
+            })
+            .skip(skip)
+            .limit(limit)
+            .exec();
 
-                for(const item of cases){
-                    let stat_lc = 'resolved';
+            const totalCases = await TanodCaseModel.countDocuments({
+                $or:[
+                    {'ReporteeInfo.FirstName': searchRegex},
+                    {'ReporteeInfo.LastName': searchRegex},
+                    {'RespondentInfo.FirstName' : searchRegex},
+                    {'RespondentInfo.LastName': searchRegex}
+                ]
+            });
 
-                    if(item.Status== 'Ongoing'){
-                        stat_lc = 'ongoing';
-                    }
-
-                    allCases.push({
-                        caseID : item._id,
-                        entryNo: item.EntryNo,
-                        date: item.Date,
-                        reporteeFirstName: item.ReporteeInfo.FirstName,
-                        reporteeLastName: item.ReporteeInfo.LastName,
-                        respondentFirstName: item.RespondentInfo.FirstName,
-                        respondentLastName: item.RespondentInfo.LastName,
-                        status: item.Status,
-                        stat_lc: stat_lc
-                    });
+            let allCases = [];
+            for(const item of cases){
+                let stat_lc = 'resolved';
+                if(item.Status == 'Ongoing'){
+                    stat_lc = 'ongoing';
                 }
 
-                //render it to home   
-                resp.render('tanod-home', {
+                allCases.push({
+                    caseID : item._id,
+                    entryNo: item.EntryNo,
+                    date: item.Date,
+                    reporteeFirstName: item.ReporteeInfo.FirstName,
+                    reporteeLastName: item.ReporteeInfo.LastName,
+                    respondentFirstName: item.RespondentInfo.FirstName,
+                    respondentLastName: item.RespondentInfo.LastName,
+                    status: item.Status,
+                    stat_lc: stat_lc
+                });
+            }
+
+            const totalPages = Math.ceil(totalCases/limit);
+
+            resp.render('tanod-home', {
                 layout: 'index-tanod',
                 title: 'Tanod Homepage',
-                cases: allCases
-                });
+                cases: allCases,
+                currentPage: page,
+                totalPages: totalPages
             });
+
         } catch(error){
             console.error('Error fetching all cases:', error);
             resp.status(500).send('Internal Server Error');
@@ -448,30 +468,48 @@ function add(app){
 
 
     //Lupon Homepage
-    app.get('/lupon-home', function(req, resp){
+    app.get('/lupon-home', async function(req, resp){
         try{
             const searchName = req.query.search_name || '';
             const searchRegex = new RegExp(searchName, 'i');
-            //get all cases
-            LuponCaseModel.find({
+
+            //pages
+            const page = parseInt(req.query.page) || 1;
+            const limit = 10;
+            const skip = (page - 1) * limit;
+
+            //get all cases with pagination
+            const cases = await LuponCaseModel.find({
                 $or:[
                     {'ComplainerInfo.FirstName': searchRegex},
                     {'ComplainerInfo.LastName': searchRegex},
                     {'RespondentInfo.FirstName' : searchRegex},
                     {'RespondentInfo.LastName': searchRegex}
                 ]
-            }).then(function(cases){
-            let allCases =[];
+            })
+            .skip(skip)
+            .limit(limit)
+            .exec();
 
-                for(const item of cases){
-                    let stat_lc = 'resolved';
+            const totalCases = await LuponCaseModel.countDocuments({
+                $or:[
+                    {'ComplainerInfo.FirstName': searchRegex},
+                    {'ComplainerInfo.LastName': searchRegex},
+                    {'RespondentInfo.FirstName' : searchRegex},
+                    {'RespondentInfo.LastName': searchRegex}
+                ]
+            });
 
-                    if(item.Status== 'Ongoing'){
-                        stat_lc = 'ongoing';
-                    }
 
-                    allCases.push({
-                        caseID: item._id,
+            let allCases = [];
+            for(const item of cases){
+                let stat_lc = 'resolved';
+                if(item.Status == 'Ongoing'){
+                    stat_lc = 'ongoing';
+                }
+
+                allCases.push({
+                    caseID: item._id,
                         caseTitle: item.CaseTitle,
                         caseType: item.CaseType,
                         complainerFirstName: item.ComplainerInfo.FirstName,
@@ -480,18 +518,19 @@ function add(app){
                         respondentLastName: item.RespondentInfo.LastName,
                         status: item.Status,
                         stat_lc: stat_lc
-                    });
-                }
+                });
+            }
 
+            const totalPages = Math.ceil(totalCases/limit);
 
-
-                //render it to home   
-                resp.render('lupon-home', {
+            resp.render('lupon-home', {
                 layout: 'index-lupon',
                 title: 'Lupon Homepage',
-                cases: allCases
-                });
+                cases: allCases,
+                currentPage: page,
+                totalPages: totalPages
             });
+
         } catch(error){
             console.error('Error fetching all cases:', error);
             resp.status(500).send('Internal Server Error');
