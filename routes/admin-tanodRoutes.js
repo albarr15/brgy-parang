@@ -2,30 +2,32 @@ const express = require('express');
 const tanodCaseController = require('../controllers/TanodCaseController');
 const router = express.Router();
 
-router.get('/admin-tanod-db-view',                  tanodCaseController.viewTanodDB);
+router.get('/admin-tanod-db-view',                      tanodCaseController.viewTanodDB);       //main view db
 
-router.get('/admin-tanod-db-view/:search_name',     tanodCaseController.viewSearchTanodDB);
+router.get('/admin-tanod-db-view/:page',                tanodCaseController.viewPageTanodDB);   //view specific page in db
 
-router.get('/admin-tanod-db-view/:id',              tanodCaseController.markResolved);
+router.get('/admin-tanod-db-view/:search_name',         tanodCaseController.viewSearchTanodDB); //view search result in db
 
-router.get('/A-tanod-view-case/:id',                tanodCaseController.viewTanodCase);
+router.get('/admin-tanod-db-view/:id',                  tanodCaseController.markResolved);      //mark specific case/s using mark resolved button in db
 
-router.get('/A-tanod-edit-case/:id',                tanodCaseController.editTanodCase);
+router.get('/A-tanod-view-case/:id',                    tanodCaseController.viewTanodCase);     //view specific (1) case
 
-router.post('/submit-edit-tanod-case',              tanodCaseController.submitEditTanodCase);
+router.get('/A-tanod-edit-case/:id',                    tanodCaseController.editTanodCase);     //edit specific (1) case
 
-router.get('/update-Status/:id/:status',            tanodCaseController.updateStatus);
+router.post('/submit-edit-tanod-case',                  tanodCaseController.submitEditTanodCase);
 
-router.get('/delete-case/:id',                      tanodCaseController.deleteTanodCase);
+router.get('/update-Status/:id/:status/:currentPage',   tanodCaseController.updateStatus);      //status update
 
-router.post('/mark-as-resolved',                    tanodCaseController.markMultipleTCaseResolved);
+router.get('/delete-case/:id',                          tanodCaseController.deleteTanodCase);
 
-router.post('/delete-cases',                        tanodCaseController.deleteMultipleTanodCase);
+router.post('/mark-as-resolved',                        tanodCaseController.markMultipleTCaseResolved);
 
-router.get('/search-cases/:search_name',            tanodCaseController.searchTanodCase);
+router.post('/delete-cases',                            tanodCaseController.deleteMultipleTanodCase);
 
-router.get('/A-tanod-create-case',                  tanodCaseController.viewCreateTanodCase);
+router.get('/search-cases/:search_name',                tanodCaseController.searchTanodCase);
 
-router.post('/submit-tanod-case',                   tanodCaseController.createTanodCase);
+router.get('/A-tanod-create-case',                      tanodCaseController.viewCreateTanodCase);
+
+router.post('/submit-tanod-case',                       tanodCaseController.createTanodCase);
 
 module.exports = router;

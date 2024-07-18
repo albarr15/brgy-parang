@@ -4,7 +4,7 @@ const admin_loginRoutes = require('./routes/admin-loginRoutes');
 const admin_tanodRoutes = require('./routes/admin-tanodRoutes');
 const admin_luponRoutes = require('./routes/admin-luponRoutes');
 const certificate_PrintingRoutes = require('./routes/certificate-printingRoutes');
-const accoutns_Routes = require('./routes/account-ManageRoutes');
+const accounts_Routes = require('./routes/account-ManageRoutes');
 const { registerHelpers } = require('./helpers/handlebarHelpers');
 
 const path = require('path');
@@ -62,7 +62,7 @@ app.use(admin_luponRoutes);
 app.use(certificate_PrintingRoutes);
 
 //manage accounts
-app.use(accoutns_Routes);
+app.use(accounts_Routes);
 
 const controllers = ['employee-tanod-lupon-routes']; //ung mga get eme nasa controller
 for(var i=0; i<controllers.length; i++){

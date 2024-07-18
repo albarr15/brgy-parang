@@ -74,7 +74,10 @@
                         </div>
                     {{else}}
                         <div class="statusCol-Content">
-                            <a href="/update-Status-Lupon/{{this._id}}/{{this.Status}}"><button type="button" class="status ongoing"><img src="/images/ongoing-circle.png"><span>Ongoing</span></button></a>
+                            {{!-- <a href="/update-Status/{{this._id}}/{{this.Status}}"><button type="button" class="status ongoing"><img src="/images/ongoing-circle.png"><span>Ongoing</span></button></a> --}}
+                            <button type="button" class="status ongoing" onclick="updateStatus('{{this._id}}', '{{this.Status}}')">
+                                <img src="/images/ongoing-circle.png"><span>Ongoing</span>
+                            </button>
                         </div>
                     {{/checkStatus}}
 
@@ -112,6 +115,10 @@
                     window.location.href = baseUrl + (currentPage + 1);
                 }
             });
+
+            window.updateStatus = function(caseId, currentStatus) {
+                window.location.href = `/update-Status-Lupon/${caseId}/${currentStatus}/${currentPage}`;
+            };
         });
     </script>
 </div>
