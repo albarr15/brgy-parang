@@ -201,7 +201,7 @@ const submitEditTanodCase = async (req, res) => {
             { new: true }
         );
 
-        res.redirect("/admin-tanod-db-view");
+        res.redirect(`/A-tanod-view-case/${_id}`);
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Server error" });

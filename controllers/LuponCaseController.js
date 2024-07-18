@@ -356,7 +356,7 @@ const submitEditLuponCase = async (req, res) => {
             { new: true }
         );
 
-        res.redirect("/admin-lupon-db-view");
+        res.redirect(`/A-lupon-view-case/${_id}`);
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Server error" });
