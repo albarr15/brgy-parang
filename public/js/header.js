@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function updateUser(userRole) {
-        // console.log("Updating user" + userRole);
+        console.log("Updating user" + userRole);
         const user_role = document.getElementById("profile-text");
 
         if (user_role) {
@@ -78,42 +78,42 @@ document.addEventListener("DOMContentLoaded", function() {
             var home_link1 = document.getElementById("home-link1");
             var home_link2 = document.getElementById("home-link2");
 
-            // console.log("Found user_role: " + user_role);
+            console.log("Found user_role: " + user_role);
             switch(userRole) {
                 case "Lupon":
                     document.getElementById("profile-text").style.color="#F3BE72";
                     user_profile.src = "/images/lupon-profile.png";
-                    home_link1.href = "lupon-homepage.html";
-                    home_link2.href = "lupon-homepage.html";
+                    home_link1.href = "/lupon-homepage";
+                    home_link2.href = "/lupon-homepage";
                     break;
     
                 case "Tanod":
                     document.getElementById("profile-text").style.color="#AFE1D7";
                     user_profile.src = "/images/tanod-profile.png";
-                    home_link1.href = "tanod-homepage.html";
-                    home_link2.href = "tanod-homepage.html";
+                    home_link1.href = "/tanod-homepage";
+                    home_link2.href = "/tanod-homepage";
                     break;
     
                 case "Employee":
                     document.getElementById("profile-text").style.color="#779FE5";
                     user_profile.src = "/images/employee-profile.png";
-                    home_link1.href = "employee-homepage.html";
-                    home_link2.href = "employee-homepage.html";
+                    home_link1.href = "/employee-homepage";
+                    home_link2.href = "/employee-homepage";
                     toggleDarkPage();
                     break;
     
                 case "Admin":
                     document.getElementById("profile-text").style.color="#F07507";
                     user_profile.src = "/images/admin-profile.png";
-                    home_link1.href = "admin-homepage.html";
-                    home_link2.href = "admin-homepage.html";
+                    home_link1.href = "/admin-homepage";
+                    home_link2.href = "/admin-homepage";
                     toggleDarkPage();
                     break;
                 default:
                     document.getElementById("profile-text").style.color="#FFFFFF";
-                    user_profile.src = "";
-                    home_link1.href = "";
-                    home_link2.href = "";
+                    user_profile.src = "/images/logo.png";
+                    home_link1.href = "/index";
+                    home_link2.href = "/index";
             }
         }
     }
@@ -126,4 +126,12 @@ document.addEventListener("DOMContentLoaded", function() {
     updateUser(userRole);
     
     initializePage();
+
+    // for logout btn
+    const logoutBtn = document.getElementById("logout-btn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(){
+            window.location.href="/index";
+        });
+    }
 });
