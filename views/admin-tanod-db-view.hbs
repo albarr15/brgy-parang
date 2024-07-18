@@ -70,7 +70,8 @@
                     {{!-- implement UPDATE --}}
                     {{#checkStatus Status}}
                         <div class="statusCol-Content">
-                            <a href="/update-Status/{{this._id}}/{{this.Status}}"><button type="button" class="status resolved" ><img src="/images/resolved-circle.png"><span>Resolved</span></button></a>
+                            {{!-- <a href="/update-Status/{{this._id}}/{{this.Status}}"><button type="button" class="status resolved" ><img src="/images/resolved-circle.png"><span>Resolved</span></button></a> --}}
+                            <button type="button" class="status resolved" style="pointer-events: none;" disabled><img src="/images/resolved-circle.png"><span>Resolved</span></button>
                         </div>
                     {{else}}
                         <div class="statusCol-Content">
