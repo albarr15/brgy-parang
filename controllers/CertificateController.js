@@ -117,31 +117,25 @@ const onClickView = async (req, res) => {
     }
 };
 
-// wala na tong kwenta
-const onClickViewLupon = async (req, res) => {
+const printCertificate = async (req, res) => {
     try {
-        const caseId = req.params.id;
-        const specificCase = await LuponCaseModel.findOne({ _id : caseId }).lean();
-        // console.log(cases);
-        res.render('employee-onClick-printLupon',{
+        res.render('employee-input-page', {
             layout: 'layout',
-            title: 'Barangay Parang - Admin - Lupon View Case Page',
-            cssFile1: 'index',
-            cssFile2: 'onClick',
-            javascriptFile1: 'components',
-            javascriptFile2: 'header',
-            cases: specificCase
+            title: 'Barangay Parang - Employee View - Input Cert. Details',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
         });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Server error" });
     }
-};
-// wala na tong kwenta
+}; 
 
-const printCertificate = async (req, res) => {
+const printCertificateClearance = async (req, res) => {
     try {
-        res.render('employee-input-page', {
+        res.render('employee-input-page-clerance', {
             layout: 'layout',
             title: 'Barangay Parang - Employee View - Input Cert. Details',
             cssFile1: null,
@@ -162,5 +156,5 @@ module.exports = {
     viewCertClearance,
 
     isClearedEmployeeLupon,
-    onClickViewLupon
+    printCertificateClearance
 }

@@ -9,7 +9,7 @@ router.get('/search-cases-employeeLupon/:search_name',      certificateControlle
 
 router.get('/employee-onClick-print/:FN/:MI/:LN',           certificateController.onClickView);
 
-router.get('/employee-onClick-printLupon/:id',              certificateController.onClickViewLupon);
 router.get('/employee-input-page',                          certificateController.printCertificate);
+router.get('/employee-input-page-clearance',                certificateController.printCertificateClearance);
 
 module.exports = router;
