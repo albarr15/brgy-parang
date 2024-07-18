@@ -89,7 +89,7 @@ html {
     color: white;
     height: 5rem;
     width: 100%;
-    margin-bottom: 3.5%;
+    margin-bottom: 3rem;
     padding-left: 7.2%;
     padding-right: 7.2%;
   }
@@ -704,7 +704,7 @@ html {
     .header-text, .header-title {
       display: none;
     }
-    .login-header-right {
+    .header-right {
       display: none;
     }
   }
@@ -844,4 +844,8 @@ html {
 #accounts-btn {
   background-color: #0D3919;
   color: #7BBD4E;
+}
+
+.hide {
+  display: none;
 }
