@@ -744,6 +744,7 @@ html {
   height: auto;
 }
 
+
 .backbutton-container{
   display: block;
   width: 100%;
@@ -754,13 +755,20 @@ html {
   padding: 5px 10px;
   border-radius: 5px;
   display: flex;
-  opacity: 0.5; 
+  opacity: 0.8; 
+  width: fit-content;
 }
 
 .back-button svg {
+  display: block;
   width: 20px;
   height: 20px;
   margin-right: 5px;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+  opacity: 1.0;
 }
 
 .action-prompt{
