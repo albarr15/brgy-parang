@@ -58,7 +58,7 @@
                     <div class="content-text-main reportee">{{this.respondentFirstName}} {{this.respondentLastName}}</div>
                     <div class="content-text-main respondent">{{this.complainerFirstName}} {{this.complainerLastName}}</div>
                     <button type="button" class="status {{this.stat_lc}} margin2"><img src="/images/{{this.stat_lc}}-circle.png"><span>{{this.status}}</span></button>
-                    <button type="button" class="form-action-btn margin" title="Edit Case Details"><a href="/lupon-edit-case/{{this.caseID}}"><img src="/images/action-edit.png"></a></button>
+                    <button type="button" class="form-action-btn margin" title="Edit Case Details" {{this.isEditable}}><a href="/lupon-edit-case/{{this.caseID}}" {{this.isEditable}}><img src="/images/action-edit.png"></a></button>
                 </div>
                 {{/each}}                
             </div>

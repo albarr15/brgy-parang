@@ -45,8 +45,8 @@
                                     <label for="case-form" class ="bold-label">Status</label>
                                     <select name="status" class="status-dropdown" selected = "{{case.Status}}">
                                         <option value="" disabled hidden>Select Status</option>
-                                        <option value="Resolved">Resolved</option>
-                                        <option value="Ongoing">Ongoing</option>
+                                        <option value="Resolved" {{resolveStat}}>Resolved</option>
+                                        <option value="Ongoing" {{ongoingStat}}>Ongoing</option>
                                     </select>
                                 </div>
                             </div>

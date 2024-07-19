@@ -1,5 +1,4 @@
 const { CertificateModel, UserModel, LuponCaseModel, TanodCaseModel } = require('../models/database/mongoose');
-const session = require('express-session');
 
 
 function add(app){
@@ -149,8 +148,10 @@ function add(app){
             let allCases = [];
             for(const item of cases){
                 let stat_lc = 'resolved';
+                let isEditable = 'hidden';
                 if(item.Status == 'Ongoing'){
                     stat_lc = 'ongoing';
+                    isEditable = '';
                 }
 
                 allCases.push({
@@ -162,7 +163,8 @@ function add(app){
                     respondentFirstName: item.RespondentInfo.FirstName,
                     respondentLastName: item.RespondentInfo.LastName,
                     status: item.Status,
-                    stat_lc: stat_lc
+                    stat_lc: stat_lc,
+                    isEditable: isEditable
                 });
             }
 
@@ -288,6 +290,8 @@ function add(app){
     app.get('/tanod-edit-case/:entryNumber', async function(req, resp){
         const entryNumber = Number(req.params.entryNumber);
         console.log(entryNumber);
+        let resolveStat = 'selected';
+        let ongoingStat = '';
         try {
             const caseDetails = await TanodCaseModel.findOne({ EntryNo: entryNumber }).lean();
             if (caseDetails) {
@@ -297,6 +301,10 @@ function add(app){
                 const deskInfo = caseDetails.DeskOfficerInfo;
                 const witnessInfo = caseDetails.WitnessInfo;
 
+                if(caseDetails.Status == 'Ongoing'){
+                    resolveStat = '';
+                    ongoingStat = 'selected';
+                }
 
                 resp.render('tanod-edit-case', {
                     layout: 'index-edit', 
@@ -305,7 +313,9 @@ function add(app){
                     reporteeInfo: reporteeInfo,
                     respondentInfo: respondentInfo,
                     deskInfo: deskInfo,
-                    witnessInfo: witnessInfo
+                    witnessInfo: witnessInfo,
+                    resolveStat: resolveStat,
+                    ongoingStat: ongoingStat
                 });
             } else {
                 resp.status(404).send('Case not found');
@@ -504,9 +514,12 @@ function add(app){
             let allCases = [];
             for(const item of cases){
                 let stat_lc = 'resolved';
+                let isEditable = 'hidden';
                 if(item.Status == 'Ongoing'){
                     stat_lc = 'ongoing';
+                    isEditable ='';
                 }
+                
 
                 allCases.push({
                     caseID: item._id,
@@ -517,7 +530,8 @@ function add(app){
                         respondentFirstName: item.RespondentInfo.FirstName,
                         respondentLastName: item.RespondentInfo.LastName,
                         status: item.Status,
-                        stat_lc: stat_lc
+                        stat_lc: stat_lc,
+                        isEditable: isEditable
                 });
             }
 
@@ -640,6 +654,8 @@ function add(app){
     app.get('/lupon-edit-case/:_id', async function(req, resp){
         const caseID = req.params._id;
         console.log(caseID);
+        let resolveStat = 'selected';
+        let ongoingStat = '';
 
         try {
             const caseDetails = await LuponCaseModel.findOne({ _id: caseID }).lean();
@@ -650,6 +666,11 @@ function add(app){
                 const mediationInfo = caseDetails.MediationInfo;
                 const conciliationInfo = caseDetails.ConciliationInfo;
 
+                if(caseDetails.Status == 'Ongoing'){
+                    resolveStat = '';
+                    ongoingStat = 'selected';
+                }
+
                 resp.render('lupon-edit-case', {
                     layout: 'index-edit', 
                     title: 'Edit Lupon Case',
@@ -657,7 +678,9 @@ function add(app){
                     respondentInfo: respondentInfo,
                     complainerInfo: complainerInfo,
                     mediationInfo:  mediationInfo,
-                    conciliationInfo: conciliationInfo
+                    conciliationInfo: conciliationInfo,
+                    resolveStat: resolveStat,
+                    ongoingStat: ongoingStat
                 });
             } else {
                 resp.status(404).send('Case not found');
