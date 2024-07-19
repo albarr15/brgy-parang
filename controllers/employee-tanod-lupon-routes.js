@@ -30,20 +30,38 @@ function add(app){
         //try to find user
         try{
             const curUser = await UserModel.findOne({email: email}); //finds if there is a match in users
+            var errorMsg = "";
             // console.log(curUser.role);
             // console.log(curUser.password);
             // console.log(curUser.email);
-            if(!curUser || curUser.password != password || curUser.role == "lupon" || curUser.role == "tanod" || curUser.role == "admin"){  //checks if the user exist and the password is correct
-                resp.render('employee-login-page', {
-                    layout: 'index-login',
-                    title: 'Employee Login Retry',
-                    error: 'Sorry Wrong Email or Password'
-                });
+
+            
+            if (!email || !password) {
+                errorMsg = "Email and Password fields cannot be empty."
             }
-            else{
-                resp.redirect("/employee-home");
+            else if (!email.includes("@")) {
+                errorMsg = "Invalid email.";
+            }
+            else if (!curUser) {
+                errorMsg = "User Not Found."
+            }
+            else if (curUser.password != password) {
+                errorMsg = "Incorrect password."
+            }
+            else if (curUser.role != "employee") {
+                errorMsg = "Unathorized Access."
+            }
+            else {
+                console.log("here no error")
+                return resp.redirect("/employee-home");
         
             }
+            console.log("here")
+            resp.render('employee-login-page', {
+                layout: 'index-login',
+                title: 'Employee Login Retry',
+                error: errorMsg
+            });
             
         } catch(error){
             console.error('Error during login:', error);
@@ -89,21 +107,39 @@ function add(app){
     //Check Login for tanod
     app.post('/check-login-tanod', async function(req, resp){
         const { email, password } = req.body; // Retrieve email and password from request body
-        
+
         //try to find user
         try{
             const curUser = await UserModel.findOne({email: email}); //finds if there is a match in users
-            console.log(curUser.role);
-            if(!curUser || curUser.password != password || curUser.role == "lupon" || curUser.role == "employee" || curUser.role == "admin"){  //checks if the user exist and the password is correct
-                resp.render('tanod-login-page', {
-                    layout: 'index-login',
-                    title: 'Tanod Login Retry',
-                    error: 'Sorry Wrong Email or Password'
-                });
+            var errorMsg = "";
+
+            
+            if (!email || !password) {
+                errorMsg = "Email and Password fields cannot be empty."
             }
-            else{
-                resp.redirect('/tanod-home');
+            else if (!email.includes("@")) {
+                errorMsg = "Invalid email.";
             }
+            else if (!curUser) {
+                errorMsg = "User Not Found."
+            }
+            else if (curUser.password != password) {
+                errorMsg = "Incorrect password."
+            }
+            else if (curUser.role != "tanod") {
+                errorMsg = "Unathorized Access."
+            }
+            else {
+                console.log("here no error")
+                return resp.redirect('/tanod-home');
+        
+            }
+            console.log("here")
+            resp.render('tanod-login-page', {
+                layout: 'index-login',
+                title: 'Tanod Login Retry',
+                error: errorMsg
+            });
             
         } catch(error){
             console.error('Error during login:', error);
@@ -390,21 +426,37 @@ function add(app){
     //Check Login for Lupon
     app.post('/check-login-lupon', async function(req, resp){
         const { email, password } = req.body; // Retrieve email and password from request body
-        
-        //try to find user
+
         try{
             const curUser = await UserModel.findOne({email: email}); //finds if there is a match in users
-            console.log(curUser.role);
-            if(!curUser || curUser.password != password || curUser.role == "tanod" || curUser.role == "employee" || curUser.role == "admin"){  //checks if the user exist and the password is correct
-                resp.render('lupon-login-page', {
-                    layout: 'index-login',
-                    title: 'Lupon Login Retry',
-                    error: 'Sorry Wrong Email or Password'
-                });
+            var errorMsg = "";
+
+            if (!email || !password) {
+                errorMsg = "Email and Password fields cannot be empty."
             }
-            else{
-                resp.redirect('/lupon-home');
+            else if (!email.includes("@")) {
+                errorMsg = "Invalid email.";
             }
+            else if (!curUser) {
+                errorMsg = "User Not Found."
+            }
+            else if (curUser.password != password) {
+                errorMsg = "Incorrect password."
+            }
+            else if (curUser.role != "lupon") {
+                errorMsg = "Unathorized Access."
+            }
+            else {
+                console.log("here no error")
+                return resp.redirect('/lupon-home');
+        
+            }
+            console.log("here")
+            resp.render('lupon-login-page', {
+                layout: 'index-login',
+                title: 'Lupon Login Retry',
+                error: errorMsg
+            });
             
         } catch(error){
             console.error('Error during login:', error);

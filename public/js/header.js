@@ -83,22 +83,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 case "Lupon":
                     document.getElementById("profile-text").style.color="#F3BE72";
                     user_profile.src = "/images/lupon-profile.png";
-                    home_link1.href = "/lupon-homepage";
-                    home_link2.href = "/lupon-homepage";
+                    home_link1.href = "/lupon-home";
+                    home_link2.href = "/lupon-home";
                     break;
     
                 case "Tanod":
                     document.getElementById("profile-text").style.color="#AFE1D7";
                     user_profile.src = "/images/tanod-profile.png";
-                    home_link1.href = "/tanod-homepage";
-                    home_link2.href = "/tanod-homepage";
+                    home_link1.href = "/tanod-home";
+                    home_link2.href = "/tanod-home";
                     break;
     
                 case "Employee":
                     document.getElementById("profile-text").style.color="#779FE5";
                     user_profile.src = "/images/employee-profile.png";
-                    home_link1.href = "/employee-homepage";
-                    home_link2.href = "/employee-homepage";
+                    home_link1.href = "/employee-home";
+                    home_link2.href = "/employee-home";
                     toggleDarkPage();
                     break;
     

@@ -97,7 +97,11 @@
         <button class="page-btn" id="count-down">&lt;</button>
         <div class="page-count" id="page-num">{{currentPage}}</div>
         <button class="page-btn" id="count-up">&gt;</button>
-        <div class="page-number">Page {{currentPage}} of {{totalPages}}</div>
+        {{#if (eq 0 totalPages)}}
+            <div class="page-number">Page {{currentPage}} of 1</div>
+        {{else}}
+            <div class="page-number">Page {{currentPage}} of {{totalPages}}</div>
+        {{/if}}
     </div>
 
     <script>

@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
     const searchBox = document.getElementById("search-box");
 
+    searchBox.addEventListener('input', function() {
+        if (searchBox.value.trim() === '') {
+            clearResults();
+            searchBox.placeholder = "Search Name";
+        }
+    });
+
     const searchForm = document.getElementById('searchForm');
     if (searchForm) {
         searchForm.addEventListener('submit', async (event) => {

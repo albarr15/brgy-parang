@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/admin-tanod-db-view',                      tanodCaseController.viewTanodDB);       //main view db
 
-router.get('/admin-tanod-db-view/:page',                tanodCaseController.viewPageTanodDB);   //view specific page in db
+//router.get('/admin-tanod-db-view/:page',                tanodCaseController.viewPageTanodDB);   //view specific page in db //idk where i used this, but it ruins admin tanod search
 
 router.get('/admin-tanod-db-view/:search_name',         tanodCaseController.viewSearchTanodDB); //view search result in db
 

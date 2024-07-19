@@ -10,48 +10,40 @@ const isUser = async (req, res) => {
     */
     try {
         // Find the user by email
-        const user = await UserModel.findOne({ email: email });
-        if (!user) {
-            return res.render('admin-login-page',{
-                layout: 'layout',
-                title: 'Barangay Parang - Admin Login Page',
-                cssFile1: 'index',
-                cssFile2: 'login-page',
-                javascriptFile1: 'login',
-                javascriptFile2: null,
-                error: "User Not Found"
-            });
+        const curUser = await UserModel.findOne({email: email}); //finds if there is a match in users
+        var errorMsg = "";
+
+        if (!email || !password) {
+            errorMsg = "Email and Password fields cannot be empty."
         }
-
-        // Compare the provided password with the stored plaintext password
-        if (password !== user.password) {
-            return res.render('admin-login-page',{
-                layout: 'layout',
-                title: 'Barangay Parang - Admin Login Page',
-                cssFile1: 'index',
-                cssFile2: 'login-page',
-                javascriptFile1: 'login',
-                javascriptFile2: null,
-                error: "Incorrect Password"
-            });
+        else if (!email.includes("@")) {
+            errorMsg = "Invalid email.";
         }
-
-        // Check if admin
-        if ("admin" !== user.role) {
-            return res.render('admin-login-page',{
-                layout: 'layout',
-                title: 'Barangay Parang - Admin Login Page',
-                cssFile1: 'index',
-                cssFile2: 'login-page',
-                javascriptFile1: 'login',
-                javascriptFile2: null,
-                error: "Unathorized Access"
-            });
+        else if (!curUser) {
+            errorMsg = "User Not Found."
         }
-
-
-        // Respond with success
-        return res.redirect('/admin-homepage?log_in=successful');
+        else if (curUser.password != password) {
+            errorMsg = "Incorrect password."
+        }
+        else if (curUser.role != "admin") {
+            errorMsg = "Unathorized Access."
+        }
+        else {
+            console.log("here no error")
+            // Respond with success
+            return res.redirect('/admin-homepage?log_in=successful');
+    
+        }
+        console.log("here")
+        res.render('admin-login-page',{
+            layout: 'layout',
+            title: 'Barangay Parang - Admin Login Page',
+            cssFile1: 'index',
+            cssFile2: 'login-page',
+            javascriptFile1: 'login',
+            javascriptFile2: null,
+            error: errorMsg
+        });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Server error" });
