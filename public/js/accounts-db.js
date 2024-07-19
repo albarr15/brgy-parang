@@ -38,7 +38,7 @@ function validateForm() {
     else if (user_pw.value.length < 8) {
         valid = false;
         user_pw.classList.add("input-error");
-        errorMessage += "Incorrect password.\n"
+        errorMessage += "Password must have at least 8 characters.\n"
     }
     else if (user_pw.value.search(/[a-z]/i) < 0) {
         valid = false;
