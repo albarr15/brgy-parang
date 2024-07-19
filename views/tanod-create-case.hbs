@@ -1,3 +1,5 @@
+<script src="/js/header.js" type="text/javascript"></script>
+
 <div class = "main-container">
     <div class= "header light" id="header">
         <div class = "header-left">
@@ -13,7 +15,7 @@
         </div>
         <div class="header-right">
             <div class="header-user-profile">
-                <span class="header-user-profile-text" id="profile-text">Employee</span>
+                <span class="header-user-profile-text" id="profile-text"></span>
                 <img src="/images/employee-profile.png" class="header-user-profile" id="profile-img">
             </div>
             <button type="button" class="header-logout-btn" id="logout-btn">Logout</button>
@@ -133,15 +135,22 @@
             </div>  
         </div>
             <div class = "buttons-container">
+                <!--
             <button type="submit" form="caseForm" class="form-button" id="resolved-button">
-                <!--<img src="/images/form-check.png" id="form-check-icon">-->
+                <img src="/images/form-check.png" id="form-check-icon">
                 <span id="">Save Changes</span>
             </button>
             <a href="/tanod-create">
             <button class = "form-button" id="delete-button">
-                <!--<img src="/images/action-delete.png" id="form-delete-icon">-->
+               <img src="/images/action-delete.png" id="form-delete-icon">
                 <span id="">Discard Changes</span>
             </button>
             </div> 
+            -->
+
+            <div class = "buttons-container">
+            <button type="submit" form="caseForm" class="form-btn save"><img src="/images/form-check.png"><span>Save Changes</span></button>
+            <a href="/tanod-home"><button type="button" class="form-btn discard"><img src="/images/form-trash.png"><span>Discard Changes</span></button></a>
+        </div>
     </div>
 </div>
