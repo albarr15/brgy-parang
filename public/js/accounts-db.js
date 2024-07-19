@@ -17,8 +17,6 @@ function hidePW(role_pw) {
 }
 
 function validateForm() {
-    // NOTE: does not update email or password yet
-    var redirectUrl;
     var user_role = localStorage.getItem("userRole").toLowerCase();
 
     var email_id = user_role + "-email";
@@ -31,17 +29,26 @@ function validateForm() {
     let valid = true;
     let errorMessage = "";
 
-    // for now, just set minimum length of password to be 8
-
     if (!user_pw.value) {
         valid = false;
         user_pw.classList.add("input-error");
         errorMessage += "Password is required.\n"
     }
+    // password should have at least 8 characters and have at least 1 letter and 1 digit
     else if (user_pw.value.length < 8) {
         valid = false;
         user_pw.classList.add("input-error");
         errorMessage += "Incorrect password.\n"
+    }
+    else if (user_pw.value.search(/[a-z]/i) < 0) {
+        valid = false;
+        user_pw.classList.add("input-error");
+        errorMessage += "Password must contain at least one letter.\n"
+    }
+    else if (user_pw.value.search(/[0-9]/) < 0) {
+        valid = false;
+        user_pw.classList.add("input-error");
+        errorMessage += "Password must contain at least one digit.\n"
     }
     else if (!(user_pw.value === confirm_user_pw.value)) {
         valid = false;
@@ -57,7 +64,9 @@ function validateForm() {
         user_email.classList.add("input-error");
         errorMessage += "Email is required.\n"
     }
-    else if (!user_email.value.includes("@")) {
+    else if (!user_email.value.includes("@") || 
+        // to check for proper email structure
+            !user_email.value.match((/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/))) {
         valid = false;
         user_email.classList.add("input-error");
         errorMessage += "Invalid email.\n"
