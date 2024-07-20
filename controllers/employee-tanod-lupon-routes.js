@@ -176,7 +176,14 @@ function add(app){
                 });
             }
 
-            const totalPages = Math.ceil(totalCases/limit);
+            let totalPages = 0;
+
+            if(totalCases == 0){
+                totalPages = 1;
+            }else{
+                totalPages = Math.ceil(totalCases/limit);
+            }
+           // const totalPages = Math.ceil(totalCases/limit);
 
             resp.render('tanod-home', {
                 layout: 'index-tanod',
@@ -562,7 +569,14 @@ function add(app){
                 });
             }
 
-            const totalPages = Math.ceil(totalCases/limit);
+            let totalPages = 0;
+
+            if(totalCases == 0){
+                totalPages = 1;
+            }else{
+                totalPages = Math.ceil(totalCases/limit);
+            }
+            //const totalPages = Math.ceil(totalCases/limit);
 
             resp.render('lupon-home', {
                 layout: 'index-lupon',
