@@ -17,15 +17,17 @@ document.addEventListener("DOMContentLoaded", function() {
     if(closeButton) {
         closeButton.onclick = function() {
             modal.style.display = "none";
+            document.getElementById("newQuestion").value = "";
+            document.getElementById("newAnswer").value = "";
         };
     }
 
     // Close modal when clicking outside of modal
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    };
+    // window.onclick = function(event) {
+    //     if (event.target == modal) {
+    //         modal.style.display = "none";
+    //     }
+    // };
     
     // Handle submit button click
     if(submitButton) {
