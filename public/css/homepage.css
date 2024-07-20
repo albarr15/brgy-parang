@@ -747,6 +747,11 @@ html {
   max-width: 80px;
 }
 
+.status.margin3{
+  font-size: 10px;
+  max-width: 80px;
+}
+
 .print-btn.margin{
   margin-left: 0px;
   margin-right: 50px;

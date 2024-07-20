@@ -1,3 +1,5 @@
+ <link rel = "stylesheet" type = "text/css" href = "/css/homepage.css">
+<link rel = "stylesheet" type = "text/css" href = "/css/homepage-table.css">
  <div class = "main-container">
             <div class= "header" id="header">
                 <div class = "header-left">
@@ -34,6 +36,7 @@
                   </div>
             </div>
             <div class="box-content">
+                <!--
                 <div class="box-content-header lupon-tanod">
                     <div class="content-text-group left">
                         <div class="content-text-group title">
@@ -60,8 +63,54 @@
                     <button type="button" class="status {{this.stat_lc}} margin2 markResolve" data-case-id="{{this.caseID}}"><img src="/images/{{this.stat_lc}}-circle.png"><span>{{this.status}}</span></button>
                     <button type="button" class="form-action-btn margin" title="Edit Case Details" {{this.isEditable}}><a href="/lupon-edit-case/{{this.caseID}}" {{this.isEditable}}><img src="/images/action-edit.png"></a></button>
                 </div>
-                {{/each}}                
+                {{/each}}
+                -->                
             </div>
+
+            <table class="tanod-lupon-db-table">
+                <thead>
+                    <tr>
+                        <th colspan="2"></th>
+                        <th>Case Title</th>
+                        <th>Case Type</th>
+                        <th>Respondent</th>
+                        <th>Complainer</th>
+                        <th colspan="2">Case Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each cases}}
+                        <tr>
+                            <td data-label="checkbox" class="align-right check-view-cell">
+                                <button type="button" class="checkbox" data-case-id="{{this.caseID}}"><img src="/images/Done.png"></button>
+                            </td>
+                            <td class="align-left">
+                                <a href="/lupon-view-case/{{this.caseID}}" class="content-text-main underline-lupon-tanod">View</a>
+                            </td>
+                            <td>
+                                {{this.caseTitle}}
+                            </td>
+                            <td>
+                                {{this.caseType}}
+                            </td>
+                            <td class="name-cell">
+                                {{this.respondentFirstName}} {{this.respondentLastName}}    
+                            </td>
+                            <td class="name-cell">
+                                {{this.complainerFirstName}} {{this.complainerLastName}}    
+                            </td>
+                            <td class="case-status-cell">
+                                <button type="button" class="status {{this.stat_lc}} margin3 markResolve" data-case-id="{{this.caseID}}"><img src="/images/{{this.stat_lc}}-circle.png"><span>{{this.status}}</span></button>
+                            </td>
+                            <td class="case-status-cell align-left">
+                                <a href="/lupon-edit-case/{{this.caseID}}" {{this.isEditable}}>
+                                <button type="button" class="form-action-btn" title="Edit Case Details" {{isEditable}}><img src="/images/action-edit.png"></button></a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
             <div class="box-content-page">
                 <button class="page-btn" id="count-down">&lt;</button>
                 <div class="page-count" id="page-num">{{currentPage}}</div>
