@@ -71,31 +71,6 @@ document.addEventListener("DOMContentLoaded", function() {
             // showModal(errorMessage);
         }
     });
-
-    var modal = document.getElementById("forgotPasswordModal");
-    var btn = document.getElementById("forgot-password");
-    var span = document.getElementsByClassName("close")[0];
-
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    document.getElementById("submitAnswer").onclick = function() {
-        var answer = document.getElementById("securityAnswer").value;
-        //call db eme eme
-        modal.style.display = "none";
-    }
-
 });
 
 // function showModal(message) {

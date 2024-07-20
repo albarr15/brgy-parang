@@ -270,7 +270,7 @@ const CertificateModel          = mongoose.model("CertificateModel",        Cert
 const UserModel                 = mongoose.model("UserModel",               UserSchema,            "user");
 const LuponCaseModel            = mongoose.model("LuponCaseModel",          LuponCase,             "lupon_case");
 const TanodCaseModel            = mongoose.model("TanodCaseModel",          TanodCase,             "tanod_case");
-const SecurityQuestionModel     = mongoose.model("SecurityQuestionModel",   TanodCase,             "securityQuestion");
+const SecurityQuestionModel     = mongoose.model("SecurityQuestionModel",   SecurityQuestion,      "securityQuestion");
 
 
 // EXPORTS //

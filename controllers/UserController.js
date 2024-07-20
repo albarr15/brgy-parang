@@ -1,7 +1,73 @@
-const UserModel = require("../models/database/mongoose").UserModel;
+const UserModel     = require("../models/database/mongoose").UserModel;
+const SecurityModel = require("../models/database/mongoose").SecurityQuestionModel;
+
+//SECURITY ---------------------------------------------
+const getLogin = async (req, res) => {
+    try {
+        const question = await SecurityModel.findOne({ _id : 1 }).lean();
+
+        res.render('admin-login-page',{
+            layout: 'layout',
+            title: 'Barangay Parang - Admin Login Page',
+            cssFile1: 'index',
+            cssFile2: 'login-page',
+            javascriptFile1: 'login',
+            javascriptFile2: 'security',
+            error: null,
+            securityQues : question.Question
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const checkAnswer = async (req, res) => {
+    try {
+        const { answer } = req.body;
+        const question = await SecurityModel.findOne({ _id : 1 }).lean();
+    
+        const correctAnswer = question.Answer; // Fetch this from your database
+        if (answer === correctAnswer) {
+            res.json({ success: true });
+        } else {
+            res.json({ success: false });
+        }
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const changeSecurityQuestion = async (req, res) => {
+    try {
+        const { Question, Answer } = req.body;
+        console.log(Question)
+        console.log(Answer)
+        
+        await SecurityModel.findOneAndUpdate(
+            { _id: 1 },
+            {
+                $set: {
+                    Question: Question,
+                    Answer: Answer
+                }
+            },
+            { new: true }
+        );
+        
+        res.json({ success: true });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+//
 
 const isUser = async (req, res) => {
     const { email, password } = req.body;
+    const question = await SecurityModel.findOne({ _id : 1 }).lean();
 
     // DEBUGGING //
     /*  
@@ -41,8 +107,9 @@ const isUser = async (req, res) => {
             cssFile1: 'index',
             cssFile2: 'login-page',
             javascriptFile1: 'login',
-            javascriptFile2: null,
-            error: errorMsg
+            javascriptFile2: 'security',
+            error: errorMsg,
+            securityQues : question.Question
         });
     } catch (err) {
         console.error(err);
@@ -54,6 +121,7 @@ const viewAllAccounts = async (req, res) => {
     try {
 
         const accounts = await UserModel.find().lean();
+        const question = await SecurityModel.findOne({ _id : 1 }).lean();
 
         res.render('admin-accounts-db-view', {
             layout: 'layout',
@@ -62,7 +130,8 @@ const viewAllAccounts = async (req, res) => {
             cssFile2: null,
             javascriptFile1: null,
             javascriptFile2: null,
-            accounts: accounts
+            accounts: accounts,
+            securityQues : question.Question
         });
     } catch (err) {
         console.error(err);
@@ -356,6 +425,10 @@ const submitEditTanodAcc = async (req, res) => {
 }
 
 module.exports = {
+    getLogin,
+    checkAnswer,
+    changeSecurityQuestion,
+    
     isUser,
     viewAllAccounts,
 
