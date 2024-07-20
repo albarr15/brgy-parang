@@ -25,6 +25,14 @@ html {
     background-size: cover;
   }
 
+  html.dark{
+    background: url(../images/bg-dark.png);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
   body{
     margin: 0;
     padding: 0;
@@ -81,9 +89,13 @@ html {
     color: white;
     height: 5rem;
     width: 100%;
-    margin-bottom: 3.5%;
+    margin-bottom: 3rem;
     padding-left: 7.2%;
     padding-right: 7.2%;
+  }
+
+  .header.light{
+    background-color: var(--lgreen);
   }
 
   .header-logo {
@@ -181,6 +193,18 @@ html {
   .header-user-profile-text {
     font-weight: bold;
     font-size: 1.25rem;
+  }
+
+  .header-user-profile-text.employee {
+    color: var(--blue);
+  }
+
+  .header-user-profile-text.tanod {
+    color: var(--minty);
+  }
+
+  .header-user-profile-text.lupon {
+    color: var(--orange);
   }
 
   .header-logout-btn {
@@ -680,7 +704,7 @@ html {
     .header-text, .header-title {
       display: none;
     }
-    .login-header-right {
+    .header-right {
       display: none;
     }
   }
@@ -720,6 +744,7 @@ html {
   height: auto;
 }
 
+
 .backbutton-container{
   display: block;
   width: 100%;
@@ -730,13 +755,20 @@ html {
   padding: 5px 10px;
   border-radius: 5px;
   display: flex;
-  opacity: 0.5; 
+  opacity: 0.8; 
+  width: fit-content;
 }
 
 .back-button svg {
+  display: block;
   width: 20px;
   height: 20px;
   margin-right: 5px;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+  opacity: 1.0;
 }
 
 .action-prompt{
@@ -760,7 +792,7 @@ html {
 }
 
 .option {
-  width: 45%;
+  width: 100%;
   margin: 10px 0;
   padding: 10px 0;
   display: flex;
@@ -810,4 +842,18 @@ html {
 #generate-certification, #tanodcase-button {
   background-color: #236759;
   color: #AFE1D7;
+}
+
+#brgy-certs-btn {
+  background-color: #725D12;
+  color: #E4C761;
+}
+
+#accounts-btn {
+  background-color: #0D3919;
+  color: #7BBD4E;
+}
+
+.hide {
+  display: none;
 }

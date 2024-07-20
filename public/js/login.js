@@ -7,98 +7,91 @@ document.addEventListener("DOMContentLoaded", function() {
         // TODO: form validation here
         
         var selectedView = document.getElementById("login-title").innerHTML;
-        var redirectUrl;
+        // var redirectUrl;
 
-        console.log(selectedView);
+        // console.log(selectedView);
 
-        const user_email = document.getElementById("email");
-        const user_pw = document.getElementById("pw");
+        // const user_email = document.getElementById("email");
+        // const user_pw = document.getElementById("pw");
 
-        user_email.classList.remove("input-error");
-        user_pw.classList.remove("input-error");
+        // user_email.classList.remove("input-error");
+        // user_pw.classList.remove("input-error");
 
-        let valid = true;
-        let errorMessage = "";
-
-        // for now, just set minimum length of password to be 8
+        // let valid = true;
+        // let errorMessage = "";
         
-        if (!user_pw.value) {
-            valid = false;
-            user_pw.classList.add("input-error");
-            errorMessage += "Password is required.\n"
-        }
-        else if (user_pw.value.length < 8) {
-            valid = false;
-            user_pw.classList.add("input-error");
-            errorMessage += "Incorrect password.\n"
-        }
-        else {
-            user_pw.classList.remove("input-error");
-        }
+        // if (!user_pw.value) {
+        //     valid = false;
+        //     user_pw.classList.add("input-error");
+        //     errorMessage += "Password is required.\n"
+        // }
+        // else {
+        //     user_pw.classList.remove("input-error");
+        // }
 
-        if (!user_email.value) {
-            valid = false;
-            user_email.classList.add("input-error");
-            errorMessage += "Email is required.\n"
-        }
-        else if (!user_email.value.includes("@")) {
-            valid = false;
-            user_email.classList.add("input-error");
-            errorMessage += "Invalid email.\n"
-        }
-        else {
-            user_email.classList.remove("input-error");
-        }
+        // if (!user_email.value) {
+        //     valid = false;
+        //     user_email.classList.add("input-error");
+        //     errorMessage += "Email is required.\n"
+        // }
+        // else if (!user_email.value.includes("@")) {
+        //     valid = false;
+        //     user_email.classList.add("input-error");
+        //     errorMessage += "Invalid email.\n"
+        // }
+        // else {
+        //     user_email.classList.remove("input-error");
+        // }
 
-        if(valid) {
+        if(true) {
             switch (selectedView) {
-            case "Employee Log-in:":
-                redirectUrl = "employee-homepage.html";
-                login("Employee");
-                break;
-            case "Administrator Log-in:":
-                redirectUrl = "admin-homepage.html";
-                login("Admin");
-                break;
-            case "Tanod Log-in:":
-                redirectUrl = "tanod-homepage.html";
-                login("Tanod");
-                break;
-            case "Lupon Log-in:":
-                redirectUrl = "lupon-homepage.html";
-                login("Lupon");
-                break;
-            default:
-                redirectUrl = "employee-homepage.html";
-                login("Employee");
+                case "Employee Log-in:":
+                    //redirectUrl = "employee-homepage.html";
+                    login("Employee");
+                    break;
+                case "Administrator Log-in:":
+                    //redirectUrl = "admin-homepage.html";
+                    login("Admin");
+                    break;
+                case "Tanod Log-in:":
+                    //redirectUrl = "tanod-homepage.html";
+                    login("Tanod");
+                    break;
+                case "Lupon Log-in:":
+                    //redirectUrl = "lupon-homepage.html";
+                    login("Lupon");
+                    break;
+                default:
+                    //redirectUrl = "employee-homepage.html";
+                    login("Employee");
             }
-
-            window.location.href = redirectUrl;
+                login_form.submit();
+            //window.location.href = redirectUrl;
         } else {
-            showModal(errorMessage);
+            // showModal(errorMessage);
         }
     });
 });
 
-function showModal(message) {
-    const modal = document.getElementById('validationModal');
-    const modalMessage = document.getElementById('modalMessage');
-    const closeBtn = document.getElementsByClassName('close')[0];
+// function showModal(message) {
+//     const modal = document.getElementById('validationModal');
+//     const modalMessage = document.getElementById('modalMessage');
+//     const closeBtn = document.getElementsByClassName('close')[0];
     
-    modalMessage.textContent = message;
-    modalMessage.innerHTML = message.replace(/\n/g, '<br>');
-    modal.style.display = 'block';
+//     modalMessage.textContent = message;
+//     modalMessage.innerHTML = message.replace(/\n/g, '<br>');
+//     modal.style.display = 'block';
 
-    closeBtn.onclick = function() {
-        modal.style.display = 'none';
-    }
+//     closeBtn.onclick = function() {
+//         modal.style.display = 'none';
+//     }
 
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    }
-}
+//     window.onclick = function(event) {
+//         if (event.target === modal) {
+//             modal.style.display = 'none';
+//         }
+//     }
+// }
     
 function tanodView() {
     document.getElementById("emp-panel").style.background = "#AFE1D7";
