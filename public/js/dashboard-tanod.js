@@ -3,6 +3,53 @@ document.addEventListener("DOMContentLoaded", function() {
     var deleteButton = document.getElementById("delete-btn");
     var resolveButton = document.getElementById("resolve-btn");
     var resolveOnclick = document.getElementsByClassName("markResolve");
+
+    //Code for sorting
+    var sortEntryNumButton = document.getElementById("sortEntryNum");
+    var sortDateButton = document.getElementById('sortDate');
+
+    function getCurrentSortState(){
+        const urlParams = new URLSearchParams(window.location.search);
+        const sortField = urlParams.get('sort_field') || 'EntryNo';
+        const sortOrder  = urlParams.get('sort_order') || 'desc';
+        return {sortField, sortOrder};
+    }
+
+    function handleSort(field){
+        const {sortField, sortOrder} = getCurrentSortState();
+        const newSortOrder = sortField === field && sortOrder === 'asc' ? 'desc' : 'asc';
+        window.location.href = `?sort_field=${field}&sort_order=${newSortOrder}`;
+    }
+
+    sortEntryNumButton.addEventListener("click", function(){
+        handleSort('EntryNo');
+    });
+
+    sortDateButton.addEventListener("click", function(){
+        handleSort('Date');
+    });
+
+    function updateSortButtonDesign(){
+        const {sortField, sortOrder} = getCurrentSortState();
+
+        sortEntryNumButton.classList.add('descending');
+        sortEntryNumButton.querySelector('img').src = '/images/sort-descending.png';
+        sortDateButton.classList.add('descending');
+        sortDateButton.querySelector('img').src = '/images/sort-descending.png';
+
+        if(sortField === 'EntryNo'){
+            sortEntryNumButton.classList.add(sortOrder);
+            sortEntryNumButton.querySelector('img').src = sortOrder === 'asc' ? '/images/sort-ascending.png' : '/images/sort-descending.png';
+        }else if(sortField === 'Date'){
+            sortDateButton.classList.add(sortOrder);
+            sortDateButton.querySelector('img').src = sortOrder === 'asc' ? '/images/sort-ascending.png' : '/images/sort-descending.png';
+        }
+    }
+
+    updateSortButtonDesign();
+
+    //Code for sorting
+
     
     Array.from(checkboxes).forEach(function(checkbox) {
         checkbox.addEventListener("click", function() {
@@ -127,22 +174,22 @@ document.addEventListener("DOMContentLoaded", function() {
     //     });
     // });
 
-    var sort_btns = document.getElementsByClassName("sort");
+    //var sort_btns = document.getElementsByClassName("sort");
 
-    Array.from(sort_btns).forEach(function(sort_btns) {
-        sort_btns.addEventListener("click", function() {
-            var currentState = this.classList[1];
-            var img = this.querySelector('img');
+    // Array.from(sort_btns).forEach(function(sort_btns) {
+    //     sort_btns.addEventListener("click", function() {
+    //         var currentState = this.classList[1];
+    //         var img = this.querySelector('img');
 
-            if (currentState == "descending") {
-                this.classList.remove('descending');
-                this.classList.add('ascending');
-                img.src="/images/sort-ascending.png"
-            } else {
-                this.classList.remove('ascending');
-                this.classList.add('descending');
-                img.src="/images/sort-descending.png"
-            }
-        });
-    });
+    //         if (currentState == "descending") {
+    //             this.classList.remove('descending');
+    //             this.classList.add('ascending');
+    //             img.src="/images/sort-ascending.png"
+    //         } else {
+    //             this.classList.remove('ascending');
+    //             this.classList.add('descending');
+    //             img.src="/images/sort-descending.png"
+    //         }
+    //     });
+    // });
 });

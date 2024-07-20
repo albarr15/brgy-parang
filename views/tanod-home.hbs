@@ -37,11 +37,11 @@
                 <div class="box-content-header lupon-tanod">
                     <div class="content-text-group left">
                         <div class="content-text-group pair">
-                            <button type ="button" class="sort descending pair" id=""><img src="/images/sort-descending.png"></button>
+                            <button type ="button" class="sort {{sortField 'EntryNo'}} {{sortOrder sortOrder}} pair" id="sortEntryNum"><img src="/images/sort-{{sortOrder}}.png"></button>
                             <div class="content-text">Entry #</div>
                         </div>
                         <div  class="content-text-group pair last-pair">
-                            <button type ="button" class="sort descending pair" id=""><img src="/images/sort-descending.png"></button>
+                            <button type ="button" class="sort {{sortField 'Data'}} {{sortOrder sortOrder}} pair" id="sortDate"><img src="/images/sort-{{sortOrder}}.png"></button>
                             <div class="content-text">Date</div>
                         </div>
                         <div class="content-text">Reportee</div>

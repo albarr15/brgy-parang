@@ -123,6 +123,13 @@ function add(app){
             const limit = 10;
             const skip = (page - 1) * limit;
 
+            //new code
+            //for sorting
+            const sortField = req.query.sort_field || 'EntryNo';
+            const sortOrder = req.query.sort_order === 'asc' ? 1 : -1;
+            const sortOptions = {};
+            sortOptions[sortField] = sortOrder;
+
             //get all cases with pagination
             const cases = await TanodCaseModel.find({
                 $or:[
@@ -132,6 +139,7 @@ function add(app){
                     {'RespondentInfo.LastName': searchRegex}
                 ]
             })
+            .sort(sortOptions)
             .skip(skip)
             .limit(limit)
             .exec();
@@ -175,7 +183,9 @@ function add(app){
                 title: 'Tanod Homepage',
                 cases: allCases,
                 currentPage: page,
-                totalPages: totalPages
+                totalPages: totalPages,
+                sortField: sortField,
+                sortOrder: req.query.sort_order || 'desc' //make it default descending
             });
 
         } catch(error){

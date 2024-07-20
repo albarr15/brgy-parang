@@ -17,11 +17,21 @@ app.use(bodyParser.json());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
+const hbsHelpers = {
+    sortField: (field, sortField) => field === sortField ? 'sorted' : '',
+    sortOrder: (sortField, currentSortField, currentSortOrder) => {
+        if (sortField === currentSortField) {
+            return currentSortOrder === 'asc' ? 'ascending' : 'descending';
+        }
+        return '';
+    }
+};
 
 const handlebars = require('express-handlebars');
 app.set('view engine', 'hbs');
 app.engine('hbs', handlebars.engine({
-    extname: 'hbs'
+    extname: 'hbs',
+    helpers: hbsHelpers
 }));
 
 app.get('/', function(req, res){
