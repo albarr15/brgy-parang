@@ -37,11 +37,11 @@
                 <div class="box-content-header lupon-tanod">
                     <div class="content-text-group left">
                         <div class="content-text-group pair">
-                            <button type ="button" class="sort descending pair"><img src="/images/sort-descending.png"></button>
+                            <button type ="button" class="sort descending pair" id=""><img src="/images/sort-descending.png"></button>
                             <div class="content-text">Entry #</div>
                         </div>
                         <div  class="content-text-group pair last-pair">
-                            <button type ="button" class="sort descending pair" ><img src="/images/sort-descending.png"></button>
+                            <button type ="button" class="sort descending pair" id=""><img src="/images/sort-descending.png"></button>
                             <div class="content-text">Date</div>
                         </div>
                         <div class="content-text">Reportee</div>
@@ -61,7 +61,7 @@
                     <div class="content-text-main date">{{this.date}}</div>
                     <div class="content-text-main reportee">{{this.reporteeFirstName}} {{this.reporteeLastName}}</div>
                     <div class="content-text-main respondent">{{this.respondentFirstName}} {{this.respondentLastName}}</div>
-                    <button type="button" class="status {{this.stat_lc}} margin2"><img src="/images/{{this.stat_lc}}-circle.png"><span>{{this.status}}</span></button>
+                    <button type="button" class="status {{this.stat_lc}} margin2 markResolve" data-case-id="{{this.caseID}}"><img src="/images/{{this.stat_lc}}-circle.png"><span>{{this.status}}</span></button>
                     <a href="/tanod-edit-case/{{this.entryNo}}" {{isEditable}}><button type="button" class="form-action-btn margin" title="Edit Case Details" {{isEditable}}><img src="/images/action-edit.png"></button></a>
                 </div>
                 {{/each}}

@@ -435,6 +435,23 @@ function add(app){
         }
     });
 
+    app.post('/tanod-resolve-onClick', async function(req, resp){
+        try{
+            const caseId = req.body.caseId;
+            if(!caseId){
+                return resp.status(400).json({ success: false, message: 'Case ID is required'});
+
+            }
+
+            await TanodCaseModel.findByIdAndUpdate(caseId, {Status: 'Resolved'});
+
+            resp.json({ success: true});
+         }catch (error){
+            console.error('Error updating case status:', error);
+            resp.status(500).json({ success: false, message: 'Internal Server Error' });
+         }
+    });
+
     /************************************************************LUPON************************************************/
 
 
@@ -797,6 +814,23 @@ function add(app){
             console.error('Error marking cases as resolved:', error);
             resp.json({ success: false });
         }
+    });
+
+    app.post('/lupon-resolve-onClick', async function(req, resp){
+        try{
+            const caseId = req.body.caseId;
+            if(!caseId){
+                return resp.status(400).json({ success: false, message: 'Case ID is required'});
+
+            }
+
+            await LuponCaseModel.findByIdAndUpdate(caseId, {Status: 'Resolved'});
+
+            resp.json({ success: true});
+         }catch (error){
+            console.error('Error updating case status:', error);
+            resp.status(500).json({ success: false, message: 'Internal Server Error' });
+         }
     });
 
     function finalClose(){

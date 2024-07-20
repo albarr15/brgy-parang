@@ -2,10 +2,36 @@ document.addEventListener("DOMContentLoaded", function() {
     var checkboxes = document.getElementsByClassName("checkbox");
     var deleteButton = document.getElementById("delete-btn");
     var resolveButton = document.getElementById("resolve-btn");
+    var resolveOnclick = document.getElementsByClassName("markResolve");
     
     Array.from(checkboxes).forEach(function(checkbox) {
         checkbox.addEventListener("click", function() {
             this.classList.toggle("clicked");
+        });
+    });
+
+    Array.from(resolveOnclick).forEach(function(button){
+        button.addEventListener("click", function(){
+            var caseId = this.getAttribute("data-case-id");
+
+            fetch('/tanod-resolve-onClick', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify({caseId : caseId})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success){
+                    window.location.reload();
+                } else{
+                    alert('Error marking case as resolved');
+                }
+            })
+            .catch(error => {
+                console.error('Error: ', error);
+            });
         });
     });
 
@@ -73,6 +99,8 @@ document.addEventListener("DOMContentLoaded", function() {
             alert('No cases selected');
         }
     });
+
+
 
    
     
