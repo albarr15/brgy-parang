@@ -30,7 +30,7 @@
 </div>
 
 <div class="upper-container">
-    <a href="/admin-accounts-db-view" id="back-button">
+    <a href="/admin-accounts-db-view" class="back-button">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="black" class="size-4">
             <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm10.25.75a.75.75 0 0 0 0-1.5H6.56l1.22-1.22a.75.75 0 0 0-1.06-1.06l-2.5 2.5a.75.75 0 0 0 0 1.06l2.5 2.5a.75.75 0 1 0 1.06-1.06L6.56 8.75h4.69Z" clip-rule="evenodd"/>
         </svg>
@@ -42,16 +42,12 @@
     <table class="indiv-acct-table">
         <thead>
             <tr>
-                <th id="accounts-header">Accounts</th>
-                <th colspan="4" class="main-section"></th>
+                <th class="main-section"></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="role-cell no-border">
-                    <a href="#" class="content-text-main selected no-margin indiv-roles"></a>
-                </td>
-                <td rowspan="5" colspan="4" class="no-border no-padding">
+                <td rowspan="5" class="no-border no-padding">
                     <div class="main-table-content">
                         <div>
                             <div class="role-profile">
@@ -81,28 +77,6 @@
                         </div>
                     </div>
                 </td>
-            </tr>
-            <tr>
-                <td class="role-cell no-border">
-                    <a href="#" class="content-text-main underline opaque no-margin indiv-roles"></a>
-                </td>
-            </tr>
-            <tr>
-                <td class="role-cell no-border">
-                    <a href="#" class="content-text-main underline opaque no-margin indiv-roles"></a>
-                </td>
-            </tr>
-            <tr>
-                <td class="role-cell no-border">
-                    <a href="#" class="content-text-main underline opaque no-margin indiv-roles"></a>
-                </td>
-            </tr>
-            <tr>
-                <td class="role-cell no-border" id="last-accts-cell"></td>
-            </tr>
-            <tr>
-                <td class="role-cell no-border"></td>
-                <td class="no-border" colspan="4"></td>
             </tr>
         </tbody>
     </table>
