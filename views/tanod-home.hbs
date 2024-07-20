@@ -1,3 +1,8 @@
+<link rel = "stylesheet" type = "text/css" href = "/css/homepage.css">
+<link rel = "stylesheet" type = "text/css" href = "/css/homepage-table.css">
+<link rel = "stylesheet" type = "text/css" href = "/css/index.css">
+<script src = "/js/components.js" type="text/javascript"></script>
+
 <div class = "main-container">
             <div class= "header" id="header">
                 <div class = "header-left">
@@ -33,7 +38,9 @@
                     </form>
                   </div>
             </div>
+            
             <div class="box-content">
+                <!--
                 <div class="box-content-header lupon-tanod">
                     <div class="content-text-group left">
                         <div class="content-text-group pair">
@@ -53,6 +60,7 @@
                     
 
                 </div>
+                
                 {{#each cases}}
                 <div class="box-content-main">
                     <button type="button" class="checkbox margin" data-case-id="{{this.caseID}}"><img src="/images/Done.png"></button>
@@ -63,9 +71,63 @@
                     <div class="content-text-main respondent">{{this.respondentFirstName}} {{this.respondentLastName}}</div>
                     <button type="button" class="status {{this.stat_lc}} margin2 markResolve" data-case-id="{{this.caseID}}"><img src="/images/{{this.stat_lc}}-circle.png"><span>{{this.status}}</span></button>
                     <a href="/tanod-edit-case/{{this.entryNo}}" {{isEditable}}><button type="button" class="form-action-btn margin" title="Edit Case Details" {{isEditable}}><img src="/images/action-edit.png"></button></a>
+                    
                 </div>
                 {{/each}}
+                -->
+                
             </div>
+
+            <table class="tanod-db-table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Role</th>
+                        <th class="entry-date-cell"><div class="content-text-group pair">
+                            <button type="button" class="sort {{sortField 'EntryNo'}} {{sortOrder sortOrder}} pair" id="sortEntryNum"><img src="/images/sort-{{sortOrder}}.png"></button>
+                            <div class="content-text">Entry #</div>
+                        </div>
+                        </th>
+                        <th class="entry-date-cell"><div class="content-text-group pair">
+                            <button type="button" class="sort {{sortField 'Data'}} {{sortOrder sortOrder}} pair" id="sortDate"><img src="/images/sort-.png"></button>
+                            <div class="content-text">Date</div></th>
+                        <th>Reportee</th>
+                        <th>Respondent</th>
+                        <th colspan="2">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each cases}}
+                        <tr>
+                            <td data-label="checkbox" class="align-right check-view-cell">
+                                <button type="button" class="checkbox" data-case-id="{{this.caseID}}"><img src="/images/Done.png"></button>
+                            </td>
+                            <td class="align-left">
+                                <a href="/page-view-case/{{this.entryNo}}" class="content-text-main underline-lupon-tanod">View</a>
+                            </td>
+                            <td>
+                                {{this.entryNo}}
+                            </td>
+                            <td>
+                                {{this.date}}
+                            </td>
+                            <td class="name-cell">
+                                {{this.reporteeFirstName}} {{this.reporteeLastName}}
+                            </td>
+                            <td class="name-cell">
+                                {{this.respondentFirstName}} {{this.respondentLastName}}
+                            </td>
+                            <td class="case-status-cell">
+                                <button type="button" class="status {{this.stat_lc}} margin3 markResolve" data-case-id="{{this.caseID}}"><img src="/images/{{this.stat_lc}}-circle.png"><span>{{this.status}}</span></button>
+                            </td>
+                            <td class="case-status-cell align-left">
+                                <a href="/tanod-edit-case/{{this.entryNo}}" {{isEditable}}>
+                                <button type="button" class="form-action-btn" title="Edit Case Details" {{isEditable}}><img src="/images/action-edit.png"></button></a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
             <div class="box-content-page">
                 <button class="page-btn" id="count-down">&lt;</button>
                 <div class="page-count" id="page-num">{{currentPage}}</div>
