@@ -29,18 +29,18 @@ table {
     display: table-header-group;
 }
 
-.tanod-db-table {
+.tanod-lupon-db-table {
     margin-top: 0px;
 }
 
-.tanod-db-table td {
+.tanod-lupon-db-table td {
     background-color: white;
     width: fit-content;
     text-align: start;
     border-bottom: 1px solid #717171;
 }
 
-.tanod-db-table thead {
+.tanod-lupon-db-table thead {
     width: 100%;
     color: white;
     border-bottom: #717171;
