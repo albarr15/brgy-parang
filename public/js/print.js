@@ -30,6 +30,8 @@ function cancelForm() {
     document.getElementById('birthplace').style.backgroundColor = '#D9D9D9';
 
     document.getElementById('cedula').value = '';
+    document.getElementById('cedula').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('location').value = '';
     document.getElementById('reason').value = '';
     document.getElementById('deets-profile-img').src = '/images/customer.png';
@@ -248,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (this.value === '') {
             this.style.backgroundColor = 'grey';
         } else {
-            this.style.backgroundColor = '#EAF3F7'; // Reset to default
+            this.style.backgroundColor = '#E8F0FE'; // Reset to default
         }
     });
 
@@ -256,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (this.value === '') {
             this.style.backgroundColor = 'grey';
         } else {
-            this.style.backgroundColor = '#EAF3F7'; // Reset to default
+            this.style.backgroundColor = '#E8F0FE'; // Reset to default
         }
     });
 
@@ -264,7 +266,15 @@ document.addEventListener("DOMContentLoaded", function() {
         if (this.value === '') {
             this.style.backgroundColor = 'grey';
         } else {
-            this.style.backgroundColor = '#EAF3F7'; // Reset to default
+            this.style.backgroundColor = '#E8F0FE'; // Reset to default
+        }
+    });
+
+    document.getElementById('cedula').addEventListener('change', function() {
+        if (this.value === '') {
+            this.style.backgroundColor = 'grey';
+        } else {
+            this.style.backgroundColor = '#E8F0FE'; // Reset to default
         }
     });
 });
