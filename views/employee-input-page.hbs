@@ -240,7 +240,18 @@
         doc.line(79, 103, 79 + textWidth, 103);
         doc.setFont("Times", "normal");
 
-        doc.text(`born on the ${birthday} at ${birthPlace}. whose picture`,            20, 108);
+        doc.text(`born on the ${birthday} at `,            20, 108);
+
+        // Birthplace BOLD
+        doc.setFont("Times", "bold");
+        doc.text(`${birthPlace}`,                             85, 108);
+        textWidth = doc.getTextWidth(`${birthPlace}`);
+        doc.setLineWidth(0.5);
+        doc.line(85, 109, 85 + textWidth, 109);
+        doc.setFont("Times", "normal");
+
+        doc.text(`, whose picture`,  115, 108);
+
         doc.text(`and signature appears, is a bonafide resident of Barangay Parang,`,  20, 114);
         doc.text(`currently residing at`,                                              20, 120);
 
