@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
             this.classList.toggle("clicked");
         });
     });
+    
 
     Array.from(resolveOnclick).forEach(function(button){
         button.addEventListener("click", function(){

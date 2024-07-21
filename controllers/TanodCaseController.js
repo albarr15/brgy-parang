@@ -31,6 +31,38 @@ const viewTanodDB = async (req, res) => {
     }
 };
 
+const viewPageTanodDB = async (req, res) => {
+    try {
+        const currentPage = req.params.currentPage || 1;
+        
+        const casesPerPage = 10; // Number of cases to show per page
+
+        const totalCases = await TanodCaseModel.countDocuments(); // Get total number of cases
+        const totalPages = Math.ceil(totalCases / casesPerPage); // Calculate total pages
+
+        // Fetch the cases for the current page
+        const cases = await TanodCaseModel.find({})
+            .skip((currentPage - 1) * casesPerPage)
+            .limit(casesPerPage)
+            .lean();
+
+        res.render('admin-tanod-db-view', {
+            layout: 'layout',
+            title: 'Admin: Tanod DB viewing',
+            cssFile1: 'homepage',
+            cssFile2: 'db-view',
+            javascriptFile1: 'components',
+            javascriptFile2: 'header',
+            cases: cases,
+            currentPage: currentPage, // Pass current page to the template
+            totalPages: totalPages // Pass total pages to the template
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+};
+
 const viewSearchTanodDB = async (req, res) => {
     try {
         console.log("checking if im here");
@@ -73,7 +105,7 @@ const viewSearchTanodDB = async (req, res) => {
         return res.status(500).json({ message: "Server error" });
     }
 };
-
+//to be fixed
 const markResolved = async (req, res) => {
     try {
         const caseId = req.params.id;
@@ -201,7 +233,7 @@ const submitEditTanodCase = async (req, res) => {
             { new: true }
         );
 
-        res.redirect("/admin-tanod-db-view");
+        res.redirect(`/A-tanod-view-case/${_id}`);
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Server error" });
@@ -211,6 +243,7 @@ const submitEditTanodCase = async (req, res) => {
 const updateStatus = async (req, res) => {
     try {
         const caseId = req.params.id;
+        const currentPage = Number(req.params.currentPage) || 1;
         const currentStatus = req.params.status; 
 
         const newStatus = currentStatus === 'Resolved' ? 'Ongoing' : 'Resolved';
@@ -221,7 +254,7 @@ const updateStatus = async (req, res) => {
             { new: true }
         );
 
-        res.redirect('/admin-tanod-db-view');
+        res.redirect(`/admin-tanod-db-view?page=${currentPage}`);
 
     } catch (error) {
         console.error('Error updating status:', error);
@@ -401,6 +434,7 @@ module.exports = {
     viewCreateTanodCase,
     createTanodCase,
 
-    viewSearchTanodDB
+    viewSearchTanodDB,
+    viewPageTanodDB
 }
 

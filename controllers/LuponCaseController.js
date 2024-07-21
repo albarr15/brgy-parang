@@ -31,6 +31,38 @@ const viewLuponDB = async (req, res) => {
     }
 }
 
+const viewPageLuponDB = async (req, res) => {
+    try {
+        const currentPage = req.params.currentPage || 1;
+        
+        const casesPerPage = 10; // Number of cases to show per page
+
+        const totalCases = await LuponCaseModel.countDocuments(); // Get total number of cases
+        const totalPages = Math.ceil(totalCases / casesPerPage); // Calculate total pages
+
+        // Fetch the cases for the current page
+        const cases = await TanodCaseModel.find({})
+            .skip((currentPage - 1) * casesPerPage)
+            .limit(casesPerPage)
+            .lean();
+
+        res.render('admin-lupon-db-view',{
+            layout: 'layout',
+            title: 'Admin: Lupon DB viewing',
+            cssFile1: 'homepage',
+            cssFile2: 'db-view',
+            javascriptFile1: 'components',
+            javascriptFile2: 'header',
+            cases: cases,
+            currentPage: currentPage, // Pass current page to the template
+            totalPages: totalPages // Pass total pages to the template
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+};
+
 const viewSearchLuponDB = async (req, res) => {
     try {
         console.log("checking if im here");
@@ -77,6 +109,7 @@ const viewSearchLuponDB = async (req, res) => {
 const updateStatus = async (req, res) => {
     try {
         const caseId = req.params.id;
+        const currentPage = Number(req.params.currentPage) || 1;
         const currentStatus = req.params.status; 
 
         const newStatus = currentStatus === 'Resolved' ? 'Ongoing' : 'Resolved';
@@ -87,7 +120,7 @@ const updateStatus = async (req, res) => {
             { new: true }
         );
 
-        res.redirect('/admin-lupon-db-view');
+        res.redirect(`/admin-lupon-db-view?page=${currentPage}`);
 
     } catch (error) {
         console.error('Error updating status:', error);
@@ -356,7 +389,7 @@ const submitEditLuponCase = async (req, res) => {
             { new: true }
         );
 
-        res.redirect("/admin-lupon-db-view");
+        res.redirect(`/A-lupon-view-case/${_id}`);
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Server error" });
@@ -390,5 +423,6 @@ module.exports = {
     createLuponCase,
     searchLuponCase,
 
-    viewSearchLuponDB
+    viewSearchLuponDB,
+    viewPageLuponDB
 }

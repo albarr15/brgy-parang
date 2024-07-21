@@ -6,7 +6,7 @@ router.get('/admin-lupon-db-view',              luponCaseController.viewLuponDB)
 
 router.get('/admin-lupon-db-view/:search_name', luponCaseController.viewSearchLuponDB);
 
-router.get('/update-Status-Lupon/:id/:status',  luponCaseController.updateStatus);
+router.get('/update-Status-Lupon/:id/:status/:currentPage',  luponCaseController.updateStatus);
 
 router.get('/A-lupon-create-case',              luponCaseController.viewCreateLuponCase);
 

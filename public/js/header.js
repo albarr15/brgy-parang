@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function() {
         document.documentElement.style.WebkitBackgroundSize = "cover"; // For older WebKit-based browsers
         document.documentElement.style.MozBackgroundSize = "cover"; // For older Mozilla-based browsers
         document.documentElement.style.OBackgroundSize = "cover"; // For older Opera browsers
-        document.getElementById("header").style.background = "#1C8A3B";
-        document.getElementById("logout-btn").style.setProperty("--logout-hover-bg", "#004112");
+        document.getElementById("header").style.background = "#004112";
+        document.getElementById("logout-btn").style.setProperty("--logout-hover-bg", "#1C8A3B");
     }
 
     function toggleLightPage() {
@@ -19,27 +19,56 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("logout-btn").style.setProperty("--logout-hover-bg", "#1C8A3B");
     }
 
+    var isLogin = false;
+
     function initializePage() {
-        if (document.querySelector(".search-page") || document.querySelector("#view-case-page")) {
+        if (document.querySelector(".login-panel")) {
+            // remove current stored user role 
+            logout();
+
+            isLogin = true;
+
+            // hide User Profile portion and Logout button
+            document.getElementById("profile-text").classList.add("hide");
+            document.getElementById("profile-img").classList.add("hide");
+            document.getElementById("logout-btn").classList.add("hide");
+            
+            if (document.title == "Barangay Parang - Initial Login Page")
+                document.documentElement.style.background = "url(/images/bg-light.png) no-repeat center center fixed";
+            else
+                document.documentElement.style.background = "url(/images/bg-light.png) no-repeat center center fixed";
+
+            // set background to light
+            document.documentElement.style.backgroundSize = "cover";
+            document.documentElement.style.WebkitBackgroundSize = "cover"; // For older WebKit-based browsers
+            document.documentElement.style.MozBackgroundSize = "cover"; // For older Mozilla-based browsers
+            document.documentElement.style.OBackgroundSize = "cover"; // For older Opera browsers   
+            document.getElementById("header").style.background = "#004112";
+            document.getElementById("logout-btn").style.setProperty("--logout-hover-bg", "#1C8A3B");
+        }
+        else if (document.querySelector(".search-page") || document.querySelector("#view-case-page")) {
             toggleLightPage();
             console.log("toggled light");
         } else {
+            console.log("toggled dark");
             toggleDarkPage();
         }
 
         if (getCurrentUserRole()) {
-            console.log("Foud User Role:" + getCurrentUserRole());
+            // console.log("Found User Role:" + getCurrentUserRole());
             updateUser(getCurrentUserRole());
         }
     }
 
-    var logoutButton = document.getElementById('logout-btn');
-    logoutButton.addEventListener('click', function() {
-        logout();
-    });
+    // Codes for changing the header user dynamically depending on who is logged in
+    // improved previous hardcoded solution
+
+    function logout() {
+        localStorage.removeItem('userRole');
+    }
 
     function updateUser(userRole) {
-        console.log("Updating user " + userRole);
+        console.log("Updating user" + userRole);
         const user_role = document.getElementById("profile-text");
 
         if (user_role) {
@@ -95,17 +124,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const userRole = getCurrentUserRole();
     updateUser(userRole);
-
-
-    // pages are in light mode by default
-    // toggleLightPage();
     
     initializePage();
-});
 
-// Codes for changing the header user dynamically depending on who is logged in
-// improved previous hardcoded solution
-function logout() {
-    localStorage.removeItem('userRole');
-    window.location.href = '/index'; // Redirect to /index after logging out
-}
+    // for logout btn
+    const logoutBtn = document.getElementById("logout-btn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(){
+            window.location.href="/index";
+        });
+    }
+});
