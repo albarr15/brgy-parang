@@ -58,7 +58,7 @@ app.use(admin_tanodRoutes);
 //admin lupon routes
 app.use(admin_luponRoutes);
 
-//certificate printing routes
+//certofocate printing routes
 app.use(certificate_PrintingRoutes);
 
 //manage accounts

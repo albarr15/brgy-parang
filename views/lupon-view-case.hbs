@@ -1,3 +1,5 @@
+  <script src="/js/header.js" type="text/javascript"></script>
+  
   <div class = "main-container">
             <div class= "header " id="header">
                 <div class = "header-left">
@@ -13,7 +15,7 @@
                 </div>
                 <div class="header-right">
                     <div class="header-user-profile">
-                        <span class="header-user-profile-text lupon" id="profile-text">Lupon</span>
+                        <span class="header-user-profile-text lupon" id="profile-text"></span>
                         <img src="/images/lupon-profile.png" class="header-user-profile" id="profile-img">
                     </div>
                     <a href="/logout"><button type="button" class="header-logout-btn" id="logout-btn">Logout</button></a>
@@ -45,8 +47,8 @@
                                     <label for="case-form" class ="bold-label">Status</label>
                                     <select name="case-form" class="status-dropdown-view" selected = "1">
                                         <option value="" selected disabled hidden>Select Status</option>
-                                        <option value="Resolved" {{resolveStat}}>Resolved</option>
-                                        <option value="Ongoing" {{ongoingStat}}>Ongoing</option>
+                                        <option value="1" {{resolveStat}}>Resolved</option>
+                                        <option value="0" {{ongoingStat}}>Ongoing</option>
                                     </select>
                                 </div>
                             </div>
@@ -113,15 +115,15 @@
                             <span class ="section-name">Case</span>
                             <div class = "form-section" id="location">
                                 <div class = "input-pair">
-                                    <input class = "location-input" id="case-description" type = "text" placeholder="Case Details" value="{{case.Case}}" readonly>
+                                    <textarea class = "location-input" id="case-description" type = "text" placeholder="Case Details" readonly>{{case.Case}}</textarea>
                                 </div>
                             </div>
                         </form>
                     </div>  
                 </div>
                 <div class = "buttons-container">
-                    <a href="/lupon-mark-resolve/{{case._id}}" {{isEditable}}><button type="button" class="form-btn resolved" {{isEditable}}><img src="/images/form-check.png"><span>Mark as Resolved</span></button></a>
-                    <a href="/lupon-edit-case/{{case._id}}" {{isEditable}}><button type="button" class="form-btn edit" {{isEditable}}><img src="/images/form-edit.png"><span>Edit Data</span></button></a>
+                    <a href="/lupon-home"><button type="button" class="form-btn resolved"><img src="/images/form-check.png"><span>Mark as Resolved</span></button></a>
+                    <a href="/lupon-edit-case/{{case._id}}"><button type="button" class="form-btn edit"><img src="/images/form-edit.png"><span>Edit Data</span></button></a>
                     <a href="/lupon-delete-case/{{case._id}}"><button type="button" class="form-btn delete"><img src="/images/form-trash.png"><span>Delete this record</span></button></a>
                 </div>
             </div>
