@@ -240,17 +240,27 @@
         doc.line(79, 103, 79 + textWidth, 103);
         doc.setFont("Times", "normal");
 
-        doc.text(`born on the ${birthday} at `,            20, 108);
+        doc.text(`born on the`,            20, 108);
+
+        // BIRTHDAY BOLD
+        doc.setFont("Times", "bold");
+        doc.text(`${birthday}`,                             44, 108);
+        textWidth = doc.getTextWidth(`${birthday}`);
+        doc.setLineWidth(0.5);
+        doc.line(44, 109, 44 + textWidth, 109);
+        doc.setFont("Times", "normal");
+
+        doc.text(`at`,   45 + textWidth, 108);
 
         // Birthplace BOLD
         doc.setFont("Times", "bold");
-        doc.text(`${birthPlace}`,                             85, 108);
-        textWidth = doc.getTextWidth(`${birthPlace}`);
+        doc.text(`${birthPlace}`,                       50 + textWidth, 108);
+        textWidthBP = doc.getTextWidth(`${birthPlace}`);
         doc.setLineWidth(0.5);
-        doc.line(85, 109, 85 + textWidth, 109);
+        doc.line(50 + textWidth, 109, 50 + textWidthBP + textWidth, 109);
         doc.setFont("Times", "normal");
 
-        doc.text(`, whose picture`,  115, 108);
+        doc.text(`, whose picture`,  51 + textWidthBP + textWidth, 108);
 
         doc.text(`and signature appears, is a bonafide resident of Barangay Parang,`,  20, 114);
         doc.text(`currently residing at`,                                              20, 120);
@@ -284,7 +294,7 @@
         doc.line(89, 133, 89 + textWidth, 133);
         doc.setFont("Times", "normal");
 
-        doc.text(`on the`, 120, 132);
+        doc.text(`on the`, 90 + textWidth, 132);
 
         //
         doc.setFont("Times", "bold");
@@ -306,8 +316,18 @@
         doc.line(63, 162, 63 + textWidth, 162);
         doc.setFont("Times", "normal");
 
-        doc.text(`This was issued on the ${certDateIssued} at Barangay`, 20, 170);
+        doc.text(`This was issued on the`, 20, 170);
         doc.text(`Parang, Marikina City.`, 20, 176);
+
+        // CERT DATE ISSUE BOLD
+        doc.setFont("Times", "bold");
+        doc.text(`${certDateIssued}`, 66, 170);
+        textWidth = doc.getTextWidth(`${certDateIssued}`);
+        doc.setLineWidth(0.5);
+        doc.line(66, 171, 66 + textWidth, 171);
+        doc.setFont("Times", "normal");
+
+        doc.text(`at Barangay`, 67 + textWidth, 170);
 
         // Signature
         doc.addImage('/images/footer-cert.png', 'PNG', 20, 200, 155, 75);

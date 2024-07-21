@@ -19,7 +19,11 @@ function previewProfileImage(event) {
 
 function cancelForm() {
     document.getElementById('name').value = '';
+    document.getElementById('name').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('address').value = '';
+    document.getElementById('address').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('ctc-date-issued').value = '';
     document.getElementById('ctc-date-issued').style.backgroundColor = '#D9D9D9';
 
@@ -33,7 +37,11 @@ function cancelForm() {
     document.getElementById('cedula').style.backgroundColor = '#D9D9D9';
 
     document.getElementById('location').value = '';
+    document.getElementById('location').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('reason').value = '';
+    document.getElementById('reason').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('deets-profile-img').src = '/images/customer.png';
 
     // document.querySelector('label[for="imageUpload"]').style.display = 'inline-block';
@@ -246,6 +254,30 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    document.getElementById('name').addEventListener('change', function() {
+        if (this.value === '') {
+            this.style.backgroundColor = 'grey';
+        } else {
+            this.style.backgroundColor = '#E8F0FE'; // Reset to default
+        }
+    });
+
+    document.getElementById('address').addEventListener('change', function() {
+        if (this.value === '') {
+            this.style.backgroundColor = 'grey';
+        } else {
+            this.style.backgroundColor = '#E8F0FE'; // Reset to default
+        }
+    });
+
+    document.getElementById('reason').addEventListener('change', function() {
+        if (this.value === '') {
+            this.style.backgroundColor = 'grey';
+        } else {
+            this.style.backgroundColor = '#E8F0FE'; // Reset to default
+        }
+    });
+
     document.getElementById('Birthday').addEventListener('change', function() {
         if (this.value === '') {
             this.style.backgroundColor = 'grey';
@@ -271,6 +303,14 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.getElementById('cedula').addEventListener('change', function() {
+        if (this.value === '') {
+            this.style.backgroundColor = 'grey';
+        } else {
+            this.style.backgroundColor = '#E8F0FE'; // Reset to default
+        }
+    });
+
+    document.getElementById('location').addEventListener('change', function() {
         if (this.value === '') {
             this.style.backgroundColor = 'grey';
         } else {
