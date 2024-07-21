@@ -857,3 +857,28 @@ html {
 .hide {
   display: none;
 }
+
+  /* for cert generation */
+  .midHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 40%;
+    height: 50px;
+  }
+
+  .title, .leftTitle {
+    font-weight: bold;
+    font-size: 1.29rem;
+    margin: 0;
+  }
+
+  .title-place {
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin: 0;
+    margin-top: -0.8%;
+  }
+  /* ================= */
