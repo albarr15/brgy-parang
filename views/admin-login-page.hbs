@@ -16,7 +16,7 @@
                         <span class="header-user-profile-text" id="profile-text"></span>
                         <img class="header-user-profile" id="profile-img">
                     </div>
-                    {{!-- <a href="#"><button type="button" class="header-logout-btn" id="logout-btn" hidden>Logout</button></a> --}}
+                    {{!-- <a href="#"><button type="button" class="header-logout-btn" id="logout-btn" ></button></a> --}}
                 </div>
     </div>
 
@@ -38,7 +38,7 @@
                         <label for="password">Password</label>
                         <input type="password" id="pw" name="password" placeholder="Password">
                     </div>
-                    <p>Forgot password?</p>
+                    <p id="forgot-password">Forgot password?</p>
                     <div class="login-submit">
                         <input type="submit" value="Submit" id="login-submit-btn">
                     </div>
@@ -48,10 +48,13 @@
                 </div>
         </div>
     </div>
-    {{!-- <div id="validationModal" class="modal">
+    <div id="forgotPasswordModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p id="modalMessage"></p>
+            <h2>Security Question</h2>
+            <p>{{securityQues}}</p>
+            <input type="text" id="securityAnswer" placeholder="Enter your answer" autocomplete="off">
+            <button id="submitAnswer">Submit</button>
         </div>
-    </div> --}}
+    </div>
 </div>
