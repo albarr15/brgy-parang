@@ -17,75 +17,139 @@ function hidePW(role_pw) {
 }
 
 function validateForm() {
-    var user_role = localStorage.getItem("userRole").toLowerCase();
-
-    var email_id = user_role + "-email";
-    var pw_id = user_role + "-pw";
-
-    const user_email = document.getElementById(email_id);
-    const user_pw = document.getElementById(pw_id);
-    const confirm_user_pw = document.getElementById(pw_id + "1");
-
-    let valid = true;
-    let errorMessage = "";
-
-    if (!user_pw.value) {
-        valid = false;
-        user_pw.classList.add("input-error");
-        errorMessage += "Password is required.\n"
-    }
-    // password should have at least 8 characters and have at least 1 letter and 1 digit
-    else if (user_pw.value.length < 8) {
-        valid = false;
-        user_pw.classList.add("input-error");
-        errorMessage += "Password must have at least 8 characters.\n"
-    }
-    else if (user_pw.value.search(/[a-z]/i) < 0) {
-        valid = false;
-        user_pw.classList.add("input-error");
-        errorMessage += "Password must contain at least one letter.\n"
-    }
-    else if (user_pw.value.search(/[0-9]/) < 0) {
-        valid = false;
-        user_pw.classList.add("input-error");
-        errorMessage += "Password must contain at least one digit.\n"
-    }
-    else if (!(user_pw.value === confirm_user_pw.value)) {
-        valid = false;
-        user_pw.classList.add("input-error");
-        errorMessage += "Passwords do not match.\n"
-    }
-    else {
-        user_pw.classList.remove("input-error");
-    }
-
-    if (!user_email.value) {
-        valid = false;
-        user_email.classList.add("input-error");
-        errorMessage += "Email is required.\n"
-    }
-    else if (!user_email.value.includes("@") || 
-        // to check for proper email structure
-            !user_email.value.match((/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/))) {
-        valid = false;
-        user_email.classList.add("input-error");
-        errorMessage += "Invalid email.\n"
-    }
-    else {
-        user_email.classList.remove("input-error");
-    }
-
-    if(valid) {
-        return true;
-    } else {
-        showModal(errorMessage);
-    }
-
     
+    var user_role = localStorage.getItem("userRole");
+
+    if(user_role) {
+        user_role.toLowerCase()
+        var email_id = user_role + "-email";
+        var pw_id = user_role + "-pw";
+
+        const user_email = document.getElementById(email_id);
+        const user_pw = document.getElementById(pw_id);
+        const confirm_user_pw = document.getElementById(pw_id + "1");
+
+        let valid = true;
+        let errorMessage = "";
+
+        if (!user_pw.value) {
+            valid = false;
+            user_pw.classList.add("input-error");
+            errorMessage += "Password is required.\n"
+        }
+        // password should have at least 8 characters and have at least 1 letter and 1 digit
+        else if (user_pw.value.length < 8) {
+            valid = false;
+            user_pw.classList.add("input-error");
+            errorMessage += "Password must have at least 8 characters.\n"
+        }
+        else if (user_pw.value.search(/[a-z]/i) < 0) {
+            valid = false;
+            user_pw.classList.add("input-error");
+            errorMessage += "Password must contain at least one letter.\n"
+        }
+        else if (user_pw.value.search(/[0-9]/) < 0) {
+            valid = false;
+            user_pw.classList.add("input-error");
+            errorMessage += "Password must contain at least one digit.\n"
+        }
+        else if (!(user_pw.value === confirm_user_pw.value)) {
+            valid = false;
+            user_pw.classList.add("input-error");
+            errorMessage += "Passwords do not match.\n"
+        }
+        else {
+            user_pw.classList.remove("input-error");
+        }
+
+        if (!user_email.value) {
+            valid = false;
+            user_email.classList.add("input-error");
+            errorMessage += "Email is required.\n"
+        }
+        else if (!user_email.value.includes("@") || 
+            // to check for proper email structure
+                !user_email.value.match((/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/))) {
+            valid = false;
+            user_email.classList.add("input-error");
+            errorMessage += "Invalid email.\n"
+        }
+        else {
+            user_email.classList.remove("input-error");
+        }
+
+        if(valid) {
+            return true;
+        } else {
+            showModal(errorMessage);
+        }
+    }
+    //for security
+    else {
+        // Select elements by class name
+        const user_email = document.querySelector(".acct-email");
+        const user_pw = document.querySelector(".acct-pw");
+        const confirm_user_pw = document.querySelector("#admin-pw1"); // Only one element with this id
+
+        let valid = true;
+        let errorMessage = "";
+
+        if (!user_pw.value) {
+            valid = false;
+            user_pw.classList.add("input-error");
+            errorMessage += "Password is required.\n";
+        }
+        // password should have at least 8 characters and have at least 1 letter and 1 digit
+        else if (user_pw.value.length < 8) {
+            valid = false;
+            user_pw.classList.add("input-error");
+            errorMessage += "Password must have at least 8 characters.\n";
+        }
+        else if (user_pw.value.search(/[a-z]/i) < 0) {
+            valid = false;
+            user_pw.classList.add("input-error");
+            errorMessage += "Password must contain at least one letter.\n";
+        }
+        else if (user_pw.value.search(/[0-9]/) < 0) {
+            valid = false;
+            user_pw.classList.add("input-error");
+            errorMessage += "Password must contain at least one digit.\n";
+        }
+        else if (!(user_pw.value === confirm_user_pw.value)) {
+            valid = false;
+            user_pw.classList.add("input-error");
+            errorMessage += "Passwords do not match.\n";
+        }
+        else {
+            user_pw.classList.remove("input-error");
+        }
+
+        if (!user_email.value) {
+            valid = false;
+            user_email.classList.add("input-error");
+            errorMessage += "Email is required.\n";
+        }
+        else if (!user_email.value.includes("@") || 
+            !user_email.value.match((/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/))) {
+            valid = false;
+            user_email.classList.add("input-error");
+            errorMessage += "Invalid email.\n";
+        }
+        else {
+            user_email.classList.remove("input-error");
+        }
+
+        if(valid) {
+            return true;
+        } else {
+            showModal(errorMessage);
+        }
+    }
 }
 
 // for account details (email and password) validation
 document.addEventListener("DOMContentLoaded", function() {
+
     var acc_form = document.querySelector(".acc-info-form");
 
     if(acc_form) {

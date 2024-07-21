@@ -77,6 +77,8 @@ document.addEventListener("DOMContentLoaded", function() {
             var user_profile = document.getElementById("profile-img");
             var home_link1 = document.getElementById("home-link1");
             var home_link2 = document.getElementById("home-link2");
+            //for security
+            var logout = document.getElementById("logout-btn");
 
             console.log("Found user_role: " + user_role);
             switch(userRole) {
@@ -111,9 +113,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     break;
                 default:
                     document.getElementById("profile-text").style.color="#FFFFFF";
-                    user_profile.src = "/images/logo.png";
+                    user_profile.src = "";
                     home_link1.href = "/index";
-                    home_link2.href = "/index";
+                    home_link2.href = "/index";  
+                    //for security
+                    logout.style.display = "none";
             }
         }
     }

@@ -1,16 +1,17 @@
 const { CertificateModel, UserModel, LuponCaseModel, TanodCaseModel } = require('../models/database/mongoose');
+const session = require('express-session');
 
 
 function add(app){
     const mongoose = require('mongoose');
 
-    //Start
-    app.get('/', function(req, resp){
-        resp.render('index', {
-            layout: 'index-main',
-            title: 'Welcome to Barangay Parang Website'
-        });
-    });
+    // //Start
+    // app.get('/', function(req, resp){
+    //     resp.render('index', {
+    //         layout: 'index-main',
+    //         title: 'Welcome to Barangay Parang Website'
+    //     });
+    // });
 
 
     /************************************************************EMPLOYEE************************************************/
@@ -80,6 +81,14 @@ function add(app){
         });
     });
 
+    //Employee-Check-Clearance
+    // app.get('/employee-check-clearance', function(req, resp){
+    //     resp.render('employee-check-clear', {
+    //         layout: 'index-clearance',
+    //         title: 'Check Clearance'
+    //     });
+    // });
+
     app.get('/logout', function(req,resp){
         resp.redirect('/');
     });
@@ -145,86 +154,36 @@ function add(app){
     //Tanod Homepage
     app.get('/tanod-home', async function(req, resp){
         try{
-            const searchName = req.query.search_name || '';
-            const searchRegex = new RegExp(searchName, 'i');
+            //get all cases
+            TanodCaseModel.find({}).then(function(cases){
+                let allCases =[];
 
-            //pages
-            const page = parseInt(req.query.page) || 1;
-            const limit = 10;
-            const skip = (page - 1) * limit;
+                for(const item of cases){
+                    let stat_lc = 'resolved';
 
-            //new code
-            //for sorting
-            const sortField = req.query.sort_field || 'EntryNo';
-            const sortOrder = req.query.sort_order === 'asc' ? 1 : -1;
-            const sortOptions = {};
-            sortOptions[sortField] = sortOrder;
+                    if(item.Status== 'Ongoing'){
+                        stat_lc = 'ongoing';
+                    }
 
-            //get all cases with pagination
-            const cases = await TanodCaseModel.find({
-                $or:[
-                    {'ReporteeInfo.FirstName': searchRegex},
-                    {'ReporteeInfo.LastName': searchRegex},
-                    {'RespondentInfo.FirstName' : searchRegex},
-                    {'RespondentInfo.LastName': searchRegex}
-                ]
-            })
-            .sort(sortOptions)
-            .skip(skip)
-            .limit(limit)
-            .exec();
-
-            const totalCases = await TanodCaseModel.countDocuments({
-                $or:[
-                    {'ReporteeInfo.FirstName': searchRegex},
-                    {'ReporteeInfo.LastName': searchRegex},
-                    {'RespondentInfo.FirstName' : searchRegex},
-                    {'RespondentInfo.LastName': searchRegex}
-                ]
-            });
-
-            let allCases = [];
-            for(const item of cases){
-                let stat_lc = 'resolved';
-                let isEditable = 'hidden';
-                if(item.Status == 'Ongoing'){
-                    stat_lc = 'ongoing';
-                    isEditable = '';
+                    allCases.push({
+                        entryNo: item.EntryNo,
+                        date: item.Date,
+                        reporteeFirstName: item.ReporteeInfo.FirstName,
+                        reporteeLastName: item.ReporteeInfo.LastName,
+                        respondentFirstName: item.RespondentInfo.FirstName,
+                        respondentLastName: item.RespondentInfo.LastName,
+                        status: item.Status,
+                        stat_lc: stat_lc
+                    });
                 }
 
-                allCases.push({
-                    caseID : item._id,
-                    entryNo: item.EntryNo,
-                    date: item.Date,
-                    reporteeFirstName: item.ReporteeInfo.FirstName,
-                    reporteeLastName: item.ReporteeInfo.LastName,
-                    respondentFirstName: item.RespondentInfo.FirstName,
-                    respondentLastName: item.RespondentInfo.LastName,
-                    status: item.Status,
-                    stat_lc: stat_lc,
-                    isEditable: isEditable
-                });
-            }
-
-            let totalPages = 0;
-
-            if(totalCases == 0){
-                totalPages = 1;
-            }else{
-                totalPages = Math.ceil(totalCases/limit);
-            }
-           // const totalPages = Math.ceil(totalCases/limit);
-
-            resp.render('tanod-home', {
-                layout: 'index-tanod',
+                //render it to home   
+                resp.render('tanod-home', {
+                layout: 'index-tanod-lupon',
                 title: 'Tanod Homepage',
-                cases: allCases,
-                currentPage: page,
-                totalPages: totalPages,
-                sortField: sortField,
-                sortOrder: req.query.sort_order || 'desc' //make it default descending
+                cases: allCases
+                });
             });
-
         } catch(error){
             console.error('Error fetching all cases:', error);
             resp.status(500).send('Internal Server Error');
@@ -294,7 +253,6 @@ function add(app){
         console.log(entryNumber);
         let resolveStat = 'selected';
         let ongoingStat = 'disabled';
-        let isEditable = "hidden";
 
         try {
             const caseDetails = await TanodCaseModel.findOne({ EntryNo: entryNumber }).lean();
@@ -309,7 +267,6 @@ function add(app){
                 if(caseDetails.Status == 'Ongoing'){
                     resolveStat = 'disabled';
                     ongoingStat = 'selected';
-                    isEditable = '';
                 }
 
                 resp.render('tanod-view-case', {
@@ -321,8 +278,7 @@ function add(app){
                     reporteeInfo: reporteeInfo,
                     respondentInfo: respondentInfo,
                     deskInfo: deskInfo,
-                    witnessInfo: witnessInfo,
-                    isEditable : isEditable
+                    witnessInfo: witnessInfo
                 });
             } else {
                 resp.status(404).send('Case not found');
@@ -337,8 +293,6 @@ function add(app){
     app.get('/tanod-edit-case/:entryNumber', async function(req, resp){
         const entryNumber = Number(req.params.entryNumber);
         console.log(entryNumber);
-        let resolveStat = 'selected';
-        let ongoingStat = '';
         try {
             const caseDetails = await TanodCaseModel.findOne({ EntryNo: entryNumber }).lean();
             if (caseDetails) {
@@ -348,10 +302,6 @@ function add(app){
                 const deskInfo = caseDetails.DeskOfficerInfo;
                 const witnessInfo = caseDetails.WitnessInfo;
 
-                if(caseDetails.Status == 'Ongoing'){
-                    resolveStat = '';
-                    ongoingStat = 'selected';
-                }
 
                 resp.render('tanod-edit-case', {
                     layout: 'index-edit', 
@@ -360,9 +310,7 @@ function add(app){
                     reporteeInfo: reporteeInfo,
                     respondentInfo: respondentInfo,
                     deskInfo: deskInfo,
-                    witnessInfo: witnessInfo,
-                    resolveStat: resolveStat,
-                    ongoingStat: ongoingStat
+                    witnessInfo: witnessInfo
                 });
             } else {
                 resp.status(404).send('Case not found');
@@ -442,28 +390,10 @@ function add(app){
         }
     });
 
-    //Tanod Mark Resolve
-    app.get('/tanod-mark-resolve/:entryNumber', async function(req, resp){
-        const entryNumber = Number(req.params.entryNumber);
-        try{
-            const markResolve = await TanodCaseModel.findOneAndUpdate({EntryNo: entryNumber}, {Status: "Resolved"}, {new: true});
-            if (markResolve){
-                resp.redirect('/tanod-home');
-            }
-            else{
-                resp.status(404).send('Case not found');
-
-            }
-        } catch (error){
-            console.error('Error resolving case details:', error);
-            resp.redirect('/tanod-home');
-        }
-    });
-
     app.post('/tanod-delete-cases', async function(req, resp) {
         const { caseIds } = req.body;
         try {
-            await TanodCaseModel.deleteMany({ _id: { $in: caseIds } });
+            await TanodCaseModel.deleteMany({ EntryNo: { $in: caseIds } });
             resp.json({ success: true });
         } catch (error) {
             console.error('Error deleting Tanod cases:', error);
@@ -474,29 +404,12 @@ function add(app){
     app.post('/tanod-resolve-cases', async function(req, resp) {
         const { caseIds } = req.body;
         try {
-            await TanodCaseModel.updateMany({ _id: { $in: caseIds } }, { $set: { Status: 'Resolved' }});
+            await TanodCaseModel.updateMany({ EntryNo: { $in: caseIds } }, { $set: { Status: 'Resolved' }});
             resp.json({ success: true });
         } catch (error) {
             console.error('Error resolving Tanod cases:', error);
             resp.json({ success: false });
         }
-    });
-
-    app.post('/tanod-resolve-onClick', async function(req, resp){
-        try{
-            const caseId = req.body.caseId;
-            if(!caseId){
-                return resp.status(400).json({ success: false, message: 'Case ID is required'});
-
-            }
-
-            await TanodCaseModel.findByIdAndUpdate(caseId, {Status: 'Resolved'});
-
-            resp.json({ success: true});
-         }catch (error){
-            console.error('Error updating case status:', error);
-            resp.status(500).json({ success: false, message: 'Internal Server Error' });
-         }
     });
 
     /************************************************************LUPON************************************************/
@@ -556,52 +469,23 @@ function add(app){
     });
 
 
+
     //Lupon Homepage
-    app.get('/lupon-home', async function(req, resp){
+    app.get('/lupon-home', function(req, resp){
         try{
-            const searchName = req.query.search_name || '';
-            const searchRegex = new RegExp(searchName, 'i');
+            //get all cases
+            LuponCaseModel.find({}).then(function(cases){
+            let allCases =[];
 
-            //pages
-            const page = parseInt(req.query.page) || 1;
-            const limit = 10;
-            const skip = (page - 1) * limit;
+                for(const item of cases){
+                    let stat_lc = 'resolved';
 
-            //get all cases with pagination
-            const cases = await LuponCaseModel.find({
-                $or:[
-                    {'ComplainerInfo.FirstName': searchRegex},
-                    {'ComplainerInfo.LastName': searchRegex},
-                    {'RespondentInfo.FirstName' : searchRegex},
-                    {'RespondentInfo.LastName': searchRegex}
-                ]
-            })
-            .skip(skip)
-            .limit(limit)
-            .exec();
+                    if(item.Status== 'Ongoing'){
+                        stat_lc = 'ongoing';
+                    }
 
-            const totalCases = await LuponCaseModel.countDocuments({
-                $or:[
-                    {'ComplainerInfo.FirstName': searchRegex},
-                    {'ComplainerInfo.LastName': searchRegex},
-                    {'RespondentInfo.FirstName' : searchRegex},
-                    {'RespondentInfo.LastName': searchRegex}
-                ]
-            });
-
-
-            let allCases = [];
-            for(const item of cases){
-                let stat_lc = 'resolved';
-                let isEditable = 'hidden';
-                if(item.Status == 'Ongoing'){
-                    stat_lc = 'ongoing';
-                    isEditable ='';
-                }
-                
-
-                allCases.push({
-                    caseID: item._id,
+                    allCases.push({
+                        caseID: item._id,
                         caseTitle: item.CaseTitle,
                         caseType: item.CaseType,
                         complainerFirstName: item.ComplainerInfo.FirstName,
@@ -609,28 +493,17 @@ function add(app){
                         respondentFirstName: item.RespondentInfo.FirstName,
                         respondentLastName: item.RespondentInfo.LastName,
                         status: item.Status,
-                        stat_lc: stat_lc,
-                        isEditable: isEditable
-                });
-            }
+                        stat_lc: stat_lc
+                    });
+                }
 
-            let totalPages = 0;
-
-            if(totalCases == 0){
-                totalPages = 1;
-            }else{
-                totalPages = Math.ceil(totalCases/limit);
-            }
-            //const totalPages = Math.ceil(totalCases/limit);
-
-            resp.render('lupon-home', {
-                layout: 'index-lupon',
+                //render it to home   
+                resp.render('lupon-home', {
+                layout: 'index-tanod-lupon',
                 title: 'Lupon Homepage',
-                cases: allCases,
-                currentPage: page,
-                totalPages: totalPages
+                cases: allCases
+                });
             });
-
         } catch(error){
             console.error('Error fetching all cases:', error);
             resp.status(500).send('Internal Server Error');
@@ -694,8 +567,6 @@ function add(app){
 
         let resolveStat = 'selected';
         let ongoingStat = 'disabled';
-        let isEditable = "hidden";
-
 
         try {
             const caseDetails = await LuponCaseModel.findOne({ _id: caseID }).lean();
@@ -711,7 +582,6 @@ function add(app){
                 if(caseDetails.Status == 'Ongoing'){
                     resolveStat = 'disabled';
                     ongoingStat = 'selected';
-                    isEditable = '';
                 }
 
                 resp.render('lupon-view-case', {
@@ -723,8 +593,7 @@ function add(app){
                     respondentInfo: respondentInfo,
                     complainerInfo: complainerInfo,
                     mediationInfo:  mediationInfo,
-                    conciliationInfo: conciliationInfo,
-                    isEditable : isEditable
+                    conciliationInfo: conciliationInfo
                 });
             } else {
                 resp.status(404).send('Case not found');
@@ -740,8 +609,6 @@ function add(app){
     app.get('/lupon-edit-case/:_id', async function(req, resp){
         const caseID = req.params._id;
         console.log(caseID);
-        let resolveStat = 'selected';
-        let ongoingStat = '';
 
         try {
             const caseDetails = await LuponCaseModel.findOne({ _id: caseID }).lean();
@@ -752,11 +619,6 @@ function add(app){
                 const mediationInfo = caseDetails.MediationInfo;
                 const conciliationInfo = caseDetails.ConciliationInfo;
 
-                if(caseDetails.Status == 'Ongoing'){
-                    resolveStat = '';
-                    ongoingStat = 'selected';
-                }
-
                 resp.render('lupon-edit-case', {
                     layout: 'index-edit', 
                     title: 'Edit Lupon Case',
@@ -764,9 +626,7 @@ function add(app){
                     respondentInfo: respondentInfo,
                     complainerInfo: complainerInfo,
                     mediationInfo:  mediationInfo,
-                    conciliationInfo: conciliationInfo,
-                    resolveStat: resolveStat,
-                    ongoingStat: ongoingStat
+                    conciliationInfo: conciliationInfo
                 });
             } else {
                 resp.status(404).send('Case not found');
@@ -845,24 +705,6 @@ function add(app){
         }
     });
 
-    //Lupon Mark Resolved
-    app.get('/lupon-mark-resolve/:_id', async function(req, resp){
-        const caseID = req.params._id;
-        try{
-            const markResolve = await LuponCaseModel.findOneAndUpdate({_id: caseID}, {Status: "Resolved"}, {new: true});
-            if (markResolve){
-                resp.redirect('/lupon-home');
-            }
-            else{
-                resp.status(404).send('Case not found');
-
-            }
-        } catch (error){
-            console.error('Error resolving case details:', error);
-            resp.redirect('/lupon-home');
-        }
-    });
-
     app.post('/lupon-delete-cases', async function(req, resp) {
         const { caseIds } = req.body;
         try {
@@ -883,23 +725,6 @@ function add(app){
             console.error('Error marking cases as resolved:', error);
             resp.json({ success: false });
         }
-    });
-
-    app.post('/lupon-resolve-onClick', async function(req, resp){
-        try{
-            const caseId = req.body.caseId;
-            if(!caseId){
-                return resp.status(400).json({ success: false, message: 'Case ID is required'});
-
-            }
-
-            await LuponCaseModel.findByIdAndUpdate(caseId, {Status: 'Resolved'});
-
-            resp.json({ success: true});
-         }catch (error){
-            console.error('Error updating case status:', error);
-            resp.status(500).json({ success: false, message: 'Internal Server Error' });
-         }
     });
 
     function finalClose(){

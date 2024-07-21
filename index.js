@@ -4,7 +4,7 @@ const admin_loginRoutes = require('./routes/admin-loginRoutes');
 const admin_tanodRoutes = require('./routes/admin-tanodRoutes');
 const admin_luponRoutes = require('./routes/admin-luponRoutes');
 const certificate_PrintingRoutes = require('./routes/certificate-printingRoutes');
-const accoutns_Routes = require('./routes/account-ManageRoutes');
+const accounts_Routes = require('./routes/account-ManageRoutes');
 const { registerHelpers } = require('./helpers/handlebarHelpers');
 
 const path = require('path');
@@ -17,21 +17,11 @@ app.use(bodyParser.json());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
-const hbsHelpers = {
-    sortField: (field, sortField) => field === sortField ? 'sorted' : '',
-    sortOrder: (sortField, currentSortField, currentSortOrder) => {
-        if (sortField === currentSortField) {
-            return currentSortOrder === 'asc' ? 'ascending' : 'descending';
-        }
-        return '';
-    }
-};
 
 const handlebars = require('express-handlebars');
 app.set('view engine', 'hbs');
 app.engine('hbs', handlebars.engine({
-    extname: 'hbs',
-    helpers: hbsHelpers
+    extname: 'hbs'
 }));
 
 app.get('/', function(req, res){
@@ -68,11 +58,11 @@ app.use(admin_tanodRoutes);
 //admin lupon routes
 app.use(admin_luponRoutes);
 
-//certofocate printing routes
+//certificate printing routes
 app.use(certificate_PrintingRoutes);
 
 //manage accounts
-app.use(accoutns_Routes);
+app.use(accounts_Routes);
 
 const controllers = ['employee-tanod-lupon-routes']; //ung mga get eme nasa controller
 for(var i=0; i<controllers.length; i++){
