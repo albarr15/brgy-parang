@@ -8,8 +8,8 @@
 <script src ="/js/header.js"></script>
 
 <style id="dynamic-styles"></style>
-<link rel = "stylesheet" type = "text/css" href = "/css/index.css">
 <link rel = "stylesheet" type = "text/css" href = "/css/input-details-page.css">
+<link rel = "stylesheet" type = "text/css" href = "/css/index.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
 <div class="main-container" id="main-container">
@@ -142,13 +142,15 @@
                     <input type="text" id="reason" name="reason" placeholder="" value="{{certificates.reason}}" readonly>
                 </div>
 
-                <div class="action-container">
+                
+            </div>
+            <div class="cert-buttons-container">
                     {{!-- <button type="button" class="download-btn lrg dark" onclick="downloadFileEmployee()"><img src="/images/download-dark.png"><span>Download</span></button> --}}
                     {{!-- <button type="button" class="cancel-btn light" onclick="cancelForm()"><img src="/images/cancel-light.png"><span>Cancel</span></button> --}}
-                    <a href="/certificate-edit/{{certificates._id}}" class="edit-link"><button type="button" class="form-btn edit"><img src="/images/form-edit.png"><span>Edit Data</span></button></a>
-                    <a href="/delete-certificate/{{certificates._id}}"><button type="button" class="form-btn delete"><img src="/images/form-trash.png"><span>Delete this record</span></button></a>
+                    
+                    <a href="/certificate-edit/{{certificates._id}}" class="cert-link"><button type="button" class="form-btn edit cert"><img src="/images/form-edit.png"><span>Edit Data</span></button></a>
+                    <a href="/delete-certificate/{{certificates._id}}" class="cert-link"><button type="button" class="form-btn delete cert"><img src="/images/form-trash.png"><span>Delete this record</span></button></a>
                 </div>
-            </div>
         </form>
     </div>
 
