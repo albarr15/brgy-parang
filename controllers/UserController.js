@@ -119,9 +119,18 @@ const isUser = async (req, res) => {
 
 const viewAllAccounts = async (req, res) => {
     try {
+        //pages
+        const page = parseInt(req.query.page) || 1;
+        const limit = 10;
+        const skip = (page - 1) * limit;
 
-        const accounts = await UserModel.find().lean();
-        const question = await SecurityModel.findOne({ _id : 1 }).lean();
+
+        const accounts = await UserModel.find().skip(skip).limit(limit).lean();
+        const totalAccounts = await UserModel.countDocuments();
+        const totalPages = Math.ceil(totalAccounts / limit);
+        const question = await SecurityModel.findOne({ _id: 1 }).lean();
+
+        
 
         res.render('admin-accounts-db-view', {
             layout: 'layout',
@@ -131,7 +140,9 @@ const viewAllAccounts = async (req, res) => {
             javascriptFile1: null,
             javascriptFile2: null,
             accounts: accounts,
-            securityQues : question.Question
+            securityQues : question.Question, 
+            currentPage: page,
+            totalPages: totalPages
         });
     } catch (err) {
         console.error(err);

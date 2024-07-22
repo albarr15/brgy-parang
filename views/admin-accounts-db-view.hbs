@@ -110,6 +110,13 @@
             {{/each}}
         </tbody>
     </table>
+    <!--Pages-->
+    <div class="box-content-page">
+                <button class="page-btn" id="count-down">&lt;</button>
+                <div class="page-count" id="page-num">{{currentPage}}</div>
+                <button class="page-btn" id="count-up">&gt;</button>
+                <div class="page-number">Page {{currentPage}} of {{totalPages}}</div>
+            </div>
 
     <div id="securityQuestionModal" class="modal">
         <div class="modal-content">
@@ -127,4 +134,19 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    // Adjust the buttons based on page number
+    document.getElementById('count-down').addEventListener('click', function() {
+        if ({{currentPage}} > 1) {
+            window.location.href = '?page=' + ({{currentPage}} - 1);
+        }
+    });
+    document.getElementById('count-up').addEventListener('click', function() {
+        if ({{currentPage}} < {{totalPages}}) {
+            window.location.href = '?page=' + ({{currentPage}} + 1);
+        }
+    });
+</script>
     
