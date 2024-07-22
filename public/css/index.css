@@ -491,6 +491,9 @@ html {
     color: black;
     border-radius: 6px;
     border: none;
+
+    position: relative; /* or absolute/fixed */
+    z-index: 10; /* Set a high z-index value */
   }
 
   .search-name-reg form {
