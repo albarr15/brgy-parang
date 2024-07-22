@@ -1,3 +1,4 @@
+<link rel = "stylesheet" type = "text/css" href = "/css/homepage-table.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/js/header.js" type="text/javascript"></script>
 
@@ -35,8 +36,8 @@
 </div>
 
 <div class="content-container-tanod-home">
-    <div class="upper-main-button">
-        {{!-- <a href="#">
+    {{!--<div class="upper-main-button">
+         <a href="#">
             <button type="button" class="form-btn create size">                             <img src="/images/form-create.png"> <span>Create New Record</span>  </button>
         </a> --}}
         {{!-- <button type="button" class="form-btn resolved margin size" id="resolvedButton">    <img src="/images/form-check.png">  <span>Mark as Resolved</span>   </button> --}}
@@ -49,20 +50,22 @@
                 <button type="submit"><img src="/images/search-reg.png"></button>
                 <input type="text" placeholder="Search Name" name="search_name">
             </form>
-        </div> --}}
-    </div>
+        </div> 
+    </div>--}}
 
     <div class="db-main-box">
+        <!--
         <div class="db-main-box-header">
             <div class="checkboxCol"></div>
             <div class="certNoCol">Certificate Number</div>
             <div class="nameCol">Name</div>
             <div class="resonCol">Reason</div>
             <div class="viewCol"></div>
-            
         </div>
+        -->
 
         <form id="checkboxForm" action="/checkbox-action" method="POST">
+        <!--
             {{#each certificates}}
                 <div class="db-main-box-content">
                     <div class="checkboxCol-Content">
@@ -81,8 +84,38 @@
         
                 </div>
             {{/each}}
-        </form>
+            -->
+        
 
+        <table class="cert-db-table">
+            <thead>
+                <tr>
+                    <th>Certificate Number</th>
+                    <th>Name</th>
+                    <th>Reason</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each certificates}}
+                    <tr>
+                        <td>
+                            {{this.ctc_no}}
+                        </td>
+                        <td class="truncate-text-150px">
+                            {{this.name}}
+                        </td>
+                        <td class="truncate-text-150px">
+                            {{this.reason}}
+                        </td>
+                        <td>
+                            <a href="/certificate-view/{{this._id}}" class="content-text-main underline">View Certificate</a>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        </form>
     </div>
 
     <div class="box-content-page">

@@ -33,6 +33,29 @@ table {
     display: table-header-group;
 }
 
+.accts-db-table td {
+    background-color: white;
+    width: fit-content;
+    text-align: start;
+    border-bottom: 1px solid #717171;
+}
+
+.cert-db-table thead {
+    width: 100%;
+    color: white;
+    border-bottom: #717171;
+    background-color: #004112;
+    font-size: 14px;
+    display: table-header-group;
+}
+
+.cert-db-table td {
+    background-color: white;
+    width: fit-content;
+    text-align: start;
+    border-bottom: 1px solid #717171;
+}
+
 .indiv-acct-table thead {
     width: 100%;
     color: white;
@@ -51,12 +74,7 @@ table tbody {
     padding: 15px;
 }
 
-.accts-db-table td {
-    background-color: white;
-    width: fit-content;
-    text-align: start;
-    border-bottom: 1px solid #717171;
-}
+
 
 table td.align-right{
     width: 45px;
@@ -272,6 +290,13 @@ tr:last-child td{
 
 .last-main-cell {
     height: 2px;
+}
+
+.truncate-text-150px {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* Modal styles */
