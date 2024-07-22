@@ -23,6 +23,13 @@
     cursor: pointer;
   }
 
+  .cert-search-container {
+    display: flex;
+    width: 820px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
 .upper-main-button {
     display: flex;
     flex-direction: row;
