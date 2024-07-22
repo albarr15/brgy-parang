@@ -19,5 +19,7 @@ router.get('/certificate-view/:id',                         certificateControlle
 router.get('/certificate-edit/:id',                         certificateController.editSpecificCertificate);
 router.post('/submit-edit-certificate',                     certificateController.submitEditSpecificCert);
 router.get('/delete-certificate/:id',                       certificateController.deleteCertificate);
+router.get('/search-cases-certificate/:search_name',        certificateController.searchCertificateCase);
+router.get('/certificate-db/:search_name',                  certificateController.viewSearchCertificateDB);
 
 module.exports = router;

@@ -233,6 +233,37 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+
+    //CERTIFICATE
+    const searchFormCertificate = document.getElementById('searchFormCertificate');
+    if (searchFormCertificate) {
+        searchFormCertificate.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            const formData = new FormData(searchFormCertificate);
+            const searchName = formData.get('search_name');
+            
+            try {
+                if(searchName) {
+                    const response = await fetch(`/search-cases-certificate/${searchName}`);
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const result = await response.json();
+                    console.log(result); 
+
+                    window.location.href = `/certificate-db/${searchName}`;
+                } else {
+                    window.location.href = '/certificate-db';
+                }
+
+            } catch (error) {
+                console.error('There was a problem with the search operation:', error);
+            }
+        });
+    }
 });
 
 function displayResults(results) {
