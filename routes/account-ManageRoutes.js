@@ -8,6 +8,8 @@ router.get('/admin-accounts-db-view',           accountsController.viewAllAccoun
 router.get('/admin-view-acct-admin/:id',        accountsController.viewAdminAcc);
 router.get('/admin-edit-acct-admin/:id',        accountsController.editAdminAcc);
 router.post('/submit-edit-admin-acc',           accountsController.submitEditAdminAcc);
+router.get('/create-acc',                       accountsController.createAccount);
+router.post('/submit-create-acc',               accountsController.submitCreateAcc);
 
 
 //EMPLOYEE

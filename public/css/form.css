@@ -148,17 +148,7 @@ html {
     background-color: #EAF3F7;
   }
 
-  textarea {
-    height: 4rem;
-    background-color: #EAF3F7;
-    border-style: hidden;
-    padding-left: 5px;
-    font-family: "Inter", sans-serif;
-    resize: none;
-    line-height: 1.3rem;
-  }
-
-  input[readonly], .status-dropdown-view, textarea[readonly]{
+  input[readonly], .status-dropdown-view{
     background-color: var(--gray) !important;
   }
 
@@ -330,4 +320,8 @@ html {
   background-color: var(--lblue);
   height: 2.188rem;
   width: 9.65rem;
+}
+
+.status-dropdown.role{
+  margin-left: -450px;
 }

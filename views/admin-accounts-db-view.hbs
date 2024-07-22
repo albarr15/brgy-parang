@@ -47,12 +47,26 @@
 </div>
 
 <div class="content-container-tanod-home">
-    <table class="accts-db-table">
-        <a href="#" class="changeSQ-link" id="changeSQLink">
-            <button type="button" class="form-btn changeSQ size" id="changeBtn">
+    <div class="acc-top-buttons">
+            <div>
+                <a href="#" class="changeSQ-link" id="changeSQLink">
+                <button type="button" class="form-btn changeSQ size" id="changeBtn">
                 <span>Change Security Question?</span>
-            </button>
-        </a>
+                </button>
+                </a>
+            </div>
+
+            <div>
+                 <a href="/create-acc" class="changeSQ-link">
+                <button type="button" class="form-btn createAcc size" id="changeBtn">
+                <span>Create New Account</span>
+                </button>
+                </a>
+            </div>
+        </div>
+    <table class="accts-db-table">
+         
+       
         <script>
             var user_role = localStorage.getItem("userRole");
             console.log(user_role)

@@ -210,6 +210,66 @@ const submitEditAdminAcc = async (req, res) => {
     }
 }
 
+const createAccount =  async (req, res) => {
+    try{
+        res.render('admin-create-acct', {
+            layout: 'layout',
+            title: 'Admin: Create Account',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+        });
+    }catch (err){
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+    
+}
+
+const submitCreateAcc = async (req, res) => {
+    const pw = req.body.password;
+    const cpw = req.body.confirmPW;
+
+    if(pw == cpw){
+        try {
+            const highestIdUser = await UserModel.findOne().sort({ _id: -1 });
+            let newId;
+
+            if (highestIdUser) {
+                newId = (parseInt(highestIdUser._id) + 1).toString();
+            } else {
+                newId = '1';
+            }
+
+            const userDetails = {
+                _id: newId,
+                email: req.body.email,
+                password: req.body.password,
+                role: req.body.role
+            };
+
+            const newUser = new UserModel(userDetails);
+            await newUser.save();
+            console.log('User created and saved');
+            res.redirect('/admin-accounts-db-view');
+        } catch (err) {
+            console.error('Error creating user:', err);
+            res.status(500).json({ message: "Server error" });
+        }
+    } else{
+        res.render('admin-create-acct', {
+            layout: 'layout',
+            title: 'Admin: Create Account',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+            message: "Please Enter Password Again"
+        });
+    }
+}
+
 //EMPLOYEE ----------------------------------------------
 const viewEmployeeAcc = async (req, res) => {
     try {
@@ -435,6 +495,8 @@ module.exports = {
     viewAdminAcc,
     editAdminAcc,
     submitEditAdminAcc,
+    createAccount,
+    submitCreateAcc,
 
     editEmployeeAcc,
     viewEmployeeAcc,
