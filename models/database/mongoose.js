@@ -39,6 +39,10 @@ const CertificateSchema = new mongoose.Schema ({
         type: String,
         required: true
     },
+    birthplace : {
+        type: String,
+        required: true
+    },
     address : {
         type: String,
         required: true

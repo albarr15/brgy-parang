@@ -41,10 +41,10 @@
     </div>
     
     <div class = "back-btn-container">
-        <a href="/employee-home">
+        <a href="/certificate-view/{{certificates._id}}">
             <img src="/images/back-arrow.png" id="back-arrow-img" alt="Back">
         </a>
-        <a href="/employee-home"><button type="button" value="back" id="back-btn">Back</button></a>
+        <a href="/certificate-view/{{certificates._id}}"><button type="button" value="back" id="back-btn">Back</button></a>
     </div>
 
     <div class="sub-container">
@@ -53,11 +53,12 @@
             <div class="action-text">Please input your details below to proceed with certification printing.</div>
         </div>
 
-        <form action="/submit-certificate" method="post" class="print-form">
+        <form action="/submit-edit-certificate" method="post" class="print-form">
+            <input type="hidden" name="_id" value="{{certificates._id}}" id="_id">
             <div class = "print-panel">
                 <!-- for Photo-->
                 <div class="photo-container">
-                    <img src="/images/customer.png" class="details-profile" id="deets-profile-img">
+                    <img src="{{certificates.img}}" class="details-profile" id="deets-profile-img">
                     <button type="button" class="image-upload-button" id="accesscamera" data-toggle="modal" data-target="#photoModal">Capture Photo</button>
                 </div>
                 
@@ -91,12 +92,12 @@
                 <div class="deets1-container">
                     <div class="name-container">
                         <div class="deets-text">Name</div>
-                        <input type="text" id="name" name="name" placeholder="Juan C. Dela Cruz">
+                        <input type="text" id="name" name="name" placeholder="Juan C. Dela Cruz" value="{{certificates.name}}">
                     </div>
 
                     <div class="date-container">
                         <div class="deets-text">Birthday</div>
-                        <input type="Date" id="Birthday" class="date" name="bday-date" placeholder="MM/DD/YYYY">                             
+                        <input type="Date" id="Birthday" class="date" name="bday-date" placeholder="MM/DD/YYYY" value="{{certificates.birthday}}">                             
                     </div>
                 </div>
 
@@ -104,7 +105,7 @@
                 <div class="deets2-container">
                     <div class="address-container">
                         <div class="deets-text">Address</div>
-                        <input type="text" id="address" name="address" placeholder="">
+                        <input type="text" id="address" name="address" placeholder="" value="{{certificates.address}}">
                     </div>
                 </div>
 
@@ -112,13 +113,13 @@
                 <div class="deets3-container">
                     <div class="birthplace-container">
                         <div class="deets-text">Place of Birth<span> (City)</span></div>
-                        <input type="text" id="birthplace" name="birthplace" placeholder="Marikina City">                             
+                        <input type="text" id="birthplace" name="birthplace" placeholder="Marikina City" value="{{certificates.birthplace}}">                             
                     </div>
                     
 
                     <div class="location-container">
                         <div class="deets-text">Place of CTC Issuance<span> (City)</span></div>
-                        <input type="text" id="location" name="location" placeholder="Marikina City">
+                        <input type="text" id="location" name="location" placeholder="Marikina City" value="{{certificates.ctc_location}}">
                     </div>
                 </div>
 
@@ -126,24 +127,26 @@
                 <div class="deets4-container">
                     <div class="cedula-container">
                         <div class="deets-text">CTC Number</div>
-                        <input type="text" id="cedula" name="cedula" placeholder="12345678">
+                        <input type="text" id="cedula" name="cedula" placeholder="12345678" value="{{certificates.ctc_no}}">
                     </div>
 
                     <div class="date-container">
                         <div class="deets-text">CTC Issuance Date</div>
-                        <input type="Date" id="ctc-date-issued" class="date" name="ctc-date" placeholder="MM/DD/YYYY">                             
+                        <input type="Date" id="ctc-date-issued" class="date" name="ctc-date" placeholder="MM/DD/YYYY" value="{{certificates.ctc_date_issued}}">                             
                     </div>
                 </div>
 
                 <!-- for Reason For Certificate -->
                 <div class="deets5-container"> 
                     <div class="deets-text">Reason For Certificate</div>
-                    <input type="text" id="reason" name="reason" placeholder="">
+                    <input type="text" id="reason" name="reason" placeholder="" value="{{certificates.reason}}">
                 </div>
 
                 <div class="action-container">
-                    <button type="button" class="download-btn lrg dark" onclick="downloadFileEmployee()"><img src="/images/download-dark.png"><span>Download</span></button>
-                    <button type="button" class="cancel-btn light" onclick="cancelForm()"><img src="/images/cancel-light.png"><span>Cancel</span></button>
+                    {{!-- <button type="button" class="download-btn lrg dark" onclick="downloadFileEmployee()"><img src="/images/download-dark.png"><span>Download</span></button> --}}
+                    {{!-- <button type="button" class="cancel-btn light" onclick="cancelForm()"><img src="/images/cancel-light.png"><span>Cancel</span></button> --}}
+                    <button type="button" id="saveButton"       class="form-btn save" onclick="downloadFileEmployee()">      <img src="/images/form-check.png"><span>Save Changes</span></button>
+                    <button type="button" id="discardButton"    class="form-btn discard" onclick="goBack()">   <img src="/images/form-trash.png"><span>Discard Changes</span></button>
                 </div>
             </div>
         </form>
@@ -167,13 +170,23 @@
         }).join(' ');
     }
     
+    function goBack () {
+        const form = document.querySelector('.print-form');
+
+        const _id = form.elements['_id'].value;
+
+        window.location.href=`/certificate-view/${_id}`;
+    }
+
     function downloadFileEmployee() 
     {
-        if (!validateForm()) {
+        if (!validateFormEdit()) {
             return;
         }
 
         const form = document.querySelector('.print-form');
+
+        const _id = form.elements['_id'].value;
         const name = titleCase(form.elements['name'].value);
         const birthday = formatBirthday(form.elements['bday-date'].value);
         const address = titleCase(form.elements['address'].value);
@@ -191,13 +204,13 @@
 
         const formattedDate = `${yyyy}-${mm}-${dd}`;
         const certDateIssued = formatBirthday(formattedDate);
-
+        
         //send data
         const data = {
+            _id,
             name,
-            birthday: form.elements['bday-date'].value,
+            birthday:form.elements['bday-date'].value,
             address,
-            birthPlace,
             ctc_no: cedula,
             ctc_date_issued: form.elements['ctc-date'].value,
             ctc_location: location,
@@ -206,9 +219,9 @@
             img: profileImg
         };
 
-        //console.log(JSON.stringify(data));
+        console.log(JSON.stringify(data));
         
-        fetch('/saveCertificate', {
+        fetch('/submit-edit-certificate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -217,164 +230,13 @@
         })
         .then(response => response.json())
         .then(result => {
-            console.log('Success:', result);
+            window.location.href=`/certificate-view/${_id}`;
         })
         .catch(error => {
             console.log("error here fetch")
             console.error('Error:', error);
         });
-
-        //generating part
-        const doc = new jsPDF({
-            orientation: 'portrait',
-            unit: 'mm',
-            format: [215.9, 279.4]  // width, height
-        });
-
-        doc.setFont('Times', 'bold'); 
-
-        // Title and Header
-        
-        const logoWidth = 100;
-        const logolength = 30;
-        doc.addImage('/images/logo-cert.png', 'PNG', 57, 10, logoWidth, logolength);
-
-        doc.setFontSize(12);
-        doc.text('Republic of the Philippines',     105, 45, null, null, 'center');
-        doc.text('City of Marikina',                105, 50, null, null, 'center');
-        doc.setFontSize(14);
-        doc.text('BARANGAY PARANG',                 105, 56, null, null, 'center');
-        doc.setFontSize(16);
-        doc.text('OFFICE OF THE PUNONG BARANGAY',   105, 66, null, null, 'center');
-        doc.setFontSize(20);
-
-        doc.text('C E R T I F I C A T I O N',       105, 76, null, null, 'center');
-        var textWidth = doc.getTextWidth('C E R T I F I C A T I O N');
-        doc.setLineWidth(0.5);
-        doc.line(105 - textWidth / 2, 77, 105 + textWidth / 2, 77);
-
-        // Body Text
-
-        const imgWidth = 30;
-        const imgHeight = 30;
-        doc.addImage(profileImg, 'JPEG', 170, 85, imgWidth, imgHeight);
-
-        doc.addImage('/images/sign-box-cert.png', 'PNG', 168, 118, 35, 35);
-
-        doc.setFont("Times", "normal");
-        doc.setFontSize(14);
-        doc.text('To whom it may concern;',             20, 90);
-        doc.text(`This is to certify the fact that`,    20, 102);
-
-        // NAME BOLD
-        doc.setFont("Times", "bold");
-        doc.text(`${name}`,                             79, 102);
-        textWidth = doc.getTextWidth(`${name}`);
-        doc.setLineWidth(0.5);
-        doc.line(79, 103, 79 + textWidth, 103);
-        doc.setFont("Times", "normal");
-
-        doc.text(`born on the`,            20, 108);
-
-        // BIRTHDAY BOLD
-        doc.setFont("Times", "bold");
-        doc.text(`${birthday}`,                             44, 108);
-        textWidth = doc.getTextWidth(`${birthday}`);
-        doc.setLineWidth(0.5);
-        doc.line(44, 109, 44 + textWidth, 109);
-        doc.setFont("Times", "normal");
-
-        doc.text(`at`,   45 + textWidth, 108);
-
-        // Birthplace BOLD
-        doc.setFont("Times", "bold");
-        doc.text(`${birthPlace}`,                       50 + textWidth, 108);
-        textWidthBP = doc.getTextWidth(`${birthPlace}`);
-        doc.setLineWidth(0.5);
-        doc.line(50 + textWidth, 109, 50 + textWidthBP + textWidth, 109);
-        doc.setFont("Times", "normal");
-
-        doc.text(`, whose picture`,  51 + textWidthBP + textWidth, 108);
-
-        doc.text(`and signature appears, is a bonafide resident of Barangay Parang,`,  20, 114);
-        doc.text(`currently residing at`,                                              20, 120);
-
-        // ADDRESS BOLD
-        doc.setFont("Times", "bold");
-        doc.text(`${address}`, 61, 120);
-        textWidth = doc.getTextWidth(`${address}`);
-        doc.setLineWidth(0.5);
-        doc.line(61, 121, 61 + textWidth, 121);
-        doc.setFont("Times", "normal");
-
-        doc.text(`and that he/she exhibited to me his/her Community Tax`,   20, 126);
-        doc.text(`Certificate No. `,                                        20, 132);
-
-        // CEDULA NO. BOLD
-        doc.setFont("Times", "bold");
-        doc.text(`${cedula}`, 50, 132);
-        textWidth = doc.getTextWidth(`${cedula}`);
-        doc.setLineWidth(0.5);
-        doc.line(50, 133, 50 + textWidth, 133);
-        doc.setFont("Times", "normal");
-
-        doc.text(`issued at`, 71, 132);
-
-        // CEDULA NO. BOLD
-        doc.setFont("Times", "bold");
-        doc.text(`${location}`, 89, 132);
-        textWidth = doc.getTextWidth(`${location}`);
-        doc.setLineWidth(0.5);
-        doc.line(89, 133, 89 + textWidth, 133);
-        doc.setFont("Times", "normal");
-
-        doc.text(`on the`, 90 + textWidth, 132);
-
-        //
-        doc.setFont("Times", "bold");
-        doc.text(`${ctcDateIssued}.`, 20, 138);
-        textWidth = doc.getTextWidth(`${ctcDateIssued}`);
-        doc.setLineWidth(0.5);
-        doc.line(20, 139, 20 + textWidth, 139);
-        doc.setFont("Times", "normal");
-
-
-        doc.text(`This certification is hereby issued to the above mentioned individual`, 20, 155);
-        doc.text(`for the fulfillment of `, 20, 161);
-
-        //
-        doc.setFont("Times", "bold");
-        doc.text(`${reason}.`, 63, 161);
-        textWidth = doc.getTextWidth(`${reason}`);
-        doc.setLineWidth(0.5);
-        doc.line(63, 162, 63 + textWidth, 162);
-        doc.setFont("Times", "normal");
-
-        doc.text(`This was issued on the`, 20, 170);
-        doc.text(`Parang, Marikina City.`, 20, 176);
-
-        // CERT DATE ISSUE BOLD
-        doc.setFont("Times", "bold");
-        doc.text(`${certDateIssued}`, 66, 170);
-        textWidth = doc.getTextWidth(`${certDateIssued}`);
-        doc.setLineWidth(0.5);
-        doc.line(66, 171, 66 + textWidth, 171);
-        doc.setFont("Times", "normal");
-
-        doc.text(`at Barangay`, 67 + textWidth, 170);
-
-        // Signature
-        doc.addImage('/images/footer-cert.png', 'PNG', 20, 200, 155, 75);
-
-        // Open PDF in a new window
-        // doc.output('dataurlnewwindow');
-
-        var pdfBlob = doc.output('blob');
-        var url = URL.createObjectURL(pdfBlob);
-        var newWindow = window.open(url, '_blank');
-
-        if (newWindow) {
-            newWindow.document.title = "certificate.pdf";
-        }
     }
+
+
 </script>

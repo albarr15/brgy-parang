@@ -1,5 +1,6 @@
 const TanodCaseModel = require("../models/database/mongoose").TanodCaseModel;
 const LuponCaseModel = require("../models/database/mongoose").LuponCaseModel;
+const CertificateModel = require("../models/database/mongoose").CertificateModel;
 
 //employee
 const viewCertClearance = async (req, res) => {
@@ -149,6 +150,215 @@ const printCertificateClearance = async (req, res) => {
     }
 }; 
 
+//certificate database
+const submitCertificate = async (req, res) => {
+    try {
+        const {
+            name,
+            birthday,
+            address,
+            birthPlace,
+            ctc_no,
+            ctc_date_issued,
+            ctc_location,
+            cert_date_issued,
+            reason,
+            img
+        } = req.body;
+
+        //DEBUGGING
+        /* 
+        console.log('Received data:', {
+            name,
+            birthday,
+            address,
+            ctc_no,
+            ctc_date_issued,
+            ctc_location,
+            cert_date_issued,
+            reason,
+            img
+        });
+        */
+
+        // _id
+        // Find all cases and convert _id to integers for sorting
+        const allCases = await CertificateModel.find().exec();
+        const caseIds = allCases.map(caseDoc => parseInt(caseDoc._id, 10)).filter(id => !isNaN(id));
+
+        // Get the highest _id
+        const latestIdNum = caseIds.length > 0 ? Math.max(...caseIds) : 0;
+        const newCertId = (latestIdNum + 1).toString();
+        
+        // console.log("newcertid", newCertId); //DEBUGGING
+
+        await CertificateModel.create({
+            _id: newCertId,
+            img: img,
+            name: name,
+            birthday: birthday,
+            birthplace : birthPlace,
+            address: address,
+            ctc_no: ctc_no,
+            ctc_date_issued: ctc_date_issued,
+            ctc_location: ctc_location,
+            cert_date_issued: cert_date_issued,
+            reason: reason
+        });
+
+        res.status(201).send({ message: 'Certificate saved successfully' });
+    } catch (error) {
+        console.log("error here in controller cert")
+        res.status(400).send(error);
+    }
+}
+
+const viewCertificateDB = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1; // Get the current page from query params, default to 1
+        const casesPerPage = 10; // Number of cases to show per page
+
+        const totalCert = await CertificateModel.countDocuments(); // Get total number of cases
+        const totalPages = Math.ceil(totalCert / casesPerPage); // Calculate total pages
+
+        // Fetch the cases for the current page
+        const certificate = await CertificateModel.find({})
+            .skip((page - 1) * casesPerPage)
+            .limit(casesPerPage)
+            .lean();
+
+        res.render('certificate-db', {
+            layout: 'layout',
+            title: 'Admin: Certificate DB viewing',
+            cssFile1: 'homepage',
+            cssFile2: 'cert-db-view',
+            javascriptFile1: 'components',
+            javascriptFile2: 'header',
+            certificates: certificate,
+            currentPage: page, // Pass current page to the template
+            totalPages: totalPages // Pass total pages to the template
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const viewSpecificCertificate = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+        const specificCert = await CertificateModel.findOne({ _id : caseId }).lean();
+
+        // console.log(caseId);
+        
+        res.render('certificate-view', {
+            layout: 'layout',
+            title: 'Admin: Certificate DB viewing',
+            cssFile1: 'homepage',
+            cssFile2: 'cert-db-view',
+            javascriptFile1: 'components',
+            javascriptFile2: 'header',
+            certificates: specificCert,
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const editSpecificCertificate = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+        const specificCert = await CertificateModel.findOne({ _id : caseId }).lean();
+
+        // console.log(caseId);
+        
+        res.render('certificate-edit', {
+            layout: 'layout',
+            title: 'Admin: Certificate DB viewing',
+            cssFile1: 'homepage',
+            cssFile2: 'cert-db-view',
+            javascriptFile1: 'components',
+            javascriptFile2: 'header',
+            certificates: specificCert,
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const submitEditSpecificCert = async (req, res) => {
+    try {
+        const {
+            _id,
+            name,
+            birthday,
+            address,
+            birthPlace,
+            ctc_no,
+            ctc_date_issued,
+            ctc_location,
+            cert_date_issued,
+            reason,
+            img
+        } = req.body;
+
+        //DEBUGGING
+        /*
+        console.log('Received data:', {
+            _id,
+            name,
+            birthday,
+            address,
+            ctc_no,
+            ctc_date_issued,
+            ctc_location,
+            cert_date_issued,
+            reason,
+            img
+        });
+        */
+    
+        await CertificateModel.findOneAndUpdate(
+            { _id: _id },
+            {
+                $set: {
+                    id: _id,
+                    img: img,
+                    name: name,
+                    birthday: birthday,
+                    birthplace : birthPlace,
+                    address: address,
+                    ctc_no: ctc_no,
+                    ctc_date_issued: ctc_date_issued,
+                    ctc_location: ctc_location,
+                    cert_date_issued: cert_date_issued,
+                    reason: reason
+                }
+            },
+            { new: true }
+        );
+        res.status(201).send({ message: 'Certificate edited successfully' });
+    } catch (error) {
+        console.log("error here in controller cert")
+        res.status(400).send(error);
+    }
+}
+
+const deleteCertificate = async (req, res) => {
+    try {
+        const caseId = req.params.id;
+
+        await CertificateModel.findByIdAndDelete(caseId);
+
+        res.redirect("/certificate-db");
+    } catch (error) {
+        console.error('Error updating status:', error);
+        return res.status(500).json({ error: 'Failed to update status' });
+    }
+}
+
 module.exports = {
     isClearedEmployee,
     onClickView,
@@ -156,5 +366,12 @@ module.exports = {
     viewCertClearance,
 
     isClearedEmployeeLupon,
-    printCertificateClearance
+    printCertificateClearance,
+
+    submitCertificate,
+    viewCertificateDB,
+    viewSpecificCertificate,
+    editSpecificCertificate,
+    submitEditSpecificCert,
+    deleteCertificate
 }
