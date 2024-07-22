@@ -119,9 +119,18 @@ const isUser = async (req, res) => {
 
 const viewAllAccounts = async (req, res) => {
     try {
+        //pages
+        const page = parseInt(req.query.page) || 1;
+        const limit = 10;
+        const skip = (page - 1) * limit;
 
-        const accounts = await UserModel.find().lean();
-        const question = await SecurityModel.findOne({ _id : 1 }).lean();
+
+        const accounts = await UserModel.find().skip(skip).limit(limit).lean();
+        const totalAccounts = await UserModel.countDocuments();
+        const totalPages = Math.ceil(totalAccounts / limit);
+        const question = await SecurityModel.findOne({ _id: 1 }).lean();
+
+        
 
         res.render('admin-accounts-db-view', {
             layout: 'layout',
@@ -131,7 +140,9 @@ const viewAllAccounts = async (req, res) => {
             javascriptFile1: null,
             javascriptFile2: null,
             accounts: accounts,
-            securityQues : question.Question
+            securityQues : question.Question, 
+            currentPage: page,
+            totalPages: totalPages
         });
     } catch (err) {
         console.error(err);
@@ -207,6 +218,95 @@ const submitEditAdminAcc = async (req, res) => {
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Server error" });
+    }
+}
+
+const createAccount =  async (req, res) => {
+    try{
+        res.render('admin-create-acct', {
+            layout: 'layout',
+            title: 'Admin: Create Account',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+        });
+    }catch (err){
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+    
+}
+
+const submitCreateAcc = async (req, res) => {
+    const pw = req.body.password;
+    const cpw = req.body.confirmPW;
+    const role = req.body.role;
+    if(!role){
+        return res.render('admin-create-acct', {
+            layout: 'layout',
+            title: 'Admin: Create Account',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+            message: "Role is required"
+        });
+    }
+
+    if(pw == cpw){
+        try {
+
+            const existingUser = await UserModel.findOne({email: req.body.email});
+            if(existingUser){
+                return res.render('admin-create-acct', {
+                    layout: 'layout',
+                    title: 'Admin: Create Account',
+                    cssFile1: null,
+                    cssFile2: null,
+                    javascriptFile1: null,
+                    javascriptFile2: null,
+                    message: "Email already exists. Please use a different email."
+                });
+            }
+            let newId;
+            const highestIdUser = await UserModel.findOne().sort({ _id: -1 });
+            
+            if (highestIdUser) {
+                newId = (parseInt(highestIdUser._id) + 1).toString();
+            } else {
+                newId = '1';
+            }
+
+            while (await UserModel.findById(newId)) {
+                newId = (parseInt(newId) + 1).toString();
+            }
+
+            const userDetails = {
+                _id: newId,
+                email: req.body.email,
+                password: req.body.password,
+                role: req.body.role
+            };
+
+            const newUser = new UserModel(userDetails);
+            await newUser.save();
+            console.log('User created and saved');
+            res.redirect('/admin-accounts-db-view');
+        } catch (err) {
+            console.error('Error creating user:', err);
+            res.status(500).json({ message: "Server error" });
+        }
+    } else{
+        res.render('admin-create-acct', {
+            layout: 'layout',
+            title: 'Admin: Create Account',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+            message: "Please Enter Password Again"
+        });
     }
 }
 
@@ -435,6 +535,8 @@ module.exports = {
     viewAdminAcc,
     editAdminAcc,
     submitEditAdminAcc,
+    createAccount,
+    submitCreateAcc,
 
     editEmployeeAcc,
     viewEmployeeAcc,

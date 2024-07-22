@@ -47,12 +47,26 @@
 </div>
 
 <div class="content-container-tanod-home">
-    <table class="accts-db-table">
-        <a href="#" class="changeSQ-link" id="changeSQLink">
-            <button type="button" class="form-btn changeSQ size" id="changeBtn">
+    <div class="acc-top-buttons">
+            <div>
+                <a href="#" class="changeSQ-link" id="changeSQLink">
+                <button type="button" class="form-btn changeSQ size" id="changeBtn">
                 <span>Change Security Question?</span>
-            </button>
-        </a>
+                </button>
+                </a>
+            </div>
+
+            <div>
+                 <a href="/create-acc" class="changeSQ-link">
+                <button type="button" class="form-btn createAcc size" id="changeBtn">
+                <span>Create New Account</span>
+                </button>
+                </a>
+            </div>
+        </div>
+    <table class="accts-db-table">
+         
+       
         <script>
             var user_role = localStorage.getItem("userRole");
             console.log(user_role)
@@ -96,6 +110,13 @@
             {{/each}}
         </tbody>
     </table>
+    <!--Pages-->
+    <div class="box-content-page">
+                <button class="page-btn" id="count-down">&lt;</button>
+                <div class="page-count" id="page-num">{{currentPage}}</div>
+                <button class="page-btn" id="count-up">&gt;</button>
+                <div class="page-number">Page {{currentPage}} of {{totalPages}}</div>
+            </div>
 
     <div id="securityQuestionModal" class="modal">
         <div class="modal-content">
@@ -113,4 +134,19 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    // Adjust the buttons based on page number
+    document.getElementById('count-down').addEventListener('click', function() {
+        if ({{currentPage}} > 1) {
+            window.location.href = '?page=' + ({{currentPage}} - 1);
+        }
+    });
+    document.getElementById('count-up').addEventListener('click', function() {
+        if ({{currentPage}} < {{totalPages}}) {
+            window.location.href = '?page=' + ({{currentPage}} + 1);
+        }
+    });
+</script>
     
