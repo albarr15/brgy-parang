@@ -267,7 +267,7 @@
 
         // ADDRESS BOLD
         doc.setFont("Times", "bold");
-        doc.text(`${address}.`, 61, 120);
+        doc.text(`${address}`, 61, 120);
         textWidth = doc.getTextWidth(`${address}`);
         doc.setLineWidth(0.5);
         doc.line(61, 121, 61 + textWidth, 121);
@@ -333,6 +333,14 @@
         doc.addImage('/images/footer-cert.png', 'PNG', 20, 200, 155, 75);
 
         // Open PDF in a new window
-        doc.output('dataurlnewwindow');
+        // doc.output('dataurlnewwindow');
+
+        var pdfBlob = doc.output('blob');
+        var url = URL.createObjectURL(pdfBlob);
+        var newWindow = window.open(url, '_blank');
+
+        if (newWindow) {
+            newWindow.document.title = "certificate.pdf";
+        }
     }
 </script>

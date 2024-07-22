@@ -226,7 +226,7 @@ function formatBirthday(birthday) {
     }
 
     // Construct the formatted string
-    const formattedBirthday = `${day}${daySuffix} of ${monthName}, ${year}`;
+    const formattedBirthday = `${day}${daySuffix} of ${monthName} ${year}`;
 
     return formattedBirthday;
 }
