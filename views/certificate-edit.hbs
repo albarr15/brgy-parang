@@ -142,13 +142,22 @@
                     <input type="text" id="reason" name="reason" placeholder="" value="{{certificates.reason}}">
                 </div>
 
+                <!--
                 <div class="action-container">
                     {{!-- <button type="button" class="download-btn lrg dark" onclick="downloadFileEmployee()"><img src="/images/download-dark.png"><span>Download</span></button> --}}
                     {{!-- <button type="button" class="cancel-btn light" onclick="cancelForm()"><img src="/images/cancel-light.png"><span>Cancel</span></button> --}}
                     <button type="button" id="saveButton"       class="form-btn save" onclick="downloadFileEmployee()">      <img src="/images/form-check.png"><span>Save Changes</span></button>
                     <button type="button" id="discardButton"    class="form-btn discard" onclick="goBack()">   <img src="/images/form-trash.png"><span>Discard Changes</span></button>
                 </div>
+                -->
             </div>
+            <div class="cert-buttons-container">
+                    {{!-- <button type="button" class="download-btn lrg dark" onclick="downloadFileEmployee()"><img src="/images/download-dark.png"><span>Download</span></button> --}}
+                    {{!-- <button type="button" class="cancel-btn light" onclick="cancelForm()"><img src="/images/cancel-light.png"><span>Cancel</span></button> --}}
+                    
+                    <button type="button" class="form-btn save cert" onclick="downloadFileEmployee()"><img src="/images/form-check.png"><span>Save Changes</span></button>
+                    <button type="button" class="form-btn delete cert" onclick="goBack()"><img src="/images/form-trash.png"><span>Discard Changes</span></button>
+                </div>
         </form>
     </div>
 
