@@ -325,3 +325,10 @@ html {
 .status-dropdown.role{
   margin-left: -450px;
 }
+
+.role-dropdown{
+  height: 2.188rem;
+  width: 9.65rem;
+  position: relative;
+  margin-left: -450px;
+}

@@ -230,16 +230,45 @@ const createAccount =  async (req, res) => {
 const submitCreateAcc = async (req, res) => {
     const pw = req.body.password;
     const cpw = req.body.confirmPW;
+    const role = req.body.role;
+    if(!role){
+        return res.render('admin-create-acct', {
+            layout: 'layout',
+            title: 'Admin: Create Account',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+            message: "Role is required"
+        });
+    }
 
     if(pw == cpw){
         try {
-            const highestIdUser = await UserModel.findOne().sort({ _id: -1 });
-            let newId;
 
+            const existingUser = await UserModel.findOne({email: req.body.email});
+            if(existingUser){
+                return res.render('admin-create-acct', {
+                    layout: 'layout',
+                    title: 'Admin: Create Account',
+                    cssFile1: null,
+                    cssFile2: null,
+                    javascriptFile1: null,
+                    javascriptFile2: null,
+                    message: "Email already exists. Please use a different email."
+                });
+            }
+            let newId;
+            const highestIdUser = await UserModel.findOne().sort({ _id: -1 });
+            
             if (highestIdUser) {
                 newId = (parseInt(highestIdUser._id) + 1).toString();
             } else {
                 newId = '1';
+            }
+
+            while (await UserModel.findById(newId)) {
+                newId = (parseInt(newId) + 1).toString();
             }
 
             const userDetails = {

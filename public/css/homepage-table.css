@@ -139,6 +139,10 @@ tr:last-child td{
     text-align: center;
 }
 
+.main-table-content.create-box{
+    width: 100%;
+}
+
 .main-table-content.view{
     margin-bottom: 150px;
 }
