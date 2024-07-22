@@ -297,8 +297,9 @@
         doc.text(`, whose picture`,  51 + textWidthBP + textWidth, 108);
 
         doc.text(`and signature appears, is a bonafide resident of Barangay Parang,`,  20, 114);
-        doc.text(`currently residing at`,                                              20, 120);
+        //doc.text(`currently residing at`,                                              20, 120);
 
+        /*
         // ADDRESS BOLD
         doc.setFont("Times", "bold");
         doc.text(`${address}`, 61, 120);
@@ -306,65 +307,138 @@
         doc.setLineWidth(0.5);
         doc.line(61, 121, 61 + textWidth, 121);
         doc.setFont("Times", "normal");
+        */
 
-        doc.text(`and that he/she exhibited to me his/her Community Tax`,   20, 126);
-        doc.text(`Certificate No. `,                                        20, 132);
+        var addressReason = "currently residing at ";
+        var splitTextAdd = doc.splitTextToSize(address, 100);
+
+        var yPos = 120;
+
+        // Set font to normal and add reasonText
+        doc.setFont("Times", "normal");
+        doc.text(addressReason, 20, yPos);
+
+        var addressReasontWidth = doc.getTextWidth(addressReason);
+
+        doc.setFont("Times", "bold");
+        for (var i = 0; i < splitTextAdd.length; i++) {
+            var line = splitTextAdd[i];
+            var xPos = 20;
+
+            // For the first line, add it after the reasonText
+            if (i === 0) {
+                xPos += addressReasontWidth;
+                doc.text(line, xPos, yPos);
+
+                var lineWidth = doc.getTextWidth(line);
+                doc.line(xPos, yPos + 1, xPos + lineWidth, yPos + 1);
+            } else {
+                // For subsequent lines, add them normally with the same indentation
+                yPos += 6; // Line height
+                doc.text(line, xPos, yPos);
+
+                var lineWidth = doc.getTextWidth(line);
+                doc.line(xPos, yPos + 1, xPos + lineWidth, yPos + 1);
+            }
+        }
+
+        doc.setFont("Times", "normal");
+        doc.text(`and that he/she exhibited to me his/her Community Tax`,   20, 120 + (splitTextAdd.length * 6));
+        doc.text(`Certificate No. `,                                        20, 126 + (splitTextAdd.length * 6));
 
         // CEDULA NO. BOLD
         doc.setFont("Times", "bold");
-        doc.text(`${cedula}`, 50, 132);
+        doc.text(`${cedula}`, 50, 126 + (splitTextAdd.length * 6));
         textWidth = doc.getTextWidth(`${cedula}`);
         doc.setLineWidth(0.5);
-        doc.line(50, 133, 50 + textWidth, 133);
+        doc.line(50, 127 + (splitTextAdd.length * 6), 50 + textWidth, 127 + (splitTextAdd.length * 6));
         doc.setFont("Times", "normal");
 
-        doc.text(`issued at`, 71, 132);
+        doc.text(`issued at`, 71, 126 + (splitTextAdd.length * 6));
 
         // CEDULA NO. BOLD
         doc.setFont("Times", "bold");
-        doc.text(`${location}`, 89, 132);
+        doc.text(`${location}`, 89, 126 + (splitTextAdd.length * 6));
         textWidth = doc.getTextWidth(`${location}`);
         doc.setLineWidth(0.5);
-        doc.line(89, 133, 89 + textWidth, 133);
+        doc.line(89, 127 + (splitTextAdd.length * 6), 89 + textWidth, 127 + (splitTextAdd.length * 6));
         doc.setFont("Times", "normal");
 
-        doc.text(`on the`, 90 + textWidth, 132);
+        doc.text(`on the`, 90 + textWidth, 126 + (splitTextAdd.length * 6));
 
         //
         doc.setFont("Times", "bold");
-        doc.text(`${ctcDateIssued}.`, 20, 138);
+        doc.text(`${ctcDateIssued}.`, 20, 132 + (splitTextAdd.length * 6));
         textWidth = doc.getTextWidth(`${ctcDateIssued}`);
         doc.setLineWidth(0.5);
-        doc.line(20, 139, 20 + textWidth, 139);
+        doc.line(20, 133 + (splitTextAdd.length * 6), 20 + textWidth, 133 + (splitTextAdd.length * 6));
         doc.setFont("Times", "normal");
 
 
-        doc.text(`This certification is hereby issued to the above mentioned individual`, 20, 155);
-        doc.text(`for the fulfillment of `, 20, 161);
+        doc.text(`This certification is hereby issued to the above mentioned individual for the`, 20, 145 + (splitTextAdd.length * 6));
+        var reasonTexct = "for the fulfillment of"
 
-        //
+        //doc.text(`for the fulfillment of `, 20, 161);
+
+        /*
         doc.setFont("Times", "bold");
         doc.text(`${reason}.`, 63, 161);
         textWidth = doc.getTextWidth(`${reason}`);
         doc.setLineWidth(0.5);
         doc.line(63, 162, 63 + textWidth, 162);
         doc.setFont("Times", "normal");
+        */
+        var reasonText = "fulfillment of ";
+        var splitText = doc.splitTextToSize(reason, 125);
 
-        doc.text(`This was issued on the`, 20, 170);
-        doc.text(`Parang, Marikina City.`, 20, 176);
+        var yPos = 151 + (splitTextAdd.length * 6);
 
+        // Set font to normal and add reasonText
+        doc.setFont("Times", "normal");
+        doc.text(reasonText, 20, yPos);
+
+        var reasonTextWidth = doc.getTextWidth(reasonText);
+
+        doc.setFont("Times", "bold");
+        for (var i = 0; i < splitText.length; i++) {
+            var line = splitText[i];
+            var xPos = 20;
+
+            // For the first line, add it after the reasonText
+            if (i === 0) {
+                xPos += reasonTextWidth;
+                doc.text(line, xPos, yPos);
+
+                var lineWidth = doc.getTextWidth(line);
+                doc.line(xPos, yPos + 1, xPos + lineWidth, yPos + 1);
+            } else {
+                // For subsequent lines, add them normally with the same indentation
+                yPos += 6; // Line height
+                doc.text(line, xPos, yPos);
+
+                var lineWidth = doc.getTextWidth(line);
+                doc.line(xPos, yPos + 1, xPos + lineWidth, yPos + 1);
+            }
+        }
+    
+        doc.setFont("Times", "normal");
+        doc.text(`This was issued on the`, 20, 151 + (splitText.length * 6) + (splitTextAdd.length * 6));
+        
+        
         // CERT DATE ISSUE BOLD
         doc.setFont("Times", "bold");
-        doc.text(`${certDateIssued}`, 66, 170);
+        doc.text(`${certDateIssued}`, 66, 151 + (splitText.length * 6) + (splitTextAdd.length * 6));
         textWidth = doc.getTextWidth(`${certDateIssued}`);
         doc.setLineWidth(0.5);
-        doc.line(66, 171, 66 + textWidth, 171);
+        doc.line(66, 152 + (splitText.length * 6) + (splitTextAdd.length * 6), 66 + textWidth, 152 + (splitText.length * 6) + (splitTextAdd.length * 6));
         doc.setFont("Times", "normal");
 
-        doc.text(`at Barangay`, 67 + textWidth, 170);
+        doc.text(`at Barangay`, 67 + textWidth, 151 + (splitText.length * 6) + (splitTextAdd.length * 6));
+        doc.text(`Parang, Marikina City.`, 20, 157 + (splitText.length * 6) + (splitTextAdd.length * 6));
 
         // Signature
         doc.addImage('/images/footer-cert.png', 'PNG', 20, 200, 155, 75);
+        
 
         // Open PDF in a new window
         // doc.output('dataurlnewwindow');
