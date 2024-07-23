@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var home_link1 = document.getElementById("home-link1");
             var home_link2 = document.getElementById("home-link2");
 
-            console.log("Found user_role: " + user_role);
+            console.log("Found user_role: " + userRole);
             switch(userRole) {
                 case "Lupon":
                     document.getElementById("profile-text").style.color="#F3BE72";
@@ -114,6 +114,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     user_profile.src = "/images/logo.png";
                     home_link1.href = "/index";
                     home_link2.href = "/index";
+
+                    // hide profile if no user role
+                    document.getElementById("profile-text").classList.add("hide");
+                    document.getElementById("profile-img").classList.add("hide");
+                    document.getElementById("logout-btn").classList.add("hide");
             }
         }
     }
