@@ -5,6 +5,7 @@ const admin_tanodRoutes = require('./routes/admin-tanodRoutes');
 const admin_luponRoutes = require('./routes/admin-luponRoutes');
 const certificate_PrintingRoutes = require('./routes/certificate-printingRoutes');
 const accoutns_Routes = require('./routes/account-ManageRoutes');
+const mongo_uri = require("./models/database/mongoose").mongo_uri;
 const { registerHelpers } = require('./helpers/handlebarHelpers');
 
 const path = require('path');
@@ -34,15 +35,33 @@ app.engine('hbs', handlebars.engine({
     helpers: hbsHelpers
 }));
 
+//session
+const session = require('express-session')
+const mongoStore = require('connect-mongodb-session')(session);
+
+app.use(session({
+    secret: 'brgyParang',
+    resave: false,
+    saveUninitialized: false,
+    store: new mongoStore({ 
+        uri: mongo_uri,
+        collection: 'mySession',
+    }),
+}));
+
 app.get('/', function(req, res){
-    res.render('index',{
-        layout: 'layout',
-        title: 'Barangay Parang - Initial Login Page',
-        cssFile1: 'index',
-        cssFile2: null,
-        javascriptFile1: null,
-        javascriptFile2: null,
-    });
+    if (req.session.isAuth && req.session.lastpage) {
+        res.redirect(req.session.lastpage);
+    } else {
+        res.render('index',{
+            layout: 'layout',
+            title: 'Barangay Parang - Initial Login Page',
+            cssFile1: 'index',
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+        });
+    }
 });
 
 app.get('/index', function(req, res){
@@ -54,6 +73,22 @@ app.get('/index', function(req, res){
         javascriptFile1: null,
         javascriptFile2: null,
     });
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.redirect('/index');
+        }
+        else {
+            res.clearCookie('connect.sid'); 
+            return res.redirect('/index');
+        }
+    });
+});
+
+app.get('/api/getUserRole', (req, res) => {
+    res.json({ userRole: req.session.userRole || "" });
 });
 
 //helpers

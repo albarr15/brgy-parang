@@ -7,9 +7,11 @@ To provide a platform for them to streamline the process of generating and issui
 Node Packages to be installed:
 - handlebars
 - express
+- express-session
 - express-handlebars
 - express-fileupload 
 - express-flash  
 - body-parser 
 - mongoose   
+- connect-mongodb-session
 - nodemon (as dev dependencies)

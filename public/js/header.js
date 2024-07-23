@@ -119,8 +119,25 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function getCurrentUserRole() {
-        return localStorage.getItem("userRole") || "";
+        return fetch('/api/getUserRole')
+            .then(response => response.json())
+            .then(data => {
+                return data.userRole; // Return the userRole from the response
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                return ""; // Return a default value in case of error
+            });
     }
+
+    getCurrentUserRole().then(userRole => {
+        if (userRole) {
+            console.log("Found User Role: " + userRole);
+            updateUser(userRole);
+        }
+    }).catch(error => {
+        console.error('Error:', error);
+    });
 
     const userRole = getCurrentUserRole();
     updateUser(userRole);
@@ -131,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const logoutBtn = document.getElementById("logout-btn");
     if (logoutBtn) {
         logoutBtn.addEventListener('click', function(){
-            window.location.href="/index";
+            window.location.href="/logout";
         });
     }
 });

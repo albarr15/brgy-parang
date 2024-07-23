@@ -1,16 +1,26 @@
 const { CertificateModel, UserModel, LuponCaseModel, TanodCaseModel } = require('../models/database/mongoose');
 
 
+const isAuth = (req, res, next) => {
+    if(req.session.isAuth) {
+        next();
+    }
+    else {
+        res.redirect('/index');
+    }
+}
+
 function add(app){
     const mongoose = require('mongoose');
 
     //Start
-    app.get('/', function(req, resp){
-        resp.render('index', {
-            layout: 'index-main',
-            title: 'Welcome to Barangay Parang Website'
-        });
-    });
+    //changes: meron na sa index
+    // app.get('/', function(req, resp){
+    //     resp.render('index', {
+    //         layout: 'index-main',
+    //         title: 'Welcome to Barangay Parang Website'
+    //     });
+    // });
 
 
     /************************************************************EMPLOYEE************************************************/
@@ -52,6 +62,8 @@ function add(app){
             }
             else {
                 console.log("here no error")
+                req.session.userRole = "Employee";
+                req.session.isAuth = true;
                 return resp.redirect("/employee-home");
         
             }
@@ -73,16 +85,24 @@ function add(app){
     });
 
     //Employee-Homepage
-    app.get('/employee-home', function(req, resp){
+    app.get('/employee-home', isAuth, function(req, resp){
+        req.session.lastpage = '/employee-home';
         resp.render('employee-home', {
             layout: 'index-employee',
             title: 'Employee Homepage'
         });
     });
 
-    app.get('/logout', function(req,resp){
-        resp.redirect('/');
-    });
+    //changes: moved to index
+    // app.get('/logout', (req, res) => {
+    //     req.session.destroy(err => {
+    //         if (err) {
+    //             return res.redirect('/index'); // Redirect to a protected route if there's an error
+    //         }
+    //         res.clearCookie('connect.sid'); // Clear the session cookie
+    //         res.redirect('/index'); // Redirect to the login page or home page
+    //     });
+    // });
 
     /************************************************************TANOD************************************************/
 
@@ -122,6 +142,8 @@ function add(app){
             }
             else {
                 console.log("here no error")
+                req.session.isAuth = true;
+                req.session.userRole = "Tanod";
                 return resp.redirect('/tanod-home');
         
             }
@@ -143,7 +165,7 @@ function add(app){
     });
 
     //Tanod Homepage
-    app.get('/tanod-home', async function(req, resp){
+    app.get('/tanod-home', isAuth, async function(req, resp){
         try{
             const searchName = req.query.search_name || '';
             const searchRegex = new RegExp(searchName, 'i');
@@ -214,7 +236,8 @@ function add(app){
                 totalPages = Math.ceil(totalCases/limit);
             }
            // const totalPages = Math.ceil(totalCases/limit);
-
+            
+            req.session.lastpage = '/tanod-home';
             resp.render('tanod-home', {
                 layout: 'index-tanod',
                 title: 'Tanod Homepage',
@@ -233,6 +256,7 @@ function add(app){
 
     //Tanod-Create-Case
     app.get('/tanod-create', function(req, resp){
+        req.session.lastpage = '/tanod-create';
         resp.render('tanod-create-case', {
             layout: 'index-create',
             title: 'Tanod Create Case',
@@ -348,6 +372,7 @@ function add(app){
                     isEditable = '';
                 }
 
+                req.session.lastpage = `/page-view-case/${entryNumber}`;
                 resp.render('tanod-view-case', {
                     layout: 'index-view-tl', 
                     title: 'View Tanod Case',
@@ -388,7 +413,9 @@ function add(app){
                     resolveStat = '';
                     ongoingStat = 'selected';
                 }
-
+            
+                // console.log(href)
+                req.session.lastpage = `/tanod-edit-case/${entryNumber}`;
                 resp.render('tanod-edit-case', {
                     layout: 'index-edit', 
                     title: 'View Tanod Case',
@@ -598,6 +625,8 @@ function add(app){
             }
             else {
                 console.log("here no error")
+                req.session.userRole = "Lupon";
+                req.session.isAuth = true;
                 return resp.redirect('/lupon-home');
         
             }
@@ -620,7 +649,7 @@ function add(app){
 
 
     //Lupon Homepage
-    app.get('/lupon-home', async function(req, resp){
+    app.get('/lupon-home', isAuth, async function(req, resp){
         try{
             const searchName = req.query.search_name || '';
             const searchRegex = new RegExp(searchName, 'i');
@@ -686,6 +715,7 @@ function add(app){
             }
             //const totalPages = Math.ceil(totalCases/limit);
 
+            req.session.lastpage = 'lupon-home';
             resp.render('lupon-home', {
                 layout: 'index-lupon',
                 title: 'Lupon Homepage',
@@ -702,6 +732,7 @@ function add(app){
 
     //Lupon create case
     app.get('/lupon-create', function(req, resp){
+        req.session.lastpage = '/lupon-create';
         resp.render('lupon-create-case',{
             layout: 'index-create',
             title: 'Lupon Create Case'
@@ -801,7 +832,7 @@ function add(app){
                     ongoingStat = 'selected';
                     isEditable = '';
                 }
-
+                req.session.lastpage = `/lupon-view-case/${caseID}`;
                 resp.render('lupon-view-case', {
                     layout: 'index-view-tl', 
                     title: 'View Lupon Case',
@@ -845,6 +876,7 @@ function add(app){
                     ongoingStat = 'selected';
                 }
 
+                req.session.lastpage = `/lupon-edit-case/${caseID}`;
                 resp.render('lupon-edit-case', {
                     layout: 'index-edit', 
                     title: 'Edit Lupon Case',
