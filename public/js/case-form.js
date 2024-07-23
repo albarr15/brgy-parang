@@ -37,11 +37,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
             console.log("checking saveButton")
 
-            checkChanges();
-            const form = document.querySelector('.case-form');
-            form.submit();
+            if(checkChangesEdit()){
+                const form = document.querySelector('.case-form');
+                form.submit();
+            }
         });
     }
+
+   
 
     const discardButton = document.getElementById('discardButton');
     if(discardButton) {
@@ -109,11 +112,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
             console.log("checking saveButton")
 
-            checkChanges();
-            const form = document.querySelector('.case-form');
-            form.submit();
+            if(checkChangesEdit()){
+                const form = document.querySelector('.case-form');
+                form.submit();
+            }
         });
     }
+
+
 
     const discardButtonLupon = document.getElementById('discardButtonLupon');
     if(discardButtonLupon) {
@@ -174,6 +180,23 @@ function checkChanges() {
             input.value = input.placeholder; // If value is empty, restore the placeholder
         }
     });
+}
+
+function checkChangesEdit() {
+    const requiredFields = document.querySelectorAll('.case-form input, .case-form select');
+    let allFilled = true;
+
+    requiredFields.forEach(field => {
+        if (field.value.trim() === '') {
+            allFilled = false;   
+        }
+    });
+
+    if (!allFilled) {
+        alert('Please fill out all the fields.');
+    }
+
+    return allFilled;
 }
 
 function discardChanges() {
