@@ -148,7 +148,7 @@ html {
     background-color: #EAF3F7;
   }
 
-  input[readonly], .status-dropdown-view{
+  input[readonly], .status-dropdown-view, textarea[readonly]{
     background-color: var(--gray) !important;
   }
 
@@ -339,3 +339,12 @@ html {
   width: 100%;
 }
 
+textarea {
+  height: 4rem;
+  background-color: #EAF3F7;
+  border-style: hidden;
+  padding-left: 5px;
+  font-family: "Inter", sans-serif;
+  resize: none;
+  line-height: 1.3rem;
+}
