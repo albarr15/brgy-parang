@@ -3,6 +3,7 @@ const LuponCaseModel = require("../models/database/mongoose").LuponCaseModel;
 const viewLuponDB = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1; // Get the current page from query params, default to 1
+        req.session.lastpage = '/admin-lupon-db-view';
         const casesPerPage = 10; // Number of cases to show per page
 
         const totalCases = await LuponCaseModel.countDocuments(); // Get total number of cases
@@ -131,6 +132,7 @@ const updateStatus = async (req, res) => {
 const viewCreateLuponCase = async (req, res) => {
     try {
         const caseId = req.params.id;
+        req.session.lastpage = '/A-lupon-create-case';
         const specificCase = await LuponCaseModel.findOne({ _id : caseId }).lean();
 
         res.render('A-lupon-create-case',{
@@ -269,6 +271,7 @@ const searchLuponCase = async (req, res) => {
 const viewLuponCase = async (req, res) => {
     try {
         const caseId = req.params.id;
+        req.session.lastpage = `/A-lupon-view-case/${caseId}`;
         const specificCase = await LuponCaseModel.findOne({ _id : caseId }).lean();
         // console.log(cases);
         res.render('A-lupon-view-case',{
@@ -317,6 +320,7 @@ const markResolved = async (req, res) => {
 const editLuponCase = async (req, res) => {
     try {
         const caseId = req.params.id;
+        req.session.lastpage = `/A-lupon-edit-case/${caseId}`;
         const specificCase = await LuponCaseModel.findOne({ _id : caseId }).lean();
 
         res.render('A-lupon-edit-case',{

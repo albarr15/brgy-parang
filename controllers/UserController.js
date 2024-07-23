@@ -4,7 +4,7 @@ const SecurityModel = require("../models/database/mongoose").SecurityQuestionMod
 //SECURITY ---------------------------------------------
 const getLogin = async (req, res) => {
     try {
-        if(req.session.isAuth) {
+        if(req.session.isAuth && req.session.userRole == "Admin") {
             return res.redirect('admin-homepage');
         }
         else {

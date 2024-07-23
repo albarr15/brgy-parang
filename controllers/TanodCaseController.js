@@ -2,6 +2,7 @@ const TanodCaseModel = require("../models/database/mongoose").TanodCaseModel;
 
 const viewTanodDB = async (req, res) => {
     try {
+        req.session.lastpage = '/admin-tanod-db-view';
         const page = parseInt(req.query.page) || 1; // Get the current page from query params, default to 1
         const casesPerPage = 10; // Number of cases to show per page
 
@@ -30,7 +31,7 @@ const viewTanodDB = async (req, res) => {
         return res.status(500).json({ message: "Server error" });
     }
 };
-
+//la na to kwenta
 const viewPageTanodDB = async (req, res) => {
     try {
         const currentPage = req.params.currentPage || 1;
@@ -62,11 +63,10 @@ const viewPageTanodDB = async (req, res) => {
         return res.status(500).json({ message: "Server error" });
     }
 };
+//la na to kwenta
 
 const viewSearchTanodDB = async (req, res) => {
     try {
-        console.log("checking if im here");
-        
         const name = req.params.search_name;
         const searchWords = name.split(' ').filter(word => word.trim() !== '');
 
@@ -137,6 +137,7 @@ const markResolved = async (req, res) => {
 const viewTanodCase = async (req, res) => {
     try {
         const caseId = req.params.id;
+        req.session.lastpage = `/A-tanod-view-case/${caseId}`;
         const specificCase = await TanodCaseModel.findOne({ _id : caseId }).lean();
         // console.log(cases);
         res.render('A-tanod-view-case',{
@@ -157,6 +158,7 @@ const viewTanodCase = async (req, res) => {
 const editTanodCase = async (req, res) => {
     try {
         const caseId = req.params.id;
+        req.session.lastpage = `/A-tanod-edit-case/${caseId}`;
         const specificCase = await TanodCaseModel.findOne({ _id : caseId }).lean();
 
         res.render('A-tanod-edit-case',{
@@ -332,6 +334,7 @@ const searchTanodCase = async (req, res) => {
 const viewCreateTanodCase = async (req, res) => {
     try {
         const caseId = req.params.id;
+        req.session.lastpage = '/A-tanod-create-case';
         const specificCase = await TanodCaseModel.findOne({ _id : caseId }).lean();
 
         res.render('A-tanod-create-case',{

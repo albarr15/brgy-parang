@@ -50,25 +50,33 @@ app.use(session({
 }));
 
 app.get('/', function(req, res){
-    res.render('index',{
-        layout: 'layout',
-        title: 'Barangay Parang - Initial Login Page',
-        cssFile1: 'index',
-        cssFile2: null,
-        javascriptFile1: null,
-        javascriptFile2: null,
-    });
+    if (req.session && req.session.lastpage) {
+        res.redirect(req.session.lastpage);
+    } else {
+        res.render('index',{
+            layout: 'layout',
+            title: 'Barangay Parang - Initial Login Page',
+            cssFile1: 'index',
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+        });
+    }
 });
 
 app.get('/index', function(req, res){
-    res.render('index',{
-        layout: 'layout',
-        title: 'Barangay Parang - Initial Login Page',
-        cssFile1: 'index',
-        cssFile2: null,
-        javascriptFile1: null,
-        javascriptFile2: null,
-    });
+    if (req.session && req.session.lastpage) {
+        res.redirect(req.session.lastpage);
+    } else {
+        res.render('index',{
+            layout: 'layout',
+            title: 'Barangay Parang - Initial Login Page',
+            cssFile1: 'index',
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+        });
+    }
 });
 
 app.get('/logout', (req, res) => {

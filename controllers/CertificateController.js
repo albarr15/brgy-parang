@@ -4,6 +4,7 @@ const CertificateModel = require("../models/database/mongoose").CertificateModel
 
 //employee
 const viewCertClearance = async (req, res) => {
+    req.session.lastpage = '/employee-check-clearance';
     res.render('employee-check-clearance',{
         layout: 'layout',
         title: 'Barangay Parang - Employee Homepage - test',
@@ -99,7 +100,7 @@ const onClickView = async (req, res) => {
             statusT = null
         }
 
-
+        req.session.lastpage = '/employee-onClick-print';
         res.render('employee-onClick-print',{
             layout: 'layout',
             title: 'Barangay Parang - Admin - Tanod View Case Page',
@@ -120,6 +121,7 @@ const onClickView = async (req, res) => {
 
 const printCertificate = async (req, res) => {
     try {
+        req.session.lastpage = '/employee-input-page';
         res.render('employee-input-page', {
             layout: 'layout',
             title: 'Barangay Parang - Employee View - Input Cert. Details',
@@ -136,6 +138,7 @@ const printCertificate = async (req, res) => {
 
 const printCertificateClearance = async (req, res) => {
     try {
+        req.session.lastpage = '/employee-input-page-clerance';
         res.render('employee-input-page-clerance', {
             layout: 'layout',
             title: 'Barangay Parang - Employee View - Input Cert. Details',
@@ -227,6 +230,7 @@ const viewCertificateDB = async (req, res) => {
             .limit(casesPerPage)
             .lean();
 
+        req.session.lastpage = '/certificate-db';    
         res.render('certificate-db', {
             layout: 'layout',
             title: 'Admin: Certificate DB viewing',
@@ -251,6 +255,7 @@ const viewSpecificCertificate = async (req, res) => {
 
         // console.log(caseId);
         
+        req.session.lastpage = `/certificate-view/${caseId}`;
         res.render('certificate-view', {
             layout: 'layout',
             title: 'Admin: Certificate DB viewing',
@@ -272,7 +277,7 @@ const editSpecificCertificate = async (req, res) => {
         const specificCert = await CertificateModel.findOne({ _id : caseId }).lean();
 
         // console.log(caseId);
-        
+        req.session.lastpage = `/certificate-edit/${caseId}`;
         res.render('certificate-edit', {
             layout: 'layout',
             title: 'Admin: Certificate DB viewing',
