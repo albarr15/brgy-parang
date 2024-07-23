@@ -16,6 +16,7 @@ router.get('/admin-login-page',     userController.getLogin);
 router.post('/admin-login-page',    userController.isUser);
 
 router.get('/admin-homepage', isAuth, (req, res) => {
+    req.session.lastpage = '/admin-homepage';
     res.render('admin-homepage',{
         layout: 'layout',
         title: 'Barangay Parang - Admin Homepage',

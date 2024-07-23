@@ -50,7 +50,7 @@ app.use(session({
 }));
 
 app.get('/', function(req, res){
-    if (req.session && req.session.lastpage) {
+    if (req.session.isAuth && req.session.lastpage) {
         res.redirect(req.session.lastpage);
     } else {
         res.render('index',{
@@ -65,27 +65,25 @@ app.get('/', function(req, res){
 });
 
 app.get('/index', function(req, res){
-    if (req.session && req.session.lastpage) {
-        res.redirect(req.session.lastpage);
-    } else {
-        res.render('index',{
-            layout: 'layout',
-            title: 'Barangay Parang - Initial Login Page',
-            cssFile1: 'index',
-            cssFile2: null,
-            javascriptFile1: null,
-            javascriptFile2: null,
-        });
-    }
+    res.render('index',{
+        layout: 'layout',
+        title: 'Barangay Parang - Initial Login Page',
+        cssFile1: 'index',
+        cssFile2: null,
+        javascriptFile1: null,
+        javascriptFile2: null,
+    });
 });
 
 app.get('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
-            return res.redirect('/index'); // Redirect to a protected route if there's an error
+            return res.redirect('/index');
         }
-        res.clearCookie('connect.sid'); // Clear the session cookie
-        res.redirect('/index'); // Redirect to the login page or home page
+        else {
+            res.clearCookie('connect.sid'); 
+            return res.redirect('/index');
+        }
     });
 });
 
