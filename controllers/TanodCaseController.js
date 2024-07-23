@@ -373,20 +373,12 @@ const createTanodCase = async (req, res) => {
             location
         } = req.body;
 
-        //check for existing Entry Number
+        // Check for existing Entry Number
         const existingCase = await TanodCaseModel.findOne({ EntryNo }).lean();
-
         if (existingCase) {
-            return res.render('A-tanod-create-case', {
-                layout: 'layout',
-                title: 'Barangay Parang - Admin - Tanod Create Case Page',
-                cssFile1: 'index',
-                cssFile2: 'form',
-                javascriptFile1: 'header-hbs',
-                javascriptFile2: 'case-form',
-                message: 'Entry Number Already Exists, Please Enter a New One'
-            });
+            return res.status(400).json({ message: 'Entry Number already exists.'});
         }
+
 
         // _id
         // Find all cases and convert _id to integers for sorting
@@ -429,10 +421,25 @@ const createTanodCase = async (req, res) => {
             Location: location
         });
 
-        res.redirect("/admin-tanod-db-view");
+        res.redirect("/admin-tanod-db-view" );
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Server error Here" });
+    }
+};
+
+// Endpoint to check for duplicate EntryNo
+const checkEntryNo = async (req, res) => {
+    try {
+        const { EntryNo } = req.body;
+        const existingCase = await TanodCaseModel.findOne({ EntryNo }).lean();
+        if (existingCase) {
+            return res.status(200).json({ exists: true });
+        }
+        return res.status(200).json({ exists: false });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
     }
 };
 
@@ -449,6 +456,7 @@ module.exports = {
     searchTanodCase,
     viewCreateTanodCase,
     createTanodCase,
+    checkEntryNo,
 
     viewSearchTanodDB,
     viewPageTanodDB

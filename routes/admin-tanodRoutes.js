@@ -30,4 +30,5 @@ router.get('/A-tanod-create-case',                      tanodCaseController.view
 
 router.post('/submit-tanod-case',                       tanodCaseController.createTanodCase);
 
+router.post('/check-entryno', tanodCaseController.checkEntryNo);
 module.exports = router;

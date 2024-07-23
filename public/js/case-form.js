@@ -75,7 +75,28 @@ document.addEventListener("DOMContentLoaded", function() {
                     const errorMessage = 'All inputs are required.';
                     showModal(errorMessage);
                 } else {
-                    form.submit();
+                     // Check for duplicate EntryNo
+                     const entryNoInput = form.querySelector('input[name="EntryNo"]');
+                     const entryNo = entryNoInput.value.trim();
+                     fetch('/check-entryno', {
+                         method: 'POST',
+                         headers: {
+                             'Content-Type': 'application/json'
+                         },
+                         body: JSON.stringify({ EntryNo: entryNo })
+                     })
+                     .then(response => response.json())
+                     .then(result => {
+                         if (result.exists) {
+                             showModal('Entry Number already exists.');
+                         } else {
+                             form.submit();
+                         }
+                     })
+                     .catch(error => {
+                         console.error('Error:', error);
+                         showModal('An error occurred while checking the Entry Number. Please try again.');
+                     });
                 }
             }
         });
