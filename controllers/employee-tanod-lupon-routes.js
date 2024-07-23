@@ -411,12 +411,38 @@ function add(app){
 
     //Save Edit details
     app.post('/update-tanod-case', async function(req, resp){
-        const entryNumber = Number(req.body.entryNumber);
+        const {
+            date,
+            status,
+            reporteeFirstName,
+            reporteeMiddleInitial,
+            reporteeLastName,
+            reporteeAddress,
+            natureOfBlotter,
+            respondentFirstName,
+            respondentMiddleInitial,
+            respondentLastName,
+            deskOfficerFirstName,
+            deskOfficerMiddleInitial,
+            deskOfficerLastName,
+            witnessFirstName,
+            witnessMiddleInitial,
+            witnessLastName,
+            location
+        } = req.body;
+
+        if (!date || !status || !reporteeFirstName || !reporteeLastName || !natureOfBlotter || !respondentFirstName || !respondentLastName || !deskOfficerFirstName || !witnessFirstName || !location 
+            || !reporteeMiddleInitial || !reporteeAddress || ! respondentMiddleInitial || !deskOfficerMiddleInitial || !deskOfficerLastName || !witnessMiddleInitial || !witnessLastName)
+             {
+            return resp.status(400).json({ message: 'All fields are required.' });
+        }
+
+        const entryNumberint = Number(req.body.entryNumber);
         //code to edit the case here
         try {
             // Find the case by EntryNo and update it with new values
             const updatedCase = await TanodCaseModel.findOneAndUpdate(
-                { EntryNo: entryNumber },
+                { EntryNo: entryNumberint },
                 {
                     Date: req.body.date,
                     Status: req.body.status,
@@ -448,7 +474,8 @@ function add(app){
             );
 
             if (updatedCase) {
-                resp.redirect(`/page-view-case/${entryNumber}`); // Redirect to the homepage after successful update
+                resp.status(200).json({ message: 'Case successfully updated', redirectUrl: `/page-view-case/${entryNumberint}` });
+                //resp.redirect(`/page-view-case/${entryNumberint}`); // Redirect to the homepage after successful update
             } else {
                 resp.status(404).send('Case not found');
             }
@@ -840,6 +867,31 @@ function add(app){
 
     //Lupon update
     app.post('/update-lupon-case/:_id', async function(req, resp){
+        const{
+            caseTitle,
+            caseType,
+            status,
+            respondentFirstName,
+            respondentMiddleInitial,
+            respondentLastName,
+            complainerFirstName,
+            complainerMiddleInitial,
+            complainerLastName,
+            mediationFirstName,
+            mediationMiddleInitial,
+            mediationLastName,
+            conciliationFirstName,
+            conciliationMiddleInitial,
+            conciliationLastName
+        } = req.body;
+
+        if (!caseTitle || !caseType || !status || !complainerFirstName || !complainerMiddleInitial || !complainerLastName || !mediationFirstName || !mediationMiddleInitial || !mediationLastName || !respondentFirstName || !respondentLastName 
+            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName)
+             {
+            return resp.status(400).json({ message: 'All fields are required.' });
+        }
+
+
         const caseID = req.params._id;
 
         //code to edit the case here
@@ -877,7 +929,8 @@ function add(app){
             );
 
             if (updatedCase) {
-                resp.redirect(`/lupon-view-case/${updatedCase._id}`); // Redirect to the homepage after successful update
+                resp.status(200).json({ message: 'Case successfully updated', redirectUrl: `/lupon-view-case/${updatedCase._id}` });
+                //resp.redirect(`/lupon-view-case/${updatedCase._id}`); // Redirect to the homepage after successful update
             } else {
                 resp.status(404).send('Case not found');
             }
