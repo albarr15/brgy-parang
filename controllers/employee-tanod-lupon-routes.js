@@ -282,17 +282,14 @@ function add(app){
 
             if(existingCase){
                 console.log("Entry Number already exists");
-                return resp.render('tanod-create-case', {
-                    layout: 'index-create',
-                    title: 'Tanod Create Case',
-                    message: 'Entry Number Already Exists, Please Enter a New One'
-                });
+                return resp.status(400).json({message: 'Entry Number is Already Taken'});
             }
             const newCase = new TanodCaseModel(caseData);
             await newCase.save();
             console.log('Case Succesfully saved');
             console.log(entryNumber);
-            resp.redirect(`/page-view-case/${entryNumber}`);
+            resp.status(200).json({ message: 'Case successfully saved', redirectUrl: `/page-view-case/${entryNumber}` });
+            //resp.redirect(`/page-view-case/${entryNumber}`);
 
         } catch (error){
             console.error('Error saving the case:', error);
