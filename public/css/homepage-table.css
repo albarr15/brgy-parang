@@ -33,7 +33,7 @@ table {
     display: table-header-group;
 }
 
-.accts-db-table td {
+.indiv-acct-table thead {
     background-color: white;
     width: fit-content;
     text-align: start;
@@ -44,23 +44,28 @@ table {
     width: 100%;
     color: white;
     border-bottom: #717171;
+    font-size: 20px;
     background-color: #004112;
     font-size: 14px;
     display: table-header-group;
 }
 
-.cert-db-table td {
+.tanod-lupon-db-table {
+    margin-top: 0px;
+}
+
+.tanod-lupon-db-table td {
     background-color: white;
     width: fit-content;
     text-align: start;
     border-bottom: 1px solid #717171;
 }
 
-.indiv-acct-table thead {
+.tanod-lupon-db-table thead {
     width: 100%;
     color: white;
-    border-bottom: #717171;
-    font-size: 20px;
+    background-color: #004112;
+    font-size: 14px;
     display: table-header-group;
 }
 
@@ -70,11 +75,20 @@ table th, td {
     text-align: start;
 }
 
+.entryNumMargin{
+    margin: -10px;
+}
+
 table tbody {
     padding: 15px;
 }
 
-
+.accts-db-table td {
+    background-color: white;
+    width: fit-content;
+    text-align: start;
+    border-bottom: 1px solid #717171;
+}
 
 table td.align-right{
     width: 45px;
@@ -145,6 +159,11 @@ tr:last-child td{
     margin: 50px
 }
 
+.main-table-content.create-box{
+    width: 100%;
+    margin: 50px
+}
+
 .main-table-content.view{
     margin-bottom: 150px;
 }
@@ -174,6 +193,23 @@ tr:last-child td{
     width: fit-content;
     text-align: start;
     font-size: 14px;
+}
+
+.role-cell {
+    background-color: #004112;
+    width: fit-content;
+    text-align: start;
+    font-size: 14px;
+}
+
+#accounts-header {
+    background-color: #004112;
+    border-bottom: 1px solid white;
+    font-size: 20px;
+}
+
+#last-accts-cell {
+    height: 190px;
 }
 
 .main-section {
@@ -212,6 +248,11 @@ tr:last-child td{
 
 .role-name.tanod {
     color: var(--minty);
+}
+
+.role-name.create{
+    color: black;
+    padding: 20px;
 }
 
 .edit-btn-container {
@@ -297,6 +338,12 @@ tr:last-child td{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.entry-date-cell {
+    width: fit-content;
+    padding-left: 0px;
+    text-align: start;
 }
 
 /* Modal styles */
