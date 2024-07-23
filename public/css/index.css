@@ -339,6 +339,7 @@ html {
     border-radius: 20px;
     border: none;
     width: 190px;
+    white-space: nowrap;
   } 
 
   .form-btn img {

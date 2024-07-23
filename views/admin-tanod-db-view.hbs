@@ -1,3 +1,6 @@
+<link rel = "stylesheet" type = "text/css" href = "/css/homepage.css">
+<link rel = "stylesheet" type = "text/css" href = "/css/homepage-table.css">
+<link rel = "stylesheet" type = "text/css" href = "/css/index.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/js/header.js" type="text/javascript"></script>
 
@@ -51,6 +54,7 @@
     </div>
 
     <div class="db-main-box">
+        <!--
         <div class="db-main-box-header">
             <div class="checkboxCol"></div>
             <div class="nameCol">Name</div>
@@ -90,8 +94,44 @@
                 </div>
             {{/each}}
         </form>
-
+        -->
     </div>
+    <table class="tanod-lupon-db-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Tanod Case Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each cases}}
+                        <tr>
+                            <td data-label="checkbox" class="align-right check-view-cell">
+                                <input type="checkbox" name="caseIds" value="{{this._id}}" class="checkbox margin">
+                            </td>
+                            <td class="truncate-text-150px">
+                                {{fullName ReporteeInfo.FirstName ReporteeInfo.MiddleInitial ReporteeInfo.LastName}}
+                            </td>
+                            {{#checkStatus Status}}
+                            <td class="case-status-cell-admin">
+                                <button type="button" class="status resolved" style="pointer-events: none;" disabled><img src="/images/resolved-circle.png"><span>Resolved</span></button>
+                            </td>
+                            {{else}}
+                            <td class="fit-button">
+                                <button type="button" class="status ongoing" onclick="updateStatus('{{this._id}}', '{{this.Status}}')">
+                                    <img src="/images/ongoing-circle.png"><span>Ongoing</span>
+                                </button>
+                            </td>
+                            {{/checkStatus}}
+                            <td>
+                                <a href="/A-tanod-view-case/{{this._id}}" class="content-text-main underline">View Tanod Case</a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
 
     <!-- to be fixed -->
     <div class="box-content-page">
