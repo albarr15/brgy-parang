@@ -31,7 +31,9 @@
                 <h1 id = "tanod-case-title">Creating a New Tanod Case</h1>
                 <div class = "form-encasing-container">
                     <div class = "form-actual-container">
+                         
                         <form class="case-form" id="caseForm" action="tanod-submit-case" method="post">
+                            <div class="message">{{message}}</div>
                             <div class = "form-section" id = "basic-info">
                                 <div class = "column-section">
                                     <label for="entry-number-input" class ="bold-label">Entry Number</label>
@@ -145,3 +147,53 @@
                     </div> 
             </div>
         </div>
+
+
+        <script>
+            document.getElementById('caseForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+
+             // Client-side validation (optional, as server-side validation is primary)
+            let formIsValid = true;
+            for (const key in formObject) {
+                if (!formObject[key].trim()) {
+                    formIsValid = false;
+                    break;
+                }
+            }
+
+            if (!formIsValid) {
+                alert('Please fill in all required fields.');
+                return;
+            } 
+
+
+           try {
+            const response = await fetch('/tanod-submit-case', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formObject)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                window.location.href = result.redirectUrl;
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the form. Please try again.');
+        }
+        });
+        </script>

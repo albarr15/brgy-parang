@@ -235,18 +235,46 @@ function add(app){
     app.get('/tanod-create', function(req, resp){
         resp.render('tanod-create-case', {
             layout: 'index-create',
-            title: 'Tanod Create Case'
+            title: 'Tanod Create Case',
+            message: ''
         });
     });
 
     //Save case tp DB
     app.post('/tanod-submit-case', async function(req, resp){
 
-        const entryNumber = Number(req.body.entryNumber);
+        const {
+            entryNumber,
+            date,
+            status,
+            reporteeFirstName,
+            reporteeMiddleInitial,
+            reporteeLastName,
+            reporteeAddress,
+            natureOfBlotter,
+            respondentFirstName,
+            respondentMiddleInitial,
+            respondentLastName,
+            deskOfficerFirstName,
+            deskOfficerMiddleInitial,
+            deskOfficerLastName,
+            witnessFirstName,
+            witnessMiddleInitial,
+            witnessLastName,
+            location
+        } = req.body;
+
+        if (!entryNumber || !date || !status || !reporteeFirstName || !reporteeLastName || !natureOfBlotter || !respondentFirstName || !respondentLastName || !deskOfficerFirstName || !witnessFirstName || !location 
+            || !reporteeMiddleInitial || !reporteeAddress || ! respondentMiddleInitial || !deskOfficerMiddleInitial || !deskOfficerLastName || !witnessMiddleInitial || !witnessLastName)
+             {
+            return resp.status(400).json({ message: 'All fields are required.' });
+        }
+
+        const entryNumberint = Number(req.body.entryNumber);
 
         const caseData = {
             _id: new mongoose.Types.ObjectId().toString(),
-            EntryNo: entryNumber,
+            EntryNo: entryNumberint,
             Date: req.body.date,
             Status: req.body.status,
             ReporteeInfo:{
@@ -276,11 +304,19 @@ function add(app){
 
         //put all details in the db
         try{
+
+            const existingCase = await TanodCaseModel.findOne({ EntryNo: entryNumber}).lean();
+
+            if(existingCase){
+                console.log("Entry Number already exists");
+                return resp.status(400).json({message: 'Entry Number is Already Taken'});
+            }
             const newCase = new TanodCaseModel(caseData);
             await newCase.save();
             console.log('Case Succesfully saved');
             console.log(entryNumber);
-            resp.redirect(`/page-view-case/${entryNumber}`);
+            resp.status(200).json({ message: 'Case successfully saved', redirectUrl: `/page-view-case/${entryNumber}` });
+            //resp.redirect(`/page-view-case/${entryNumber}`);
 
         } catch (error){
             console.error('Error saving the case:', error);
@@ -375,12 +411,38 @@ function add(app){
 
     //Save Edit details
     app.post('/update-tanod-case', async function(req, resp){
-        const entryNumber = Number(req.body.entryNumber);
+        const {
+            date,
+            status,
+            reporteeFirstName,
+            reporteeMiddleInitial,
+            reporteeLastName,
+            reporteeAddress,
+            natureOfBlotter,
+            respondentFirstName,
+            respondentMiddleInitial,
+            respondentLastName,
+            deskOfficerFirstName,
+            deskOfficerMiddleInitial,
+            deskOfficerLastName,
+            witnessFirstName,
+            witnessMiddleInitial,
+            witnessLastName,
+            location
+        } = req.body;
+
+        if (!date || !status || !reporteeFirstName || !reporteeLastName || !natureOfBlotter || !respondentFirstName || !respondentLastName || !deskOfficerFirstName || !witnessFirstName || !location 
+            || !reporteeMiddleInitial || !reporteeAddress || ! respondentMiddleInitial || !deskOfficerMiddleInitial || !deskOfficerLastName || !witnessMiddleInitial || !witnessLastName)
+             {
+            return resp.status(400).json({ message: 'All fields are required.' });
+        }
+
+        const entryNumberint = Number(req.body.entryNumber);
         //code to edit the case here
         try {
             // Find the case by EntryNo and update it with new values
             const updatedCase = await TanodCaseModel.findOneAndUpdate(
-                { EntryNo: entryNumber },
+                { EntryNo: entryNumberint },
                 {
                     Date: req.body.date,
                     Status: req.body.status,
@@ -412,7 +474,8 @@ function add(app){
             );
 
             if (updatedCase) {
-                resp.redirect(`/page-view-case/${entryNumber}`); // Redirect to the homepage after successful update
+                resp.status(200).json({ message: 'Case successfully updated', redirectUrl: `/page-view-case/${entryNumberint}` });
+                //resp.redirect(`/page-view-case/${entryNumberint}`); // Redirect to the homepage after successful update
             } else {
                 resp.status(404).send('Case not found');
             }
@@ -647,6 +710,30 @@ function add(app){
 
     //Lupon Submit case
     app.post('/lupon-submit-case', async function(req, resp){
+        const{
+            caseTitle,
+            caseType,
+            status,
+            respondentFirstName,
+            respondentMiddleInitial,
+            respondentLastName,
+            complainerFirstName,
+            complainerMiddleInitial,
+            complainerLastName,
+            mediationFirstName,
+            mediationMiddleInitial,
+            mediationLastName,
+            conciliationFirstName,
+            conciliationMiddleInitial,
+            conciliationLastName
+        } = req.body;
+
+        if (!caseTitle || !caseType || !status || !complainerFirstName || !complainerMiddleInitial || !complainerLastName || !mediationFirstName || !mediationMiddleInitial || !mediationLastName || !respondentFirstName || !respondentLastName 
+            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName)
+             {
+            return resp.status(400).json({ message: 'All fields are required.' });
+        }
+
         const caseData= {
             _id: new mongoose.Types.ObjectId().toString(),
             CaseTitle: req.body.caseTitle,
@@ -680,7 +767,8 @@ function add(app){
             await newCase.save();
             console.log('successfully saved');
             console.log(newCase._id)
-            resp.redirect(`/lupon-view-case/${newCase._id}`);
+            resp.status(200).json({ message: 'Case successfully saved', redirectUrl: `/lupon-view-case/${newCase._id}` });
+            //resp.redirect(`/lupon-view-case/${newCase._id}`);
         } catch(error){
             console.error('Error saving the case:', error);
             resp.redirect('/lupon-create');
@@ -779,6 +867,31 @@ function add(app){
 
     //Lupon update
     app.post('/update-lupon-case/:_id', async function(req, resp){
+        const{
+            caseTitle,
+            caseType,
+            status,
+            respondentFirstName,
+            respondentMiddleInitial,
+            respondentLastName,
+            complainerFirstName,
+            complainerMiddleInitial,
+            complainerLastName,
+            mediationFirstName,
+            mediationMiddleInitial,
+            mediationLastName,
+            conciliationFirstName,
+            conciliationMiddleInitial,
+            conciliationLastName
+        } = req.body;
+
+        if (!caseTitle || !caseType || !status || !complainerFirstName || !complainerMiddleInitial || !complainerLastName || !mediationFirstName || !mediationMiddleInitial || !mediationLastName || !respondentFirstName || !respondentLastName 
+            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName)
+             {
+            return resp.status(400).json({ message: 'All fields are required.' });
+        }
+
+
         const caseID = req.params._id;
 
         //code to edit the case here
@@ -816,7 +929,8 @@ function add(app){
             );
 
             if (updatedCase) {
-                resp.redirect(`/lupon-view-case/${updatedCase._id}`); // Redirect to the homepage after successful update
+                resp.status(200).json({ message: 'Case successfully updated', redirectUrl: `/lupon-view-case/${updatedCase._id}` });
+                //resp.redirect(`/lupon-view-case/${updatedCase._id}`); // Redirect to the homepage after successful update
             } else {
                 resp.status(404).send('Case not found');
             }

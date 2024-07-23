@@ -37,11 +37,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
             console.log("checking saveButton")
 
-            checkChanges();
-            const form = document.querySelector('.case-form');
-            form.submit();
+            if(checkChangesEdit()){
+                const form = document.querySelector('.case-form');
+                form.submit();
+            }
         });
     }
+
+   
 
     const discardButton = document.getElementById('discardButton');
     if(discardButton) {
@@ -75,7 +78,28 @@ document.addEventListener("DOMContentLoaded", function() {
                     const errorMessage = 'All inputs are required.';
                     showModal(errorMessage);
                 } else {
-                    form.submit();
+                     // Check for duplicate EntryNo
+                     const entryNoInput = form.querySelector('input[name="EntryNo"]');
+                     const entryNo = entryNoInput.value.trim();
+                     fetch('/check-entryno', {
+                         method: 'POST',
+                         headers: {
+                             'Content-Type': 'application/json'
+                         },
+                         body: JSON.stringify({ EntryNo: entryNo })
+                     })
+                     .then(response => response.json())
+                     .then(result => {
+                         if (result.exists) {
+                             showModal('Entry Number already exists.');
+                         } else {
+                             form.submit();
+                         }
+                     })
+                     .catch(error => {
+                         console.error('Error:', error);
+                         showModal('An error occurred while checking the Entry Number. Please try again.');
+                     });
                 }
             }
         });
@@ -88,11 +112,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
             console.log("checking saveButton")
 
-            checkChanges();
-            const form = document.querySelector('.case-form');
-            form.submit();
+            if(checkChangesEdit()){
+                const form = document.querySelector('.case-form');
+                form.submit();
+            }
         });
     }
+
+
 
     const discardButtonLupon = document.getElementById('discardButtonLupon');
     if(discardButtonLupon) {
@@ -153,6 +180,23 @@ function checkChanges() {
             input.value = input.placeholder; // If value is empty, restore the placeholder
         }
     });
+}
+
+function checkChangesEdit() {
+    const requiredFields = document.querySelectorAll('.case-form input, .case-form select, .case-form textarea');
+    let allFilled = true;
+
+    requiredFields.forEach(field => {
+        if (field.value.trim() === '') {
+            allFilled = false;   
+        }
+    });
+
+    if (!allFilled) {
+        alert('Please fill out all the fields.');
+    }
+
+    return allFilled;
 }
 
 function discardChanges() {
