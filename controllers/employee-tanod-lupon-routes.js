@@ -237,7 +237,7 @@ function add(app){
             }
            // const totalPages = Math.ceil(totalCases/limit);
             
-           req.session.lastpage = '/tanod-home';
+            req.session.lastpage = '/tanod-home';
             resp.render('tanod-home', {
                 layout: 'index-tanod',
                 title: 'Tanod Homepage',
@@ -377,7 +377,8 @@ function add(app){
                     resolveStat = '';
                     ongoingStat = 'selected';
                 }
-
+            
+                // console.log(href)
                 req.session.lastpage = `/tanod-edit-case/${entryNumber}`;
                 resp.render('tanod-edit-case', {
                     layout: 'index-edit', 
