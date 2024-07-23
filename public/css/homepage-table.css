@@ -156,12 +156,7 @@ tr:last-child td{
     justify-content: space-evenly;
     gap: 10px;
     text-align: center;
-    margin: 50px
-}
-
-.main-table-content.create-box{
-    width: 100%;
-    margin: 50px
+    margin: 20px;
 }
 
 .main-table-content.view{
@@ -285,6 +280,22 @@ tr:last-child td{
 } 
 
 .input-container button{
+    position: absolute;
+    right: 0;
+} 
+
+.select-container {
+    display: flex;
+    width: 60%;
+    position: relative;
+    align-items: center;
+}
+
+.select-container select{
+    width: 100%;
+} 
+
+.select-container button{
     position: absolute;
     right: 0;
 } 
