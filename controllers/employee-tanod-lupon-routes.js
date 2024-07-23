@@ -1,16 +1,26 @@
 const { CertificateModel, UserModel, LuponCaseModel, TanodCaseModel } = require('../models/database/mongoose');
 
 
+const isAuth = (req, res, next) => {
+    if(req.session.isAuth) {
+        next();
+    }
+    else {
+        res.redirect('/index');
+    }
+}
+
 function add(app){
     const mongoose = require('mongoose');
 
     //Start
-    app.get('/', function(req, resp){
-        resp.render('index', {
-            layout: 'index-main',
-            title: 'Welcome to Barangay Parang Website'
-        });
-    });
+    //changes: meron na sa index
+    // app.get('/', function(req, resp){
+    //     resp.render('index', {
+    //         layout: 'index-main',
+    //         title: 'Welcome to Barangay Parang Website'
+    //     });
+    // });
 
 
     /************************************************************EMPLOYEE************************************************/
@@ -52,6 +62,7 @@ function add(app){
             }
             else {
                 console.log("here no error")
+                req.session.isAuth = true;
                 return resp.redirect("/employee-home");
         
             }
@@ -73,16 +84,23 @@ function add(app){
     });
 
     //Employee-Homepage
-    app.get('/employee-home', function(req, resp){
+    app.get('/employee-home', isAuth, function(req, resp){
         resp.render('employee-home', {
             layout: 'index-employee',
             title: 'Employee Homepage'
         });
     });
 
-    app.get('/logout', function(req,resp){
-        resp.redirect('/');
-    });
+    //changes: moved to index
+    // app.get('/logout', (req, res) => {
+    //     req.session.destroy(err => {
+    //         if (err) {
+    //             return res.redirect('/index'); // Redirect to a protected route if there's an error
+    //         }
+    //         res.clearCookie('connect.sid'); // Clear the session cookie
+    //         res.redirect('/index'); // Redirect to the login page or home page
+    //     });
+    // });
 
     /************************************************************TANOD************************************************/
 
@@ -122,6 +140,7 @@ function add(app){
             }
             else {
                 console.log("here no error")
+                req.session.isAuth = true;
                 return resp.redirect('/tanod-home');
         
             }
@@ -143,7 +162,7 @@ function add(app){
     });
 
     //Tanod Homepage
-    app.get('/tanod-home', async function(req, resp){
+    app.get('/tanod-home', isAuth, async function(req, resp){
         try{
             const searchName = req.query.search_name || '';
             const searchRegex = new RegExp(searchName, 'i');
@@ -535,6 +554,7 @@ function add(app){
             }
             else {
                 console.log("here no error")
+                req.session.isAuth = true;
                 return resp.redirect('/lupon-home');
         
             }
@@ -557,7 +577,7 @@ function add(app){
 
 
     //Lupon Homepage
-    app.get('/lupon-home', async function(req, resp){
+    app.get('/lupon-home', isAuth, async function(req, resp){
         try{
             const searchName = req.query.search_name || '';
             const searchRegex = new RegExp(searchName, 'i');

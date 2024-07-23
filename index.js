@@ -5,6 +5,7 @@ const admin_tanodRoutes = require('./routes/admin-tanodRoutes');
 const admin_luponRoutes = require('./routes/admin-luponRoutes');
 const certificate_PrintingRoutes = require('./routes/certificate-printingRoutes');
 const accoutns_Routes = require('./routes/account-ManageRoutes');
+const mongo_uri = require("./models/database/mongoose").mongo_uri;
 const { registerHelpers } = require('./helpers/handlebarHelpers');
 
 const path = require('path');
@@ -34,6 +35,20 @@ app.engine('hbs', handlebars.engine({
     helpers: hbsHelpers
 }));
 
+//session
+const session = require('express-session')
+const mongoStore = require('connect-mongodb-session')(session);
+
+app.use(session({
+    secret: 'brgyParang',
+    resave: false,
+    saveUninitialized: false,
+    store: new mongoStore({ 
+        uri: mongo_uri,
+        collection: 'mySession',
+    }),
+}));
+
 app.get('/', function(req, res){
     res.render('index',{
         layout: 'layout',
@@ -53,6 +68,16 @@ app.get('/index', function(req, res){
         cssFile2: null,
         javascriptFile1: null,
         javascriptFile2: null,
+    });
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.redirect('/index'); // Redirect to a protected route if there's an error
+        }
+        res.clearCookie('connect.sid'); // Clear the session cookie
+        res.redirect('/index'); // Redirect to the login page or home page
     });
 });
 

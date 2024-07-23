@@ -97,6 +97,7 @@ const isUser = async (req, res) => {
         else {
             console.log("here no error")
             // Respond with success
+            req.session.isAuth = true;
             return res.redirect('/admin-homepage?log_in=successful');
     
         }
