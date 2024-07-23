@@ -12,6 +12,18 @@ table {
     font-size: 12px;
 }
 
+.indiv-acct-table {
+    color: #717171;
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    font-size: 14px;
+
+    max-width: 1000px;
+    min-width: 500px;
+    font-size: 12px;
+}
+
 .accts-db-table thead {
     width: 100%;
     color: white;
@@ -19,6 +31,29 @@ table {
     background-color: #004112;
     font-size: 14px;
     display: table-header-group;
+}
+
+.accts-db-table td {
+    background-color: white;
+    width: fit-content;
+    text-align: start;
+    border-bottom: 1px solid #717171;
+}
+
+.cert-db-table thead {
+    width: 100%;
+    color: white;
+    border-bottom: #717171;
+    background-color: #004112;
+    font-size: 14px;
+    display: table-header-group;
+}
+
+.cert-db-table td {
+    background-color: white;
+    width: fit-content;
+    text-align: start;
+    border-bottom: 1px solid #717171;
 }
 
 .indiv-acct-table thead {
@@ -29,46 +64,17 @@ table {
     display: table-header-group;
 }
 
-.tanod-lupon-db-table {
-    margin-top: 0px;
-}
-
-.tanod-lupon-db-table td {
-    background-color: white;
-    width: fit-content;
-    text-align: start;
-    border-bottom: 1px solid #717171;
-}
-
-.tanod-lupon-db-table thead {
-    width: 100%;
-    color: white;
-    border-bottom: #717171;
-    background-color: #004112;
-    font-size: 14px;
-    display: table-header-group;
-}
-
 table th, td {
     padding: 1em;
     padding-left: 40px;
     text-align: start;
 }
 
-.entryNumMargin{
-    margin: -10px;
-}
-
 table tbody {
     padding: 15px;
 }
 
-.accts-db-table td {
-    background-color: white;
-    width: fit-content;
-    text-align: start;
-    border-bottom: 1px solid #717171;
-}
+
 
 table td.align-right{
     width: 45px;
@@ -82,7 +88,6 @@ table td.align-right-padded{
 }
 
 table td.align-left {
-    width: 45px;
     padding-left: 0px;
     text-align: start;
 }
@@ -137,10 +142,7 @@ tr:last-child td{
     justify-content: space-evenly;
     gap: 10px;
     text-align: center;
-}
-
-.main-table-content.create-box{
-    width: 100%;
+    margin: 50px
 }
 
 .main-table-content.view{
@@ -172,23 +174,6 @@ tr:last-child td{
     width: fit-content;
     text-align: start;
     font-size: 14px;
-}
-
-.role-cell {
-    background-color: #004112;
-    width: fit-content;
-    text-align: start;
-    font-size: 14px;
-}
-
-#accounts-header {
-    background-color: #004112;
-    border-bottom: 1px solid white;
-    font-size: 20px;
-}
-
-#last-accts-cell {
-    height: 190px;
 }
 
 .main-section {
@@ -227,11 +212,6 @@ tr:last-child td{
 
 .role-name.tanod {
     color: var(--minty);
-}
-
-.role-name.create{
-    color: black;
-    padding: 20px;
 }
 
 .edit-btn-container {
@@ -312,17 +292,11 @@ tr:last-child td{
     height: 2px;
 }
 
-.name-cell {
-    max-width: 100px;
+.truncate-text-150px {
+    max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.entry-date-cell {
-    width: fit-content;
-    padding-left: 0px;
-    text-align: start;
 }
 
 /* Modal styles */
