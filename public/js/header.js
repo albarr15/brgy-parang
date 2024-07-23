@@ -46,7 +46,9 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("header").style.background = "#004112";
             document.getElementById("logout-btn").style.setProperty("--logout-hover-bg", "#1C8A3B");
         }
-        else if (document.querySelector(".search-page") || document.querySelector("#view-case-page")) {
+        else if (document.querySelector(".search-page") || document.querySelector("#view-case-page") ||
+                (document.querySelector(".tanod-lupon-db-table")) || (document.querySelector(".accts-db-table")) || 
+                (document.querySelector(".cert-db-table"))){
             toggleLightPage();
             console.log("toggled light");
         } else {
@@ -99,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     user_profile.src = "/images/employee-profile.png";
                     home_link1.href = "/employee-home";
                     home_link2.href = "/employee-home";
-                    toggleDarkPage();
                     break;
     
                 case "Admin":
@@ -107,7 +108,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     user_profile.src = "/images/admin-profile.png";
                     home_link1.href = "/admin-homepage";
                     home_link2.href = "/admin-homepage";
-                    toggleDarkPage();
                     break;
                 default:
                     document.getElementById("profile-text").style.color="#FFFFFF";
