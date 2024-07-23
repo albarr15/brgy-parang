@@ -109,7 +109,7 @@
                     {{#each cases}}
                         <tr>
                             <td data-label="checkbox" class="align-right check-view-cell">
-                                <input type="checkbox" name="caseIds" value="{{this._id}}" class="checkbox margin">
+                                <button type="button" class="checkbox" name="caseIds" value="{{this._id}}"><img src="/images/Done.png"></button>
                             </td>
                             <td class="truncate-text-150px">
                                 {{fullName ReporteeInfo.FirstName ReporteeInfo.MiddleInitial ReporteeInfo.LastName}}
