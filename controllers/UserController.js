@@ -97,7 +97,9 @@ const isUser = async (req, res) => {
         else {
             console.log("here no error")
             // Respond with success
-            return res.redirect('/admin-homepage?log_in=successful');
+            req.session.isAuth = true;
+            req.session.userRole = "Admin";
+            return res.redirect('/admin-homepage');
     
         }
         console.log("here")
@@ -131,7 +133,7 @@ const viewAllAccounts = async (req, res) => {
         const question = await SecurityModel.findOne({ _id: 1 }).lean();
 
         
-
+        req.session.lastpage = '/admin-accounts-db-view';
         res.render('admin-accounts-db-view', {
             layout: 'layout',
             title: 'Admin: Accounts DB Viewing',
@@ -158,6 +160,7 @@ const viewAdminAcc = async (req, res) => {
 
         // console.log(caseId) 
 
+        req.session.lastpage = `/admin-view-acct-admin/${caseId}`;
         res.render('admin-view-acct-admin', {
             layout: 'layout',
             title: 'Admin: Admin Account View Page',
@@ -180,6 +183,7 @@ const editAdminAcc = async (req, res) => {
 
         // console.log(caseId) 
 
+        req.session.lastpage = `/admin-edit-acct-admin/${caseId}`;
         res.render('admin-edit-acct-admin', {
             layout: 'layout',
             title: 'Admin: Admin Account Edit Page',
@@ -223,6 +227,7 @@ const submitEditAdminAcc = async (req, res) => {
 
 const createAccount =  async (req, res) => {
     try{
+        req.session.lastpage = '/create-acc';
         res.render('admin-create-acct', {
             layout: 'layout',
             title: 'Admin: Create Account',
@@ -318,6 +323,7 @@ const viewEmployeeAcc = async (req, res) => {
 
         // console.log(caseId) 
 
+        req.session.lastpage = `/admin-view-acct-employee/${caseId}`;
         res.render('admin-view-acct-employee', {
             layout: 'layout',
             title: 'Admin: Employee Account View Page',
@@ -340,6 +346,7 @@ const editEmployeeAcc = async (req, res) => {
 
         // console.log(caseId) 
 
+        req.session.lastpage = `/admin-edit-acct-employee/${caseId}`;
         res.render('admin-edit-acct-employee', {
             layout: 'layout',
             title: 'Admin: Employee Account Edit Page',
@@ -390,6 +397,7 @@ const viewLuponAcc = async (req, res) => {
 
         // console.log(caseId) 
 
+        req.session.lastpage = `/admin-view-acct-lupon/${caseId}`;
         res.render('admin-view-acct-lupon', {
             layout: 'layout',
             title: 'Admin: Lupon Account View Page',
@@ -412,6 +420,7 @@ const editLuponAcc = async (req, res) => {
 
         // console.log(caseId) 
 
+        req.session.lastpage = `/admin-edit-acct-lupon/${caseId}`;
         res.render('admin-edit-acct-lupon', {
             layout: 'layout',
             title: 'Admin: Lupon Account Edit Page',
@@ -461,6 +470,7 @@ const viewTanodAcc = async (req, res) => {
 
         // console.log(caseId) 
 
+        req.session.lastpage = `/admin-view-acct-tanod/${caseId}`;
         res.render('admin-view-acct-tanod', {
             layout: 'layout',
             title: 'Admin: Tanod Account View Page',
@@ -483,6 +493,7 @@ const editTanodAcc = async (req, res) => {
 
         // console.log(caseId) 
 
+        req.session.lastpage = `/admin-edit-acct-tanod/${caseId}`;
         res.render('admin-edit-acct-tanod', {
             layout: 'layout',
             title: 'Admin: Tanod Account Edit Page',

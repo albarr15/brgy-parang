@@ -283,5 +283,6 @@ module.exports = {
     UserModel,
     LuponCaseModel,
     TanodCaseModel,
-    SecurityQuestionModel
+    SecurityQuestionModel,
+    mongo_uri
 };

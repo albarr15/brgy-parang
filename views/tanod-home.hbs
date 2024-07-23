@@ -139,10 +139,14 @@
         </div>
 
        <script>
-        $(document).ready(function() {
+             $(document).ready(function() {
             const currentPage = {{currentPage}};
             const totalPages = {{totalPages}};
-            const baseUrl = '/tanod-home?page=';
+            const urlParams = new URLSearchParams(window.location.search);
+            const sortField = urlParams.get('sort_field') || 'EntryNo';
+            const sortOrder = urlParams.get('sort_order') || 'desc';
+            const searchName = urlParams.get('search_name') || '';
+            const baseUrl = `/tanod-home?sort_field=${sortField}&sort_order=${sortOrder}&search_name=${searchName}&page=`;
 
             $('#count-down').click(function() {
                 if (currentPage > 1) {
