@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 (document.querySelector(".tanod-lupon-db-table")) || (document.querySelector(".accts-db-table")) || 
                 (document.querySelector(".cert-db-table"))){
             toggleLightPage();
-            console.log("toggled light");
+            // console.log("toggled light");
         } else {
-            console.log("toggled dark");
+            // console.log("toggled dark");
             toggleDarkPage();
         }
 
@@ -70,17 +70,21 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function updateUser(userRole) {
-        console.log("Updating user" + userRole);
+        // console.log("Updating user" + userRole);
         const user_role = document.getElementById("profile-text");
 
         if (user_role) {
             user_role.textContent = userRole;
 
+            document.getElementById("profile-text").classList.remove("hide");
+            document.getElementById("profile-img").classList.remove("hide");
+            document.getElementById("logout-btn").classList.remove("hide");
+
             var user_profile = document.getElementById("profile-img");
             var home_link1 = document.getElementById("home-link1");
             var home_link2 = document.getElementById("home-link2");
 
-            console.log("Found user_role: " + userRole);
+            // console.log("Found user_role: " + userRole);
             switch(userRole) {
                 case "Lupon":
                     document.getElementById("profile-text").style.color="#F3BE72";
@@ -137,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     getCurrentUserRole().then(userRole => {
         if (userRole) {
-            console.log("Found User Role: " + userRole);
+            // console.log("Found User Role: " + userRole);
             updateUser(userRole);
         }
     }).catch(error => {
