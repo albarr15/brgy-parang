@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var isLogin = false;
 
     function initializePage() {
-        if (document.querySelector(".login-panel")) {
+        if (document.querySelector(".login-panel")){
             // remove current stored user role 
             logout();
 
