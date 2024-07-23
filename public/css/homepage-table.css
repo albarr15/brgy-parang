@@ -69,6 +69,13 @@ table {
     border-bottom: 1px solid #717171;
 }
 
+.tanod-lupon-db-table td.case-status-cell {
+    background-color: white;
+    width: 150px;
+    text-align: start;
+    border-bottom: 1px solid #717171;
+}
+
 .tanod-lupon-db-table thead {
     width: 100%;
     color: white;
