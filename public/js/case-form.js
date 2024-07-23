@@ -183,7 +183,7 @@ function checkChanges() {
 }
 
 function checkChangesEdit() {
-    const requiredFields = document.querySelectorAll('.case-form input, .case-form select');
+    const requiredFields = document.querySelectorAll('.case-form input, .case-form select, .case-form textarea');
     let allFilled = true;
 
     requiredFields.forEach(field => {
