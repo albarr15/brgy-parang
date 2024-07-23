@@ -94,10 +94,6 @@ html {
     padding-right: 7.2%;
   }
 
-  .header.light{
-    background-color: var(--lgreen);
-  }
-
   .header-logo {
     height: 100%;
   }
@@ -228,8 +224,7 @@ html {
   }
 
   .header-logout-btn:hover {
-    background: #5FD78D;
-    background: var(--logout-hover-bg);
+    background: #1C8A3B;
     color: white;
     border: 0px;
     font-weight: bolder;

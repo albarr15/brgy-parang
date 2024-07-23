@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     home_link1.href = "/index";
                     home_link2.href = "/index";
 
-                    // hide profile if no user role
+                    // hide profile if no user
                     document.getElementById("profile-text").classList.add("hide");
                     document.getElementById("profile-img").classList.add("hide");
                     document.getElementById("logout-btn").classList.add("hide");
