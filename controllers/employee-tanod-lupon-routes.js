@@ -235,7 +235,8 @@ function add(app){
     app.get('/tanod-create', function(req, resp){
         resp.render('tanod-create-case', {
             layout: 'index-create',
-            title: 'Tanod Create Case'
+            title: 'Tanod Create Case',
+            message: ''
         });
     });
 
@@ -276,6 +277,17 @@ function add(app){
 
         //put all details in the db
         try{
+
+            const existingCase = await TanodCaseModel.findOne({ EntryNo: entryNumber}).lean();
+
+            if(existingCase){
+                console.log("Entry Number already exists");
+                return resp.render('tanod-create-case', {
+                    layout: 'index-create',
+                    title: 'Tanod Create Case',
+                    message: 'Entry Number Already Exists, Please Enter a New One'
+                });
+            }
             const newCase = new TanodCaseModel(caseData);
             await newCase.save();
             console.log('Case Succesfully saved');

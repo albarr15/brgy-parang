@@ -341,7 +341,8 @@ const viewCreateTanodCase = async (req, res) => {
             cssFile2: 'form',
             javascriptFile1: 'header-hbs',
             javascriptFile2: 'case-form',
-            cases: specificCase
+            cases: specificCase,
+            message: ''
         });
     } catch (err) {
         console.error(err);
@@ -371,6 +372,21 @@ const createTanodCase = async (req, res) => {
             witnessFirstName,
             location
         } = req.body;
+
+        //check for existing Entry Number
+        const existingCase = await TanodCaseModel.findOne({ EntryNo }).lean();
+
+        if (existingCase) {
+            return res.render('A-tanod-create-case', {
+                layout: 'layout',
+                title: 'Barangay Parang - Admin - Tanod Create Case Page',
+                cssFile1: 'index',
+                cssFile2: 'form',
+                javascriptFile1: 'header-hbs',
+                javascriptFile2: 'case-form',
+                message: 'Entry Number Already Exists, Please Enter a New One'
+            });
+        }
 
         // _id
         // Find all cases and convert _id to integers for sorting
