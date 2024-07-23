@@ -26,7 +26,7 @@ html {
   }
 
   html.dark{
-    background: url(../images/bg-dark.png);
+    background: url(../images/bg-dark.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
