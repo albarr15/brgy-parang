@@ -160,25 +160,40 @@
                 formObject[key] = value;
             });
 
-            try {
-                const response = await fetch('/tanod-submit-case', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formObject)
-                });
-
-                const result = await response.json();
-
-                if (response.status === 200) {
-                window.location.href = result.redirectUrl;
-                } else {
-                    alert(result.message);
+             // Client-side validation (optional, as server-side validation is primary)
+            let formIsValid = true;
+            for (const key in formObject) {
+                if (!formObject[key].trim()) {
+                    formIsValid = false;
+                    break;
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred while submitting the form. Please try again.');
             }
+
+            if (!formIsValid) {
+                alert('Please fill in all required fields.');
+                return;
+            } 
+
+
+           try {
+            const response = await fetch('/tanod-submit-case', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formObject)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                window.location.href = result.redirectUrl;
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the form. Please try again.');
+        }
         });
         </script>

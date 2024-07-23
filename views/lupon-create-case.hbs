@@ -132,3 +132,52 @@
                     </div> 
             </div>
         </div>
+
+         <script>
+            document.getElementById('caseForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+
+             // Client-side validation (optional, as server-side validation is primary)
+            let formIsValid = true;
+            for (const key in formObject) {
+                if (!formObject[key].trim()) {
+                    formIsValid = false;
+                    break;
+                }
+            }
+
+            if (!formIsValid) {
+                alert('Please fill in all required fields.');
+                return;
+            } 
+
+
+           try {
+            const response = await fetch('/lupon-submit-case', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formObject)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                window.location.href = result.redirectUrl;
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the form. Please try again.');
+        }
+        });
+        </script>

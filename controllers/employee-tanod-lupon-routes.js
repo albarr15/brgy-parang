@@ -243,11 +243,38 @@ function add(app){
     //Save case tp DB
     app.post('/tanod-submit-case', async function(req, resp){
 
-        const entryNumber = Number(req.body.entryNumber);
+        const {
+            entryNumber,
+            date,
+            status,
+            reporteeFirstName,
+            reporteeMiddleInitial,
+            reporteeLastName,
+            reporteeAddress,
+            natureOfBlotter,
+            respondentFirstName,
+            respondentMiddleInitial,
+            respondentLastName,
+            deskOfficerFirstName,
+            deskOfficerMiddleInitial,
+            deskOfficerLastName,
+            witnessFirstName,
+            witnessMiddleInitial,
+            witnessLastName,
+            location
+        } = req.body;
+
+        if (!entryNumber || !date || !status || !reporteeFirstName || !reporteeLastName || !natureOfBlotter || !respondentFirstName || !respondentLastName || !deskOfficerFirstName || !witnessFirstName || !location 
+            || !reporteeMiddleInitial || !reporteeAddress || ! respondentMiddleInitial || !deskOfficerMiddleInitial || !deskOfficerLastName || !witnessMiddleInitial || !witnessLastName)
+             {
+            return resp.status(400).json({ message: 'All fields are required.' });
+        }
+
+        const entryNumberint = Number(req.body.entryNumber);
 
         const caseData = {
             _id: new mongoose.Types.ObjectId().toString(),
-            EntryNo: entryNumber,
+            EntryNo: entryNumberint,
             Date: req.body.date,
             Status: req.body.status,
             ReporteeInfo:{
@@ -656,6 +683,30 @@ function add(app){
 
     //Lupon Submit case
     app.post('/lupon-submit-case', async function(req, resp){
+        const{
+            caseTitle,
+            caseType,
+            status,
+            respondentFirstName,
+            respondentMiddleInitial,
+            respondentLastName,
+            complainerFirstName,
+            complainerMiddleInitial,
+            complainerLastName,
+            mediationFirstName,
+            mediationMiddleInitial,
+            mediationLastName,
+            conciliationFirstName,
+            conciliationMiddleInitial,
+            conciliationLastName
+        } = req.body;
+
+        if (!caseTitle || !caseType || !status || !complainerFirstName || !complainerMiddleInitial || !complainerLastName || !mediationFirstName || !mediationMiddleInitial || !mediationLastName || !respondentFirstName || !respondentLastName 
+            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName)
+             {
+            return resp.status(400).json({ message: 'All fields are required.' });
+        }
+
         const caseData= {
             _id: new mongoose.Types.ObjectId().toString(),
             CaseTitle: req.body.caseTitle,
@@ -689,7 +740,8 @@ function add(app){
             await newCase.save();
             console.log('successfully saved');
             console.log(newCase._id)
-            resp.redirect(`/lupon-view-case/${newCase._id}`);
+            resp.status(200).json({ message: 'Case successfully saved', redirectUrl: `/lupon-view-case/${newCase._id}` });
+            //resp.redirect(`/lupon-view-case/${newCase._id}`);
         } catch(error){
             console.error('Error saving the case:', error);
             resp.redirect('/lupon-create');
