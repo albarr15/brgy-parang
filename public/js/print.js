@@ -19,7 +19,11 @@ function previewProfileImage(event) {
 
 function cancelForm() {
     document.getElementById('name').value = '';
+    document.getElementById('name').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('address').value = '';
+    document.getElementById('address').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('ctc-date-issued').value = '';
     document.getElementById('ctc-date-issued').style.backgroundColor = '#D9D9D9';
 
@@ -30,8 +34,14 @@ function cancelForm() {
     document.getElementById('birthplace').style.backgroundColor = '#D9D9D9';
 
     document.getElementById('cedula').value = '';
+    document.getElementById('cedula').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('location').value = '';
+    document.getElementById('location').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('reason').value = '';
+    document.getElementById('reason').style.backgroundColor = '#D9D9D9';
+
     document.getElementById('deets-profile-img').src = '/images/customer.png';
 
     // document.querySelector('label[for="imageUpload"]').style.display = 'inline-block';
@@ -43,6 +53,91 @@ function cancelForm() {
 function validateForm() {
     // const imageUpload = document.getElementById('imageUpload').files[0];
     const uploadedImage = document.getElementById('photoStore').value;
+    const name = document.getElementById('name').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const ctc_date = document.getElementById('ctc-date-issued').value.trim();
+    const birthplace = document.getElementById('birthplace').value.trim();
+    const birthday = document.getElementById('Birthday').value.trim();
+    const cedula = document.getElementById('cedula').value.trim();
+    const location = document.getElementById('location').value.trim();
+    const reason = document.getElementById('reason').value.trim();
+
+    let valid = true;
+    let errorMessage = '';
+
+    if (!uploadedImage) {
+        valid = false;
+        errorMessage += 'Profile image is required.\n';
+    }
+
+    if (!name) {
+        valid = false;
+        errorMessage += 'Name is required.\n';
+    }
+
+    if (!birthday) {
+        valid = false;
+        errorMessage += 'Complete Birth Date is required.\n'; 
+    } else {
+        console.log(birthday)
+        const [year, month, day] = birthday.split('-');
+        if (!isValidDate(day, month, year)) {
+            valid = false;
+            errorMessage += 'Invalid Birth Date.\n';
+        }
+    }
+
+    if (!address) {
+        valid = false;
+        errorMessage += 'Address is required.\n';
+    }
+
+    if (!ctc_date) {
+        valid = false;
+        errorMessage += 'Complete CTC Issuance Date is required.\n'; 
+    } else {
+        const [year, month, day] = ctc_date.split('-');
+        if (!isValidDate(day, month, year)) {
+            valid = false;
+            errorMessage += 'Invalid CTC Issuance Date.\n';
+        }
+    }
+
+    if (!location) {
+        valid = false;
+        errorMessage += 'Place of CTC Issuance is required.\n';
+    }
+    
+    if (!cedula) {
+        valid = false;
+        errorMessage += 'CTC Number is required.\n';
+    }
+    else if (cedula.length !== 8) {
+        valid = false;
+        errorMessage += 'Invalid CTC Number.\n';
+    }
+
+    if (!birthplace) {
+        valid = false;
+        errorMessage += 'Place of Birth is required.\n'; 
+    } 
+
+    if (!reason) {
+        valid = false;
+        errorMessage += 'Reason of Certificate is required.\n';
+    }
+
+    if (!valid) {
+        showModal(errorMessage);
+    }
+
+    return valid;
+}
+
+function validateFormEdit() {
+    // const imageUpload = document.getElementById('imageUpload').files[0];
+    // const uploadedImage = document.getElementById('photoStore').value;
+    const uploadedImage = document.getElementById('deets-profile-img').src;
     const name = document.getElementById('name').value.trim();
     const address = document.getElementById('address').value.trim();
     const ctc_date = document.getElementById('ctc-date-issued').value.trim();
@@ -216,7 +311,7 @@ function formatBirthday(birthday) {
     }
 
     // Construct the formatted string
-    const formattedBirthday = `${day}${daySuffix} of ${monthName}, ${year}`;
+    const formattedBirthday = `${day}${daySuffix} of ${monthName} ${year}`;
 
     return formattedBirthday;
 }
@@ -244,27 +339,35 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    document.getElementById('Birthday').addEventListener('change', function() {
-        if (this.value === '') {
-            this.style.backgroundColor = 'grey';
+    function updateBackgroundColor(input) {
+        if (input.value === '') {
+            input.style.backgroundColor = '#D9D9D9';
         } else {
-            this.style.backgroundColor = '#EAF3F7'; // Reset to default
+            input.style.backgroundColor = '#E8F0FE'; // Reset to default
         }
-    });
+    }
 
-    document.getElementById('ctc-date-issued').addEventListener('change', function() {
-        if (this.value === '') {
-            this.style.backgroundColor = 'grey';
-        } else {
-            this.style.backgroundColor = '#EAF3F7'; // Reset to default
-        }
-    });
+    const fields = [
+        'name',
+        'address',
+        'reason',
+        'Birthday',
+        'ctc-date-issued',
+        'birthplace',
+        'cedula',
+        'location'
+    ];
 
-    document.getElementById('birthplace').addEventListener('change', function() {
-        if (this.value === '') {
-            this.style.backgroundColor = 'grey';
-        } else {
-            this.style.backgroundColor = '#EAF3F7'; // Reset to default
+    fields.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            // Set initial background color based on current value
+            updateBackgroundColor(element);
+
+            // Update background color on change
+            element.addEventListener('change', function() {
+                updateBackgroundColor(this);
+            });
         }
     });
 });
