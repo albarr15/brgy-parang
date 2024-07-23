@@ -81,6 +81,10 @@ app.get('/logout', (req, res) => {
     });
 });
 
+app.get('/api/getUserRole', (req, res) => {
+    res.json({ userRole: req.session.userRole || "" });
+});
+
 //helpers
 registerHelpers();
 

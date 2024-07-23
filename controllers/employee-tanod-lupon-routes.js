@@ -62,6 +62,7 @@ function add(app){
             }
             else {
                 console.log("here no error")
+                req.session.userRole = "Employee";
                 req.session.isAuth = true;
                 return resp.redirect("/employee-home");
         
@@ -141,6 +142,7 @@ function add(app){
             else {
                 console.log("here no error")
                 req.session.isAuth = true;
+                req.session.userRole = "Tanod";
                 return resp.redirect('/tanod-home');
         
             }
@@ -554,6 +556,7 @@ function add(app){
             }
             else {
                 console.log("here no error")
+                req.session.userRole = "Lupon";
                 req.session.isAuth = true;
                 return resp.redirect('/lupon-home');
         

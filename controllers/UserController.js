@@ -4,18 +4,23 @@ const SecurityModel = require("../models/database/mongoose").SecurityQuestionMod
 //SECURITY ---------------------------------------------
 const getLogin = async (req, res) => {
     try {
-        const question = await SecurityModel.findOne({ _id : 1 }).lean();
+        if(req.session.isAuth) {
+            return res.redirect('admin-homepage');
+        }
+        else {
+            const question = await SecurityModel.findOne({ _id : 1 }).lean();
 
-        res.render('admin-login-page',{
-            layout: 'layout',
-            title: 'Barangay Parang - Admin Login Page',
-            cssFile1: 'index',
-            cssFile2: 'login-page',
-            javascriptFile1: 'login',
-            javascriptFile2: 'security',
-            error: null,
-            securityQues : question.Question
-        });
+            res.render('admin-login-page',{
+                layout: 'layout',
+                title: 'Barangay Parang - Admin Login Page',
+                cssFile1: 'index',
+                cssFile2: 'login-page',
+                javascriptFile1: 'login',
+                javascriptFile2: 'security',
+                error: null,
+                securityQues : question.Question
+            });
+    }
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: "Server error" });
@@ -98,6 +103,7 @@ const isUser = async (req, res) => {
             console.log("here no error")
             // Respond with success
             req.session.isAuth = true;
+            req.session.userRole = "Admin";
             return res.redirect('/admin-homepage?log_in=successful');
     
         }
