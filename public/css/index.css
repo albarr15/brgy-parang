@@ -26,7 +26,7 @@ html {
   }
 
   html.dark{
-    background: url(../images/bg-dark.png);
+    background: url(../images/bg-dark.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -92,10 +92,6 @@ html {
     margin-bottom: 3rem;
     padding-left: 7.2%;
     padding-right: 7.2%;
-  }
-
-  .header.light{
-    background-color: var(--lgreen);
   }
 
   .header-logo {
@@ -228,8 +224,7 @@ html {
   }
 
   .header-logout-btn:hover {
-    background: #5FD78D;
-    background: var(--logout-hover-bg);
+    background: #1C8A3B;
     color: white;
     border: 0px;
     font-weight: bolder;
@@ -344,6 +339,7 @@ html {
     border-radius: 20px;
     border: none;
     width: 190px;
+    white-space: nowrap;
   } 
 
   .form-btn img {

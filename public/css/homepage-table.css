@@ -18,6 +18,7 @@ table {
     padding: 0;
     border-collapse: collapse;
     font-size: 14px;
+    width: 700px;
 
     max-width: 1000px;
     min-width: 500px;
@@ -50,6 +51,13 @@ table {
     display: table-header-group;
 }
 
+.cert-db-table td {
+    background-color: white;
+    width: fit-content;
+    text-align: start;
+    border-bottom: 1px solid #717171;
+}
+
 .tanod-lupon-db-table {
     margin-top: 0px;
 }
@@ -59,6 +67,12 @@ table {
     width: fit-content;
     text-align: start;
     border-bottom: 1px solid #717171;
+}
+
+.tanod-lupon-db-table td.case-status-cell-admin {
+    background-color: white;
+    width: 150px;
+    text-align: start;
 }
 
 .tanod-lupon-db-table thead {
@@ -156,12 +170,7 @@ tr:last-child td{
     justify-content: space-evenly;
     gap: 10px;
     text-align: center;
-    margin: 50px
-}
-
-.main-table-content.create-box{
-    width: 100%;
-    margin: 50px
+    margin: 20px;
 }
 
 .main-table-content.view{
@@ -195,6 +204,11 @@ tr:last-child td{
     font-size: 14px;
 }
 
+.indiv-acct-table td:first-of-type {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
 .role-cell {
     background-color: #004112;
     width: fit-content;
@@ -222,7 +236,6 @@ tr:last-child td{
     justify-content: center;
     align-items: center;
     padding: 10px;
-    margin-top: -50px;
 }
 
 .role-icon-main {
@@ -283,6 +296,17 @@ tr:last-child td{
 .input-container button{
     position: absolute;
     right: 0;
+} 
+
+.select-container {
+    display: flex;
+    width: 60%;
+    position: relative;
+    align-items: center;
+}
+
+.select-container select{
+    width: 100%;
 } 
 
 .bold-label-left {

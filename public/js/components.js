@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const deleteButton = document.getElementById('deleteButton');
     if (resolvedButton) {
         resolvedButton.addEventListener('click', async () => {
-            const checkedCheckboxes = document.querySelectorAll('input[name="caseIds"]:checked');
+            const checkedCheckboxes = document.querySelectorAll('button[name="caseIds"].clicked');
             const selectedCaseIds = Array.from(checkedCheckboxes).map(checkbox => checkbox.value);
 
             console.log("Selected Case IDs:", selectedCaseIds); // Debugging log
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (deleteButton) {
         deleteButton.addEventListener('click', async () => {
-            const checkedCheckboxes = document.querySelectorAll('input[name="caseIds"]:checked');
+            const checkedCheckboxes = document.querySelectorAll('button[name="caseIds"].clicked');
             const selectedCaseIds = Array.from(checkedCheckboxes).map(checkbox => checkbox.value);
 
             console.log("Selected Case IDs:", selectedCaseIds); // Debugging log
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const deleteButtonLupon = document.getElementById('deleteButtonLupon');
     if (resolvedButtonLupon) {
         resolvedButtonLupon.addEventListener('click', async () => {
-            const checkedCheckboxes = document.querySelectorAll('input[name="caseIds"]:checked');
+            const checkedCheckboxes = document.querySelectorAll('button[name="caseIds"].clicked');
             const selectedCaseIds = Array.from(checkedCheckboxes).map(checkbox => checkbox.value);
 
             console.log("Selected Case IDs:", selectedCaseIds); // Debugging log
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (deleteButtonLupon) {
         deleteButtonLupon.addEventListener('click', async () => {
-            const checkedCheckboxes = document.querySelectorAll('input[name="caseIds"]:checked');
+            const checkedCheckboxes = document.querySelectorAll('button[name="caseIds"].clicked');
             const selectedCaseIds = Array.from(checkedCheckboxes).map(checkbox => checkbox.value);
 
             console.log("Selected Case IDs:", selectedCaseIds); // Debugging log

@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var isLogin = false;
 
     function initializePage() {
-        if (document.querySelector(".login-panel")) {
+        if (document.querySelector(".login-panel")){
             // remove current stored user role 
             logout();
 
@@ -46,11 +46,13 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("header").style.background = "#004112";
             document.getElementById("logout-btn").style.setProperty("--logout-hover-bg", "#1C8A3B");
         }
-        else if (document.querySelector(".search-page") || document.querySelector("#view-case-page")) {
+        else if (document.querySelector(".search-page") || document.querySelector("#view-case-page") ||
+                (document.querySelector(".tanod-lupon-db-table")) || (document.querySelector(".accts-db-table")) || 
+                (document.querySelector(".cert-db-table"))){
             toggleLightPage();
-            console.log("toggled light");
+            // console.log("toggled light");
         } else {
-            console.log("toggled dark");
+            // console.log("toggled dark");
             toggleDarkPage();
         }
 
@@ -68,17 +70,21 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function updateUser(userRole) {
-        console.log("Updating user" + userRole);
+        // console.log("Updating user" + userRole);
         const user_role = document.getElementById("profile-text");
 
         if (user_role) {
             user_role.textContent = userRole;
 
+            document.getElementById("profile-text").classList.remove("hide");
+            document.getElementById("profile-img").classList.remove("hide");
+            document.getElementById("logout-btn").classList.remove("hide");
+
             var user_profile = document.getElementById("profile-img");
             var home_link1 = document.getElementById("home-link1");
             var home_link2 = document.getElementById("home-link2");
 
-            console.log("Found user_role: " + user_role);
+            // console.log("Found user_role: " + userRole);
             switch(userRole) {
                 case "Lupon":
                     document.getElementById("profile-text").style.color="#F3BE72";
@@ -99,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     user_profile.src = "/images/employee-profile.png";
                     home_link1.href = "/employee-home";
                     home_link2.href = "/employee-home";
-                    toggleDarkPage();
                     break;
     
                 case "Admin":
@@ -107,13 +112,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     user_profile.src = "/images/admin-profile.png";
                     home_link1.href = "/admin-homepage";
                     home_link2.href = "/admin-homepage";
-                    toggleDarkPage();
                     break;
                 default:
                     document.getElementById("profile-text").style.color="#FFFFFF";
                     user_profile.src = "/images/logo.png";
                     home_link1.href = "/index";
                     home_link2.href = "/index";
+
+                    // hide profile if no user
+                    document.getElementById("profile-text").classList.add("hide");
+                    document.getElementById("profile-img").classList.add("hide");
+                    document.getElementById("logout-btn").classList.add("hide");
             }
         }
     }
@@ -132,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     getCurrentUserRole().then(userRole => {
         if (userRole) {
-            console.log("Found User Role: " + userRole);
+            // console.log("Found User Role: " + userRole);
             updateUser(userRole);
         }
     }).catch(error => {
