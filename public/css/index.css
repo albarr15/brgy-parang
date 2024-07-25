@@ -747,6 +747,8 @@ html {
   display: block;
   width: 100%;
 }
+
+/*
 .back-button {
   text-decoration: none;
   color: black;
@@ -768,6 +770,7 @@ html {
   text-decoration: underline;
   opacity: 1.0;
 }
+*/
 
 .action-prompt{
   margin-top: 30px;
