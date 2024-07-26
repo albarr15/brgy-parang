@@ -50,7 +50,21 @@ function cancelForm() {
     $('#accesscamera').show();
 }
 
-function validateForm() {
+async function validateCedula(cedula) {
+    const response = await fetch('/check-cedula', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ cedula: cedula }),
+    });
+    console.log("checking cedula")
+
+    const result = await response.json();
+    return result.exists;
+}
+
+async function validateForm() {
     // const imageUpload = document.getElementById('imageUpload').files[0];
     const uploadedImage = document.getElementById('photoStore').value;
     const name = document.getElementById('name').value.trim();
@@ -108,6 +122,11 @@ function validateForm() {
         errorMessage += 'Place of CTC Issuance is required.\n';
     }
     
+    if (await validateCedula(cedula)) {
+        valid = false;
+        errorMessage += 'CTC Number already exists.\n';
+    }
+
     if (!cedula) {
         valid = false;
         errorMessage += 'CTC Number is required.\n';
@@ -134,7 +153,7 @@ function validateForm() {
     return valid;
 }
 
-function validateFormEdit() {
+async function validateFormEdit() {
     // const imageUpload = document.getElementById('imageUpload').files[0];
     // const uploadedImage = document.getElementById('photoStore').value;
     const uploadedImage = document.getElementById('deets-profile-img').src;
@@ -193,6 +212,11 @@ function validateFormEdit() {
         errorMessage += 'Place of CTC Issuance is required.\n';
     }
     
+    if (await validateCedula(cedula)) {
+        valid = false;
+        errorMessage += 'CTC Number already exists.\n';
+    }
+
     if (!cedula) {
         valid = false;
         errorMessage += 'CTC Number is required.\n';

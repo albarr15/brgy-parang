@@ -22,4 +22,6 @@ router.get('/delete-certificate/:id',                       certificateControlle
 router.get('/search-cases-certificate/:search_name',        certificateController.searchCertificateCase);
 router.get('/certificate-db/:search_name',                  certificateController.viewSearchCertificateDB);
 
+router.post('/check-cedula',                                certificateController.checkCedulaNum);
+
 module.exports = router;

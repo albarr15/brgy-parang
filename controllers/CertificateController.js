@@ -100,7 +100,7 @@ const onClickView = async (req, res) => {
             statusT = null
         }
 
-        req.session.lastpage = '/employee-onClick-print';
+        req.session.lastpage = `/employee-onClick-print/${ReporteeInfoFN}/${ReporteeInfoMI}/${ReporteeInfoLN}`;
         res.render('employee-onClick-print',{
             layout: 'layout',
             title: 'Barangay Parang - Admin - Tanod View Case Page',
@@ -138,8 +138,8 @@ const printCertificate = async (req, res) => {
 
 const printCertificateClearance = async (req, res) => {
     try {
-        req.session.lastpage = '/employee-input-page-clerance';
-        res.render('employee-input-page-clerance', {
+        req.session.lastpage = '/employee-input-page-clearance';
+        res.render('employee-input-page-clearance', {
             layout: 'layout',
             title: 'Barangay Parang - Employee View - Input Cert. Details',
             cssFile1: null,
@@ -437,6 +437,19 @@ const viewSearchCertificateDB = async (req, res) => {
     
 };
 
+const checkCedulaNum = async (req, res) => {
+    console.log("checking cedula")
+    const { cedula } = req.body;
+    try {
+        const existingCedula = await CertificateModel.findOne({ ctc_no: cedula });
+        if (existingCedula) {
+            return res.json({ exists: true });
+        }
+        return res.json({ exists: false });
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+}
 
 module.exports = {
     isClearedEmployee,
@@ -454,5 +467,6 @@ module.exports = {
     submitEditSpecificCert,
     deleteCertificate,
     searchCertificateCase,
-    viewSearchCertificateDB
+    viewSearchCertificateDB,
+    checkCedulaNum
 }
