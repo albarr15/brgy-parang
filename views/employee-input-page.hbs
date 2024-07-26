@@ -172,9 +172,13 @@
         }).join(' ');
     }
     
-    function downloadFileEmployee() 
+    async function downloadFileEmployee() 
     {
-        if (!validateForm()) {
+        // Perform validation
+        const isValid = await validateForm();
+        
+        // If validation fails, exit the function
+        if (!isValid) {
             return;
         }
 

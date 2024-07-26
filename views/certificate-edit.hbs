@@ -189,9 +189,13 @@
         window.location.href=`/certificate-view/${_id}`;
     }
 
-    function downloadFileEmployee() 
+    async function downloadFileEmployee() 
     {
-        if (!validateFormEdit()) {
+        // Perform validation
+        const isValid = await validateFormEdit();
+        
+        // If validation fails, exit the function
+        if (!isValid) {
             return;
         }
 
