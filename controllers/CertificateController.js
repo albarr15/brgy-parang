@@ -9,7 +9,7 @@ const viewCertClearance = async (req, res) => {
         layout: 'layout',
         title: 'Barangay Parang - Employee Homepage - test',
         cssFile1: 'index',
-        cssFile2: 'checkClearance',
+        cssFile2: 'checkclearance',
         javascriptFile1: 'header',
         javascriptFile2: 'check-clearance',
     });
