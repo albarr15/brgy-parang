@@ -70,7 +70,7 @@ function displayNoResult() {
 
     // Create an anchor element for the link
     const link = document.createElement("a");
-    link.href = "/employee-input-page";
+    link.href = "/employee-input-page-clearance";
     link.textContent = "Continue to Certificate Generation?";
 
     // Create a div to wrap the elements and apply flexbox
