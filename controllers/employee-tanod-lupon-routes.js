@@ -756,11 +756,12 @@ function add(app){
             mediationLastName,
             conciliationFirstName,
             conciliationMiddleInitial,
-            conciliationLastName
+            conciliationLastName,
+            Case,
         } = req.body;
 
         if (!caseTitle || !caseType || !status || !complainerFirstName || !complainerMiddleInitial || !complainerLastName || !mediationFirstName || !mediationMiddleInitial || !mediationLastName || !respondentFirstName || !respondentLastName 
-            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName)
+            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName || !Case)
              {
             return resp.status(400).json({ message: 'All fields are required.' });
         }
@@ -790,7 +791,7 @@ function add(app){
                 MiddleInitial: req.body.conciliationMiddleInitial,
                 LastName: req.body.conciliationLastName
             },
-            Case: req.body.caseDetails
+            Case: req.body.Case
         };
 
         try{
@@ -914,11 +915,12 @@ function add(app){
             mediationLastName,
             conciliationFirstName,
             conciliationMiddleInitial,
-            conciliationLastName
+            conciliationLastName,
+            Case
         } = req.body;
 
         if (!caseTitle || !caseType || !status || !complainerFirstName || !complainerMiddleInitial || !complainerLastName || !mediationFirstName || !mediationMiddleInitial || !mediationLastName || !respondentFirstName || !respondentLastName 
-            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName)
+            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName || !Case)
              {
             return resp.status(400).json({ message: 'All fields are required.' });
         }
@@ -955,7 +957,7 @@ function add(app){
                         MiddleInitial: req.body.conciliationMiddleInitial,
                         LastName: req.body.conciliationLastName
                     },
-                    Case: req.body.caseDetails
+                    Case: req.body.Case
                 },
                 { new: true } // Return the updated document
             );
