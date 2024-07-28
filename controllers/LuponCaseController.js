@@ -184,7 +184,7 @@ const createLuponCase = async (req, res) => {
             _id: newReviewId,
             CaseTitle: CaseTitle,
             CaseType: CaseType,
-            Status: Status === 1 ? "Resolved" : "Ongoing",
+            Status: Status,
             RespondentInfo: {
                 FirstName: respondentFirstName,
                 MiddleInitial: respondentMiddleInitial,
