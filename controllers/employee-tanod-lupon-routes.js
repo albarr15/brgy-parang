@@ -296,8 +296,17 @@ function add(app){
 
         const entryNumberint = Number(req.body.entryNumber);
 
+        // _id
+        // Find all cases and convert _id to integers for sorting
+        const allCases = await TanodCaseModel.find().exec();
+        const caseIds = allCases.map(caseDoc => parseInt(caseDoc._id, 10)).filter(id => !isNaN(id));
+
+        // Get the highest _id
+        const latestIdNum = caseIds.length > 0 ? Math.max(...caseIds) : 0;
+        const newReviewId = (latestIdNum + 1).toString();
+
         const caseData = {
-            _id: new mongoose.Types.ObjectId().toString(),
+            _id: newReviewId,
             EntryNo: entryNumberint,
             Date: req.body.date,
             Status: req.body.status,
@@ -756,17 +765,27 @@ function add(app){
             mediationLastName,
             conciliationFirstName,
             conciliationMiddleInitial,
-            conciliationLastName
+            conciliationLastName,
+            Case,
         } = req.body;
 
         if (!caseTitle || !caseType || !status || !complainerFirstName || !complainerMiddleInitial || !complainerLastName || !mediationFirstName || !mediationMiddleInitial || !mediationLastName || !respondentFirstName || !respondentLastName 
-            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName)
+            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName || !Case)
              {
             return resp.status(400).json({ message: 'All fields are required.' });
         }
 
+        // _id
+        // Find all cases and convert _id to integers for sorting
+        const allCases = await LuponCaseModel.find().exec();
+        const caseIds = allCases.map(caseDoc => parseInt(caseDoc._id, 10)).filter(id => !isNaN(id));
+
+        // Get the highest _id
+        const latestIdNum = caseIds.length > 0 ? Math.max(...caseIds) : 0;
+        const newReviewId = (latestIdNum + 1).toString();
+
         const caseData= {
-            _id: new mongoose.Types.ObjectId().toString(),
+            _id: newReviewId,
             CaseTitle: req.body.caseTitle,
             CaseType: req.body.caseType,
             Status: req.body.status,
@@ -790,7 +809,7 @@ function add(app){
                 MiddleInitial: req.body.conciliationMiddleInitial,
                 LastName: req.body.conciliationLastName
             },
-            Case: req.body.caseDetails
+            Case: req.body.Case
         };
 
         try{
@@ -914,11 +933,12 @@ function add(app){
             mediationLastName,
             conciliationFirstName,
             conciliationMiddleInitial,
-            conciliationLastName
+            conciliationLastName,
+            Case
         } = req.body;
 
         if (!caseTitle || !caseType || !status || !complainerFirstName || !complainerMiddleInitial || !complainerLastName || !mediationFirstName || !mediationMiddleInitial || !mediationLastName || !respondentFirstName || !respondentLastName 
-            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName)
+            || !conciliationFirstName || !conciliationMiddleInitial || ! respondentMiddleInitial || !conciliationLastName || !Case)
              {
             return resp.status(400).json({ message: 'All fields are required.' });
         }
@@ -955,7 +975,7 @@ function add(app){
                         MiddleInitial: req.body.conciliationMiddleInitial,
                         LastName: req.body.conciliationLastName
                     },
-                    Case: req.body.caseDetails
+                    Case: req.body.Case
                 },
                 { new: true } // Return the updated document
             );

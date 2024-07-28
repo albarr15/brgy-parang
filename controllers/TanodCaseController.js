@@ -398,7 +398,7 @@ const createTanodCase = async (req, res) => {
             _id: newReviewId,
             EntryNo: EntryNo,
             Date: Date,
-            Status: Status,
+            Status: Status === 1 ? "Resolved" : "Ongoing",
             ReporteeInfo: {
                 FirstName: reporteeFirstName,
                 MiddleInitial: reporteeMiddleInitial,
