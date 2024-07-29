@@ -149,7 +149,7 @@
             {{#checkStatus cases.Status}}
                 <a href="/delete-case-lupon/{{cases._id}}"><button type="button" class="form-btn delete"><img src="/images/form-trash.png"><span>Delete this record</span></button></a>
             {{else}}
-                <a href="/admin-lupon-db-view/{{cases._id}}"><button type="button" class="form-btn resolved"><img src="/images/form-check.png"><span>Mark as Resolved</span></button></a>
+                <a href="/mark-resolved/{{cases._id}}"><button type="button" class="form-btn resolved"><img src="/images/form-check.png"><span>Mark as Resolved</span></button></a>
                 <a href="/A-lupon-edit-case/{{cases._id}}"><button type="button" class="form-btn edit"><img src="/images/form-edit.png"><span>Edit Data</span></button></a>
                 <a href="/delete-case-lupon/{{cases._id}}"><button type="button" class="form-btn delete"><img src="/images/form-trash.png"><span>Delete this record</span></button></a>
             {{/checkStatus}}

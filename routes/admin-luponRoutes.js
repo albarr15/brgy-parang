@@ -20,7 +20,7 @@ router.get('/search-cases-lupon/:search_name',  luponCaseController.searchLuponC
 
 router.get('/A-lupon-view-case/:id',            luponCaseController.viewLuponCase);
 
-router.get('/admin-lupon-db-view/:id',          luponCaseController.markResolved);
+router.get('/mark-resolved/:id',          luponCaseController.markResolved);
 
 router.get('/A-lupon-edit-case/:id',            luponCaseController.editLuponCase);
 

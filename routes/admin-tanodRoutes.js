@@ -8,7 +8,7 @@ router.get('/admin-tanod-db-view',                      tanodCaseController.view
 
 router.get('/admin-tanod-db-view/:search_name',         tanodCaseController.viewSearchTanodDB); //view search result in db
 
-router.get('/admin-tanod-db-view/:id',                  tanodCaseController.markResolved);      //mark specific case/s using mark resolved button in db
+router.get('/tanod-markResolved/:id',                  tanodCaseController.markResolved);      //mark specific case/s using mark resolved button in db
 
 router.get('/A-tanod-view-case/:id',                    tanodCaseController.viewTanodCase);     //view specific (1) case
 
