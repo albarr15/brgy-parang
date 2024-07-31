@@ -3,6 +3,7 @@ const accountsController = require('../controllers/UserController');
 const router = express.Router();
 
 router.get('/admin-accounts-db-view',           accountsController.viewAllAccounts);
+router.get('/admin-accounts-db-view-security',  accountsController.viewAllAccountsSecurity);
 
 //ADMIN
 router.get('/admin-view-acct-admin/:id',        accountsController.viewAdminAcc);

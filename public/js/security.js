@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                window.location.href = "/admin-accounts-db-view"
+                window.location.href = "/admin-accounts-db-view-security"
             } else {
                 alert('Incorrect answer.');
             }

@@ -152,6 +152,39 @@ const viewAllAccounts = async (req, res) => {
     }
 }
 
+const viewAllAccountsSecurity = async (req, res) => {
+    try {
+        //pages
+        const page = parseInt(req.query.page) || 1;
+        const limit = 10;
+        const skip = (page - 1) * limit;
+
+
+        const accounts = await UserModel.find().skip(skip).limit(limit).lean();
+        const totalAccounts = await UserModel.countDocuments();
+        const totalPages = Math.ceil(totalAccounts / limit);
+        const question = await SecurityModel.findOne({ _id: 1 }).lean();
+
+        
+        req.session.lastpage = '/admin-accounts-db-view-security';
+        res.render('admin-accounts-db-view-security', {
+            layout: 'layout',
+            title: 'Admin: Accounts DB Viewing',
+            cssFile1: null,
+            cssFile2: null,
+            javascriptFile1: null,
+            javascriptFile2: null,
+            accounts: accounts,
+            securityQues : question.Question, 
+            currentPage: page,
+            totalPages: totalPages
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Server error" });
+    }
+}
+
 //ADMIN ------------------------------------------------
 const viewAdminAcc = async (req, res) => {
     try {
@@ -559,5 +592,7 @@ module.exports = {
 
     viewTanodAcc,
     editTanodAcc,
-    submitEditTanodAcc
+    submitEditTanodAcc,
+
+    viewAllAccountsSecurity
 }
