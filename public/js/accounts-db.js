@@ -17,10 +17,20 @@ function hidePW(role_pw) {
 }
 
 function validateForm() {
-    var user_role = localStorage.getItem("userRole").toLowerCase();
+    var user_role = localStorage.getItem("userRole");
+
+    if (user_role == null) {
+        user_role = document.getElementById("userRole").innerHTML;
+    }
+
+    user_role = user_role.toLowerCase();
+
+    console.log(user_role);
 
     var email_id = user_role + "-email";
     var pw_id = user_role + "-pw";
+
+    console.log(pw_id);
 
     const user_email = document.getElementById(email_id);
     const user_pw = document.getElementById(pw_id);
@@ -95,9 +105,30 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     const TP1 = document.getElementById('togglePassword');
+
+    var user_role = localStorage.getItem("userRole");
+
+    if (user_role == null) {
+        user_role = document.getElementById("userRole").innerHTML;
+    }
+
+    user_role = user_role.toLowerCase();
+
+    console.log(user_role);
+
+    var email_id = user_role + "-email";
+    var pw_id = user_role + "-pw";
+
+    console.log(pw_id);
+
+    const user_email = document.getElementById(email_id);
+    const user_pw = document.getElementById(pw_id);
+    const confirm_user_pw = document.getElementById(pw_id + "1");
+
+
     if (TP1) {
         TP1.addEventListener("click", function() {
-            var passwordField = document.getElementById("admin-pw");
+            var passwordField = document.getElementById(user_pw);
             var eye_icon = document.getElementById("eye_con");
             
             if (passwordField.type === "password") {
@@ -113,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const TP2 = document.getElementById('togglePassword1');
     if (TP2) {
         TP2.addEventListener("click", function() {
-            var passwordFieldCP = document.getElementById("admin-pw1");
+            var passwordFieldCP = document.getElementById(confirm_user_pw);
             var eye_iconCP = document.getElementById("eye_con1");
             
             if (passwordFieldCP.type === "password") {
